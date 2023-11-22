@@ -641,7 +641,7 @@
         "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-0": {
           "type": "image",
           "settings": {
-            "heading": "Soy este elemento",
+            "heading": "Heading",
             "subheading": "Sub heading",
             "link": ""
           }
