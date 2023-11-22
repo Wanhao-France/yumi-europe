@@ -33,7 +33,7 @@
         "enable_currency_selector": true,
         "fontcolor": "#ffffff",
         "bg_style": "solid",
-        "bgcolor": "#5b554e",
+        "bgcolor": "#e28000",
         "bgcolor2": "",
         "overlay_color": "",
         "overlay_opacity": 50,
@@ -68,7 +68,7 @@
         "icon_weight": "thin",
         "enable_language_selector": true,
         "enable_currency_selector": true,
-        "header_bgcolor": "#4d473f",
+        "header_bgcolor": "#e28000",
         "header_textcolor": "#ffffff",
         "header_textcolor_hover": "#9b9b9b",
         "transparent_text_color": "#000000",
@@ -85,11 +85,11 @@
         "catalogmenu_bg": "#f7f7f7",
         "catologtext_color": "#000000",
         "catologtext_hover": "#8f826b",
-        "catalog_bg": "#ddd",
-        "catalog_text": "#FFFFFF",
-        "catalog_text_border": "#EDEDED",
+        "catalog_bg": "#dddddd",
+        "catalog_text": "#ffffff",
+        "catalog_text_border": "#ededed",
         "searchbar_text": "#000000",
-        "searchbar_icon_bg": "#EDEDED",
+        "searchbar_icon_bg": "#ededed",
         "searchbar_icon_color": "#000000"
       }
     }
