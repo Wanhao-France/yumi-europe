@@ -1,0 +1,256 @@
+<div class="{% unless section.settings.full_width %}container{% endunless %}">
+  <div id="promo-banner-{{ section.id }}" class="promo-banner-content">
+    {%- if section.settings.heading != blank -%}
+      <p class="promo-banner-title h6">{{ section.settings.heading }}</p>
+    {% endif %}
+    {%- if section.settings.text != blank -%}
+      <p>{{ section.settings.text }}</p>
+    {%- endif -%}
+    {%- if section.settings.label != blank and section.settings.link != blank -%}
+      <a href="{{ section.settings.link }}" class="button xsmall-btn">{{ section.settings.label }} </a>
+    {%- endif -%}
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }}.promotion-banner{
+    {% if section.settings.full_width %}
+    background-color:{{ section.settings.bgcolor }};
+  {% endif%}
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+  }
+    #promo-banner-{{ section.id }}{
+      {% unless section.settings.full_width %}
+      background-color:{{ section.settings.bgcolor }};
+      border-radius:{{ section.settings.border_radius }}px;
+    {% endunless %}
+      --colorBtnPrimaryText:{{ section.settings.btntextcolor }};
+      --colorBtnPrimary:{{ section.settings.btnbgcolor }};
+      --colorBtnPrimaryBorder:{{ section.settings.btnborder }};
+    }
+    @media only screen and (max-width:575px) {
+      #shopify-section-{{ section.id }}.promotion-banner{
+        padding-top:{{ section.settings.top_space_mobile }}px;
+        padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+      }
+    }
+
+    #promo-banner-{{ section.id }}.promo-banner-content .promo-banner-title{
+      color:{{ section.settings.textcolor }}
+    }
+
+    #promo-banner-{{ section.id }}.promo-banner-content p{
+      color:{{ section.settings.textcolor }}
+    }
+
+  .promo-banner-content {
+    {% if section.settings.full_width %}
+      padding:0 20px;
+      {% else %}
+      padding: 20px;
+    {% endif %}
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+    .promo-banner-content .promo-banner-title, .promo-banner-content p, .promo-banner-content a {
+      margin: 0 10px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+   .promo-banner-content a {
+     display: inline-flex;
+  }
+    @media screen and (max-width:575px){
+      .promo-banner-content p {
+          width:100%;
+          text-align:center;
+      }
+      .promo-banner-content a {
+          margin: 6px 10px 0;
+      }
+    }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.promotion-banner.name",
+  "class": "promotion-banner",
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.promotion-banner.settings.full_width.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:sections.promotion-banner.settings.border_radius.label",
+      "default": 5,
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "info": "t:sections.promotion-banner.settings.border_radius.info"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.text_section.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.promotion-banner.settings.heading.label",
+      "default": "Promotion"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:sections.promotion-banner.settings.text.label",
+      "default": "Add the details of your promotion"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.button_section.label"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:sections.promotion-banner.settings.label.label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:sections.promotion-banner.settings.link.label"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "color",
+      "id": "textcolor",
+      "label": "t:sections.promotion-banner.settings.textcolor.label",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "label": "t:sections.promotion-banner.settings.bgcolor.label",
+      "default": "#F8F8F8"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:common.header.button_section.label"
+    },
+    {
+      "type": "color",
+      "id": "btntextcolor",
+      "label": "t:sections.promotion-banner.settings.btntextcolor.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btnbgcolor",
+      "label": "t:sections.promotion-banner.settings.btnbgcolor.label",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "btnborder",
+      "label": "t:sections.promotion-banner.settings.btnborder.label",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 60,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 60,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 60,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 60,
+      "step": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.promotion-banner.presets.name"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

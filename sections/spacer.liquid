@@ -1,0 +1,93 @@
+<style>
+  #shopify-section-{{section.id}}.shopify-section {
+  {% unless section.settings.custom_color contains 'rgba(0,0,0,0)' or section.settings.custom_color == blank %}
+  background:{{- section.settings.custom_color -}};
+    {% else %}
+  background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    {% endunless %}
+    height:{{section.settings.height_desktop}}px;
+  }
+  @media only screen and (max-width:575px) {
+    #shopify-section-{{section.id}}.shopify-section{
+      height:{{section.settings.height_mobile}}px;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "t:sections.spacer.name",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "t:sections.spacer.settings.height_desktop.label",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "t:sections.spacer.settings.height_mobile.label",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_singular_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "secondary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "custom_color",
+      "label": "t:sections.spacer.settings.custom_color.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.spacer.presets.name"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,219 @@
+<div class="yv-login-form yv-forget-password-form" id="yvForgetPassword">
+  <div class="yv-login-form-head  text-center">
+    <h6 class="form-title" tabindex="-1">
+      {{ 'customer.recover_password.title' | t }}
+    </h6>
+  </div>
+  <div>
+    {%- form 'recover_customer_password' -%}
+      <div class="field form-group">
+        <label for="RecoverEmail" class="hidden">
+          {{ 'customer.login_page.email' | t }}
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          value=""
+          name="email"
+          id="RecoverEmail"
+          autocapitalize="off"
+          autocomplete="email"
+          placeholder="{{ 'customer.login_page.email' | t }}"
+        >
+      </div>
+
+      <button class="button black-btn btn-block small-btn">
+        {{ 'customer.login_page.submit' | t }}
+      </button>
+      <div class="text-center login-bottom-box ">
+        <p>
+          <a
+            class="cancel_recover"
+            href="#yvLogin"
+            onClick="toggleForm(event)"
+            data-close="yvForgetPassword"
+            data-open="yvLogin"
+          >
+            {{- 'customer.login_page.cancel' | t -}}
+          </a>
+        </p>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+<div class="yv-login-form" id="yvLogin">
+  <div class="yv-login-form-head text-center">
+    <h6 class="form-title" tabindex="-1">
+      {{ 'customer.login_page.title' | t }}
+    </h6>
+  </div>
+  <div>
+    {%- form 'customer_login', novalidate: 'novalidate' -%}
+      <div class="field form-group">
+        <label for="CustomerEmail" class="hidden">
+          {{ 'customer.login_page.email' | t }}
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          name="customer[email]"
+          id="CustomerEmail"
+          autocomplete="email"
+          autocapitalize="off"
+          {% if form.errors contains 'form' %}
+            aria-invalid="true"
+          {% endif %}
+          placeholder="{{ 'customer.login_page.email' | t }}"
+        >
+      </div>
+
+      {%- if form.password_needed -%}
+        <div class="field form-group">
+          <label for="CustomerPassword" class="hidden">
+            {{ 'customer.login_page.password' | t }}
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            value=""
+            name="customer[password]"
+            id="CustomerPassword"
+            autocomplete="current-password"
+            {% if form.errors contains 'form' %}
+              aria-invalid="true"
+            {% endif %}
+            placeholder="{{ 'customer.login_page.password' | t }}"
+          >
+        </div>
+
+        <div class="field form-group">
+          <a
+            href="#yvForgetPassword"
+            class="frgt-pw"
+            onClick="toggleForm(event)"
+            data-close="yvLogin"
+            data-open="yvForgetPassword"
+          >
+            {{ 'customer.login_page.forgot_password' | t }}
+          </a>
+        </div>
+      {%- endif -%}
+
+      <button class="button black-btn btn-block small-btn">
+        {{ 'customer.login_page.sign_in' | t }}
+      </button>
+      <div class="text-center login-bottom-box">
+        <p>
+          <a
+            href="{{ routes.account_register_url }}"
+            class=""
+            onClick="toggleForm(event)"
+            data-close="yvLogin"
+            data-open="registerForm"
+          >
+            {{- 'customer.login_page.create_account' | t -}}
+          </a>
+        </p>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+<div class="yv-login-form yv-register-form" id="registerForm">
+  <div class="yv-login-form-head  text-center">
+  <h6 class="form-title" tabindex="-1">
+    {{ 'customer.register.title' | t }}
+  </h6>
+  </div>
+  {%- form 'create_customer', novalidate: 'novalidate' -%}
+    <div class="contact-field-group">
+    <div class="field form-group">
+      <label for="signUpForm-FirstName" class="hidden">
+        {{ 'customer.register.first_name' | t }}
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        name="customer[first_name]"
+        id="signUpForm-FirstName"
+        {% if form.first_name %}
+          value="{{ form.first_name }}"
+        {% endif %}
+        autocomplete="given-name"
+        placeholder="{{ 'customer.register.first_name' | t }}"
+      >
+    </div>
+    <div class="field form-group">
+      <label for="signUpForm-LastName" class="hidden">
+        {{ 'customer.register.last_name' | t }}
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        name="customer[last_name]"
+        id="signUpForm-LastName"
+        {% if form.last_name %}
+          value="{{ form.last_name }}"
+        {% endif %}
+        autocomplete="family-name"
+        placeholder="{{ 'customer.register.last_name' | t }}"
+      >
+    </div>
+    </div>
+    <div class="field form-group">
+      <label for="signUpForm-email" class="hidden">
+        {{ 'customer.register.email' | t }}
+      </label>
+      <input
+        type="email"
+        class="form-control"
+        name="customer[email]"
+        id="signUpForm-email"
+        {% if form.email %}
+          value="{{ form.email }}"
+        {% endif %}
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="email"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="signUpForm-email-error"
+        {% endif %}
+        placeholder="{{ 'customer.register.email' | t }}"
+      >
+    </div>
+    <div class="field form-group">
+      <label for="signUpForm-password" class="hidden">
+        {{ 'customer.register.password' | t }}
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        name="customer[password]"
+        id="signUpForm-password"
+        aria-required="true"
+        {% if form.errors contains 'password' %}
+          aria-invalid="true"
+          aria-describedby="signUpForm-password-error"
+        {% endif %}
+        placeholder="{{ 'customer.register.password' | t }}"
+      >
+    </div>
+    <button class="button black-btn btn-block small-btn">
+      {{ 'customer.register.submit' | t }}
+    </button>
+    <div class="text-center login-bottom-box">
+      <p>
+        <a
+          href="{{ routes.account_login_url }}"
+          class=""
+          onClick="toggleForm(event)"
+          data-close="registerForm"
+          data-open="yvLogin"
+        >
+          {{ 'customer.register.login_button' | t -}}
+        </a>
+      </p>
+    </div>
+  {%- endform -%}
+</div>

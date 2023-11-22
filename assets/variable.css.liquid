@@ -1,0 +1,192 @@
+{% liquid
+      assign bodyfontbold = settings.type_base_font_family | font_modify: 'weight', 'bold'
+      assign bodyfontitalic = settings.type_base_font_family | font_modify: 'style', 'italic'
+      assign bodyfontbolditalic = bodyfontbold | font_modify: 'style', 'italic'
+%}
+{{ settings.type_base_font_family | font_face : font_display: 'swap' }}
+{{ bodyfontbold | font_face : font_display: 'swap' }}
+{{ bodyfontitalic | font_face : font_display: 'swap' }}
+{{ bodyfontbolditalic | font_face : font_display: 'swap' }}
+{{ settings.type_heading_font_family | font_face : font_display: 'swap' }}
+
+:root {
+  --gray: #ececec;
+  --dark-gray: #747474;
+  --green:#6cad61;
+  --red:#ec7c7c;
+  --heading-font-family:{{ settings.type_heading_font_family.family }},{{ settings.type_heading_font_family.fallback_families }};
+  --heading-font-weight:{{ settings.type_heading_font_family.weight }};
+  --font-family:{{ settings.type_base_font_family.family }},{{ settings.type_base_font_family.fallback_families }};
+  --body-font-weight:{{ settings.type_base_font_family.weight }};
+  --body-font-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+  --thin:100;
+  --light:300;
+  --normal:400;
+  --medium:500;
+  --semibold:600;
+  --bold:700; 
+  --extrabold:900;
+  --theme-color: {{ settings.color_base | default: '#9d6348' }};
+  --theme-light-color: {{ settings.color_base | color_modify: 'alpha', 0.1 }};
+  --colorTextBody: {{ settings.color_body_text }};
+  --colorLightTextBody: {{ settings.color_body_text | color_modify: 'alpha', 0.5 }};
+  --colorXlightTextBody: {{ settings.color_body_text | color_modify: 'alpha', 0.3 }};
+  --colorXXlightTextBody: {{ settings.color_body_text | color_modify: 'alpha', 0.1 }};
+  --cartDotColor: {{ settings.color_cart_dot }};
+  --cartDotColorLight:{{ settings.color_cart_dot | color_modify : 'alpha' , 0.3 }};
+  --cartDotColorNull:{{ settings.color_cart_dot | color_modify : 'alpha' , 0 }};
+  --colorBtnPrimary: {{ settings.color_button | default: '#000' }};
+  --colorBtnPrimaryText: {{ settings.color_button_text | default: '#fff' }}; 
+  --colorBtnPrimaryBorder: {{ settings.color_button_border | default: '#000' }}; 
+  --colorBtnSecondary: {{ settings.secondary_color_button | default: '#fff' }};
+  --colorBtnSecondaryText:{{ settings.secondary_color_button_text | default: '#000' }};
+  --colorBtnSecondaryBorder:{{ settings.secondary_color_button_border | default: '#000' }};  
+  --primaryColorBody: {{ settings.color_body_bg }};
+  --saleBadgeBg:{{ settings.sale_badge_bg }};
+  --saleBadgeText:{{ settings.sale_badge_text }};
+  --soldBadgeBg:{{ settings.sold_badge_bg }};
+  --soldBadgeText:{{ settings.sold_badge_text }};
+  --secondaryColorBody: {{ settings.secondary_color_body_bg }};
+  {% liquid 
+    assign primarycolorBrightness = settings.color_body_bg | color_brightness
+    assign secondarycolorBrightness = settings.secondary_color_body_bg | color_brightness
+    assign tertiarycolorBrightness = settings.tertiary_color_body_bg | color_brightness
+    assign quaternarycolorBrightness = settings.quaternary_color_body_bg | color_brightness
+  %}
+  {%- if primarycolorBrightness < 130 -%}
+    --primarySocialIconBg:{{ settings.color_body_bg | color_lighten: 10 }};
+    --primaryAlternateBg:{{ settings.color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --primarySocialIconBg:{{ settings.color_body_bg | color_darken: 10 }};
+    --primaryAlternateBg:{{ settings.color_body_bg | color_darken: 5 }};
+  {%- endif -%}
+  {%- if secondarycolorBrightness < 130 -%}
+    --secondarySocialIconBg:{{ settings.secondary_color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --secondarySocialIconBg:{{ settings.secondary_color_body_bg | color_darken: 10 }};
+  {%- endif -%}
+  {%- if tertiarycolorBrightness < 130 -%}
+    --tertiarySocialIconBg:{{ settings.tertiary_color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --tertiarySocialIconBg:{{ settings.tertiary_color_body_bg | color_darken: 10 }};
+  {%- endif -%}
+  {%- if quaternarycolorBrightness < 130 -%}
+    --quaternarySocialIconBg:{{ settings.quaternary_color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --quaternarySocialIconBg:{{ settings.quaternary_color_body_bg | color_darken: 10 }};
+  {%- endif -%}
+  --secondarycolorTextBody: {{ settings.secondary_color_body_text }};
+  --secondaryColorLightTextBody: {{ settings.secondary_color_body_text | color_modify: 'alpha', 0.5 }};
+  --secondaryColorXlightTextBody: {{ settings.secondary_color_body_text | color_modify: 'alpha', 0.3 }};
+  --secondary_heading_color: {{ settings.secondary_heading_color | default: '#000000' }};
+  --tertiaryColorBody:{{ settings.tertiary_color_body_bg }};
+  --tertiarycolorTextBody: {{ settings.tertiary_color_body_text }};
+  --tertiaryColorLightTextBody: {{ settings.tertiary_color_body_text | color_modify: 'alpha', 0.5 }};
+  --tertiaryColorXlightTextBody: {{ settings.tertiary_color_body_text | color_modify: 'alpha', 0.3 }};
+  --tertiary_heading_color: {{ settings.tertiary_heading_color | default: '#000000' }};
+  --gradientColorBody: {{ settings.gradient_color_body_bg }};
+  --quaternaryColorBody: {{ settings.quaternary_color_body_bg }};
+  --quaternarycolorTextBody: {{ settings.quaternary_color_body_text }};
+  --quaternaryColorLightTextBody: {{ settings.quaternary_color_body_text | color_modify: 'alpha', 0.5 }};
+  --quaternaryColorXlightTextBody: {{ settings.quaternary_color_body_text | color_modify: 'alpha', 0.3 }};
+  --quaternary_heading_color: {{ settings.quaternary_heading_color | default: '#000000' }};
+  --colorImageBg: {{ settings.color_image_bg }};
+  --colorImageBorder: {{ settings.color_image_border }};
+  --productImageBorder: {%- if settings.product_image_border -%}1px solid {{ settings.color_image_border }}{%- else -%}0{%- endif -%};
+  --articleImageBorder: {%- if settings.article_image_border -%}1px solid {{ settings.color_image_border }}{%- else -%}0{%- endif -%};
+  --collectionImageBorder: {%- if settings.collection_image_border -%}1px solid {{ settings.color_image_border }}{%- else -%}0{%- endif -%};
+  --colorTextSavings: {{ settings.color_savings_text | default: '#E22120' }};
+  --colorBgSavings: {{ settings.bg_savings_text | default: '#ffe18c' }};
+  --heading_color: {{ settings.heading_color | default: '#000000' }};
+  --heading_base_size: {{ settings.heading_font_scale | divided_by : 100.00 }};
+  --heading_spacing: {{ settings.type_header_spacing | default: "0" | divided_by: 1000.00 }}em;
+  --heading_line_height: {{ settings.type_heading_line_height | default: 1.2 }};
+  --base_spacing: {{ settings.type_base_spacing | default: "50" | divided_by: 1000.00 }}em;
+  --base_line_height: {{ settings.type_base_line_height | default: 1.4 }};
+  --text_base_size: {{ settings.type_base_size| divided_by : 100.00 }};
+  --buttonRadius: {{ settings.button_radius }}px;
+  --productGridRadius: {{ settings.product_grid_radius }};
+  --headingTextTransform: {%- if settings.heading_text_transform == 'capitalize' -%}{%- else -%}uppercase{%- endif -%};
+  --buttonFontFamily: var({{ settings.buttons_font_family }});
+  --variantFontFamily: var({{ settings.option_title_font_family }});
+  --filtersHeadingFontFamily: var({{ settings.filters_heading_font_family }});
+  --priceFontFamily: var({{ settings.price_font_family }});
+  --tabHeadingFontFamily: var({{ settings.tab_heading_font_family }});
+  --tabHeadingTextTransform: {%- if settings.tab_heading_font_family == '--font-family' -%}{%- else -%}uppercase{%- endif -%};
+  --navigationFontFamily: var({{ settings.navigation_font_family }});
+  --navigationTextTransform: {%- if settings.navigation_font_family == '--font-family' -%}{%- else -%}uppercase{%- endif -%};
+  --variantTextTransform: {%- if settings.option_title_capital == 'capitalize' -%}{%- else -%}uppercase{%- endif -%};
+  --xsmallText:calc(var(--text_base_size) * 10px);
+  --smallText: calc(var(--text_base_size) * 12px);
+  --text: calc(var(--text_base_size) * 14px);
+  --mediumText: calc(var(--text_base_size) * 16px);
+  --largeText: calc(var(--text_base_size) * 18px);
+  --xlargeText:  calc(var(--text_base_size) * 20px);
+  --buttonAnimationDirection:{%- case settings.buttonAnimation -%}
+  {%- when 'left' -%}
+  translateX(-100%)
+  {%- when 'right' -%}
+  translateX(100%)
+  {%- when 'top' -%}
+  translateY(-100%)
+  {%- when 'bottom' -%}
+  translateY(100%)
+  {%- endcase -%};
+}
+@media (min-width:1025px) {
+  .button:before,
+  .pdp-action-container button.shopify-payment-button__button--hidden:before,
+  .pdp-action-container button.shopify-payment-button__button:before,
+  .tertiary-button:before {
+      content: "";
+      position: absolute;      
+      {%- case settings.buttonAnimation -%}
+      {%- when 'left' -%}
+        top:0;
+        right:0;
+        width:0;
+        height:100%;
+      {%- when 'right' -%}
+        top:0;
+        left:0;
+        width:0;
+        height:100%;
+      {%- when 'top' -%}
+        bottom:0;
+        left:0;
+        width:100%;
+        height:0;
+      {%- when 'bottom' -%}
+        top:0;
+        left:0;
+        width:100%;
+        height:0;
+      {%- endcase -%}
+      z-index: -1;
+      transition: 0.6s ease-in-out;
+  }
+  .button:hover:before,
+  .pdp-action-container button.shopify-payment-button__button--hidden:hover:before,
+  .pdp-action-container button.shopify-payment-button__button:hover:before,
+  .secondary-button:hover:before {
+    {%- case settings.buttonAnimation -%}
+    {%- when 'right' -%}
+      right:0;
+      left:auto;
+      width:100%;
+    {%- when 'left' -%}
+      right:auto;
+      left:0;
+      width:100%;
+    {%- when 'bottom' -%}
+      bottom:0;
+      top:auto;
+      height:100%;
+    {%- when 'top' -%}
+      bottom:auto;
+      top:0;
+      height:100%;
+
+    {%- endcase -%}
+  }
+}

@@ -1,0 +1,533 @@
+{%- capture image_content -%}
+  <div class="col-12 col-sm-12 col-md-6">
+    {% liquid
+      if section.settings.image_height == 'landscape'
+        assign imageHeight = 75 
+      elsif section.settings.image_height == 'portrait'
+        assign imageHeight = 125 
+      elsif section.settings.image_height == 'square'
+        assign imageHeight = 100 
+      else
+        if section.settings.image != blank
+          assign imageHeight = 100 | divided_by: section.settings.image.aspect_ratio
+        else
+          assign imageHeight = 100 
+        endif
+      endif
+    %}
+    <div class="yv-imgbox-container image-shadow-{{ section.settings.image_shadow }}">
+      <div
+        class="yv-img-content{% if section.settings.enable_image_animation %} image-hover-animation{% endif %}"
+        data-aos="fade-up"
+      >
+    <div class="image-wrapper"
+          style="padding-bottom: {{ imageHeight }}%;">
+      
+        {%- liquid
+          if section.settings.image != blank
+            render 'lazy-image', image: section.settings.image
+          else
+            echo 'image' | placeholder_svg_tag: 'placeholder-svg'
+          endif
+        -%}
+      </div>
+      </div>
+    </div>
+  </div>
+{%- endcapture -%}
+<div
+  class="{% if section.settings.enable_fullwidth %}fullwidth-container{% else %}container md-container{% endif %}"
+  style="--layoutRadius:{% if settings.layout_style == 'rounded' %}20px{% else %}0px{% endif %};--imageShadowColor:{{ section.settings.image_shadow_color }}"
+>
+  <div class="row align-items-{{ section.settings.content_position }} image-position-{{ section.settings.image_alignment }}">
+    {%- if section.settings.image_alignment == 'left' -%}
+      {{- image_content -}}
+    {% endif %}
+    <div class="col-12 col-sm-12 col-md-6">
+      <div class="text-content">
+        {% assign delay = 0.5 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'heading' %}
+              <div class="section-heading ">
+                <{{ block.settings.seo_heading }}>
+                  {{ block.settings.heading }}
+                </{{ block.settings.seo_heading }}>
+              </div>
+            {% when 'text' %}
+              {{ block.settings.content }}
+            {% when 'button' %}
+              {%- if block.settings.btn_link != blank and block.settings.btn_text != blank -%}
+                <a class="button {{ block.settings.button_size }}-btn mt-3" href="{{ block.settings.btn_link }}">
+                  {{- block.settings.btn_text -}}
+                </a>
+              {%- endif -%}
+            {% when 'icon-with-text' %}
+              <div class="icons_with_text_item">
+                <figure>
+                  {%- render 'icons', icon: block.settings.icon -%}
+                </figure>
+                <div class="text_card">
+                  <h6 class="text-large">{{ block.settings.heading }}</h6>
+                  {{ block.settings.content }}
+                </div>
+              </div>
+              {% assign delay = delay | plus: 0.15 %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+    {%- if section.settings.image_alignment == 'right' -%}
+      {{- image_content -}}
+    {%- endif -%}
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }}.shopify-section {
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.image-with-text.name",
+  "tag": "section",
+  "class": "image-with-text-section",
+  "max_blocks": 5,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_fullwidth",
+      "label": "t:sections.image-with-text.settings.enable_fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.media_section.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image-with-text.settings.image.label",
+      "info": "t:sections.image-with-text.settings.image.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_shadow",
+      "label": "t:sections.image-with-text.settings.image_shadow.label",
+      "default": true
+    },
+    {
+      "type": "checkbox", 
+      "id": "enable_image_animation",
+      "label": "t:sections.collage.settings.enable_image_animation.label",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_alignment",
+      "label": "t:sections.image-with-text.settings.image_alignment.label",
+      "default": "left",
+      "options": [
+        {
+          "label": "t:sections.image-with-text.settings.image_alignment.options.left.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.image-with-text.settings.image_alignment.options.right.label",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "t:sections.image-with-text.settings.image_height.label",
+      "default": "aspect",
+      "options": [
+        {
+          "value": "aspect",
+          "label": "t:common.image_height.options.aspect.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:common.image_height.options.landscape.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:common.image_height.options.portrait.label"
+        },
+        {
+          "value": "square",
+          "label": "t:common.image_height.options.square.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-with-text.settings.content.label"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "t:sections.image-with-text.settings.content_position.label",
+      "default": "center",
+      "options": [
+        {
+          "label": "t:sections.image-with-text.settings.content_position.options.start.label",
+          "value": "start"
+        },
+        {
+          "label": "t:sections.image-with-text.settings.content_position.options.center.label",
+          "value": "center"
+        },
+        {
+          "label": "t:sections.image-with-text.settings.content_position.options.end.label",
+          "value": "end"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "image_shadow_color",
+      "label": "t:sections.image-with-text.settings.image_shadow_color.label",
+      "default": "#dddddd"
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 60,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.image-with-text.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.image-with-text.blocks.heading.settings.heading.label",
+          "default": "Image with text"
+        },
+       {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.image-with-text.blocks.button.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_text",
+          "default": "Button text",
+          "label": "t:sections.image-with-text.blocks.button.settings.btn_text.label"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "t:sections.image-with-text.blocks.button.settings.btn_link.label"
+        },
+        {
+          "type": "select",
+          "id": "button_size",
+          "default": "med",
+          "label": "t:common.button.shortname.label",
+          "options": [
+            {
+              "value": "default",
+              "label": "t:common.button.options.default.label"
+            },
+            {
+              "value": "small",
+              "label": "t:common.button.options.small.label"
+            },
+            {
+              "value": "med",
+              "label": "t:common.button.options.medium.label"
+            },
+            {
+              "value": "large",
+              "label": "t:common.button.options.large.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-with-text.blocks.text.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "label": "t:sections.image-with-text.blocks.text.settings.content.label",
+          "id": "content",
+          "default": "<p>To provide clients insight into your brand, pair words with any image. Here you can tell a narrative, explain a product feature, or introduce a new campaign.</p>"
+        }
+      ]
+    },
+    {
+      "type": "icon-with-text",
+      "name": "t:sections.image-with-text.blocks.icon-with-text.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:common.icon.label",
+          "default": "shipping",
+          "options": [
+            {
+              "label": "t:common.icon.options.chat.label",
+              "value": "chat"
+            },
+            {
+              "label": "t:common.icon.options.eye.label",
+              "value": "eye"
+            },
+            {
+              "label": "t:common.icon.options.file.label",
+              "value": "file"
+            },
+            {
+              "label": "t:common.icon.options.gift.label",
+              "value": "gift"
+            },
+            {
+              "label": "t:common.icon.options.global.label",
+              "value": "global"
+            },
+            {
+              "label": "t:common.icon.options.heart.label",
+              "value": "heart"
+            },
+            {
+              "label": "t:common.icon.options.phone.label",
+              "value": "phone"
+            },
+            {
+              "label": "t:common.icon.options.refund.label",
+              "value": "refund"
+            },
+            {
+              "label": "t:common.icon.options.search.label",
+              "value": "search"
+            },
+            {
+              "label": "t:common.icon.options.secure.label",
+              "value": "secure"
+            },
+            {
+              "label": "t:common.icon.options.shipping.label",
+              "value": "shipping"
+            },
+            {
+              "label": "t:common.icon.options.smile.label",
+              "value": "smile"
+            },
+            {
+              "label": "t:common.icon.options.support.label",
+              "value": "support"
+            },
+            {
+              "label": "t:common.icon.options.tag.label",
+              "value": "tag"
+            },
+            {
+              "label": "t:common.icon.options.thumb.label",
+              "value": "thumb"
+            },
+            {
+              "label": "t:common.icon.options.user.label",
+              "value": "user"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.image-with-text.blocks.icon-with-text.settings.heading.label",
+          "default": "Icon with text"
+        },
+        {
+          "type": "richtext",
+          "label": "t:sections.image-with-text.blocks.icon-with-text.settings.content.label",
+          "id": "content",
+          "default": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-with-text.presets.name",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "icon-with-text"
+        },
+        {
+          "type": "icon-with-text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

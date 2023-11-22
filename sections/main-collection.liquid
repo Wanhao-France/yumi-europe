@@ -1,0 +1,508 @@
+<style>
+  #shopify-section-{{ section.id }}{
+    --mainBannerHeight:{{ section.settings.banner_height_desktop }};
+  }
+  @media screen and (max-width:767px){
+    #shopify-section-{{ section.id }}{
+      --mainBannerHeight:{{ section.settings.banner_height_mobile }};
+    }
+    .shopify-section-main-header.sticky-header-hidden-parent {
+      z-index: 2;
+    }
+
+  }
+</style>
+{%- liquid
+  assign showCollectionImage = false
+  if section.settings.collection_image
+    if collection.image != blank
+      assign showCollectionImage = true
+      assign collectionImage = collection.image
+    elsif section.settings.default_banner != blank
+      assign showCollectionImage = true
+      assign collectionImage = section.settings.default_banner
+    endif
+  endif
+
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+-%}
+
+{% if section.settings.collection_title or section.settings.collection_description or showCollectionImage %}
+  <div
+    class="yv-collection-banner"
+    {% if section.settings.banner == blank and section.settings.bgcolor != blank %}
+      style="background-color:{{ section.settings.bgcolor }};"
+    {% endif %}
+  >
+    {%- if showCollectionImage -%}
+      {%- render 'lazy-image', image: collectionImage, class: 'banner-img' -%}
+    {%- endif -%}
+    <div class="container md-container">
+      <div class="collection-banner-content">
+        {% if section.settings.collection_title %}
+          <{{ section.settings.seo_heading }}
+            class="collection-banner-title"
+            {% if section.settings.textcolor != blank %}
+              style="color:{{ section.settings.textcolor }}"
+            {% endif %}
+          >
+            {{ collection.title }}
+          </{{ section.settings.seo_heading }}>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% if section.settings.collection_description and collection.description != blank %}
+  <div class="container sm-container">
+    <div class="collection-banner-content">
+      <div class="yv-collection-description rich-editor-text-content">
+        {{
+          collection.description
+          | replace: '<table', '<div class="table-responsive"><table'
+          | replace: '</table>', '</table></div>'
+        }}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{%- capture activeFilters -%}
+  {%- for filter in collection.filters -%}
+    {%- for value in filter.active_values -%}
+      <li class="yv-applied-filter-item">
+        <a class="yv-applied-filter-remove" href="{{ value.url_to_remove }}">
+          {{ value.label | escape }}
+          <span class="yv-applied-filter-cross">
+            <svg viewBox="0 0 6 6" width="6" height="6" fill="currentcolor">
+              <path  d="m0.8 0q0 0 0.1 0.1l2.1 2.1l2.1-2.1c0.1-0.1 0.2-0.1 0.2 0l0.6 0.6c0.1 0 0.1 0.1 0 0.2l-2.1 2.1l2.1 2.1c0.1 0.1 0.1 0.2 0 0.2l-0.6 0.6c0 0.1-0.1 0.1-0.2 0l-2.1-2.1l-2.1 2.1c-0.1 0.1-0.2 0.1-0.2 0l-0.6-0.6c-0.1 0-0.1-0.1 0-0.2l2.1-2.1l-2.1-2.1c-0.1-0.1-0.1-0.2 0-0.2l0.6-0.6q0-0.1 0.1-0.1z" />
+            </svg>
+          </span>
+        </a>
+      </li>
+    {%- endfor -%}
+    {% if filter.type == 'price_range' %}
+      {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+        <li class="yv-applied-filter-item">
+          <a class="yv-applied-filter-remove" href="{{ filter.url_to_remove }}">
+            {%- if filter.min_value.value -%}
+              {{ filter.min_value.value | money }}
+            {%- else -%}
+              {{ 0 | money }}
+            {%- endif -%}
+            -
+            {%- if filter.max_value.value -%}
+              {{ filter.max_value.value | money }}
+            {%- else -%}
+              {{ filter.range_max | money }}
+            {%- endif -%}
+            <span class="yv-applied-filter-cross">
+              <svg viewBox="0 0 6 6" width="6" height="6" fill="currentcolor">
+                <path  d="m0.8 0q0 0 0.1 0.1l2.1 2.1l2.1-2.1c0.1-0.1 0.2-0.1 0.2 0l0.6 0.6c0.1 0 0.1 0.1 0 0.2l-2.1 2.1l2.1 2.1c0.1 0.1 0.1 0.2 0 0.2l-0.6 0.6c0 0.1-0.1 0.1-0.2 0l-2.1-2.1l-2.1 2.1c-0.1 0.1-0.2 0.1-0.2 0l-0.6-0.6c-0.1 0-0.1-0.1 0-0.2l2.1-2.1l-2.1-2.1c-0.1-0.1-0.1-0.2 0-0.2l0.6-0.6q0-0.1 0.1-0.1z" />
+              </svg>
+            </span>
+          </a>
+        </li>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+<div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+  <div class="yv-collection-container {% if section.settings.enable_filtering == false or collection.filters.size == 0  %}filters-hide{% endif %} ">
+    {% paginate collection.products by section.settings.products_per_page %}
+      {%- liquid
+        assign filterVisibility = true
+        if section.settings.enable_filtering == false or collection.filters.size == 0
+          if section.settings.enable_sorting == false
+            assign filterVisibility = false
+          endif
+        endif
+      -%}
+      <div class="yv-collections-topbar{% if filterVisibility %} yv-collections-topbar-sticky{% endif %}{% if collection.all_products_count == 0 %} d-none{% endif %}">
+        {%- if section.settings.enable_filtering and collection.filters.size > 0 -%}
+          <div class="yv-left-sidebar">
+          <div class="filter-heading-wrapper">
+            <h6
+              id="filterHeading"
+              class="yv-filter-sidebar-heading {% if section.settings.filters_layout == 'drawer' %}filters-drawer-toggle{% endif %}"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474 474" width="50" height="50">
+                  <g id="Clip-Path" clip-path="url(#cp1)">
+                  <g id="Layer_3">
+                    <path id="Layer_4" fill-rule="evenodd" d="m456.8 0.2c13.1 0 21.3 14.2 14.6 25.5l-183.7 245.1v152.2c0 6.4-3.6 12.3-9.3 15.2l-67.7 33.8c-11.2 5.6-24.5-2.6-24.5-15.1v-186.1l-183.7-245.1c-6.6-11.3 1.5-25.5 14.6-25.5zm-239.1 257.4c1.5 2.6 2.4 5.6 2.4 8.6v163.3l33.8-16.9v-146.4c0-3 0.8-6 2.3-8.6l171-223.5h-380.4z"></path>
+                  </g>
+                </g>
+              </svg>
+              {{ 'sections.collection_template.filter_by_label' | t }}
+              
+            </h6>
+          {% if activeFilters != blank %}
+                <a
+                  class="yv-applied-filter-remove d-none d-md-inline"
+                  id="yv-applied-filter-cross-all"
+                  href="{{ collection.url }}?sort_by={{ sort_by }}"
+                >
+                  {{- 'sections.collection_template.clear_all' | t -}}
+                </a>
+              {% endif %}
+          </div>
+          </div>
+        {%- endif -%}
+        <div class="yv-right-sidebar">
+          <p class="products-count text-medium">
+            {{ 'sections.collection_template.product_count_simple' | t: count: collection.products_count }}
+          </p>
+          <div class="collection-sort-elements">
+            {%- if section.settings.enable_display_options -%}
+              <button href="" class="sort-grid-icon" data-value="grid-layout-2">
+                <svg viewBox="0 0 10 12" width="10" height="12">
+                  <path  d="m0 0h3v12h-3z" />
+                  <path  d="m7 0h3v12h-3z" />
+                </svg>
+              </button>
+              <button href="" class="sort-grid-icon active" data-value="grid-layout-3">
+                <svg viewBox="0 0 15 12" width="15" height="12">
+                  <path  d="m0 0h3v12h-3z" />
+                  <path  d="m6 0h3v12h-3z" />
+                  <path  d="m12 0h3v12h-3z" />
+                </svg>
+              </button>
+              <button href="" class="sort-grid-icon " data-value="grid-layout-4">
+                <svg viewBox="0 0 21 12" width="21" height="12">
+                  <g/><g><g><path d="M0,0H3V12H0V0Z"/><path d="M6,0h3V12h-3V0Z"/><path d="M12,0h3V12h-3V0Z"/><path d="M18,0h3V12h-3V0Z"/></g></g>
+                </svg>
+              </button>
+              <button href="" class="sort-grid-icon" data-value="grid-layout-5">
+                <svg viewBox="0 0 27 12" width="27" height="12">
+                  <g/><g><g><path d="M0,0H3V12H0V0Z"/><path d="M6,0h3V12h-3V0Z"/><path d="M12,0h3V12h-3V0Z"/><path d="M18,0h3V12h-3V0Z"/><path d="M24,0h3V12h-3V0Z"/></g></g>
+                </svg>
+              </button>
+            {%- endif -%}
+            {%- if section.settings.enable_sorting -%}
+              <div id="toolbox-sort" class="collection-sortbar">
+                <button type="button" class="collection-sortby-selected">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10" width="16" height="10">
+                    <path d="m0 0h16v2h-16zm0 4h12v2h-12zm0 4h8v2h-8z"/>
+                  </svg>
+                  {{ 'sections.collection_template.sort_by_label' | t }}
+                </button>
+              </div>
+              <ul id="sort__list" class="list-unstyled sort-list">
+                <li class="sort-heading d-block d-md-none">
+                  <h4>{{ 'sections.collection_template.sort_by_label' | t }}</h4>
+                  <button class="close-sort">
+                    <svg
+                      class="MobileCrossSvg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="50"
+                      height="50"
+                      viewBox="0 0 50 50"
+                      style=" fill:#000000;"
+                    >
+                      <g><path style=" " d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z "></path></g>
+                    </svg>
+                  </button>
+                </li>
+                {%- for option in collection.sort_options -%}
+                  <li class="{% if option.value == sort_by %}selected{% endif %}">
+                    <input
+                      type="radio"
+                      name="sort_by"
+                      id="sortByOption-{{ forloop.index }}"
+                      value="{{ option.value | escape }}"
+                      data-name="{{ option.name | escape }}"
+                      form="FiltersForm"
+                      {% if option.value == sort_by %}
+                        checked
+                      {% endif %}
+                    >
+                    <label for="sortByOption-{{ forloop.index }}">
+                      <span class="checkmark"></span>
+                      {{ option.name | escape -}}
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+      {%- assign clearAll = '?sort_by=' | append: sort_by -%}
+      <div
+        class="yv-collection-products {{ sort_by }} {% if collection.products_count == 0 %}no-result{% endif %} {% if section.settings.filters_layout == 'drawer' %}filters-toggle{% endif %} "
+        id="CollectionProductsContainer"
+        data-id="{{ section.id }}"
+        data-view="grid-layout-4"
+      >
+        {% if section.settings.enable_filtering and collection.filters.size > 0 %}
+          <aside id="filterSideBar" class="yv-filter-sidebar">
+            {% render 'collection-sidebar', section: section, results: collection, clearAll: clearAll %}
+          </aside>
+        {% else %}
+          <form id="FiltersForm" class="collectionFilters__form"></form>
+        {% endif %}
+
+        {% if collection.all_products_count > 0 %}
+          <div class="yv-products-list">
+            {%- if activeFilters != blank -%}
+              <ul class="list-unstyled yv-products-applied-filter">
+                {{ activeFilters }}
+              </ul>
+            {%- endif -%}
+            <div class="row" data-collection-products>
+              {% if collection.products_count > 0 %}
+                {% for product in collection.products %}
+                  <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3" data-product-grid>
+                    {%- liquid
+                      if settings.enable_animation
+                        assign animationAttr = 'data-aos="fade-up"'
+                      else
+                        assign animationAttr = ''
+                      endif
+                      render 'product-grid', product: product, animationAttr: animationAttr
+                    -%}
+                  </div>
+                {% endfor %}
+                {%- if section.settings.pagination_type == 'infinite' -%}
+                  {% if paginate.next %}
+                    <div id="more" style="width:100%">
+                      <a href="{{ paginate.next.url }}" aria-label="{{ 'accessibility.loading' | t }}"></a>
+                      <div class="load hidden">
+                        <svg
+                          width="50"
+                          height="50"
+                          style="shape-rendering: auto; animation-play-state: running; animation-delay: 0s; background: none;"
+                          class="Search_loader lds-rolling"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 100 100"
+                          preserveAspectRatio="xMidYMid"
+                        >
+                <circle cx="50" cy="50" fill="none" stroke="#d9e2ed" stroke-width="10" r="35"
+                        stroke-dasharray="164.93361431346415 56.97787143782138"
+                        style="animation-play-state: running; animation-delay: 0s;"
+                        transform="rotate(115.597 50 50)">
+                  <animateTransform attributeName="transform" type="rotate" calcMode="linear"
+                                    values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s"
+                                    repeatCount="indefinite">
+                  </animateTransform>
+                </circle></svg>
+                      </div>
+                    </div>
+                  {% endif %}
+                {%- endif -%}
+              {% else %}
+                {% render 'not-found', item: 'Product' %}
+              {% endif %}
+            </div>
+
+            {%- if section.settings.pagination_type == 'paged' and paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            {%- endif -%}
+          </div>
+        {% else %}
+          {% render 'not-found', item: 'Product' %}
+        {% endif %}
+      </div>
+    {% endpaginate %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "t:sections.main-collection.name",
+  "tag": "section",
+  "class": "collection-products-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "collection_title",
+      "default": true,
+      "label": "t:sections.main-collection.settings.collection_title.label"
+    },
+     {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+    {
+      "type": "checkbox",
+      "id": "collection_description",
+      "default": true,
+      "label": "t:sections.main-collection.settings.collection_description.label"
+    },
+    {
+      "type": "radio",
+      "id": "pagination_type",
+      "default": "paged",
+      "label": "t:sections.main-collection.settings.pagination_type.label",
+      "options": [
+        {
+          "value": "paged",
+          "label": "t:sections.main-collection.settings.pagination_type.options.paged.label"
+        },
+        {
+          "value": "infinite",
+          "label": "t:sections.main-collection.settings.pagination_type.options.infinite.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 60,
+      "step": 1,
+      "default": 16,
+      "label": "t:sections.main-collection.settings.products_per_page.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection.settings.enable_filtering.label",
+      "info": "t:sections.main-collection.settings.enable_filtering.info"
+    },
+    {
+      "type": "select",
+      "id": "filters_layout",
+      "default": "sidebar",
+      "label": "t:sections.main-collection.settings.filters_layout.label",
+      "options": [
+        {
+          "value": "drawer",
+          "label": "t:sections.main-collection.settings.filters_layout.options.drawer.label"
+        },
+        {
+          "value": "sidebar",
+          "label": "t:sections.main-collection.settings.filters_layout.options.sidebar.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_display_options",
+      "default": true,
+      "label": "t:sections.main-collection.settings.enable_display_options.label"
+    },
+    {
+      "type": "header",
+      "content": "t:common.banner.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_image",
+      "default": true,
+      "label": "t:sections.main-collection.settings.collection_image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_banner",
+      "label": "t:sections.main-collection.settings.default_banner.label",
+      "info": "t:sections.main-collection.settings.default_banner.info"
+    },
+    {
+      "type": "select",
+      "id": "banner_height_desktop",
+      "label": "t:common.banner.height.desktop",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:common.banner.height.options.adapt.label"
+        },
+        {
+          "value": "100px",
+          "label": "t:common.banner.height.options.small.label"
+        },
+        {
+          "value": "200px",
+          "label": "t:common.banner.height.options.medium.label"
+        },
+        {
+          "value": "300px",
+          "label": "t:common.banner.height.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "banner_height_mobile",
+      "label": "t:common.banner.height.mobile",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:common.banner.height.options.adapt.label"
+        },
+        {
+          "value": "100px",
+          "label": "t:common.banner.height.options.small.label"
+        },
+        {
+          "value": "150px",
+          "label": "t:common.banner.height.options.medium.label"
+        },
+        {
+          "value": "200px",
+          "label": "t:common.banner.height.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "default": "#F8F3EB",
+      "label": "t:sections.main-collection.settings.bgcolor.label"
+    },
+    {
+      "type": "color",
+      "id": "textcolor",
+      "default": "#181818",
+      "label": "t:sections.main-collection.settings.textcolor.label"
+    }
+  ]
+}
+{% endschema %}

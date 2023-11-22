@@ -1,0 +1,120 @@
+{%- comment -%}theme-check-disable RemoteAsset,ParserBlockingJavaScript{%- endcomment -%}
+<script>       
+  var focusElement = '';
+  var productSlider;
+  var productThumbSlider; 
+    const moneyFormat = '{{ shop.money_format }}';
+    const moneyFormatWithoutCurrency = '{{ shop.money_format | remove: cart.currency.symbol | replace: 'amount_with_comma_separator', 'amount' }}';
+  const freeShippingBarText = `{{ settings.shipping_text }}`;
+  const freeShippingBarSuccessText = `{{ settings.free_shipping_text }}`;
+  const shopCurrency = `{{ shop.currency }}`;
+  const freeShippingBarAmount = {{ settings.shipping_rate | times: 100 }};
+  {%- if settings.enable_shipping and settings.shipping_rate != blank -%}
+  const freeShippingBarStatus = true;
+  {%- else -%}
+  const freeShippingBarStatus = false;
+  {%- endif -%}
+  {%- if settings.show_grid_pickup -%}
+  const gridPickupAvailabilityStatus = true;
+  {%- else -%}
+  const gridPickupAvailabilityStatus = false;
+  {%- endif -%}
+  const addToCartText = '{{ 'products.product.add_to_cart' | t }}';
+  const preorderText = '{{ 'products.product.preorder' | t }}';
+  const preorderStatus = {{ settings.enable_preorder }};
+  const soldOutText = '{{ 'products.product.sold_out' | t }}';
+  const saleText = '{{ 'products.product.on_sale' | t }}';
+  const saleOffText = '{{ 'products.product.off' | t }}';
+  const regularPriceText = '{{ 'products.product.price.regular_price' | t }}';
+  const comparePriceText = '{{ 'products.product.price.sale_price' | t }}'; 
+  const savedPriceText = '{{ 'products.product.price.saved' | t }}';
+  const unitPriceText = '{{ 'products.product.price.unit_price' | t }}';
+  const priceVariText = '{{ 'products.product.price.from_price_html' | t : price : '[[price]]' }}';
+  const cartTitleLabel = '{{ 'sections.cart.title' | t }}';
+  const errorLabel = '{{ 'sections.cart.shipping_estimates.error' | t }}';
+  const notAvailableLabel = '{{ 'sections.cart.shipping_estimates.not_available' | t }}';
+  const variantStyle = '{{ settings.option_style }}';
+  const pickUpAvialabiliyHeading = '{{ 'products.product.pickup_availability.heading' | t }}';
+  const productGridContentAlignment = '{{ settings.product_grid_content_alignment }}';
+  const unavailableText = '{{ 'products.product.unavailable' | t }}';
+  const oneTimePurchaseText = '{{ 'products.product.one_time_purchase' | t }}';
+  const showSavedAmount = {{ settings.show_saved_amount }};
+  const savedAmountStyle = '{{ settings.saved_amount_style }}';
+  const quickViewHeading = '{{ 'general.quick_view_heading' | t }}';
+  const searchSuggestions = {{ settings.enable_result_suggestions }};
+  const searchPageResults = {{ settings.enable_page_result }};
+  const searchArticleResults = {{ settings.enable_article_result }};
+  const searchDrawerSuggestionHead = '{{ 'templates.search.suggestion' | t }}';
+  const searchDrawerProductHead = '{{ 'templates.search.product' | t }}';
+  const searchDrawerArticleHead = '{{ 'templates.search.article' | t }}';
+  const searchDrawerPageHead = '{{ 'templates.search.page' | t }}';
+  const searchAllResultText = '{{ 'templates.search.drawer_all_results' | t }}';
+  const searchRecentTitleText = '{{ 'templates.search.drawer_recent_title' | t }}';
+  const searchNoResultText = '{{ 'templates.search.drawer_no_results' | t }}';
+  const searchForText = '{{ 'templates.search.drawer_search' | t }}';
+  const searchResultText = '{{ 'templates.search.drawer_results' | t }}';
+  const searchNoSuggestionText = '{{ 'templates.search.no_suggestion' | t }}';
+  const searchProductImageHeight = 'image-{{ settings.product_image_style }}';
+  const searchArticleImageHeight = 'image-{{ settings.article_image_style }}';
+  const showMoreText = '{{ 'sections.collection_template.filter_show_more' | t }}';
+  const showLessText = '{{ 'sections.collection_template.filter_show_less' | t }}';
+  const readMoreText = '{{ 'blogs.article.read_more' | t }}';
+  const animationStatus = {{ settings.enable_animation }};
+  const rootUrl = '{{ routes.root_url }}';
+  const cartUrl = '{{ routes.cart_url }}.js';
+  const mainCartUrl = '{{ routes.cart_url }}';
+  const cartStatusEmpty = `{{ 'customer.order.reorder.cart_status.empty' | t}}`;
+  const cartStatusNotEmpty = `{{ 'customer.order.reorder.cart_status.not_empty' | t}}`;
+  {%- if cart.item_count == 0 -%}
+  var emptyCartStatus = true;
+  {%- else -%}
+  var emptyCartStatus = false;
+  {%- endif -%}
+  const cartAdd = '{{ routes.cart_add_url }}';
+  const cartAddUrl = '{{ routes.cart_add_url }}.js';
+  const cartUpdateUrl = '{{ routes.cart_update_url }}.js';
+  const cartChangeUrl = '{{ routes.cart_change_url }}.js';
+  const cartClearUrl = '{{ routes.cart_clear_url }}.js';
+  const cartChangeError = "{{ 'sections.cart.cart_quantity_error_html' | t : quantity : '[qty]' }}";
+  const productRecommendationUrl = '{{ routes.product_recommendations_url }}';
+  const googleMapApiKey = '{{ settings.googlemapapi }}';
+  const searchUrl = '{{ routes.search_url }}';
+  const preLoadLoadGif = `<div class="yv_load">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+               style="margin: auto; display: block; shape-rendering: auto;"
+               width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="svg-loader" >
+            <circle cx="50" cy="50" fill="none" stroke="#dddddd" stroke-width="6" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+              <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+            </circle>
+          </svg>
+    </div>`;
+  const noImage = `{{ 'image' | placeholder_svg_tag : 'placeholder-svg' }}`;
+  const noProductImage = `{{ 'product-1' | placeholder_svg_tag : 'placeholder-svg' }}`;
+  const noResultFound = `{%- render 'not-found' -%}`;
+  const cartDrawerEnable = {{ settings.enable_cart_drawer }};
+  var cartItemsCount = {{ cart.item_count }};
+  const browserNotificationStatus = {{ settings.enable_browser_notification }};
+  const browserNotificationBg = '{{ settings.browser_notification_bg }}';
+  const browserNotificationText = '{{ settings.browser_notification_text }}';
+  {% if settings.layout_style == 'rounded' %}
+  const browserNotificationShape = 'circle';
+  {% else %}
+  const browserNotificationShape = 'rectangle';
+  {% endif %}
+
+</script>
+<script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
+<script src="{{ 'cookies.min.js' | asset_url }}" defer></script>
+<script src="{{ 'flickity.min.js' | asset_url }}" defer></script>
+{% if settings.enable_animation %}
+  <script src="{{ 'aos.js' | asset_url }}" defer></script>
+{% endif %}
+<script src="{{ 'common.js' | asset_url }}" defer></script>
+<script src="{{ 'modernizr.min.js' | asset_url }}" defer></script>
+<script src="{{ 'lazysizes.min.js' | asset_url }}" defer></script>
+{% if request.page_type == 'collection' or request.page_type == 'search' %}
+  <script src="{{ 'nouislider.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'filters.js' | asset_url }}" defer></script>
+{% endif %}
+<script src="{{ 'cart-ajax.js' | asset_url }}" defer></script>
+{%- comment -%}theme-check-enable RemoteAsset,ParserBlockingJavaScript{%- endcomment -%}

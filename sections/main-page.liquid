@@ -1,0 +1,148 @@
+<style>
+  #shopify-section-{{ section.id }}{
+    --mainBannerHeight:{{ section.settings.banner_height_desktop }};
+  }
+  @media screen and (max-width:767px){
+    #shopify-section-{{ section.id }}{
+      --mainBannerHeight:{{ section.settings.banner_height_mobile }};
+    }
+  }
+</style>
+<div
+  class="yv-page-banner"
+  style="{% if section.settings.banner != blank %}background:url({{ section.settings.banner | image_url }}) no-repeat {{ section.settings.banner.presentation.focal_point }}/cover;{% elsif section.settings.bgcolor != blank %}background-color:{{section.settings.bgcolor}};{% endif %}"
+>
+  <div class="page-banner-content text-center">
+    <{{ section.settings.seo_heading }} class="page-banner-title" style="color:{{ section.settings.textcolor }}">{{ page.title }}</{{ section.settings.seo_heading }}>
+  </div>
+</div>
+{%- if page.content != blank -%}
+  <div class="yv-page-description-wrapper">
+    <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+      <div class="page-description rich-editor-text-content">
+        {{
+          page.content
+          | replace: '<table', '<div class="table-responsive"><table'
+          | replace: '</table>', '</table></div>'
+        }}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "banner-top-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:common.banner.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner",
+      "label": "t:sections.main-page.settings.banner.label",
+      "info": "t:sections.main-page.settings.banner.info"
+    },
+    {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+    {
+      "type": "select",
+      "id": "banner_height_desktop",
+      "label": "t:common.banner.height.desktop",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:common.banner.height.options.adapt.label"
+        },
+        {
+          "value": "100px",
+          "label": "t:common.banner.height.options.small.label"
+        },
+        {
+          "value": "200px",
+          "label": "t:common.banner.height.options.medium.label"
+        },
+        {
+          "value": "300px",
+          "label": "t:common.banner.height.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "banner_height_mobile",
+      "label": "t:common.banner.height.mobile",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:common.banner.height.options.adapt.label"
+        },
+        {
+          "value": "100px",
+          "label": "t:common.banner.height.options.small.label"
+        },
+        {
+          "value": "150px",
+          "label": "t:common.banner.height.options.medium.label"
+        },
+        {
+          "value": "200px",
+          "label": "t:common.banner.height.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "default": "#f5efec",
+      "label": "t:sections.main-page.settings.bgcolor.label"
+    },
+    {
+      "type": "color",
+      "id": "textcolor",
+      "default": "#181818",
+      "label": "t:sections.main-page.settings.textcolor.label"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,188 @@
+<div id="sidemenu" class="hamburger-menu">
+  <noscript>
+    <a href="#" class="hamburger" role="button" aria-label="Toggle navigation">
+      <span class="hamburger-line hamburger-line-1"></span>
+      <span class="hamburger-line hamburger-line-3"></span>
+    </a>
+  </noscript>
+  <div class="hamburger-menu-outer">
+    {% assign itembageCount = 1 %}
+    {%- for link in linklists[section.settings.menu].links -%}
+         {%  assign menuTitle = link.title | handleize %}
+         {% capture menubadge %}
+          {%  for block in section.blocks %}
+            {% if block.type == 'menu-badge' %}
+              {% assign badgetitle =  block.settings.badge_label | handleize  %}
+              {% if block.settings.menu_badge != blank and  badgetitle == menuTitle %}
+                 <span class="navPages-label new-label badge-{{ itembageCount }}" id="menu-badge-{{ block.id }}">{{ block.settings.menu_badge }}</span>
+               {% assign itembageCount = itembageCount | plus:1 %}
+              {% endif %}
+        
+            {% endif %}
+          {% endfor  %} 
+        {% endcapture %} 
+      {% if link.links != blank %}
+     
+        <div class="hamburger-menu-item dropdown-hamburger-menu-item">
+          <a href="javscript:void(0);" class="dropdown-hamburger-menu-item-title item">
+            {{- link.title | escape }}
+              {% if menubadge != blank %}
+                {{ menubadge }}
+              {% endif  %}
+            <span class="hamburger-dropdown-icon">
+              <svg viewBox="0 0 21 15" width="21" height="15">
+                <path class="s0tt" d="m18.9 7.5l-5.3-5.3c-0.3-0.4-0.3-0.9 0-1.2c0.4-0.3 0.9-0.4 1.2 0l5.9 6c0.3 0.3 0.3 0.9 0 1.2l-6.2 6.2q-0.2 0.2-0.6 0.2q-0.3 0-0.6-0.2c-0.3-0.4-0.3-0.9 0-1.2zm-18.1-0.7h17.6c0.4 0 0.8 0.4 0.8 0.8c0 0.5-0.4 0.9-0.8 0.9h-17.6c-0.4 0-0.8-0.4-0.8-0.9c0-0.4 0.4-0.8 0.8-0.8z"></path>
+              </svg>
+            </span>
+          </a>
+          <div class="inner-hamburder-wrapper">
+            <div class="inner-hamburger-outer">
+              <button class="back-to-menu cursor-pointer">
+                <span>
+                  <svg fill="currentcolor" viewBox="0 0 18.44 18.44">
+                    <path class="d" d="M9.22,18.44c-.16,0-.31-.06-.43-.18L.18,9.66h-.01v-.02h0c-.05-.06-.09-.12-.12-.19-.03-.07-.04-.14-.05-.22H0v-.03H0c0-.08,.02-.15,.05-.22,.03-.07,.07-.13,.12-.19h0v-.02L8.79,.18c.24-.24,.63-.24,.87,0s.24,.63,0,.87L2.1,8.61h15.73c.34,0,.61,.27,.61,.61s-.27,.61-.61,.61H2.1l7.56,7.56c.24,.24,.24,.63,0,.87-.12,.12-.28,.18-.43,.18Z"></path>
+                  </svg>
+                </span>
+                {{ link.title | escape }}
+              </button>
+              {%- for childlink in link.links -%}
+                {% if childlink.links != blank %}
+                  <div class="hamburger-menu-item inner-item dropdown-hamburger-menu-item">
+                    <a href="javscript:void(0);" class="dropdown-hamburger-menu-item-title item">
+                      {{- childlink.title | escape }}
+                      <span class="hamburger-dropdown-icon">
+                        <svg viewBox="0 0 21 15" width="21" height="15">
+                          <style>.s0tt{fill:currentcolor}</style>
+                          <path class="s0tt" d="m18.9 7.5l-5.3-5.3c-0.3-0.4-0.3-0.9 0-1.2c0.4-0.3 0.9-0.4 1.2 0l5.9 6c0.3 0.3 0.3 0.9 0 1.2l-6.2 6.2q-0.2 0.2-0.6 0.2q-0.3 0-0.6-0.2c-0.3-0.4-0.3-0.9 0-1.2zm-18.1-0.7h17.6c0.4 0 0.8 0.4 0.8 0.8c0 0.5-0.4 0.9-0.8 0.9h-17.6c-0.4 0-0.8-0.4-0.8-0.9c0-0.4 0.4-0.8 0.8-0.8z"></path>
+                        </svg>
+                      </span>
+                    </a>
+                    <div class="sub-inner-hamburder-wrapper">
+                      <div class="sub-inner-hamburger-outer">
+                        <button class="back-to-menu cursor-pointer">
+                          <span>
+                            <svg fill="currentcolor" viewBox="0 0 18.44 18.44">
+                              <path class="d" d="M9.22,18.44c-.16,0-.31-.06-.43-.18L.18,9.66h-.01v-.02h0c-.05-.06-.09-.12-.12-.19-.03-.07-.04-.14-.05-.22H0v-.03H0c0-.08,.02-.15,.05-.22,.03-.07,.07-.13,.12-.19h0v-.02L8.79,.18c.24-.24,.63-.24,.87,0s.24,.63,0,.87L2.1,8.61h15.73c.34,0,.61,.27,.61,.61s-.27,.61-.61,.61H2.1l7.56,7.56c.24,.24,.24,.63,0,.87-.12,.12-.28,.18-.43,.18Z"></path>
+                            </svg>
+                          </span>
+                          {{ childlink.title | escape }}
+                        </button>
+                        {%- for grandchildlink in childlink.links -%}
+                          <a class="hamburger-menu-item sub-inner-item" href="{{ grandchildlink.url }} ">
+                            <span class="item">{{ grandchildlink.title | escape }}</span>
+                          </a>
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                {%- else -%}
+                  <a class="hamburger-menu-item inner-item" href="{{ childlink.url }} ">
+                    <span class="item">
+                      {{ childlink.title | escape }}
+                    </span>
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        <a class="hamburger-menu-item" href="{{ link.url }}">
+          <span class="item">
+        {{ link.title | escape }}
+        </span>
+          {% if menubadge != blank %}
+            {{ menubadge }}
+          {% endif  %}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if customer -%}
+      <a class="hamburger-menu-item" href="{{- routes.account_url -}}">
+        <span class="item">{{ 'customer.account.title' | t   }}</span>
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.trust_badge_logo != blank -%}
+      <div class="hamburger-menu-item header__icons">
+      <div class="header-img d-block d-lg-none">
+        {%- if section.settings.trust_badge_link != blank -%}
+        <a href="{{ section.settings.trust_badge_link }}">
+        {% endif %}
+            <img
+              src="{{ section.settings.trust_badge_logo | img_url: 'master' }}"
+              alt="{{ section.settings.trust_badge_logo.alt | default: shop.name | strip_html }}"
+              width="{{ section.settings.trust_badge_logo.width }}"
+              height="{{ section.settings.trust_badge_logo.height }}"
+                  >
+        {%- if section.settings.trust_badge_link != blank -%}
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="hamburger-lower-menu">
+      <div class="lower-nav">
+        <div class="menu-login-btn">
+          {%- if customer -%}
+            <a class="drawer-login-btn" href="{{ routes.account_logout_url }}">
+              {{- 'customer.log_out' | t   -}}
+            </a>
+          {%- else -%}
+            <a class="drawer-login-btn" href="{{ routes.account_login_url }}">
+              {{- 'customer.log_in' | t   -}}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+      
+    {% liquid
+      if section.settings.enable_language_selector or section.settings.enable_currency_selector
+        echo '<div class="header-form">'
+          render 'header-localization' section:section,formId:'headerMobileForm' 
+        echo '</div>'
+      endif
+    %}
+      {% render 'social-media-icons' %}
+    </div>
+  </div>
+</div>
+<svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <path class="shape-overlays-path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
+  <path class="shape-overlays-path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
+  <path class="shape-overlays-path" d="M 0 100 C 50 100 50 100 100 100 V 100 H 0"></path>
+</svg>
+{%- if section.settings.menu != blank -%}
+  <style>
+    {%- assign transitionDelay = 0.7 -%}
+    {%- assign itemCount = 1 -%}
+    {%- assign menuLength = linklists[section.settings.menu].links.size | minus : 1 -%}
+    {%- assign initalDelay = menuLength | times : 0.05 -%}
+    {%- for link in linklists[section.settings.menu].links -%}
+    .hamburger-menu-outer .hamburger-menu-item.opened:not(.inner-item, .sub-inner-item):nth-child({{ forloop.index }}) {
+      transition-delay: {{ transitionDelay }}s;
+    }
+    {%- assign transitionDelay = transitionDelay | plus : 0.05 -%}
+    .hamburger-menu-item:not(.inner-item, .sub-inner-item ):nth-child({{ forloop.index }}) {
+      transition-delay: {{ initalDelay }}s;
+    }
+    {%- assign initalDelay = initalDelay | minus : 0.05 -%}
+    {%- assign itemCount = itemCount | plus : 1 -%}
+    {%- endfor -%}
+
+    {%- if customer -%}
+      .hamburger-menu-outer .hamburger-menu-item.opened:not(.inner-item, .sub-inner-item):nth-child({{ itemCount }}) {
+      transition-delay: {{ transitionDelay }}s;
+    }
+    {%- assign transitionDelay = transitionDelay | plus : 0.05 -%}
+    .hamburger-menu-item:not(.inner-item, .sub-inner-item ):nth-child({{ itemCount }}) {
+      transition-delay: {{ initalDelay }}s;
+    }
+    {%- endif -%}
+    
+    .hamburger-menu-outer .hamburger-menu-item.header__icons.opened{
+      transition-delay: {{transitionDelay | plus : 0.05 }}s;
+    }
+  </style>
+{%- endif -%}

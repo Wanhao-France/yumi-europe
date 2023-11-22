@@ -1,0 +1,49 @@
+<div class="top-header header_1">
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+    <div class="navbar navbar-expand-md">
+        {% liquid
+          assign catalogDesktop = false
+          if section.settings.enable_catalog and section.settings.enable_catalog_drawer and section.settings.catalog_menu != blank 
+          assign catalogDesktop = true
+          endif
+        %}
+      {%- if section.settings.menu != blank or catalogDesktop -%}
+        <div id="nav-menu-btn" class="nav-menu-btn{% if catalogDesktop %} catalog_drawer_menu d-lg-block{% endif %}">
+          <div class="nav__btn {{ section.settings.icon_weight }}-icon">
+            <a
+              href="#mobileMenu"
+              class="navbar-toggler"
+              data-toggle="collapse"
+              role="button"
+              data-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </a>
+          </div>
+          {% render 'side-menu', section: section, mobileMenu: true,catalogDesktop:catalogDesktop %}
+        </div>
+      {%- endif -%}
+      <a
+        class="header__heading-link {% if section.settings.logo == blank %}yv-heading-shop-link{% endif %}"
+        href="{{ routes.root_url }}"
+        aria-label="{{ shop.name }}"
+      >
+        {%- render 'header-logo', section: section -%}
+      </a>
+        {% if section.settings.enable_catalog and section.settings.enable_catalog_drawer == false %}
+            {% render 'header-category' %}
+        {% endif %}
+      {%- if section.settings.menu != blank -%}
+        <ul class="list-unstyled navbar-nav {% if section.settings.trust_badge_logo != blank %} trust-badge-enabled{% endif %}">
+          {% render 'nav-item', section: section %}
+        </ul>
+      {%- endif -%}
+      <div class="form-inline">
+        {% render 'header-icons', section: section %}
+      </div>
+    </div>
+  </div>
+</div>

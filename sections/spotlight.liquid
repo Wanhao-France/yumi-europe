@@ -1,0 +1,505 @@
+<div class="{% unless section.settings.enable_fullwidth %}container{% endunless %}">
+<div class="yv-spotlight-main" style="--layoutRadius:{% if section.settings.enable_fullwidth == false and settings.layout_style == 'rounded' %}20px{% else %}0px{% endif %}">
+  <div class="yv-spotlight-wrapper">
+    {%- if section.settings.image != blank -%}
+      <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : section.settings.image.aspect_ratio | times: 100 | minus : 1 }}%" {% if settings.enable_animation %}data-aos="zoom-out"{% endif %}>
+        {%- render 'lazy-image' image: section.settings.image, class:'spotlightSectionImage' -%}
+      </div>
+    {%-else-%}
+      <div class="image-wrapper no-product-image" style="padding-bottom:50%"{% if settings.enable_animation %}data-aos="zoom-out"{% endif %}>
+        {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif %}
+  </div> 
+  {% for block in section.blocks %}
+    {%- assign spotProduct = block.settings.product -%}
+      <div class="yv-spotlight-container">
+        <div id="yv-spotlight-item-{{ block.id }}" class="yv-spotlight-item{% if block.type == 'media_with_text' %} spotlight-media-item{% endif %}">
+            <button class="yv-spotlight-dot yv-spotlight-hover{% if block.type == 'spot' %} d-none d-md-block{% endif %}"></button>
+            {% if block.type == 'spot' %}
+              <button class="yv-spotlight-dot d-block d-md-none{% if spotProduct != blank %} quickView{% endif %}"{% if spotProduct != blank %} data-href="{{ spotProduct.url }}"{% endif %}></button>
+            {% endif %}
+          <div class="yv-spotlight-element{% if block.settings.horizontal > 60 %} left{% else %} right{% endif %}" style="--layoutRadius:{% if section.settings.enable_fullwidth == false and settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %}">
+            <div class="yv-spotlight-element-inner{% if block.settings.product_layout == 'vertical' or block.type == 'media_with_text' %}  media-top{% endif %}">
+              <div class="yv-spotlight-product-media {% if settings.pass_through_product_images %} pass-through-color{% endif %}">
+                {% if block.type == 'spot' %}
+                  {%- if spotProduct.featured_image != blank -%}
+                  <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : spotProduct.featured_image.aspect_ratio | times: 100 | minus : 1 }}%">
+                      {%- render 'lazy-image' image:spotProduct.featured_image,class:'spotlightSectionImage' -%}
+                  </div>
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif %}
+                {% elsif block.type == 'media_with_text' %}
+                  {% if block.settings.video != blank %}    
+                    <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : block.settings.video.aspect_ratio | times: 100 | minus : 1 }}%">
+                       {{  block.settings.video | media_tag: loading: 'lazy', class: 'no-js-hidden videoBackgroundFile', autoplay: true, controls:false, preload: 'none' }}
+                    </div>
+                  {% elsif block.settings.image != blank %}
+                    <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : block.settings.image.aspect_ratio | times: 100 | minus : 1 }}%">
+                       {% render 'lazy-image', image: block.settings.image %}
+                    </div>
+                  {% else %}
+                    <div class="svg-icon">
+                      {%- render 'icons', icon: block.settings.icon -%}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+              {%- capture hotspotContent -%}
+                {%- if block.type == 'spot' -%}
+                  {% if spotProduct != blank %}
+                    <p class="yv-spotlight-product-title"><a href="{{spotProduct.url}}">{{spotProduct.title}}</a></p>
+                    <p class="yv-spotlight-product-price">{{spotProduct.price | money}}</p>
+                    {% assign singleVariant = false %}
+                    {%- if spotProduct.has_only_default_variant or spotProduct.variants.size == 1 -%}
+                    {% assign singleVariant = true %}
+                    {%- endif -%}
+                    {%- if spotProduct.available and singleVariant -%}
+                      {%- assign formID = 'spotlight' | append : '-' | append : block.id | append : '-' | append : spotProduct.id -%}
+                      {%- form 'product', spotProduct, id : formID, data-product-form: '', data-product-handle: spotProduct.handle, data-enable-history-state: 'true' -%} 
+                        <input type="hidden" name="id" value="{{ spotProduct.selected_or_first_available_variant.id }}">
+                        <button type="submit" class="Sd_addProduct link text-small" aria-label="{{ 'products.product.add_to_cart' | t }}" tabindex="-1">
+                          {{ 'products.product.add_to_cart' | t }}
+                        </button>
+                      {%- endform -%}
+                    {%- else -%}
+                      <button class="link text-small quickView" data-href="{{spotProduct.url}}">{{ 'products.product.view_product' | t }}</button>
+                    {%- endif -%}
+                  {% else %}
+                      <p class="yv-spotlight-product-title">{{ 'onboarding.product_title' | t }}</p>
+                      <p class="yv-spotlight-product-price">{{8800 | money}}</p>
+                      <button class="link text-small">{{ 'products.product.sold_out' | t }}</button>
+                  {% endif %}
+                {%- elsif block.type == 'media_with_text' -%}
+                    {%- if block.settings.heading != blank -%}
+                    <p class="yv-spotlight-title heading-font">{{ block.settings.heading }}</p>
+                      {%- endif -%}
+                    {%- if block.settings.description != blank -%}
+                    <p class="yv-spotlight-desc">{{ block.settings.description }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.link != blank -%}
+                    <a class="yv-spotlight-link" href="{{ block.settings.link }}" tabindex="-1"></a>
+                    {%- endif -%}
+                {%- endif -%}
+                {%- endcapture -%}
+            {%- if hotspotContent != blank -%}
+              <div class="yv-spotlight-product-content{% if block.settings.product_layout == 'vertical' or block.type == 'media_with_text' %}  text-center{% endif %}">
+              {{ hotspotContent }}
+              </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+</div>
+</div>
+<style>
+  {% for block in section.blocks %}
+    #yv-spotlight-item-{{ block.id }}{
+      top:{{ block.settings.vertical }}%;
+      left:{{ block.settings.horizontal }}%;
+      --spotColor:{{ block.settings.spot_color }};
+      --spotWaveColorLight:{{ block.settings.spot_color | color_modify : 'alpha' , 0.3 }};
+      --spotWaveColorNull:{{ block.settings.spot_color | color_modify : 'alpha' , 0 }};
+    }
+  {% endfor %}
+  #shopify-section-{{ section.id }}.shopify-section{
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' -%}
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    {%- endunless -%}
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+  {% schema %}
+    {
+      "name": "t:sections.spotlight.name",
+      "class": "spotlight-section",
+      "tag": "section",
+      "max_blocks": 5,
+      "disabled_on": {
+         "groups": ["header", "footer"]
+      },
+      "settings": [
+          {
+            "type": "checkbox",
+            "id": "enable_fullwidth",
+            "default": true,
+            "label": "t:sections.gallery-carousel.settings.enable_fullwidth.label"
+          },
+          {
+              "type":"image_picker",
+              "label":"t:sections.spotlight.settings.image.label",
+              "id":"image"
+          },
+        {
+          "type": "header",
+          "content": "t:common.header.color_singular_section.label"
+        },
+        {
+          "type": "select",
+          "id": "bgcolor",
+          "label": "t:common.header.background_section.label",
+          "default": "primary",
+          "options": [
+            {
+              "value": "primary",
+              "label": "t:common.header.primary.label"
+            },
+            {
+              "value": "secondary",
+              "label": "t:common.header.secondary.label"
+            },
+            {
+              "value": "tertiary",
+              "label": "t:common.header.tertiary.label"
+            },
+            {
+              "value": "quaternary",
+              "label": "t:common.header.quaternary.label"
+            },
+            {
+              "value": "gradient",
+              "label": "t:common.header.gradient.label"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "section_visibility",
+          "label": "t:common.section_visibility.label",
+          "default": "always",
+          "options": [
+            {
+              "label": "t:common.section_visibility.options.always.label",
+              "value": "always"
+            },
+            {
+              "label": "t:common.section_visibility.options.small_devices.label",
+              "value": "small"
+            },
+            {
+              "label": "t:common.section_visibility.options.large_devices.label",
+              "value": "large"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "t:common.header.space_section.label"
+        },
+        {
+          "type": "range",
+          "id": "top_space_desktop",
+          "label": "t:common.top_space_desktop.label",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "bottom_space_desktop",
+          "label": "t:common.bottom_space_desktop.label",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "top_space_mobile",
+          "label": "t:common.top_space_mobile.label",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "bottom_space_mobile",
+          "label": "t:common.bottom_space_mobile.label",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        }
+      ],
+      "blocks": [
+          {
+            "type": "spot",
+            "name": "t:sections.spotlight.blocks.spot.name",
+            "settings": [
+                {
+                    "type":"product",
+                    "label":"t:sections.spotlight.blocks.spot.settings.product.label",
+                    "id":"product"
+                },
+                {
+                  "type": "select",
+                  "id": "product_layout",
+                  "label": "t:sections.spotlight.blocks.spot.settings.product_layout.label",
+                  "default": "horizontal",
+                  "options": [
+                    {
+                      "value": "horizontal",
+                      "label": "t:sections.spotlight.blocks.spot.settings.product_layout.options.horizontal.label"
+                    },
+                    {
+                      "value": "vertical",
+                      "label": "t:sections.spotlight.blocks.spot.settings.product_layout.options.vertical.label"
+                    }
+                  ]
+                },
+                {
+                    "type":"header",
+                    "content":"t:sections.spotlight.blocks.spot.settings.hotspot_header.content"
+                },
+                {
+                    "type":"range",
+                    "label":"t:sections.spotlight.blocks.spot.settings.horizontal.label",
+                    "id":"horizontal",
+                    "min":10,
+                    "max":90,
+                    "step":1,
+                    "unit":"%",
+                    "default":10
+                },
+                {
+                    "type":"range",
+                    "label":"t:sections.spotlight.blocks.spot.settings.vertical.label",
+                    "id":"vertical",
+                    "min":10,
+                    "max":90,
+                    "step":1,
+                    "unit":"%",
+                    "default":10
+                },
+                {
+                    "type":"color",
+                    "label":"t:sections.spotlight.blocks.spot.settings.spot_color.label",
+                    "id":"spot_color",
+                    "default":"#000000"
+                }
+            ]
+          },
+          {
+            "type": "media_with_text",
+            "name": "t:sections.spotlight.blocks.media_with_text.name",
+            "settings": [
+                {
+                  "type": "select",
+                  "id": "icon",
+                  "label": "t:common.icon.label",
+                  "default": "gift",
+                  "options": [
+                    {
+                      "label": "t:common.icon.options.chat.label",
+                      "value": "chat"
+                    },
+                    {
+                      "label": "t:common.icon.options.eye.label",
+                      "value": "eye"
+                    },
+                    {
+                      "label": "t:common.icon.options.file.label",
+                      "value": "file"
+                    },
+                    {
+                      "label": "t:common.icon.options.gift.label",
+                      "value": "gift"
+                    },
+                    {
+                      "label": "t:common.icon.options.global.label",
+                      "value": "global"
+                    },
+                    {
+                      "label": "t:common.icon.options.heart.label",
+                      "value": "heart"
+                    },
+                    {
+                      "label": "t:common.icon.options.phone.label",
+                      "value": "phone"
+                    },
+                    {
+                      "label": "t:common.icon.options.refund.label",
+                      "value": "refund"
+                    },
+                    {
+                      "label": "t:common.icon.options.search.label",
+                      "value": "search"
+                    },
+                    {
+                      "label": "t:common.icon.options.secure.label",
+                      "value": "secure"
+                    },
+                    {
+                      "label": "t:common.icon.options.shipping.label",
+                      "value": "shipping"
+                    },
+                    {
+                      "label": "t:common.icon.options.smile.label",
+                      "value": "smile"
+                    },
+                    {
+                      "label": "t:common.icon.options.support.label",
+                      "value": "support"
+                    },
+                    {
+                      "label": "t:common.icon.options.tag.label",
+                      "value": "tag"
+                    },
+                    {
+                      "label": "t:common.icon.options.thumb.label",
+                      "value": "thumb"
+                    },
+                    {
+                      "label": "t:common.icon.options.user.label",
+                      "value": "user"
+                    },
+                    {
+                      "label": "t:common.icon.options.gift-colored.label",
+                      "value": "gift-colored"
+                    },
+                    {
+                      "label": "t:common.icon.options.paw-colored.label",
+                      "value": "paw-colored"
+                    },
+                    {
+                      "label": "t:common.icon.options.vegan-colored.label",
+                      "value": "vegan-colored"
+                    },
+                    {
+                      "label": "t:common.icon.options.shipping-colored.label",
+                      "value": "shipping-colored"
+                    }
+                  ]
+                },
+                {
+                  "type": "image_picker",
+                  "id": "image",
+                  "label": "t:sections.spotlight.blocks.media_with_text.settings.image.label"
+                },
+                {
+                  "type": "video",
+                  "id": "video",
+                  "label": "t:sections.spotlight.blocks.media_with_text.settings.video.label"
+                },
+                {
+                  "type": "text",
+                  "id": "heading",
+                  "default": "Add Heading here",
+                  "label": "t:sections.spotlight.blocks.media_with_text.settings.heading.label"
+                },
+                {
+                  "type": "textarea",
+                  "id": "description",
+                  "default": "Add description here",
+                  "label": "t:sections.spotlight.blocks.media_with_text.settings.description.label"
+                },
+                {
+                  "type": "url",
+                  "id": "link",
+                  "label": "t:sections.spotlight.blocks.media_with_text.settings.link.label"
+                },
+                {
+                    "type":"header",
+                    "content":"t:sections.spotlight.blocks.spot.settings.hotspot_header.content"
+                },
+                {
+                    "type":"range",
+                    "label":"t:sections.spotlight.blocks.spot.settings.horizontal.label",
+                    "id":"horizontal",
+                    "min":10,
+                    "max":90,
+                    "step":1,
+                    "unit":"%",
+                    "default":10
+                },
+                {
+                    "type":"range",
+                    "label":"t:sections.spotlight.blocks.spot.settings.vertical.label",
+                    "id":"vertical",
+                    "min":10,
+                    "max":90,
+                    "step":1,
+                    "unit":"%",
+                    "default":10
+                },
+                {
+                    "type":"color",
+                    "label":"t:sections.spotlight.blocks.spot.settings.spot_color.label",
+                    "id":"spot_color",
+                    "default":"#000000"
+                }
+            ]
+          }
+      ],
+      "presets":[
+          {
+              "name":"t:sections.spotlight.presets.name",
+              "blocks": [
+                {
+                  "type": "spot",
+                  "settings":{
+                    "horizontal":58,
+                    "vertical":45,
+                    "spot_color":"#000000"
+                  }
+                },
+                {
+                  "type": "spot",
+                  "settings":{
+                    "horizontal":38,
+                    "vertical":30,
+                    "spot_color":"#000000"
+                  }
+                },
+                {
+                  "type": "spot",
+                  "settings":{
+                    "horizontal":40,
+                    "vertical":55,
+                    "spot_color":"#000000"
+                  }
+                }
+              ]
+          }
+      ]
+    }
+  {% endschema %}
+  
+  {% stylesheet %}
+  {% endstylesheet %}
+  
+  {% javascript %}
+  {% endjavascript %}
+  

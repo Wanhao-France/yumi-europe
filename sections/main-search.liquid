@@ -1,0 +1,326 @@
+{% paginate search.results by 24 %}
+<style>
+  .resultContainer > div{
+    display:none;
+  }
+
+  #searchResultContainer[data-result="products"] > .productResultContainer{
+    display:flex;
+  }
+  #searchResultContainer[data-result="others"] > .otherResultContainer{
+    display:block;
+  }
+  @media screen and (max-width: 767px) {
+  .shopify-section-main-header.sticky-header-hidden-parent {
+    z-index:2;
+  }
+
+}
+</style>
+<div class="yv-search-page-container template-search {% unless search.performed and search.results.size > 0 %} template-search--empty{% endunless %}">
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+    <div class="section-heading center-heading">
+      <{{ section.settings.seo_heading }}>{{ 'templates.search.title' | t }}</{{ section.settings.seo_heading }}>
+    </div>
+    <div class="yv-search-result-inputbox" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %}">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+          <input name="type" type="hidden" value="product">
+          <input name="options[prefix]" type="hidden" value="last">
+        <div class="yv-search-result-input" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %}">
+          <label for="Search-In-Template" class="hidden">{{ 'general.search.search' | t }}</label>
+          <input
+                 class="form-control"
+                 id="Search-In-Template"
+                 type="text"
+                 name="q"
+                 value="{{ search.terms | escape }}"
+                  {% if settings.enable_search_prompts %}
+                    {% if settings.search_prompts_1 != blank or settings.search_prompts_2 != blank or settings.search_prompts_2 != blank%}
+                       placeholder="{{ settings.search_prompts_1 }}" 
+                       data-placeholder-one="{{ settings.search_prompts_1 }}" 
+                       data-placeholder-two="{{ settings.search_prompts_2 }}" 
+                       data-placeholder-three="{{ settings.search_prompts_3 }}"
+                      data-search-prompts
+                    {% else %}
+                       placeholder="{{ 'general.search.search' | t }}"
+                    {% endif %}
+                  {% else %}
+                     placeholder="{{ 'general.search.search' | t }}"
+                  {% endif %}
+                 {%- if settings.predictive_search_enabled -%}
+                 role="combobox"
+                 aria-expanded="false"
+                 aria-owns="predictive-search-results-list"
+                 aria-controls="predictive-search-results-list"
+                 aria-haspopup="listbox"
+                 aria-autocomplete="list" 
+                 autocorrect="off"
+                 autocomplete="off"
+                 autocapitalize="off"
+                 spellcheck="false"
+                 {%- endif -%}
+                 >
+          {%- if settings.predictive_search_enabled -%}
+          <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+            <div class="predictive-search__loading-state">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span> 
+          {%- endif -%}
+          <button type="submit" class="yv-search-button button small-btn" aria-label="{{ 'general.search.search' | t }}">
+            Search
+          </button>
+        </div>
+      </form>
+      {%- if search.performed and search.results_count > 0 -%}
+      <div role="status">
+      <h6 class="yv-search-result-count text-center">
+        {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+      </h6>
+      </div>
+      {%- endif -%}
+    </div>
+    {%- if search.performed -%}
+    <div class="yv-search-result-content">
+      
+      <div class="yv-tabs-wrapper">
+        <ul class="list-unstyled yv-tabs align-center">
+          <li class="yv-tab-item yv-tab-result-page-head {% if search.types contains 'product' %}active{% endif %}" data-results="search-page-products">
+            <a href="{{ '?type=product&options%5Bprefix%5D=last&q=' | append: search.terms | escape }}" class="yv-tab-link" data-type="products">Products</a>
+          </li>
+          {%- if settings.enable_article_result -%}
+          <li class="yv-tab-item yv-tab-result-page-head {% if search.types contains 'article' %}active{% endif %}" data-results="search-page-articles">
+            <a href="{{ '?type=article&options%5Bprefix%5D=last&q=' | append: search.terms | escape }}" class="yv-tab-link" data-type="others">Articles</a>
+          </li>
+          {%- endif -%}
+          {%- if settings.enable_page_result -%}
+          <li class="yv-tab-item yv-tab-result-page-head {% if search.types contains 'page' %}active{% endif %}" data-results="search-page-pages">
+            <a href="{{ '?type=page&options%5Bprefix%5D=last&q=' | append: search.terms | escape }}" class="yv-tab-link" data-type="others">Pages</a>
+          </li>
+          {%- endif -%}
+        </ul>
+        <div class="yv-tab-content"> 
+          {%- if search.types contains 'product' -%}
+          <div class="yv-tab-pane yv-search-result-page-list active" id="search-page-products">
+            {%- if search.filters.size > 0 -%}
+            <div class="yv-collections-topbar d-sm-flex d-md-none {% if search.results_count == 0 %}d-none{% endif %}">
+              <h5 id="filterHeading" class="yv-filter-sidebar-heading">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                  	<g id="Layer_11" data-name="Layer 11">
+                      <g id="Layer_1-2" data-name="Layer 1">
+                          <path d="M0,1H16V3H0ZM0,7H16V9H0Zm0,6H16v2H0ZM7,0H9V4H7Zm3,6h2v4H10ZM5,12H7v4H5Z"/>
+                      </g>
+                  	</g>
+                </svg>
+                {{ 'sections.collection_template.filter_by_label' | t }}
+              </h5>
+            </div>
+          {%- endif -%}
+            
+            {%- liquid
+            	assign clearAll = '?type=product&options%5Bprefix%5D=last&q=' | append: search.terms | escape
+              	assign filterActiveCheck = false 
+              -%}
+              {%- capture activeFilters -%}
+              {%- for filter in search.filters -%}
+              {%- for value in filter.active_values -%} 
+            {%- assign filterActiveCheck = true -%}
+              <li class="yv-applied-filter-item">
+              <a class="yv-applied-filter-remove" href="{{ value.url_to_remove }}">
+                {{ value.label | escape }}
+                <span class="yv-applied-filter-cross">
+                  <svg viewBox="0 0 6 6" width="6" height="6" fill="currentcolor">
+                    <path  d="m0.8 0q0 0 0.1 0.1l2.1 2.1l2.1-2.1c0.1-0.1 0.2-0.1 0.2 0l0.6 0.6c0.1 0 0.1 0.1 0 0.2l-2.1 2.1l2.1 2.1c0.1 0.1 0.1 0.2 0 0.2l-0.6 0.6c0 0.1-0.1 0.1-0.2 0l-2.1-2.1l-2.1 2.1c-0.1 0.1-0.2 0.1-0.2 0l-0.6-0.6c-0.1 0-0.1-0.1 0-0.2l2.1-2.1l-2.1-2.1c-0.1-0.1-0.1-0.2 0-0.2l0.6-0.6q0-0.1 0.1-0.1z" />
+                  </svg>
+                </span>
+              </a>
+              </li>
+              {%- endfor %}
+
+            {%- if filter.type == "price_range" -%}
+            {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+            {%- assign filterActiveCheck = true -%}
+              {% assign active = active | plus: 1 %}              
+              <li class="yv-applied-filter-item">
+                <a  class="yv-applied-filter-remove" href="{{ filter.url_to_remove }}">
+                {%- if filter.min_value.value -%}{{ filter.min_value.value | money }}{%- else -%}{{ 0 | money }}{%- endif -%}-{%- if filter.max_value.value -%}{{ filter.max_value.value | money }}{%- else -%}{{ filter.range_max | money }}{%- endif -%}
+                <span class="yv-applied-filter-cross">
+                  <svg viewBox="0 0 6 6" width="6" height="6" fill="currentcolor">
+                    <path  d="m0.8 0q0 0 0.1 0.1l2.1 2.1l2.1-2.1c0.1-0.1 0.2-0.1 0.2 0l0.6 0.6c0.1 0 0.1 0.1 0 0.2l-2.1 2.1l2.1 2.1c0.1 0.1 0.1 0.2 0 0.2l-0.6 0.6c0 0.1-0.1 0.1-0.2 0l-2.1-2.1l-2.1 2.1c-0.1 0.1-0.2 0.1-0.2 0l-0.6-0.6c-0.1 0-0.1-0.1 0-0.2l2.1-2.1l-2.1-2.1c-0.1-0.1-0.1-0.2 0-0.2l0.6-0.6q0-0.1 0.1-0.1z" />
+                  </svg>
+                </span>
+              </a>
+              </li>
+              {%- endif -%}
+              {%- endif -%}
+              {%- endfor -%}
+              {%- endcapture -%} 
+            <div id="CollectionProductsContainer" data-id="{{ section.id }}" class="yv-collection-products productResultContainer{% if search.filters.size == 0 %} filters-hide{% endif %}">
+              {%- if search.filters.size > 0 -%}
+              <aside id="filterSideBar" class="yv-filter-sidebar {% if search.results_count == 0 %}{%- unless filterActiveCheck -%}d-none{%- endunless -%}{% endif %}">
+                {% render 'collection-sidebar' section : section , results: search , clearAll : clearAll %}
+              </aside>
+              {%- endif -%}
+             
+                  
+              <div class="yv-products-list {% if search.results_count == 0 %}{%- unless filterActiveCheck -%}no-result-found{%- endunless -%}{% endif %}"> 
+                {%- if activeFilters != blank -%}
+                <ul class="list-unstyled yv-products-applied-filter">
+                  {{ activeFilters }}
+                  <li class="yv-applied-filter-item">
+                    <a href="{{ '?type=product&options%5Bprefix%5D=last&q=' | append: search.terms | escape }}"  class="yv-applied-filter-remove">{{ 'sections.collection_template.clear_all' | t }}</a>
+                  </li>
+                </ul>
+                {%- endif -%}
+                <div class="row" data-collection-products>
+                  {%- for item in search.results -%}
+                  {%- case item.object_type -%}
+                  {%- when 'product' -%}
+                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2" data-product-grid>
+                    {% render 'product-grid', product: item %}
+                  </div>
+                  {%- endcase -%}
+              {%- else -%}
+            {% render 'not-found' %}
+                  {%- endfor -%}
+                </div>
+                {%- if paginate.pages > 1 -%}
+                {% render 'pagination', paginate: paginate , anchor: '' %}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+          {%- endif -%}
+          {% if search.types contains 'article' %}
+          <div class="yv-tab-pane yv-search-result-page-list active" id="search-page-articles">
+            <div class="articleResultContainer yv-blog-outer-box">
+              <div class="row" role="list" 
+                  data-result="others"
+                  >
+                {%- for item in search.results -%}
+                {%- case item.object_type -%}
+                {%- when 'article' -%}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                  <div class="yv-blog-card">
+                    <a href="{{ item.url }}" class="yv-blog-card-img">
+                      {%- if item.image -%}             
+                      <div class="image-wrapper image-{{ settings.article_image_style }}" {% if settings.article_image_style == 'aspect' %}style="padding-bottom:{{ 1 | divided_by : item.image.aspect_ratio | times: 100 }}%"{% endif %}>
+                        {% render 'lazy-image' image: item.image %} 
+                      </div>
+                    {%- else -%}
+                      {%- if settings.article_image_style != 'aspect' -%}
+                        <div class="image-wrapper no-article-image image-{{ settings.article_image_style }}">
+                      {%- endif -%}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- if settings.article_image_style != 'aspect' -%}
+                        </div>
+                      {%- endif -%}                    
+                    {%- endif -%}
+                      <span class="yv-blog-date">{{ item.published_at | date: "%B %d, %Y" }}</span>
+                    </a>
+                    <h5 class="yv-blog-title d-none d-md-block">{{ item.title | truncatewords: 6 }}</h5> 
+                    <div class="yv-blog-card-text">
+                      <h5 class="yv-blog-title d-block d-md-none">{{ item.title | truncatewords: 6 }}</h5>
+                      {%- if item.excerpt_or_content != blank -%}
+                      <p class="yv-blog-desc">{{ item.excerpt_or_content | strip_html | truncatewords: 15 }}</p>
+                      {%- endif -%}
+                      <a href="{{ item.url }}" class="button xsmall-btn secondary-button">{{ 'blogs.article.read_more' | t }}</a>
+                    </div>
+                  </div>
+                </div>
+                {%- endcase -%}
+                {%- else -%}
+                {% render 'not-found' %}
+                {%- endfor -%}
+              </div>
+            </div>		
+            
+          </div>
+          {% endif %}
+          {% if search.types contains 'page' %}
+          <div class="yv-tab-pane yv-search-result-page-list active" id="search-page-pages">
+            <div class="pageResultContainer">
+              <div class="row" role="list" 
+                  data-result="others"
+                  >
+                {%- for item in search.results limit: 50 -%}
+                {%- case item.object_type -%}
+                {%- when 'page' -%}
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="page-result-item">
+                  <h5 class="page-result-title">{{ item.title | truncate: 50 | escape }}</h5>
+                  {%- if item.content != blank -%}
+                  <p class="page-result-desc">{{ item.content | strip_html | truncatewords: 50 | escape }}</p>
+                  {%- endif -%}
+                  <a class="page-result-link" href="{{ item.url }}">Read More</a>
+                </div>
+              </div>
+                {%- endcase -%}
+                {%- else -%}
+                {% render 'not-found' %}
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {%- liquid 
+          		if search.types contains 'page' or search.types contains 'article'
+                  if paginate.pages > 1
+                      render 'pagination', paginate: paginate , anchor: ''
+                  endif
+                endif
+          -%}
+        </div>
+      </div>
+
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-search.name",
+  "tag": "section",
+  "class": "main-search-section",
+  "settings": [
+     {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      }
+  ]
+}
+{% endschema %}

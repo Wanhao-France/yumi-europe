@@ -1,0 +1,425 @@
+.shopify-cleanslate ._1mqqPYZtCQtz5_i0b-po4l {
+    justify-content: center;
+}
+
+.cart-section {
+    padding: 60px 0
+}
+
+.yv-cart-content .between-heading {
+    align-items: center;
+    margin-bottom: 30px
+}
+
+.yv-cart-content .between-heading h2 {
+    margin: 0
+}
+
+.yv-cart-table {
+    border: 0
+}
+
+.yv-cart-table td,
+.yv-cart-table th {
+    border: 0;
+    vertical-align: middle;
+    padding: 20px 20px
+}
+
+.yv-cart-table tbody.disabled,
+.yv-cart-table tr.disabled {
+    opacity: .6;
+    pointer-events: none
+}
+
+.yv-cart-table th {
+    width: 90px;
+    padding-left: 0;
+    padding-right: 0
+}
+
+.cart-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: var(--productImageBorder);
+    border-radius: var(--layoutRadius);
+    overflow: hidden;
+    background-color: var(--colorImageBg)
+}
+
+.cart-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.cart-prd-details {
+    max-width: 300px
+}
+
+.cart-prd-details .yv-product-title {
+    margin-bottom: 8px
+}
+
+.yv-cart-product-details .yv-product-information,
+.yv-cart-product-details p {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.coupanName,
+.yv-cart-product-details .yv-product-information .unit-price,
+.yv-cart-product-details .yv-product-information .yv-prizebox {
+    margin-top: 0
+}
+
+.cart-remove {
+    width: 80px
+}
+
+.cart-remove .remove-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin-left: auto;
+    cursor: pointer;
+    color: var(--colorTextBody)
+}
+
+.cart-remove .remove-icon svg {
+    width: 16px;
+    fill: currentcolor
+}
+
+.cart-sidebar {
+    max-width: 89%;
+    margin-left: auto;
+    position: sticky;
+    top: 0;
+}
+
+.cart-quantity {
+    position: relative
+}
+
+.cart-total-details {
+    padding: 40px;
+    background-color: var(--primaryAlternateBg);
+    border-radius: var(--layoutRadius);
+}
+
+.cart-total-details h5 {
+    margin: 0 0 20px;
+}
+
+.cart-total-details .seller-box-input {
+    min-height: 140px;
+    padding: 20px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #B1B1B1;
+    border-radius: var(--layoutRadius);
+    margin: 0 0 20px;
+    resize: none;
+    width: 100%
+}
+
+.cart-total-list .cart-total-item,
+.cart-total-list li {
+    color: var(--colorTextBody)
+}
+
+.cart-total-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-weight: 500;
+    margin: 0 0 15px
+}
+
+.cart-total-list li strong {
+    margin-left: auto;
+    font-family: var(--priceFontFamily);
+}
+
+.cart-total-list .cart-total-item {
+    padding-top: 25px;
+    border-top: 0 dashed #ccc;
+    margin-bottom: 25px
+}
+
+.checkout-text {
+    text-align: center;
+    margin: 10px 0 0;
+    opacity: .7
+}
+
+.yv-payment-methods {
+    margin-top: 20px
+}
+
+.go-back {
+    text-align: center;
+    padding: 20px 0
+}
+
+.go-back a {
+    position: relative;
+    display: inline-block;
+    padding-left: 15px;
+    color: var(--colorTextBody);
+}
+
+.go-back a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+    left: 0;
+    width: 9px;
+    height: 9px;
+    border-right: 1px solid var(--colorTextBody);
+    border-bottom: 1px solid var(--colorTextBody)
+}
+
+.yv-shipping-estimations-box {
+    margin-top: 50px
+}
+
+.yv-shipping-estimations {
+    padding: 30px 35px;
+    border: 1px solid #ABABAB;
+    border-radius: var(--layoutRadius);
+}
+
+.yv-shipping-estimations-box .section-heading {
+    margin-bottom: 25px
+}
+
+.yv-shipping-estimations select {
+    background: url(https://cdn.shopify.com/s/files/1/0597/9668/5009/files/select-arrow-black.png?v=1649157281) 96% 50%/9px no-repeat transparent;
+    padding-right: 30px
+}
+
+.yv-shipping-estimations .label {
+    font-weight: 700
+}
+
+.yv-shipping-estimations .error-text,
+.yv-shipping-estimations .success-text {
+    padding: 7px 15px;
+    text-transform: capitalize;
+    margin: 0
+}
+
+.yv-shipping-estimations .error-text {
+    background-color: #ffe7e7
+}
+
+.yv-shipping-estimations .success-text span:first-child {
+    margin-right: 20px
+}
+
+.continue-shopping {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px
+}
+
+.continue-shopping h4 {
+    margin: 0 0 15px
+}
+
+.dynamic-checkout__content ul {
+    list-style-type: none
+}
+
+.dynamic-checkout__content ul li {
+    width: 100%;
+    border-radius: 0;
+    flex-basis: 1!important
+}
+
+.discounts {
+    margin-top: 4px
+}
+
+.discounts i {
+    font-size: 10px
+}
+
+#cartUpdate,
+.cart-btn button {
+    margin-bottom: 10px
+}
+
+.cart-item-error.error-text {
+    position: absolute;
+    width: 100%;
+    left: 0
+}
+
+div#dynamic-checkout-cart [role="button"] {
+    border-radius: var(--buttonRadius) !important;
+    width: 100% !important;
+}
+
+.cart__dynamic-checkout-buttons {
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width:1025px) {
+    .go-back a:hover,
+    .go-back a:hover:before {
+        color: var(--theme-color);
+        border-color: var(--theme-color)
+    }
+}
+
+@media screen and (max-width:1440px) {
+    .cart-sidebar {
+        max-width: 95%
+    }
+    .yv-cart-table td,
+    .yv-cart-table th {
+        padding: 25px 15px
+    }
+    .yv-cart-table th {
+        width: 100px;
+        padding-left: 0
+    }
+    .cart-prd-details {
+        max-width: 240px;
+        vertical-align: top
+    }
+    .cart-total-details {
+        padding: 25px
+    }
+    .yv-shipping-estimations {
+        padding: 25px;
+    }
+}
+
+@media screen and (max-width:1199px) {
+    .cart-prd-details {
+        max-width: 200px
+    }
+    .discounts {
+        margin-top: 8px
+    }
+    .coupanName {
+        margin-top: 0
+    }
+    .cart-remove {
+        width: 50px
+    }
+    .yv-cart-table td,
+    .yv-cart-table th {
+        padding: 20px 10px
+    }
+    .cart-quantity .quantity input {
+        padding: 2px 26px
+    }
+    .cart-total-details .seller-box-input {
+        min-height: 110px;
+    }
+    .cart-total-list .cart-total-item {
+        padding-top: 15px;
+        margin-bottom: 15px
+    }
+    .yv-payment-methods {
+        margin-top: 10px
+    }
+    .yv-payment-methods svg {
+        width: 28px
+    }
+}
+
+@media screen and (max-width:991px) {
+    .cart-sidebar {
+        max-width: 100%;
+        margin-top: 30px
+    }
+}
+
+@media screen and (max-width:575px) {
+    .yv-cart-table tr {
+        position: relative;
+        display: table;
+        width: 100%
+    }
+    .yv-cart-table td,
+    .yv-cart-table th {
+        padding: 10px 10px 0
+    }
+    .yv-cart-table tr td:nth-child(2),
+    .yv-cart-table tr th {
+        padding-top: 20px
+    }
+    .yv-cart-table tr th {
+        padding-right: 5px;
+        padding-bottom: 20px
+    }
+    .yv-cart-table td {
+        display: block;
+        width: 100%;
+        vertical-align: top
+    }
+    .cart-prd-details {
+        max-width: 90%
+    }
+    .cart-remove .remove-icon {
+        position: absolute;
+        top: 16px;
+        right: 0
+    }
+    .yv-shipping-estimations-box {
+        margin-top: 30px;
+    }
+    .yv-shipping-estimations {
+        padding: 15px;
+    }
+    .yv-shipping-estimations .form-control {
+        background-position: 97% 50%
+    }
+    .cart-section {
+        padding: 20px 0
+    }
+    .cart-section .yv-cart-content .section-heading {
+        border-bottom: 1px solid #ddd;
+        padding: 0 20px 15px;
+        margin: 0 -20px 13px
+    }
+    .yv-cart-table th {
+        vertical-align: top;
+    }
+}
+
+.yv-cart-content-box .free_shipping {
+    background: var(--primaryAlternateBg);
+    padding: 11px 18px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.yv-cart-content-box .progress {
+    height: 7px;
+    margin-bottom: 11px;
+    overflow: hidden;
+    background-color: #e1dfdf;
+    border-radius: 20px;
+}
+
+.yv-cart-content-box .free_shipping p {
+    margin: 4px 0 6px;
+}

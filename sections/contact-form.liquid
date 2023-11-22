@@ -1,0 +1,278 @@
+<div class="container sm-container">
+  <div class="yv-contact-form">
+    <div class="row justify-content-center align-items-center contact-image-position-{{ section.settings.image_position }}">
+      {% capture contactImage %}
+        {% if section.settings.image != blank %}
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="yv-contact-form-img">
+            <div
+              class="image-wrapper"
+              style="padding-bottom:{{ 1 | divided_by : section.settings.image.aspect_ratio | times: 100 | minus : 1 }}%"
+            >
+            {%- render 'lazy-image', image: section.settings.image -%}
+            </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endcapture %}
+      {% liquid
+        if section.settings.image_position == 'left'
+          echo contactImage
+        endif
+      %}
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="yv-get-in-touch">
+          {%- if section.settings.form_heading != blank -%}
+            <h3 class="yv-form-heading">{{ section.settings.form_heading }}</h3>
+          {%- endif -%}
+          {%- form 'contact', id: 'ContactForm' -%}
+            <div class="row">
+              <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label for="ContactForm-username">{{ 'sections.contact.name' | t }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ContactForm-username"
+                    name="contact[Name]"
+                    placeholder="{{ 'sections.contact.name' | t }}"
+                    required
+                  >
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label class="field__label" for="ContactForm-email">
+                    {{- 'templates.contact.form.email' | t }}
+                    <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    autocomplete="email"
+                    type="email"
+                    id="ContactForm-email"
+                    class="form-control"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                    {% if form.errors contains 'email' %}
+                      aria-invalid="true"
+                      aria-describedby="ContactForm-email-error"
+                    {% endif %}
+                    placeholder="{{ 'sections.contact.email' | t }}"
+                    required
+                  >
+                  {% if form.errors contains 'email' %}
+                    <span class="error-text">
+                      {{ form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email }}
+                    </span>
+                  {%- endif -%}
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label for="ContactForm-body">{{ 'sections.contact.message' | t }}</label>
+                  <textarea
+                    id="ContactForm-body"
+                    class="form-control"
+                    name="contact[Message]"
+                    placeholder="{{ 'sections.contact.message' | t }}"
+                    rows="3"
+                    required
+                  >{{ form.body }}</textarea>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12">
+                <button type="submit" class="button btn-block">{{ section.settings.form_button }}</button>
+              </div>
+            </div>
+            {%- if form.posted_successfully? -%}
+              <span class="form-status form-status-list form__message success-text" tabindex="-1">
+                {{- 'templates.contact.form.post_success' | t -}}
+              </span>
+            {%- endif -%}
+          {%- endform -%}
+        </div>
+      </div>
+      {% liquid
+        if section.settings.image_position == 'right'
+          echo contactImage
+        endif
+      %}
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }}.shopify-section {
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+  @media only screen and (max-width:767px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.contact_form.name",
+  "tag": "section",
+  "class": "contact-form-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "form_heading",
+      "default": "Get In Touch",
+      "label": "t:sections.contact_form.settings.form_heading.label"
+    },
+    {
+      "type": "text",
+      "id": "form_button",
+      "default": "SEND MESSAGE",
+      "label": "t:sections.contact_form.settings.form_button.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.contact_form.settings.image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.contact_form.settings.image_position.label",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.contact_form.settings.image_position.options.left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.contact_form.settings.image_position.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_singular_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "secondary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 70,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 70,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.contact_form.presets.name"
+    }
+  ]
+}
+{% endschema %}

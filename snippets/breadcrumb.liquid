@@ -1,0 +1,47 @@
+{%- unless template == 'index' or template contains 'collection' or template contains 'customers' or template contains 'page' or template contains 'blog' or template contains 'article' or template contains 'collections'  or template contains '404'or template contains 'search' or request.path contains '/challenge' -%}
+<div class="breadcrumb">
+  <nav class="breadcrumb-nav">
+    <div class="container">
+      <ul class="list-unstyled breadcrumb-list">           
+        <li class="breadcrumb-item"><a href="/" title="Home">Home</a></li>
+        {%- if template contains 'page' -%}
+        <li class="breadcrumb-item">
+          <span>{{ page.title | strip_html }}</span></li>
+        {%- elsif template contains 'product' -%}
+        {%- if collection.url -%}
+        <li class="breadcrumb-item"> {{ collection.title | strip_html | truncatewords: 5 | link_to: collection.url }}</li>
+        {%- endif -%}
+        <li class="breadcrumb-item"> 
+          <span>{{ product.title | strip_html | truncatewords: 5 }}</span></li>
+        {%- elsif template contains 'collection' and collection.handle -%}
+
+        {%- if current_tags -%}
+        <li class="breadcrumb-item"> {{ collection.title | strip_html | truncatewords: 5 | link_to: url }}
+
+          <span>{{ current_tags | join: " + " }}</span></li>
+        {%- else -%}
+        <li class="breadcrumb-item"> <span>{{ collection.title | strip_html | truncatewords: 5 }}</span></li>
+        {%- endif -%}
+        {%- elsif template == 'blog' -%}
+
+        {%- if current_tags -%}
+        {{ blog.title | link_to: blog.url }}
+        <li class="breadcrumb-item"> 
+          <span>{{ current_tags | join: " + " }}</span></li>
+        {%- else -%}
+        <li class="breadcrumb-item"> <span>{{ blog.title | strip_html }}</span></li>
+        {%- endif -%}
+        {%- elsif template == 'article' -%}
+        <li class="breadcrumb-item"> 
+          {{ blog.title | strip_html | link_to: blog.url }} </li>
+        <li class="breadcrumb-item">
+          <span> {% comment %}{{ article.title | strip_html }} {% endcomment %} {{ 'Blog Detail' }}</span></li>
+        {%- else -%}
+        <li class="breadcrumb-item">
+          <span>{{ page_title }}</span></li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </nav>
+</div>
+{%- endunless -%}

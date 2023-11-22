@@ -1,0 +1,71 @@
+{% assign storeBlocks = section.blocks | where: 'type', 'store_details' %}
+{%- capture storeData -%}
+  {%- for block in storeBlocks -%}
+    {%- if block.settings.title != blank or block.settings.details != blank or block.settings.email != blank -%}
+    <li>
+      <div class="store-location-icon"> 
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 0C3.13 0 0 3.13 0 7C0 12.25 7 20 7 20C7 20 14 12.25 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="store-location-cnt">
+        {%- if block.settings.title -%}
+          <h6>{{ block.settings.title }}</h6>
+        {% endif %}
+        {%- if block.settings.details != blank -%}
+         {{ block.settings.details }}
+        {% endif %}
+        {%- if block.settings.email != blank -%}
+          <a class="store-mail" href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+        {% endif %}
+      </div>
+    </li>
+{% endif %}
+            {%- endfor -%}
+  {%- endcapture -%}
+{% if section.settings.support_region_heading != blank or section.settings.support_region_subheading != blank %}
+  <div class="customer-support{% if mobile %}-mobile{% endif %}" data-store-wrapper>
+    {% if mobile %}
+      <div class="customer-support-header">
+        {% endif %}
+    <div
+      class="customer-support-img"
+      {% if storeBlocks.size > 0 and storeData != blank %}
+        onClick="toggleStoreDetails(event)"
+      {% endif %}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M20 10V12.8571C20 14.0386 19.0386 15 17.8571 15H16.4286C15.2471 15 14.2857 14.0386 14.2857 12.8571V10C14.2857 8.81857 15.2471 7.85714 16.4286 7.85714C16.4286 4.31282 13.545 1.42857 10 1.42857C6.45502 1.42857 3.57143 4.31282 3.57143 7.85714C4.75286 7.85714 5.71429 8.81857 5.71429 10V12.8571C5.71429 14.0386 4.75286 15 3.57143 15V15.7143C3.57143 16.5021 4.2122 17.1429 5 17.1429H7.14286C7.14286 16.3551 7.78363 15.7143 8.57143 15.7143H11.4286C12.2164 15.7143 12.8571 16.3551 12.8571 17.1429V18.5714C12.8571 19.3592 12.2164 20 11.4286 20H8.57143C7.78363 20 7.14286 19.3592 7.14286 18.5714H5C3.42429 18.5714 2.14286 17.29 2.14286 15.7143V15C0.961429 15 0 14.0386 0 12.8571V10C0 8.81857 0.961429 7.85714 2.14286 7.85714C2.14286 3.5249 5.66788 0 10 0C14.3321 0 17.8571 3.52502 17.8571 7.85714C19.0386 7.85714 20 8.81857 20 10Z" fill="currentColor"/>
+      </svg>
+    </div>
+    <div
+      class="customer-support-cnt{% if storeBlocks.size > 0 and storeData != blank %} support-dropdown{% endif %}"
+      {% if storeBlocks.size > 0 and storeData != blank %}
+        onClick="toggleStoreDetails(event)"
+      {% endif %}
+    >
+      {% if section.settings.support_region_subheading != blank %}
+        <span class="support-text">{{ section.settings.support_region_subheading }}</span>
+      {% endif %}
+      {% if section.settings.support_region_heading != blank %}
+        <span class="support-help">{{ section.settings.support_region_heading }}</span>
+      {% endif %}
+      {% if storeBlocks.size > 0 and storeData != blank %}
+        <span class="support-dropdown-init" onClick="toggleStoreDetails(event)">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 1L5 5L1 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      {% endif %}
+    </div>
+              {% if mobile %}
+            </div>
+              {% endif %}
+    {% if storeBlocks.size > 0 and storeData != blank %}
+      <ul class="store-location-dropdown list-unstyled" data-store-location-dropdown>
+        {{ storeData }}
+      </ul>
+    {% endif %}
+  
+  </div>
+{% endif %}

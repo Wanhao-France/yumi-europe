@@ -1,0 +1,318 @@
+{%- layout none -%}
+{% assign uniqueProductIdsString= cart.items | map: 'product_id'| uniq | join: ', ' %}
+{%- if cart.item_count > 0 -%}
+{% if settings.upsell_products %}
+  <div class="yv-upsell-drawer hidden">
+   {% if settings.upsell_heading != blank %}
+          <div class="yv-drawer-sidebar" data-drawer-side-header>
+              <div class="yv-drawer-text-box marquee-inner-vertical ">
+                {% for i in (1..15) %}
+                  <h6 class="yv-drawer-text">{{ settings.upsell_heading }}</h6>
+                {% endfor %}
+              </div>
+               <div class="slide-arrow"> 
+                  <svg  width="10" height="15" viewBox="0 0 10 15" fill="none">
+                    <path d="M0 7.5L8.33333 15L10 13.5L3.33333 7.5L10 1.5L8.33333 0L0 7.5Z" fill="currentColor"/>
+                  </svg>
+               </div>
+          </div>
+  {% endif %}
+   <div class="yv-suggest-sidebar-content yv-drawer-width" data-drawer-side-content data-related-products="{{ settings.upsell_type }}" data-limit="{{ settings.product_range }}">
+    {%- liquid 
+      if settings.product_list != blank and settings.upsell_type == 'product-list' 
+       for product in settings.product_list, limit:settings.product_range 
+        unless uniqueProductIdsString contains product.id
+            assign mainClass = 'small-product-card'
+            render 'product-grid', product: product, productClasses: mainClass,hideHoverImage: true, hide_options: true, hideRelated: true, hideQuickView: true, hidestockcount:true, hidebadges:true, hideCustomLabel:true, hidePickup:true
+        endunless
+        endfor 
+      endif 
+    -%}
+   </div>
+  </div>
+{% endif %}
+  <div class="cart-item-container cart-drawer-note-{{ settings.enable_cartdrawer_note }}">
+    {%- if settings.enable_shipping and settings.shipping_rate != blank -%}
+      <div class="free_shipping hidden" data-free-shipping-container>
+        <p data-free-shipping-text></p>
+        <div class="progress">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width:0%"
+            data-free-shipping-bar
+          ></div>
+        </div>
+      </div>
+    {%- endif -%}
+    <div
+      class="cart-items-wrapper"
+      style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %};"
+    >
+      {% assign giftWrapProductStatus = false %}
+      {%- for item in cart.items -%}
+        {% liquid
+          assign isGiftWrapProduct = false
+          if item.product_id == settings.gift_wrap_product.id
+            assign giftWrapProductStatus = true
+            assign isGiftWrapProduct = true
+          endif
+        %}
+        <div class="media-link" data-line="{{ forloop.index }}">
+          <div class="media-img">
+            {%- if item.image -%}
+              {% comment %}theme-check-disable DeprecatedFilter{% endcomment %}
+              <div
+                class="media-img-wrapper"
+                style="height:0;padding-bottom:{{ 100 | divided_by : item.image.aspect_ratio }}%;"
+              >
+                <img src="{{ item.image | img_url : '93x' }}" width="93" height="auto" loading="lazy">
+              </div>
+              {% comment %}theme-check-enable DeprecatedFilter{% endcomment %}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="media-body">
+            <a href="{{ item.url }}" class="yv-product-title" aria-label="{{ item.product.title | strip_html }}">
+              {{- item.product.title | strip_html -}}
+            </a>
+            {%- unless item.variant.title == null or item.variant.title == 'Default Title' -%}
+              <p class="item-variant-title">{{ item.variant.title | strip_html }}</p>
+            {%- endunless -%}
+            {%- if item.selling_plan_allocation -%}
+              <p class="item-variant-title">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+            {%- endif -%}
+            {%- for property in item.properties -%}
+              {%- assign property_first_char = property.first | slice: 0 -%}
+              {%- if property.last != blank and property_first_char != '_' -%}
+                <p
+                  ><strong>{{ property.first }}</strong>:
+                  {%- if property.last contains '/uploads/' -%}
+                    <a href="{{ property.last }}" target="_blank" aria-label="{{ property.first }}">
+                      {{ property.last | split: '/' | last }}
+                    </a>
+                  {%- else -%}
+                    {{ property.last }}
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+            {%- endfor -%}
+            <div class="cart-item-price yv-product-information">
+                {% unless isGiftWrapProduct %}
+              <label class="visually-hidden" for="line-item-quantity-{{ forloop.index }}">
+                {{- 'sections.cart.headings.quantity' | t -}}
+              </label>
+              <div class="quantity cart-item-quantity">
+                  <button
+                    type="button"
+                    class="quantity-button quantity-down ajaxcart__qty--minus"
+                    data-id="{{ item.key }}"
+                    data-line="{{ forloop.index }}"
+                    data-qty="{{ item.quantity | minus: 1 }}"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="14px"
+                      height="14px"
+                      viewBox="0 0 14 14"
+                      xml:space="preserve"
+                    >
+                      <rect x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+                    </svg>
+                  </button>
+                  <input
+                    id="line-item-quantity-{{ forloop.index }}"
+                    type="number"
+                    class="ajaxcart__qty-num"
+                    name="updates[]"
+                    min="1"
+                    max="9"
+                    step="1"
+                    value="{{ item.quantity }}"
+                    data-id="{{ item.key }}"
+                    data-line="{{ forloop.index }}"
+                    aria-label="{{ 'sections.cart.headings.quantity' | t }}"
+                  >
+                  <button
+                    type="button"
+                    class="quantity-button quantity-up ajaxcart__qty--plus"
+                    data-id="{{ item.key }}"
+                    data-line="{{ forloop.index }}"
+                    data-qty="{{ item.quantity | plus: 1 }}"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="14px"
+                      height="14px"
+                      viewBox="0 0 14 14"
+                      xml:space="preserve"
+                    >
+                      <polygon points="14,6 8,6 8,0 6,0 6,6 0,6 0,8 6,8 6,14 8,14 8,8 14,8 "/>
+                    </svg>
+                  </button>
+              </div>
+                {% endunless %}
+
+              <div class="cart-item-price-unit">
+                <div class="yv-prizebox">
+                  <span class="yv-product-price">{{ item.final_line_price | money }}</span>
+                  {%- if item.original_line_price > item.final_line_price -%}
+                    <span class="yv-product-compare-price">{{ item.original_line_price | money }}</span>
+                  {%- endif -%}
+                </div>
+                {%- if item.unit_price_measurement -%}
+                  <small class="yv-product-unit-price">
+                    {{ item.variant.unit_price | money }}
+                    /
+                    {%- if item.variant.unit_price_measurement.reference_value != 1 %}
+                      {{ item.variant.unit_price_measurement.reference_value -}}
+                    {%- endif %}
+                    {{ item.variant.unit_price_measurement.reference_unit }}
+                  </small>
+                {%- endif -%}
+                {%- for discount in item.discounts -%}
+                  <div class="text-left">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="15px"
+                      height="15px"
+                      viewBox="0 0 15 15"
+                      xml:space="preserve"
+                    >
+                      <style>
+                        .st0{clip-path:url(#SVGID_00000165956311262374056750000003758549857970351779_);}
+                      </style>
+                      <g>
+                        <g style="clip-path:url(#SVGID_00000026141808041203487550000009411451200903998388_);">
+                          <path d="M2.1,0.2c-1,0-1.9,0.8-1.9,1.9v4.7c0,0.5,0.2,0.9,0.5,1.3l6.2,6.2c0.7,0.7,1.9,0.7,2.7,0l4.6-4.6c0.7-0.7,0.7-1.9,0-2.7    L8.1,0.8C7.7,0.4,7.2,0.2,6.8,0.2L2.1,0.2L2.1,0.2z M3.7,5.4c-0.9,0-1.7-0.8-1.7-1.7c0-0.9,0.8-1.7,1.7-1.7c0.9,0,1.7,0.8,1.7,1.7    C5.4,4.6,4.6,5.4,3.7,5.4L3.7,5.4z"/>
+                        </g>
+                      </g>
+                    </svg>
+                    <small class="item__discount coupanName">{{ discount.title }}</small><br>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+            <button class="sd_mini_removeproduct" data-line="{{ forloop.index }}">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+                <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"></path>
+              </svg>
+            </button>
+            <div id="cartDrawerItemError-{{ forloop.index }}" class="cart-item-error error-text" role="alert"></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="bottom-cart-box">
+    {% if settings.enable_cartdrawer_note %}
+      <div class="leave-order-note">
+        <span class="cartDrawerNote">
+          {{- 'sections.cart.note_heading' | t }}
+          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path>
+          </svg>
+        </span>
+        <div class="cartNoteContainer" style="display:none">
+          <textarea class="form-control" rows="3" name="note">{{ cart.note }}</textarea>
+        </div>
+      </div>
+    {% endif %}
+    <ul class="list-unstyled">
+      {%- if cart.cart_level_discount_applications.size > 0 -%}
+        {%- for discount in cart.cart_level_discount_applications -%}
+          <li class="minicart__savings">
+            {{ 'sections.cart.discount' | t -}}
+            <span class="coupanName">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="15px"
+                height="15px"
+                viewBox="0 0 15 15"
+                xml:space="preserve"
+              >
+                <style type="text/css">
+                  .st0{clip-path:url(#SVGID_00000165956311262374056750000003758549857970351779_);}
+                </style>
+                <g>
+                  <g style="clip-path:url(#SVGID_00000026141808041203487550000009411451200903998388_);">
+                    <path d="M2.1,0.2c-1,0-1.9,0.8-1.9,1.9v4.7c0,0.5,0.2,0.9,0.5,1.3l6.2,6.2c0.7,0.7,1.9,0.7,2.7,0l4.6-4.6c0.7-0.7,0.7-1.9,0-2.7    L8.1,0.8C7.7,0.4,7.2,0.2,6.8,0.2L2.1,0.2L2.1,0.2z M3.7,5.4c-0.9,0-1.7-0.8-1.7-1.7c0-0.9,0.8-1.7,1.7-1.7c0.9,0,1.7,0.8,1.7,1.7    C5.4,4.6,4.6,5.4,3.7,5.4L3.7,5.4z"/>
+                  </g>
+                </g>
+              </svg>
+              {{ discount.title -}}
+            </span>
+            <strong class="text-medium">-{{ discount.total_allocated_amount | money }}</strong>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+      <li class="totle-price text-large">
+        {{ 'sections.cart.subtotal' | t -}}
+        <strong class="h4">{{ cart.total_price | money }}</strong>
+      </li>
+    </ul>
+
+    {% if settings.gift_wrap_product != blank
+      and settings.gift_wrap_text != blank
+      and settings.gift_wrap_product.available
+      and giftWrapProductStatus == false
+    %}
+      <div class="giftcard-box">
+        <label for="GiftWrapProduct" class="custom-checkbox">
+          <input
+            type="checkbox"
+            id="GiftWrapProduct"
+            name="giftCard"
+            data-product="{{ settings.gift_wrap_product.first_available_variant.id }}"
+            value=""
+          >
+          <span class="checkmark"></span>
+          {{ settings.gift_wrap_text }}
+        </label>
+      </div>
+    {% endif %}
+    <small class="bottom-p">
+      {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+        {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+      {%- elsif cart.taxes_included -%}
+        {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+      {%- elsif shop.shipping_policy.body != blank -%}
+        {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+      {%- else -%}
+        {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+      {%- endif -%}
+    </small>
+    <div class="cart-btn-container">
+      {% liquid
+        if routes.root_url == '/'
+          assign checkoutUrl = '/checkout'
+        else
+          assign checkoutUrl = routes.root_url | append: '/checkout'
+        endif
+      %}
+      <a href="{{ checkoutUrl }}" class="checkout-btn button black-btn">{{ 'sections.cart.checkout' | t }}</a>
+    </div>
+    <a class="shopping_cont" href="{{ routes.cart_url }}">{{ 'sections.cart.view_cart' | t }}</a>
+  </div>
+{%- else -%}
+  <div class="emptySideCart">
+    <svg class="emptyCartIcon" fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
+      <g><g><g><path d="M44.812,105.331h-3.955c-5.861,0-10.63-4.785-10.63-10.667c-0.052-2.917,1.049-5.661,3.098-7.692     c1.421-1.408,3.182-2.349,5.109-2.753L24.573,19H4c-1.104,0-2-0.896-2-2s0.896-2,2-2h22.192c0.004,0,0.011,0,0.017,0     c0.008,0,0.015-0.002,0.022,0c0.001,0,0.002,0,0.003,0c0,0,0.015,0,0.022,0c0.002,0,0.004,0,0.006,0c0.001,0,0.001,0,0.001,0     c0.004,0,0.004,0,0.006,0s0.004,0,0.006,0c0,0.001,0.003,0,0.005,0c0.006,0,0.011-0.003,0.017,0.001c0.002,0,0.004,0,0.006,0     c0.001,0,0.002,0,0.004,0h0.001c0.002,0,0.003,0,0.005,0c0,0,0.003,0.001,0.006,0l0,0c0.004,0,0.008,0,0.012,0.001l0,0     c0.009,0,0.018,0.001,0.026,0.002l0,0c0.013,0.001,0.025,0.002,0.038,0.003l0,0c0.002,0,0.004,0,0.005,0H26.4     c0.002,0,0.003,0,0.005,0l0,0c0.004,0,0.007,0.001,0.011,0.001c0,0,0,0,0,0c0.004,0,0.007,0,0.011,0.001l0,0     c0.023,0.003,0.047,0.006,0.069,0.009h0.001c0.002,0,0.003,0,0.005,0.001l0,0c0.002,0,0.004,0,0.006,0.001l0,0     c0.001,0,0.003,0,0.005,0.001l0,0c0.002,0,0.003,0,0.005,0c0,0,0.002,0,0.005,0.001h0.001c0.002,0,0.003,0,0.005,0.001l0,0     c0.002,0,0.004,0,0.006,0.001l0,0c0.009,0.001,0.018,0.003,0.026,0.005l0,0c0.002,0,0.004,0,0.005,0.001l0,0     c0.041,0.007,0.081,0.017,0.12,0.026l0,0c0.002,0,0.004,0.001,0.005,0.001h0.001c0.002,0.001,0.005,0.001,0.005,0.001     c0.002,0,0.003,0,0.005,0.001l0,0c0.002,0,0.004,0.001,0.006,0.001l0,0c0.001,0,0.003,0.001,0.005,0.001l0,0     c0.003,0.001,0.007,0.002,0.01,0.003l0,0c0.007,0.002,0.014,0.004,0.021,0.005v0c0.002,0,0.004,0,0.005,0.001     c0,0,0.003,0,0.005,0.001c0.003,0,0.003,0.001,0.006,0.001c0,0,0,0,0,0c0.002,0,0.003,0,0.005,0.001v0     c0.002,0,0.01,0.005,0.005,0.001c0.002,0,0.004,0.001,0.005,0.001h0.001c0.001,0,0.003,0.001,0.004,0.001h0.001     c0.002,0.001,0.005,0.001,0.005,0.001c0.002,0,0.003,0.001,0.005,0.001c0.001,0,0.003,0.001,0.005,0.002l0,0     c0.002,0,0.004,0.001,0.005,0.001c0,0,0.002,0,0.006,0.001l0,0c0.002,0.001,0.005,0.002,0.005,0.002     c0.001,0.001,0.008,0.004,0.005,0.001c0.003,0.001,0.005,0.001,0.005,0.001c0.004,0.001,0.005,0.002,0.005,0.002     c0.004,0.001,0.004,0.001,0.006,0.001c0.001,0,0.002,0.001,0.004,0.001c0,0,0.002,0.001,0.004,0.001     c0.002,0.001,0.003,0.001,0.005,0.002c0.002,0,0.003,0,0.005,0.001c0.001,0,0.002,0,0.002,0c0.002,0.001,0.005,0.001,0.005,0.002     c0.002,0.001,0.005,0.001,0.005,0.002c0.002,0,0.003,0,0.004,0.001l0.001,0c0.004,0.001,0.004,0.001,0.006,0.002     s0.003,0.001,0.005,0.001c0.002,0.001,0.003,0.002,0.005,0.002c0.002,0.001,0.003,0.002,0.005,0.002     c0.001,0.001,0.003,0.001,0.005,0.002c0.002,0,0.003,0.001,0.005,0.001c0.002,0,0.002,0.002,0.005,0.002     c0.002,0.001,0.003,0.002,0.005,0.002c0.002,0.001,0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002     s0.005,0.001,0.005,0.002c0.002,0.001,0.005,0.001,0.005,0.002c0.001,0,0.004-0.002,0.005,0.002c0.001,0,0.004-0.002,0.005,0.002     c0.002,0,0.005,0.001,0.005,0.002c0.002,0,0.005,0.001,0.005,0.002c0.002,0.001,0.005,0.001,0.005,0.002     c0.002,0.001,0.005,0.001,0.005,0.002c0.002,0.001,0.005,0.002,0.005,0.002c0.002,0.001,0.003,0.002,0.005,0.002     c0.001,0-0.003,0,0.005,0.002c0.001,0-0.003-0.002,0.005,0.002c0.001,0,0-0.001,0.005,0.002c0.001,0.001,0,0.001,0.005,0.002     c0.001,0-0.004-0.003,0.005,0.002c0.002,0,0.003,0,0.005,0.002c0.002,0.001,0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002     c0.002,0,0.003,0.001,0.005,0.002s0.003,0.002,0.005,0.002c0,0.001,0.003,0.001,0.005,0.002c0,0,0.003,0.001,0.005,0.002     c0,0.002,0.003,0.002,0.004,0.002c0.002,0,0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002c0.001,0,0.001,0,0.001,0     c0.003,0.001,0.004,0.001,0.005,0.002c0.003,0,0.004,0,0.005,0.002c0.001,0.001,0.003,0.001,0.004,0.002l0.001,0     c0.001,0-0.004-0.004,0.005,0.002c0.002,0.001,0.003,0.001,0.005,0.002c0.002,0.001,0.003,0.002,0.005,0.002     c0.001,0.001,0.004,0.002,0.004,0.002c0.002,0,0.004,0.001,0.005,0.002s0.003,0.001,0.004,0.002l0.001,0     c0.001,0,0.002,0.001,0.004,0.002c0,0,0.002,0,0.004,0.002c0.001,0,0.001,0,0.001,0c0.002,0.001,0.003,0.001,0.004,0.002h0.001     c0.001,0.001,0.004,0.001,0.005,0.002s-0.001,0.001,0.005,0.002c0.001,0.001,0.002,0.001,0.004,0.002v0     c0.003,0.001,0.006,0.003,0.009,0.004c0,0,0.001,0.001,0.005,0.002c0.001,0,0.003,0.002,0.005,0.002l0,0     c0.003,0.002,0.006,0.003,0.009,0.005l0,0c0.002,0.001,0.003,0.002,0.005,0.002l0,0c0.001,0.001,0.003,0.002,0.005,0.003l0,0     c0.001,0,0.003,0.001,0.004,0.002c0,0,0,0,0.001,0c0.003,0.001,0.006,0.003,0.009,0.005l0,0c0.004,0.002,0.009,0.005,0.014,0.008     l0,0c0.001,0.001,0.003,0.001,0.004,0.002h0.001c0.001,0.001,0.003,0.002,0.004,0.002l0,0c0.482,0.275,0.843,0.747,0.965,1.32     l14.7,68.995c0.23,1.081-0.459,2.143-1.539,2.373c-0.085,0.018-0.169,0.03-0.253,0.038c-0.083,0.008-0.168,0.01-0.252,0.009     c-1.778-0.06-3.436,0.598-4.663,1.816c-1.267,1.256-1.946,2.966-1.914,4.816c0,3.711,2.975,6.702,6.63,6.702h3.955     c1.105,0,2,0.896,2,2S45.917,105.331,44.812,105.331z"/><path d="M94.242,105.331H60.084c-1.104,0-2-0.896-2-2s0.896-2,2-2h34.158c1.104,0,2,0.896,2,2     S95.347,105.331,94.242,105.331z"/><path d="M52.448,113c-5.313,0-9.637-4.337-9.637-9.669s4.323-9.669,9.637-9.669s9.636,4.337,9.636,9.669     S57.762,113,52.448,113z M52.448,97.662c-3.108,0-5.637,2.543-5.637,5.669S49.34,109,52.448,109c3.107,0,5.636-2.543,5.636-5.669     S55.556,97.662,52.448,97.662z"/><path d="M101.879,113c-5.313,0-9.637-4.337-9.637-9.669s4.323-9.669,9.637-9.669s9.636,4.337,9.636,9.669     S107.192,113,101.879,113z M101.879,97.662c-3.108,0-5.637,2.543-5.637,5.669S98.771,109,101.879,109     c3.107,0,5.636-2.543,5.636-5.669S104.986,97.662,101.879,97.662z"/></g><path d="M108.673,87.948h-67.78c-0.944,0-1.76-0.66-1.956-1.583l-10.219-47.96    c-0.126-0.59,0.021-1.206,0.401-1.675s0.951-0.742,1.555-0.742H124c0.639,0,1.238,0.305,1.615,0.82s0.484,1.18,0.29,1.789    l-15.327,47.96C110.313,87.385,109.543,87.948,108.673,87.948z M42.512,83.948h64.7l14.049-43.96H33.145L42.512,83.948z"/><g><path d="M77.337,77.878c-1.104,0-2-0.896-2-2V48.057c0-1.104,0.896-2,2-2s2,0.896,2,2v27.821     C79.337,76.982,78.441,77.878,77.337,77.878z"/><path d="M99.155,77.878c-1.104,0-2-0.896-2-2V48.057c0-1.104,0.896-2,2-2s2,0.896,2,2v27.821     C101.155,76.982,100.26,77.878,99.155,77.878z"/><path d="M55.519,77.878c-1.104,0-2-0.896-2-2V48.057c0-1.104,0.896-2,2-2s2,0.896,2,2v27.821     C57.519,76.982,56.623,77.878,55.519,77.878z"/></g></g></g>
+    </svg>
+    <h5 class="empty-cart-title">{{ 'sections.cart.empty' | t }}</h5>
+    <a class="link" href="{{ routes.all_products_collection_url }}" aria-label="{{ 'general.continue_shopping' | t }}">
+      {{- 'general.continue_shopping' | t -}}
+    </a>
+  </div>
+{%- endif -%}

@@ -1,0 +1,81 @@
+{% assign formId = 'productBackInStockForm' | append: product.id | append: '_' | append: section.id %}
+{%- form 'contact', id: formId,class: 'stock-notify__form' -%}
+        <input
+              type="hidden"
+              name="return_to"
+              value="{{ product.url }}?variant={{current_variant.id}}&contact_posted=true"
+              data-variant-url
+            >
+            <input type="hidden" name="contact[Message]" value="Customer has filled the notify me form.">
+            <input type="hidden" name="contact[Product]" value="{{ product.id }}">
+            <input
+              type="hidden"
+              name="contact[Product Title]"
+              value="{{ product.title }} - {{ current_variant.title }}"
+              data-variant-title
+            >
+      <div class="form-group">
+        <input
+               autocomplete="email"
+               type="email"
+               id="Notify_form-email"
+               class="form-control"
+               name="contact[email]"
+               spellcheck="false"
+               autocapitalize="off"
+               value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+               aria-required="true"
+               {% if form.errors contains 'email' %}
+               aria-invalid="true"
+               aria-describedby="ContactForm-email-error"
+               {% endif %}
+               placeholder="Email address"
+               required
+               >
+        {% if form.errors contains 'email' %}
+        <span class="error-text">
+          {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+        </span>
+        {%- endif -%}
+      </div>
+      {% if block.settings.button_text != blank %}
+      <button type="submit" class="notify__button button btn-block">
+          <span>{{ block.settings.button_text }}</span>
+          <span class="btn-icon">
+            <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.612702 8.71384L0.61861 7.20544L19.8032 7.28063L19.7973 8.78902L0.612702 8.71384Z" fill="currentColor"></path>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7317 14.9361L19.5774 6.96677L20.6154 8.0378L12.7696 16.0071L11.7317 14.9361Z" fill="currentColor"></path>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7863 1.06953L12.8327 0.0069952L20.6154 8.0378L19.5694 9.10003L11.7863 1.06953Z" fill="currentColor"></path>
+            </svg>
+          </span>
+      </button>
+      {% endif %}
+        {%- if form.posted_successfully? -%}
+        <span class="form-status form-status-list form__message success-text" tabindex="-1" >{{ 'templates.contact.form.post_success' | t }}</span>
+        {%- endif -%}
+{%- endform -%}
+ <style>
+    .stock-notify {
+    background: var(--primaryAlternateBg);
+    padding: 30px;
+    border-radius: var(--layoutRadius);
+}
+    .stock-notify__heading {
+    padding-bottom: 15px;
+}
+    .stock-notify .form-group {
+    margin-bottom: 8px;
+}
+    .stock-notify .btn-icon {
+    display: inline-flex;
+    transition: .4s ease;
+    margin-left: 12px;
+}
+    .button .btn-icon svg {
+    height: auto;
+    width: 19px;
+}
+    .button:not([disabled]):hover .btn-icon {
+    transform: translate(10px);
+}
+  </style>

@@ -1,0 +1,79 @@
+{% assign current_variant =  product.selected_or_first_available_variant %}
+<a href="{{ product.url }}" class="yv-suggest-product">
+  {% if product.featured_media != blank %}
+  <div class="image-wrapper" style="padding: {{ 1 | divided_by: product.featured_media.aspect_ratio | times: 100 }}%;">
+    {%- render 'lazy-image', image: product.featured_media, class: 'yv-suggest-img mb7' -%}
+  </div>
+  {% else %}
+    <div class="image-wrapper" style="padding: 100%;">
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {% endif %}
+  <div class="yv-suggest-heading mb7">
+      <span class="text-small">{{ product.title }}</span>
+  </div>
+  {%- if product.metafields.reviews.rating_count > 0 -%}
+    <div class="yv-rating-star mb7">         
+      {%- liquid 
+        assign productRating = product.metafields.reviews.rating.value.rating | floor
+        assign decimalProductRating = 0
+        assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+        if decimal >= 0.3 and decimal <= 0.7
+          assign decimalProductRating = 0.5
+        endif 
+      -%}
+      <ul class="list-unstyled yv-product-rating main-product">
+        {%- for i in (1..5) -%}        
+        {%- if i <= productRating -%}
+        <li>
+        <svg class="fill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 362" width="20" height="19">
+          <path fill-rule="evenodd"  fill="currentcolor" d="m204.7 10.5l37.5 116.1l122-0.3c15.4 0 21.2 19.1 7.7 28.9l-97.5 70.5l37.9 115.9c4.9 14.8-12.9 26.5-24.6 16.5l-97.6-71.2l-98.6 71.9c-13.4 9.7-28.2-3.4-22.6-20.4l36.9-112.7l-98.8-71.5c-12.6-9.1-5.2-28.9 10.1-27.9l120.9 0.3l37.5-116.1c4.5-14.2 24.7-14.1 29.2 0z" />
+        </svg>
+      </li>
+        {%- elsif productRating < i and decimalProductRating == 0.5 -%}
+        <li>
+        <svg class="half-fill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.89 19.01">
+          <defs><style>.d{fill:#ddd;}.e{fill:currentcolor;}</style></defs>
+          <g/>
+          <g>
+            <g>
+              <g>
+                <path class="e" d="M9.18,.56l-1.97,6.09-6.35-.02c-.8-.05-1.19,.99-.53,1.46l5.19,3.75-1.94,5.92c-.29,.89,.48,1.58,1.19,1.07l5.17-3.77V0c-.32,0-.65,.19-.76,.56Z"/>
+                <path class="d" d="M19.08,6.63l-6.4,.02L10.71,.56C10.59,.19,10.27,0,9.94,0V15.07h0l5.12,3.73c.61,.52,1.55-.09,1.29-.87l-1.99-6.08,5.12-3.7c.71-.51,.4-1.52-.4-1.52Z"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+        </li>
+        {%- else -%}
+        <li>
+          <svg class="unfill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 362" width="20" height="19">
+              <path fill-rule="evenodd"  fill="#ddd" d="m204.7 10.5l37.5 116.1l122-0.3c15.4 0 21.2 19.1 7.7 28.9l-97.5 70.5l37.9 115.9c4.9 14.8-12.9 26.5-24.6 16.5l-97.6-71.2l-98.6 71.9c-13.4 9.7-28.2-3.4-22.6-20.4l36.9-112.7l-98.8-71.5c-12.6-9.1-5.2-28.9 10.1-27.9l120.9 0.3l37.5-116.1c4.5-14.2 24.7-14.1 29.2 0z" />
+          </svg>
+        </li>
+        {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  {% endif %}
+  <div class="yv-product-pricing-box">
+    {%- assign price_min = product.price_min | money -%}
+    {%- if product.price_varies -%}
+    <span class="yv-product-price price-varies">{{ 'products.product.price.from_price_html' | t : price : price_min }}</span>
+    {%- else -%}
+    <span class="yv-product-price">{{ price_min }}</span>
+    {%- endif -%}
+
+    {%- if product.compare_at_price_min > product.price_min -%}
+    <span class="yv-compare-price">{{ product.compare_at_price_min | money }}</span>
+    {%- endif -%}
+    
+    {%- if current_variant.unit_price_measurement -%}
+    <p class="yv-product-price yv-product-unit-price">
+    {{ current_variant.unit_price | money }} / {% if current_variant.unit_price_measurement.reference_value != 1 %}{{ current_variant.unit_price_measurement.reference_value }}{% endif %} {{ current_variant.unit_price_measurement.reference_unit }}
+    </p>
+    {%- endif -%}
+  </div>
+</a>
+
+

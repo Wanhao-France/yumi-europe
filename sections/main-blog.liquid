@@ -1,0 +1,158 @@
+{%- paginate blog.articles by 9 -%}
+<div  id="main-blog-{{ section.id }}" class="top_page_title no-bg">
+  <div class="container">
+    <div class="contact-banner-text">
+      <div class="banner_title">
+        <{{ section.settings.seo_heading }}>{{ blog.title | escape }}</{{ section.settings.seo_heading }}>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="yv-blog-listing" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %}">
+  <div class="container md-container">
+    {%- if section.settings.show_tags_filter -%}
+      <div class="blog-filter-box">
+        <h6>Filters</h6>
+        <ul class="filter-tags list-unstyled">
+          <li>
+          <a href="{{ blog.url }}" class="{% if current_tags == blank %}active{% endif %}">All</a>
+          </li>
+          {% for tag in blog.tags %}
+            <li>
+              {%- if current_tags contains tag -%}
+                {{ tag | link_to_remove_tag: tag | replace: '<a', '<a class="active"'}}
+              {%- else -%}
+                {{ tag | link_to_add_tag: tag }}
+              {%- endif -%}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {%- endif -%}
+    <div class="yv-blog-outer-box">  
+      <div class="row">
+        {%- for article in blog.articles -%}
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4"> 
+              <div class="yv-blog-card" {% if settings.enable_animation %} data-aos="fade-up" data-aos-delay="{{ 50 | times : forloop.index }}"{% endif %}>
+                <a href="{{- article.url -}}" class="yv-blog-card-img">                 
+                  {%- if article.image -%}             
+                    <div class="image-wrapper image-{{ settings.article_image_style }}" {% if settings.article_image_style == 'aspect' %}style="padding-bottom:{{ 1 | divided_by : article.image.aspect_ratio | times: 100 }}%"{% endif %}>
+                      {% render 'lazy-image' image: article.image %} 
+                    </div>
+                  {%- else -%}
+                    {%- if settings.article_image_style != 'aspect' -%}
+                      <div class="image-wrapper no-article-image image-{{ settings.article_image_style }}">
+                    {%- endif -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- if settings.article_image_style != 'aspect' -%}
+                      </div>
+                    {%- endif -%}                    
+                  {%- endif -%}
+                  {%- if section.settings.show_date -%}
+                  <span class="yv-blog-date">{{ article.published_at | date: "%B %d, %Y" }}</span>
+                  {%- endif -%}
+                </a>
+                {%- if article.comments_count > 0 and blog.comments_enabled? and section.settings.show_comment_count -%}
+                  <p class="post-date">
+                    {{ 'blogs.article.comments' | t: count: article.comments_count }}
+                  </p>
+                  {%- endif -%}
+                <h6 class="yv-blog-title">{{ article.title }}</h6> 
+                <div class="yv-blog-card-text">
+                  {%- if section.settings.show_excerpt -%}
+                  <p class="yv-blog-desc">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+                {%- endif -%}   
+                  {%- if section.settings.show_tags and article.tags != blank -%}
+                    <ul class="list-unstyled article_tags yv-blog-tags">
+                      {%- for tag in article.tags -%}
+                      <li><a href="{{ blog.url }}/tagged/{{tag}}">{{tag}}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                    {%- endif -%}    
+                  <a href="{{- article.url -}}" class="button xsmall-btn secondary-button">{{ 'blogs.article.read_more' | t }}</a>
+                </div>
+              </div>
+        </div>
+         {% else %}
+           <h2 class="empty-blog text-center">No articles found.</h2>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+{%- if paginate.pages > 1 -%}
+   {%- render 'pagination', paginate: paginate -%}
+{%- endif -%}
+{%- endpaginate -%} 
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "main-blog-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_tags_filter",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_tags_filter.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_tags.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_excerpt.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comment_count",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_comment_count.label"
+    },
+    {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      }
+  ]
+}
+{% endschema %}

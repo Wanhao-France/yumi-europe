@@ -1,0 +1,78 @@
+
+<ul class="yv-product-meta list-none">
+          {% if block.settings.show_availability %}
+          <li>
+              <span class="yv-product-meta__label">Availability:</span>
+              <div class="yv-product-meta__value yv-product-meta__availability" data-product-availability>
+                 {% if current_variant.available %}
+                           {{ 'products.product.in_stock' | t  }}
+                 {% else %}
+                          {{ 'products.product.out_of_stock' | t  }}
+                 {% endif %}
+              </div>
+          </li>
+          {% endif %}
+          {% if block.settings.show_sku %}
+          <li>
+              <span class="yv-product-meta__label">SKU:</span>
+              <div class="yv-product-meta__value" data-product-sku="">
+                          {% if current_variant.sku != blank %}             
+                              {{ current_variant.sku }}
+                          {% else %}
+                              {% echo '--' %}
+                          {% endif %}
+              </div>
+          </li>
+          {% endif %}
+          {% if block.settings.show_vendor %}
+          <li>
+             <span class="yv-product-meta__label">Vendor:</span>
+              <div class="yv-product-meta__value">
+              {% if product.vendor != blank %}<a href="/collections/vendors?q={{ product.vendor | url_encode }}" title="{{ product.vendor }}"> {{ product.vendor  }} </a>{% else %}--{% endif %}</div>
+          </li>
+          {% endif %}
+          {% if block.settings.show_type %}
+          <li>
+              <span class="yv-product-meta__label">Product type:</span>
+              <div class="yv-product-meta__value">
+                {% if product.type != blank %}<a href="/collections/types?q={{ product.type | url_encode }}" title="{{ product.type }}">{{ product.type }}</a>{% else %}--{% endif %}</div>
+          </li>
+          {% endif %}
+          {% if block.settings.show_collections %}
+          <li>
+              <span class="f-product-meta__label">Collections:</span>
+             <div class="f-product-meta__value">
+                {% assign coll_count = product.collections | size %}
+                {% for collect in product.collections %}
+                  <a href="/collections/{{ collect.handle }}">{{ collect.title }}</a>{% if forloop.index < coll_count %}, {% endif %}
+                  {% else %}--
+                {% endfor %}
+             </div>
+          </li>
+          {% endif %}
+          {% if block.settings.show_tags %}
+          <li>
+              <span class="yv-product-meta__label">Tags:</span>
+              <div class="yv-product-meta__value">                   
+                  {% assign tag_count = product.tags | size %}
+              {% for tag in product.tags %}
+                <a href="/collections/all/{{ tag }}">{{ tag }}</a>
+                {% if forloop.index < tag_count %}, {% endif %}
+                {% else %}--
+              {% endfor %}
+              </div>
+          </li>
+          {% endif %}
+</ul>
+<style>
+    .yv-product-meta li span {
+    min-width: 150px;
+    }
+    .yv-product-meta li {
+    list-style: none;
+    }
+    .yv-product-meta li {
+    display: flex;
+    margin-bottom: 10px;
+}
+  </style>

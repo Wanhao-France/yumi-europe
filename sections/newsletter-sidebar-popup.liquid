@@ -1,0 +1,144 @@
+{% if section.settings.enable_newsletter_sidebar and section.settings.icon_image != blank %}
+<div class="discount-siderbar-box position-{{ section.settings.horizontal_position }}">
+        <div class="yv-discount-panel">
+            <div class="yv-discount-icon">
+                <a href="#">
+                 {%- render 'lazy-image' image: section.settings.icon_image, width: '500x' -%}
+                </a>
+              {% if section.settings.button_text != blank %}
+              <div class="yv-discount-cnt">
+                <p>{{ section.settings.button_text }}</p>
+              </div>
+              {% endif %}
+            </div>
+        </div>
+        <div class="yv-discount-sidebar-element">
+            <div class="yv-discount-sidebar">
+              <div class="yv-newsletter-popup-outer">
+                  <div class="yv-newsletter-popup-body">
+                    <div class="yv-newsletter-popup-content ">
+                      <div class="yv-newsletter-popup-content-box">
+                        <div class="yv-discount-popup-img">
+                            {%- render 'lazy-image' image: section.settings.image, width: '500x' -%}
+                        </div>
+                        <div class="yv-newsletter-popup-text text-center">
+                           {%- if section.settings.subheading != blank -%}
+                               <h5>{{ section.settings.subheading }}</h5>
+                           {% endif %}
+                          <div class="newsDescription rich-editor-text-content">
+                            {%- if section.settings.heading != blank -%}
+                               <p>{{ section.settings.heading }}</p>
+                            {% endif %}
+                          </div>
+                        </div>
+                         {%- form 'customer', id: 'newsletter-form-popup', class: 'newsletter-popup-form' -%}
+                          <input type="hidden" name="form_type" value="customer">
+                          <input type="hidden" name="utf8" value="✓"><input type="hidden" name="contact[tags]" value="newsletter">
+                          <input type="hidden" name="contact[context]" value="popup">
+                          <div class="input-news-letter">
+                            {% if form.posted_successfully? %}
+                               <span class="success-text">{{ 'newsletter.success' | t }}</span>
+                            {% else %}
+                              <div class="form-group">
+                                <label for="EmailId" class="visually-hidden">Email address</label>
+                                <input class="form-control enter-email" type="email" name="contact[email]" id="EmailId" value="" placeholder="Email address" autocapitalize="off" required="">
+                              </div>
+                            {%- if form.errors -%}
+                                <span class="form-group error-text" id="Newsletter-error--{{ section.id }}">
+                                  {{- form.errors.translated_fields.email | capitalize }}
+                                  {{ form.errors.messages.email -}}
+                                </span>
+                            {%- endif -%}
+                              <button class="button btn-block" id="SubscribeBtn" name="commit">
+                                <span>{{ 'newsletter.button_label' | t }}</span>
+                              </button>
+                             {% endif %}
+                          </div>
+                       {% endform %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+    <style>
+     #shopify-section-{{ section.id }} .yv-discount-panel{
+  	   bottom:{{ section.settings.vertical_position }}%;
+     }
+</style>
+{% schema %}
+  {
+    "name": "t:sections.newsletter-sidebar-popup.name",
+    "tag" : "section",
+    "class": "newsletter-sidebar-section",
+    "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_newsletter_sidebar",
+      "default": false,
+      "label": "t:sections.newsletter-sidebar-popup.settings.enable_newsletter_sidebar.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "t:sections.newsletter-sidebar-popup.settings.icon_image.label",
+      "info": "t:sections.newsletter-sidebar-popup.settings.icon_image.info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Heading Here",
+      "label": "t:sections.newsletter-sidebar-popup.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Sub Heading Here",
+      "label": "t:sections.newsletter-sidebar-popup.settings.subheading.label"
+    },
+    {
+       "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.newsletter-sidebar-popup.settings.image.label"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:sections.newsletter-sidebar-popup.settings.button_text.label"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_position",
+      "label": "t:sections.newsletter-sidebar-popup.settings.horizontal_position.label",
+      "default": "left",
+      "options": [
+        {
+          "label": "t:sections.newsletter-sidebar-popup.settings.horizontal_position.options.left.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.newsletter-sidebar-popup.settings.horizontal_position.options.right.label",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "vertical_position",
+      "label": "t:sections.newsletter-sidebar-popup.settings.vertical_position.label",
+      "default": 15,
+      "min": 5,
+      "max": 65,
+      "unit": "%"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

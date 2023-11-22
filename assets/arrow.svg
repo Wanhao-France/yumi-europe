@@ -1,0 +1,8 @@
+<svg baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 15" width="20" height="15">
+	<title>Shape 7</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #e5e5e5 } 
+	</style>
+	<path id="Shape_7Y" class="shp0" d="M18.71 8.22L-0.01 8.22L-0.01 6.73L18.71 6.73L18.71 8.22ZM12.48 14.98L11.43 13.92L17.88 7.47L11.43 1.03L12.48 -0.03L19.99 7.47L12.48 14.98Z" />
+</svg>

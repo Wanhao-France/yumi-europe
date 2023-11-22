@@ -1,0 +1,66 @@
+<div class="top-header header_3">
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+    <div class="navbar navbar-expand-md">
+      {%- if section.settings.menu != blank or section.blocks.size > 0 -%}
+        <div class="hamburger-content {{ section.settings.icon_weight }}-icon">
+          <div class="nav__btn">
+            <a href="#sidemenu" class="hamburger" role="button" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="hamburger-line hamburger-line-1"></span>
+              <span class="hamburger-line hamburger-line-2"></span>
+              <span class="hamburger-line hamburger-line-3"></span>
+            </a>
+          </div>
+          {% render 'hamburger-menu', section: section %}
+        </div>
+      {%- endif -%}
+      {% liquid
+        if section.settings.enable_catalog
+          render 'header-category' section:section
+        endif 
+      %}
+      <a
+        class="header__heading-link {% if section.settings.logo == blank %}yv-heading-shop-link{% endif %}"
+        href="{{ routes.root_url }}"
+        aria-label="{{ shop.name }}"
+      >
+        {%- render 'header-logo', section: section -%}
+      </a>
+      <div class="form-inline">
+        {% render 'header-icons', section: section %}
+      </div>
+    </div>
+  </div>
+</div>
+{% if section.settings.enable_catalog and section.settings.catalog_menu != blank %}
+<div class="yv-mobile-catelog d-block d-lg-none">
+  {% if section.settings.view_catalog %}
+    <a class="yv-mobile-category" data-tab="#side-catalog" aria-controls="nav">
+      {{- section.settings.view_catalog }}
+      <svg width="8" fill="currentColor" viewBox="0 0 448 512">
+        <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path>
+      </svg>
+    </a>
+  {% endif %}
+{% render 'side-menu', section: section, mobileMenu: true %}
+</div>
+{% endif %}
+<style>
+   header {
+    --hamburgerBackground:{{ section.settings.hamburger_bgcolor }};
+    --hamburgerBackground2:{{ section.settings.hamburger_bgcolor | color_lighten: 10 }};
+    --hamburgerBackground3: {{ section.settings.hamburger_bgcolor | color_lighten: 15 }};
+    --hamburgerText:{{ section.settings.hamburger_textcolor }};
+    --hamburgerTextHover:{{ section.settings.hamburger_textcolor_hover }};
+  }
+  
+   {% assign colorBrightnessHamburgerMenu = section.settings.hamburger_bgcolor | color_brightness %}
+    {%- if colorBrightnessHamburgerMenu < 130 -%}
+        /* #shopify-section-{{ section.id }} .lang-dropdown{
+          background:{{ section.settings.hamburger_bgcolor | color_darken: 10 }} url({{ 'select-arrow-white.png' | asset_url }}) no-repeat 91% 52% /10px;
+        } */
+    {%- else -%}
+        /* #shopify-section-{{ section.id }} .lang-dropdown{
+          background:{{ section.settings.hamburger_bgcolor | color_lighten: 10 }} url({{ 'lang-dropdown-arrow.svg' | asset_url }}) no-repeat 91% 52% /10px;
+        } */
+    {%- endif -%}
+</style>

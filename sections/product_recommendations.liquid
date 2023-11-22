@@ -1,0 +1,245 @@
+<div class="container">
+  <div
+    class="product-recommendations related_products"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_count }}&intent=related"
+    product-recommendations
+  >
+    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+      <div class="section-heading">
+        <{{ section.settings.seo_heading }}>{{ section.settings.heading }}</{{ section.settings.seo_heading }}>
+      </div>
+      <div
+        id="product-recommendations-{{ section.id }}"
+        class="yv-recent-product-grid recommend data-desktop-only "
+        {%- if recommendations.products_count > 5 %}
+          data-desktop-only
+          data-flickity-slider='
+            {"wrapAround":false,
+            "cellAlign": "left",
+            "dragThreshold":true,
+            "contain": true,
+            "groupCells": true,
+            "touchVerticalScroll": false,
+            "prevNextButtons": true,
+            "pageDots": false,
+            "arrowShape":"M36.7,76.9c1.9,1.4,1.9,3.8,0,5.7c-0.6,0.6-1.6,0.9-2.8,0.9c-0.9,0-1.9-0.3-2.8-0.9L2.2,52.8 c-1.9-1.4-1.9-4.3,0-5.7L30,18.3c1.4-1.4,3.8-1.4,5.2,0c1.9,1.4,1.9,4.3,0,5.7L10.2,50L36.7,76.9z M95.2,46.2c1.9,0,3.8,1.9,3.8,4.3 c0,2.4-1.9,3.8-3.8,3.8H13c-2.4,0-3.8-1.4-3.8-3.8c0-2.4,1.4-4.3,3.8-4.3H95.2z"}
+          '
+        {% endif %}
+      >
+        {%- liquid
+          for product in recommendations.products limit: section.settings.products_count
+            assign productFormId = 'product-form-' | append: section.id
+            assign mainClass = 'small-product-card'
+            render 'product-grid', product: product, productFormId: productFormId, productClasses: mainClass, hideRelated: true, hideQuickView: true,customRadius:true
+          endfor
+        -%}
+      </div>
+    {%- else -%}
+      <style>
+        #shopify-section-{{ section.id }}.shopify-section {
+          display: none;
+        }
+      </style>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+    #shopify-section-{{ section.id }} #product-recommendations-{{ section.id }}{
+      --layoutRadius:{{ section.settings.product_grid_radius_desktop }}px;
+      --product-spacing:{{ section.settings.product_grid_spacing_desktop }}px;
+    }
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  @media only screen and (max-width:767px) {
+    #shopify-section-{{ section.id }} #product-recommendations-{{ section.id }}{
+      --layoutRadius:{{ section.settings.product_grid_radius_mobile }}px;
+      --product-spacing:{{ section.settings.product_grid_spacing_mobile }}px;
+    }
+  }
+  </style>
+{% schema %}
+{
+  "name": "t:sections.product_recommendations.name",
+  "tag": "section",
+  "class": "product-page-recommendations recent-product-section",
+  "settings": [
+    {
+      "label": "t:sections.product_recommendations.settings.heading.label",
+      "id": "heading",
+      "type": "text",
+      "default": "Recommended Products"
+    },
+      {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "label": "t:sections.product_recommendations.settings.products_count.label",
+      "default": 8
+    },
+      {
+        "type": "range",
+        "id": "product_grid_radius_desktop",
+        "default": 10,
+        "label": "t:common.header.product_grid_radius_desktop.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "range",
+        "id": "product_grid_radius_mobile",
+        "default": 10,
+        "label": "t:common.header.product_grid_radius_mobile.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "range",
+        "id": "product_grid_spacing_desktop",
+        "default": 10,
+        "label": "t:common.header.product_grid_spacing_desktop.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "range",
+        "id": "product_grid_spacing_mobile",
+        "default": 10,
+        "label": "t:common.header.product_grid_spacing_mobile.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "header",
+        "content": "t:common.header.color_singular_section.label"
+      },
+      {
+        "type": "select",
+        "id": "bgcolor",
+        "label": "t:common.header.background_section.label",
+        "default": "primary",
+        "options": [
+          {
+            "value": "primary",
+            "label": "t:common.header.primary.label"
+          },
+          {
+            "value": "secondary",
+            "label": "t:common.header.secondary.label"
+          },
+          {
+            "value": "tertiary",
+            "label": "t:common.header.tertiary.label"
+          },
+          {
+            "value": "quaternary",
+            "label": "t:common.header.quaternary.label"
+          },
+          {
+            "value": "gradient",
+            "label": "t:common.header.gradient.label"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:common.header.space_section.label"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:common.top_space_desktop.label",
+        "default": 60,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:common.bottom_space_desktop.label",
+        "default": 60,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:common.top_space_mobile.label",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:common.bottom_space_mobile.label",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+  ]
+}
+{% endschema %}

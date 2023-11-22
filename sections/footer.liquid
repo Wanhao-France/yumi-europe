@@ -1,0 +1,610 @@
+<div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+  {%- if section.settings.image != blank or section.settings.subtext != blank -%}
+    <div class="yv-footer-top-box {% unless section.settings.image != blank %}no-footer-logo{% endunless %}">
+      <div class="row align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="row align-items-center justify-content-center">
+            {%- assign footlogo = false -%}
+            {%- if section.settings.image != blank -%}
+              {%- assign footlogo = true -%}
+              <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
+                <a href="{{ routes.root_url }}" class="yv-footer-logo{% if section.settings.subtext == blank %} justify-content-center{% endif %}">
+                  {%- assign image_2x_size = section.settings.image_width | times: 2 | at_most: 2560 -%}
+                  <img
+                    srcset="{{ section.settings.image | image_url: width: section.settings.image_width }} 1x, {{ section.settings.image | image_url: width: image_2x_size }} 2x"
+                    src="{{ section.settings.image | image_url: width: section.settings.image_width }}"
+                    loading="lazy"
+                    class="Yuva-logo"
+                    aspect-ratio="{{ section.settings.image.aspect_ratio }}"
+                    width="{{ section.settings.image_width }}"
+                    height="{{ section.settings.image_width | divided_by:section.settings.image.aspect_ratio }}"
+                    alt="{{ section.settings.image.alt | default: shop.name | escape }}"
+                  >
+                </a>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.subtext != blank -%}
+              <div class="col-sm-12 {% if footlogo %}col-md-8 col-lg-9 col-xl-10{% else %}col-lg-9 col-xl-10{% endif %}">
+                <div class="yv-footer-content rich-editor-text-content {% unless footlogo %} text-center{% endunless %}">
+                  {{ section.settings.subtext }}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- if section.blocks.size > 0 -%}
+    <div
+      class="yv-footer-middle-box"
+      style="--layoutRadius:{% if settings.layout_style == 'rounded' %}4px{% else %}0px{% endif %};"
+    >
+      <div class="footer-menu-list">
+        <div class="row justify-content-around">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'link_list' -%}
+                <div class="col-sm-12 col-md-3 col-lg-2 col-xl-2" {{ block.shopify_attributes }}>
+                  <div class="footer-menu-accordion">
+                    {%- if block.settings.heading != blank -%}
+                      <h6 class="footer-menu-head footer-menu-accordion-head text">
+                        {{ block.settings.heading }}
+                      </h6>
+                    {%- endif -%}
+                    {%- if block.settings.menu != blank -%}
+                      <ul class="list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a href="{{ link.url }}">{{ link.title | split: '{' | first }}</a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- when 'text' -%}
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2" {{ block.shopify_attributes }}>
+                  <div class="yv-footer-textblock">
+                    <div class="footer-text-item d-block">
+                      {% if block.settings.image != blank %}
+                      <a 
+                          {% if block.settings.image_link != blank %}
+                            href="{{ block.settings.image_link }}"
+                          {% else %}
+                            role="link"
+                            aria-disabled="true"
+                          {% endif %} 
+                        class="footer-img-link">
+                          {%- assign image_2x_size = block.settings.image_width | times: 2 | at_most: 2560 -%}
+                          <img
+                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }} 1x, {{ block.settings.image | image_url: width: image_2x_size }} 2x"
+                            src="{{ block.settings.image | image_url: width: block.settings.image_width }}"
+                            loading="lazy"
+                            class="Yuva-logo"
+                            aspect-ratio="{{ block.settings.image.aspect_ratio }}"
+                            width="{{ block.settings.image_width }}"
+                            height="{{ block.settings.image_width | divided_by:block.settings.image.aspect_ratio }}"
+                            alt="{{ block.settings.image.alt | default: shop.name | escape }}"
+                          >
+                        </a>
+                      {%- endif -%}
+                    {%- if block.settings.heading != blank -%}
+                      <h6 class="footer-menu-head text">
+                        {{ block.settings.heading }}
+                      </h6>
+                    {%- endif -%}
+                      {%- if block.settings.description != blank -%}
+                        <p>{{ block.settings.description }}</p>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              {%- when 'newsletter' -%}
+                <div
+                  class="col-sm-12 col-md-12 {% if section.blocks.size == 6 %}col-lg-2 col-xl-2{%else%}col-lg-4 col-xl-4{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="yv-footer-text-outerbox">
+                    <div class="yv-footer-textblock">
+                      {%- if block.settings.heading != blank -%}
+                        <h6 class="footer-menu-head text">{{ block.settings.heading }}</h6>
+                      {%- endif -%}
+                    </div>
+                    {%- if block.settings.show_newsletter -%}
+                      <div class="yv-newsletter-outerbox">
+                        <div class="yv-footer-newsletter-box">
+                          {%- form 'customer',
+                            id: 'ContactFooter',
+                            class: 'yv-footer-newsletter-form newsletter-form'
+                          -%}
+                            <input type="hidden" name="contact[tags]" value="newsletter">
+                            {%- if form.posted_successfully? -%}
+                          <span
+                                id="Newsletter-success--{{ section.id }}"
+                                class="success-text"
+                                tabindex="-1"
+                                autofocus
+                                role="status"
+                              >
+                                {{- 'newsletter.success' | t -}}
+                              </span>
+                            {%- endif -%}
+                            <div class="yv-footer-newsletter-wrapper">
+                              <label class="visually-hidden" for="NewsletterForm--footer">
+                                {{- block.settings.placeholder -}}
+                              </label>
+                              <input
+                                id="NewsletterForm--footer"
+                                type="email"
+                                name="contact[email]"
+                                class="form-control"
+                                value="{%- if form.context == 'footer' -%}{{ form.email }}{%- endif -%}"
+                                aria-required="true"
+                                autocapitalize="off"
+                                autocomplete="email"
+                                {%- if form.errors -%}
+                                  autofocus
+                                  aria-invalid="true"
+                                  aria-describedby="Newsletter-error--{{ section.id }}"
+                                {%- elsif form.posted_successfully? -%}
+                                  aria-describedby="Newsletter-success--{{ section.id }}"
+                                {%- endif -%}
+                                placeholder="{{ block.settings.placeholder }}"
+                                required
+                              >
+                              <span class="focus-line"></span>
+                              <button
+                                type="submit"
+                                class="button--secondary newsletter-form__button"
+                                name="commit"
+                                aria-label="Subscribe"
+                              >                                
+                                <svg baseProfile="tiny-ps" viewBox="0 0 20 15" width="20" height="15"> 
+                                  <path d="M18.71 8.22L-0.01 8.22L-0.01 6.73L18.71 6.73L18.71 8.22ZM12.48 14.98L11.43 13.92L17.88 7.47L11.43 1.03L12.48 -0.03L19.99 7.47L12.48 14.98Z"></path>
+                                  </svg>
+                              </button>
+                            </div>
+                            {%- if form.errors -%}
+                              <span
+                                class="newsletter-form__message form__message error-text"
+                                id="Newsletter-error--{{ section.id }}"
+                                autofocus
+                              >
+                                {{- form.errors.translated_fields.email }}
+                                {{ form.errors.messages.email -}}
+                              </span>
+                            {%- endif -%}
+                          {%- endform -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {% if block.settings.show_social %}
+                      {% render 'social-media-icons', showLabel: true %}
+                    {% endif %}
+                    {%- if shop.features.follow_on_shop? and block.settings.enable_follow_on_shop -%}
+                      <div class="yv-footer-follow-on-shop">
+                        {{ shop | login_button: action: 'follow' }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+<div
+  class="yv-footer-bottom-box"
+  style="--layoutRadius:{% if settings.layout_style == 'rounded' %}4px{% else %}0px{% endif %};"
+>
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+    <div class="row align-items-center">
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <div class="yv-footer-copyright-box">
+          {% unless section.settings.hide_copyright_content %}
+          <p class="yv-copyright-content">
+            <small class="copyright__content"
+              >{% if section.settings.custom_copyright_content != blank %}
+                {{ section.settings.custom_copyright_content }}
+                {% else %}
+              Copyright&copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }} {{ powered_by_link -}}
+                {% endif %}
+            </small>
+          </p>
+            {% endunless %}
+          {%- if section.settings.show_policies -%}
+            <ul class="yv-footer-links list-unstyled">
+              {%- for policy in shop.policies -%}
+                {%- if policy != blank -%}
+                  <li>
+                    <a href="{{ policy.url }}">{{ policy.title }}</a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        {%- if section.settings.enable_language_selector or section.settings.enable_currency_selector -%}
+          {%- render 'localization' section:section -%}
+        {%- endif -%}
+      </div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <div class="yv-footer-payment-box">
+          {%- if section.settings.payment_enable -%}
+            <div class="footer-payment">
+              <ul class="list-unstyled list list-payment">
+                {%- for type in shop.enabled_payment_types -%}
+                  <li class="list-payment__item">
+                    {{ type | payment_type_svg_tag: class: 'icon' }}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+    #shopify-section-{{ section.id }}{
+      background-color:{{ section.settings.footer_bg }};
+    }
+    {% assign colorBrightness = section.settings.footer_bg | color_brightness %}
+    {%- if colorBrightness < 130 -%}
+    .yv-footer-newsletter-wrapper input,
+    .yv-footer-newsletter-wrapper input:focus,
+    .yv-footer-top-box{
+    border-color:{{ section.settings.footer_text | color_modify : 'alpha' ,0.1 }};
+  }
+  #shopify-section-{{ section.id }} .yv-footer-bottom-box{
+    border-top:1px solid {{ section.settings.footer_text | color_modify : 'alpha' ,0.1 }};
+  }  
+    {% liquid
+      assign backgroundColor = 'transparent'
+      if section.settings.show_language_background
+        assign backgroundColor = section.settings.footer_bg | color_lighten: 10
+      endif
+    %}
+      #shopify-section-{{ section.id }} .lang-dropdown .detail-summary{
+    background:{{ backgroundColor }};
+  }
+    {% liquid
+      assign backgroundColor = 'transparent'
+      if section.settings.show_currency_background
+        assign backgroundColor = section.settings.footer_bg | color_lighten: 10
+      endif
+    %}
+      #shopify-section-{{ section.id }} .country-dropdown .detail-summary{
+    background:{{ backgroundColor }};
+  }
+    {%- else -%}
+    .yv-footer-newsletter-wrapper input,
+    .yv-footer-newsletter-wrapper input:focus,
+    .yv-footer-top-box{
+    border-color:{{ section.settings.footer_text | color_modify : 'alpha' ,0.2  }};
+  }
+  #shopify-section-{{ section.id }} .yv-footer-bottom-box{
+    border-top:1px solid {{ section.settings.footer_text | color_modify : 'alpha' ,0.2  }};
+  }  
+    {% liquid
+      assign backgroundColor = 'transparent'
+      if section.settings.show_language_background
+        assign backgroundColor = section.settings.footer_bg | color_darken: 10
+      endif
+    %}
+     #shopify-section-{{ section.id }} .lang-dropdown .detail-summary{
+    background:{{ backgroundColor }};
+  }
+    {% liquid
+      assign backgroundColor = 'transparent'
+      if section.settings.show_currency_background
+        assign backgroundColor = section.settings.footer_bg | color_darken: 10
+      endif
+    %}
+      #shopify-section-{{ section.id }} .country-dropdown .detail-summary{
+        background:{{backgroundColor }};
+      }
+    {%- endif -%}
+
+
+    #shopify-section-{{ section.id }} .footer-menu-head{
+      color:{{ section.settings.footer_heading }};
+    }
+      #shopify-section-{{ section.id }} .yv-footer-newsletter-wrapper button svg{
+      fill:{{ section.settings.footer_text }};
+    }
+    #shopify-section-{{ section.id }} a,
+    #shopify-section-{{ section.id }} label,
+    #shopify-section-{{ section.id }} p,
+    #shopify-section-{{ section.id }} .rich-editor-text-content *,
+    #shopify-section-{{ section.id }} .yv-footer-bottom-box small,
+    #shopify-section-{{ section.id }} .yv-footer-bottom-box small em,
+    #shopify-section-{{ section.id }} .yv-footer-bottom-box small strong,
+    #shopify-section-{{ section.id }} .yv-footer-newsletter-wrapper input,
+    #shopify-section-{{ section.id }} .yv-footer-newsletter-wrapper input::placeholder,
+    #shopify-section-{{ section.id }} .country-select-box .detail-summary span,
+  #shopify-section-{{ section.id }} .country-select-box .detail-summary:after{
+      color:{{ section.settings.footer_text }};
+    }
+    #shopify-section-{{ section.id }} a:hover{
+      color:{{ section.settings.footer_text_hover }};
+    }
+    #shopify-section-{{ section.id }} ul li a:before {
+      background-color:{{ section.settings.footer_text_hover }};
+    }
+     #shopify-section-{{ section.id }} .footer-menu-list .social-links ul li a:hover {
+         color: {{ section.settings.footer_bg }};
+     }
+     #shopify-section-{{ section.id }} .footer-menu-list .social-links ul li a:hover:after {
+     background-color: {{ section.settings.footer_text_hover }};
+   }
+     #shopify-section-{{ section.id }} .yv-footer-follow-on-shop {
+        padding-bottom: 12px;
+        padding-left: 4px;
+    }
+</style>
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "tag": "footer",
+  "class": "footer-section",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label",
+          "info": "t:sections.footer.blocks.link_list.settings.heading.info"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.footer.blocks.text.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "t:sections.footer.blocks.text.settings.image_link.label"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 150,
+          "step": 5,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.text.settings.image_width.label",
+          "default": 100
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "html",
+          "id": "description",
+          "default": "Share  your store specific description over here.",
+          "label": "t:sections.footer.blocks.text.settings.description.label"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "limit": 1,
+      "name": "t:sections.footer.blocks.newsletter.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading here",
+          "label": "t:sections.footer.blocks.newsletter.settings.heading.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_newsletter",
+          "default": true,
+          "label": "t:sections.footer.blocks.newsletter.settings.show_newsletter.label"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "default": "Email address",
+          "label": "t:sections.footer.blocks.newsletter.settings.placeholder.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.newsletter.settings.header__2.content",
+          "info": "t:sections.footer.blocks.newsletter.settings.header__2.info"
+        },
+         {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": false,
+          "label": "t:sections.footer.blocks.newsletter.settings.show_social.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.newsletter.settings.follow_on_shop.label",
+          "info": "t:sections.footer.blocks.newsletter.settings.follow_on_shop.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_follow_on_shop",
+          "label": "t:sections.footer.blocks.newsletter.settings.enable_follow_on_shop.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.footer.settings.image.label",
+      "info": "t:sections.footer.settings.image.info"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.footer.settings.image_width.label",
+      "default": 100
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "t:sections.footer.settings.subtext.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.enable_language_selector.heading"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.footer.settings.enable_language_selector.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_language_selector.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_language_background",
+      "default": true,
+      "label": "t:sections.footer.settings.show_background.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.show_currency.heading"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.footer.settings.show_currency.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_currency_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.show_currency.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_background",
+      "default": true,
+      "label": "t:sections.footer.settings.show_background.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.payment_enable.heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.copyright.heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_copyright_content",
+      "default": false,
+      "label": "t:sections.footer.settings.hide_copyright_content.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "custom_copyright_content",
+      "label": "t:sections.footer.settings.custom_copyright_content.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.policies.heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies",
+      "default": false,
+      "label": "t:sections.footer.settings.show_policies.label"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "color",
+      "id": "footer_bg",
+      "default": "#000000",
+      "label": "t:sections.footer.settings.footer_bg.label"
+    },
+    {
+      "type": "color",
+      "id": "footer_heading",
+      "default": "#a5a2a2",
+      "label": "t:sections.footer.settings.footer_heading.label"
+    },
+    {
+      "type": "color",
+      "id": "footer_text",
+      "default": "#7e7e7e",
+      "label": "t:sections.footer.settings.footer_text.label"
+    },
+    {
+      "type": "color",
+      "id": "footer_text_hover",
+      "default": "#e5e5e5",
+      "label": "t:sections.footer.settings.footer_text_hover.label"
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "newsletter"
+      }
+    ]
+  }
+}
+{% endschema %}

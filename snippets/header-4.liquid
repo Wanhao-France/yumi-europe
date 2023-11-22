@@ -1,0 +1,113 @@
+<div
+  class="top-header header_4"
+  style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %};"
+>
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+    <div class="navigation__header">
+      {% liquid
+        assign catalogDesktop = false
+        if section.settings.enable_catalog and section.settings.enable_catalog_drawer and section.settings.catalog_menu != blank
+          assign catalogDesktop = true
+        endif
+      %}
+      {%- if section.settings.menu != blank or catalogDesktop -%}
+        <div
+          id="nav-menu-btn"
+          class="nav-menu-btn{% if catalogDesktop %} catalog_drawer_menu d-lg-block{% endif %} {{ mobileMenu }} "
+        >
+          <div class="nav__btn {{ section.settings.icon_weight }}-icon">
+            <div
+              class="navbar-toggler"
+              data-toggle="collapse"
+              role="button"
+              data-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </div>
+          </div>
+          {% render 'side-menu', section: section, mobileMenu: true, catalogDesktop: catalogDesktop %}
+        </div>
+      {%- endif -%}
+      <a
+        class="header__heading-link {% if section.settings.logo == blank %}yv-heading-shop-link{% endif %}"
+        href="{{ routes.root_url }}"
+        aria-label="{{ shop.name }}"
+      >
+        {%- render 'header-logo', section: section -%}
+      </a>
+      <div class="header-search-group {% if section.settings.enable_catalog and section.settings.catalog_menu != blank and section.settings.enable_catalog_drawer == false %}yv-catalog-enable{% endif %}">
+        {% liquid
+          if section.settings.enable_catalog and section.settings.enable_catalog_drawer == false
+            render 'header-category', section: section
+          endif
+        %}
+        {% if section.settings.show_search  %}
+        <div class="yv-header-searchbar-box">
+          <form
+            action="{{ routes.search_url }}"
+            method="get"
+            role="search"
+            class="yv-header-searchbar {% if section.settings.enable_catalog and section.settings.catalog_menu != blank and section.settings.enable_catalog_drawer == false %}yv-catalog-true{% endif %}"
+          >
+            <input name="type" type="hidden" value="product">
+            <input name="options[prefix]" type="hidden" value="last">
+            <span class="yv-header-searchbar-icon">
+             <svg id="Layer_2" width="18" height="18" viewBox="0 0 17.53 17.53"><path class="cls-1" d="m13.94,12.41c1.01-1.34,1.56-2.98,1.56-4.66C15.5,3.48,12.02,0,7.75,0S0,3.48,0,7.75s3.48,7.75,7.75,7.75h0c1.67,0,3.32-.55,4.65-1.56l3.59,3.59,1.53-1.53-3.59-3.59Zm-.61-4.66c0,1.46-.56,2.84-1.57,3.89l-.12.12c-1.04,1.02-2.42,1.58-3.88,1.58h0c-3.08,0-5.58-2.5-5.58-5.58S4.67,2.17,7.75,2.17s5.58,2.5,5.58,5.58Z"/></svg>
+            </span>
+            <label class="visually-hidden" for="search-query-input">Search</label>
+            <input
+              id="search-drawer-query-input"
+              type="text"
+              name="q"
+              {% if settings.enable_search_prompts %}
+                {% if settings.search_prompts_1 != blank or settings.search_prompts_2 != blank or settings.search_prompts_2 != blank%}
+                   placeholder="{{ settings.search_prompts_1 }}" 
+                   data-placeholder-one="{{ settings.search_prompts_1 }}" 
+                   data-placeholder-two="{{ settings.search_prompts_2 }}" 
+                   data-placeholder-three="{{ settings.search_prompts_3 }}"
+                  data-search-prompts
+                {% else %}
+                   placeholder="{{ 'general.search.search' | t }}"
+                {% endif %}
+              {% else %}
+                 placeholder="{{ 'general.search.search' | t }}"
+              {% endif %} 
+              class="form-control search-input yv-search-bar {% if settings.enable_search_prompts %} enable-searchpromt{% endif %}"
+              autocomplete="off"
+            >
+            <button type="button" class="yv-header-searchbar-icon cross" style="display:none;" data-searchbar-cross>
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+                <path d="M4.16518 6.34244L1.09847 9.48601C1.08756 9.49719 1.07734 9.50001 1.06863 9.5C1.05992 9.49999 1.04968 9.49715 1.03877 9.4859L0.519699 8.95133C0.508041 8.93932 0.500001 8.92164 0.500001 8.8994C0.500001 8.87716 0.50804 8.85949 0.519681 8.8475L0.519701 8.84748L3.55861 5.71774L4.16518 6.34244ZM5.13626 5.6264L4.99999 5.48671L4.86374 5.62638L4.25553 4.99999L4.86374 4.3736L5.00001 4.51329L5.13626 4.37362L5.74447 5.00001L5.13626 5.6264ZM4.16518 3.65754L3.55861 4.28224L0.519699 1.15251L0.519698 1.15251C0.50804 1.14051 0.5 1.12283 0.5 1.10058C0.5 1.07834 0.508039 1.06068 0.51968 1.04869L0.519698 1.04867L1.03877 0.514095C1.04968 0.502854 1.05992 0.500011 1.06863 0.5C1.07734 0.499989 1.08756 0.502805 1.09847 0.513993C1.09847 0.513993 1.09847 0.513994 1.09847 0.513994L4.16518 3.65754ZM6.44139 4.28226L5.83482 3.65756L8.90153 0.513992C8.91244 0.502805 8.92266 0.499989 8.93137 0.5C8.94008 0.500011 8.95032 0.502854 8.96123 0.514095L9.4803 1.04867C9.49196 1.06068 9.5 1.07836 9.5 1.1006C9.5 1.12285 9.49196 1.14051 9.48032 1.1525L9.4803 1.15252L6.44139 4.28226ZM5.83482 6.34246L6.4414 5.71776L9.4803 8.84749L9.83902 8.49918L9.4803 8.84749C9.49196 8.85949 9.5 8.87717 9.5 8.89942C9.5 8.92166 9.49196 8.93932 9.48032 8.95131L9.4803 8.95133L8.96123 9.4859C8.95032 9.49715 8.94008 9.49999 8.93137 9.5C8.92266 9.50001 8.91244 9.4972 8.90153 9.48601L5.83482 6.34246Z" fill="currentColor" stroke="currentColor"/>
+              </svg>
+            </button>
+          </form>
+          <div class="yv-header-searchbar-content" style="display:none"></div>
+        </div>
+      {% endif %}
+      </div>
+      <div class="form-inline header-right">
+        {% render 'header-icons', section: section %}
+      </div>
+    </div>
+  </div>
+  {%- if section.settings.menu != blank -%}
+    <div class="nav__header nav_2">
+      <div class="container">
+        <div class="navbar navbar-expand-md">
+          <ul
+            class="list-unstyled navbar-nav list-menu--inline"
+            {% if section.settings.menu_position == 'center' %}
+              style="justify-content:center;"
+            {% endif %}
+            role="list"
+          >
+            {% render 'nav-item', section: section %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>

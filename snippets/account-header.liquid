@@ -1,0 +1,13 @@
+<div class="account-pages-header">
+  <div class="account-header-tabs">
+  <a href="{{ routes.account_url }}"  class="{% if request.path == routes.account_url or request.path contains '/orders/' %}active{% endif %}">
+       {{ 'customer.orders.title' | t }}
+      </a>
+  <a href="{{ routes.account_addresses_url }}" class="{% if request.path == routes.account_addresses_url %}active{% endif %}">
+        {{ 'customer.account.view_addresses' | t }}
+      </a>
+   <a class="button black-btn small-btn" href="{{ routes.account_logout_url }}">
+      {{ 'customer.log_out' | t }}
+    </a>
+  </div>
+</div>

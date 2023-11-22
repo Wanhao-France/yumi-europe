@@ -1,0 +1,22 @@
+{%- if recommendations.performed? -%}
+  {% assign uniqueProductIdsString = cart.items | map: 'product_id' | uniq | join: ', ' %}
+  <div id="product-recommendations">
+    {%- liquid
+      if recommendations.products_count > 0
+        for product in recommendations.products
+          unless uniqueProductIdsString contains product.id
+            assign mainClass = 'small-product-card'
+            render 'product-grid', product: product, hideHoverImage: true, productClasses: mainClass, hide_options: true, hideRelated: true, hideQuickView: true, hidestockcount: true, hidebadges: true, hideCustomLabel:true, hidePickup:true
+          endunless
+        endfor
+      endif
+    -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Upsell products",
+  "settings": []
+}
+{% endschema %}

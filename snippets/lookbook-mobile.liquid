@@ -1,0 +1,137 @@
+<div class="yv-lookbook-container d-block d-md-none lookbook-mobile-container">
+  <div id="yv-lookbook-mobile-box-{{ section.id }}" class="yv-lookbook-mobile-box" data-mobile-only data-flickity-slider='
+            { "pageDots": true,
+            "draggable": true,
+            "wrapAround": true,
+            "resize": true,
+            "prevNextButtons": false,
+            "touchVerticalScroll": false,
+            "contain": true,
+            "cellAlign": "center",
+            "arrowShape":"M36.7,76.9c1.9,1.4,1.9,3.8,0,5.7c-0.6,0.6-1.6,0.9-2.8,0.9c-0.9,0-1.9-0.3-2.8-0.9L2.2,52.8 c-1.9-1.4-1.9-4.3,0-5.7L30,18.3c1.4-1.4,3.8-1.4,5.2,0c1.9,1.4,1.9,4.3,0,5.7L10.2,50L36.7,76.9z M95.2,46.2c1.9,0,3.8,1.9,3.8,4.3 c0,2.4-1.9,3.8-3.8,3.8H13c-2.4,0-3.8-1.4-3.8-3.8c0-2.4,1.4-4.3,3.8-4.3H95.2z"
+          }'>
+    {% for block in section.blocks %}
+        {%- assign imageContent = '' -%}
+        {%- assign imageRatio = 100 -%}
+        {%- assign collection = block.settings.collection -%}
+        {%- if block.settings.collection_image != blank -%}
+          {%- assign imageRatio = 1 | divided_by: block.settings.collection_image.aspect_ratio | times: 100 | plus: 1 -%}
+          {%- assign imageContent = block.settings.collection_image -%}
+        {%- elsif collection.featured_image -%}
+          {%- assign imageRatio = 1 | divided_by: collection.featured_image.aspect_ratio | times: 100 | plus: 1 -%}
+          {%- assign imageContent = collection.featured_image -%}
+        {%- endif -%}
+        <div class="yv-lookbook-mobile-item">
+          <div class="image-wrapper" style="padding-bottom: {{ imageRatio  }}%">
+              {%- if imageContent != blank -%}
+                  {%- render 'lazy-image', image: imageContent -%}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+           </div>
+        </div>
+    {% endfor %}
+  </div>
+  <div id="yv-lookbook-mobile-nav-{{ section.id }}" class="yv-lookbook-mobile-nav" data-mobile-only data-flickity-slider='
+    {
+    "pageDots": false,
+    "draggable": true,
+    "asNavFor":"#yv-lookbook-mobile-box-{{ section.id }}",
+    "draggable": false,
+    "wrapAround": true,
+    "adaptiveHeight": true,
+    "touchVerticalScroll": false,
+    "contain": true,
+    "prevNextButtons": false,
+    "cellAlign": "center",
+     "arrowShape":"M36.7,76.9c1.9,1.4,1.9,3.8,0,5.7c-0.6,0.6-1.6,0.9-2.8,0.9c-0.9,0-1.9-0.3-2.8-0.9L2.2,52.8 c-1.9-1.4-1.9-4.3,0-5.7L30,18.3c1.4-1.4,3.8-1.4,5.2,0c1.9,1.4,1.9,4.3,0,5.7L10.2,50L36.7,76.9z M95.2,46.2c1.9,0,3.8,1.9,3.8,4.3 c0,2.4-1.9,3.8-3.8,3.8H13c-2.4,0-3.8-1.4-3.8-3.8c0-2.4,1.4-4.3,3.8-4.3H95.2z"        
+    }'>
+      {% for block in section.blocks %}
+        {%- assign collection = block.settings.collection -%}
+        
+        <div class="yv-mobile-lookbook-items" data-index="{{ forloop.index0 }}">
+                {%- if block.settings.heading != blank -%}
+                <div class="section-heading text-center">
+                    <h2 class="{{ block.settings.heading_size }}">
+                    {%- if block.settings.heading != blank -%}
+                        {{ block.settings.heading -}}
+                    {%- endif %}
+                    </h2>
+                </div>
+                {%- endif -%}
+                {% liquid
+                  assign productData = block.settings.product_item 
+                 assign checkcarousel = false
+                  if productData != blank and productData.count>2 
+                    assign checkcarousel= true
+                  elsif collection.products_count > 2 and productData == blank
+                    assign checkcarousel= true
+                  elsif collection == blank and productData == blank
+                    assign  checkcarousel= true
+                  else 
+                    assign checkcarousel=false
+                endif    
+                  %}
+    
+            <div class="yv-lookbook-product-wrapper" data-mobile-only
+               {% if checkcarousel == true %} data-flickity-slider='
+                { "pageDots": false,
+                "draggable": true,
+                "wrapAround": true,
+                "resize": true,
+                "prevNextButtons": true,
+                "touchVerticalScroll": false,
+                "contain": true,
+                "cellAlign": "left",
+                "arrowShape":"M36.7,76.9c1.9,1.4,1.9,3.8,0,5.7c-0.6,0.6-1.6,0.9-2.8,0.9c-0.9,0-1.9-0.3-2.8-0.9L2.2,52.8 c-1.9-1.4-1.9-4.3,0-5.7L30,18.3c1.4-1.4,3.8-1.4,5.2,0c1.9,1.4,1.9,4.3,0,5.7L10.2,50L36.7,76.9z M95.2,46.2c1.9,0,3.8,1.9,3.8,4.3 c0,2.4-1.9,3.8-3.8,3.8H13c-2.4,0-3.8-1.4-3.8-3.8c0-2.4,1.4-4.3,3.8-4.3H95.2z"
+                }
+                '{% endif %}
+           >
+        
+                {% if collection.products_count > 0 and productData == blank %}
+                    {% for product in collection.products limit: 10 %}
+                    {%- liquid
+                        assign productFormId = 'product-form-' | append: block.id | append: product.id
+                        render 'product-grid', product: product, productFormId: productFormId, productClasses: mainClass, hideHoverImage: true, hide_options: true, hideRelated: fals, hideQuickView: true, producttags:true
+                    %}
+                    {% endfor %}
+                {% elsif productData != blank %}
+                    {% for product in productData limit: 10 %}
+                    {%- liquid
+                        assign productFormId = 'product-form-' | append: block.id | append: product.id
+                        render 'product-grid', product: product, productFormId: productFormId, productClasses: mainClass, hideHoverImage: true, hide_options: true, hideRelated: true, hideQuickView: true, producttags:true
+                    %}
+                    {% endfor %}
+                {% else %}
+        
+                {% assign  productLimit = 5 %}
+                    {% assign productImageRatio = 100 %}
+                {%- for i in (1..productLimit) -%}
+                    <div class="yv-product-card xsmall-product-card{% if settings.layout_style == 'rounded' %} product-grid-layout-rounded{% endif %}">
+                        <div class="animated-grid">
+                        <div class="yv-product-card-img">              
+                      
+                            <div class="image-wrapper no-product-image" style="padding-bottom:{{- productImageRatio -}}%">
+                            {%- capture current -%}{% cycle 1, 2, 3, 4, 5, 6 %}{%- endcapture -%}
+                            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                    
+                            </div>
+                          
+                        </div>
+                        <div class="yv-product-information {{ settings.product_grid_content_alignment }}">
+                            <div class="yv-product-information__wrapper">
+                            <span class="yv-product-title">{{ 'onboarding.product_title' | t   }}</span>
+                            <div class="yv-prizebox">
+                                <span class="yv-product-price">{{ 1999 | money }}</span>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {%- endfor -%}
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>

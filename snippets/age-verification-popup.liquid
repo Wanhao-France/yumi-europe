@@ -1,0 +1,57 @@
+{% if settings.age_verification_pop_enable %}
+    <div class="age-verification">
+      <div class="age-verification-outer">
+        <p class="text-medium">{{ settings.age_verification_title }}</p>
+        <h3>{{ settings.age_verification_heading }}</h3>
+        {{ settings.age_verification_sub-heading }}
+        <div class="age-verify-btn">
+          <button class="button submit-age">{{ settings.approve_btn_text }}</button>
+          <button class="button secondary-button reject-age">{{ settings.decline_btn_text }}</button>
+        </div>
+      </div>
+      <div class="age-verification-decline">
+        <h2>{{ settings.decline_heading }}</h2>
+         {{ settings.decline_sub-heading }}
+        <div class="age-decline-btn">
+          <button class="button decline-age">{{ settings.age-decline_btn_text }}</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded",function(){
+        var age = jQuery(".age-verification");
+        var age_decline = jQuery(age).find(".decline-age");
+        var submit_age = jQuery(age).find(".submit-age");
+        var age_btn = jQuery(age).find(".reject-age");
+          var age_Pop = Cookies.get('age_verify_closed');
+          if (age_Pop != 'age_popup_closed_val' && window.location.pathname.indexOf('/challenge') < 0) {
+            setTimeout(function () {
+               $('.age-verification').addClass('active');
+            },5000);
+          }
+        jQuery(age_btn).on("click",function(){
+             var verifiction_outer = jQuery(".age-verification-outer");
+             var verifiction_decline = jQuery(".age-verification-decline");
+             jQuery(verifiction_outer).addClass('inactive');
+             jQuery(verifiction_decline).addClass('active');
+             jQuery(verifiction_outer).removeClass('active');
+             jQuery(verifiction_decline).removeClass('inactive');
+        });
+        jQuery(age_decline).on("click",function(){
+             var verifiction_outer = jQuery(".age-verification-outer");
+             var verifiction_decline = jQuery(".age-verification-decline");
+             jQuery(verifiction_outer).removeClass('inactive');
+             jQuery(verifiction_decline).removeClass('active');
+             jQuery(verifiction_outer).addClass('active');
+             jQuery(verifiction_decline).addClass('inactive');
+        });
+        jQuery(submit_age).on("click",function(){
+             var age_verifiction = jQuery(".age-verification");
+             jQuery(age_verifiction).hide();
+             var date = new Date();
+             date.setTime(date.getTime() + parseInt('{{ settings.age_verify_popup_cookie }}') * 24 * 60 * 60 * 1000);
+             Cookies.set('age_verify_closed', 'age_popup_closed_val', { expires: date, path: '/' });
+        });
+      });
+    </script>
+    {% endif %}

@@ -1,0 +1,43 @@
+{%- liquid 
+    assign counter = 0
+  -%}
+  {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+    {%- liquid 
+        assign queryParameters = contentForQuerystring | split:'"pageurl":"' | last | split :'?section_id' | last | split :'"' | first | split :'\u0026'
+        assign current_product = ''
+        assign nosimilar = false 
+        for query in queryParameters 
+            assign queryFirst = query | split: '=' | first
+            assign queryLast = query | split: '='| last
+            if queryFirst == 'product' 
+                assign current_product = queryLast | handle
+            elsif queryFirst == 'nosimilar'
+                assign nosimilar = queryLast 
+            endif 
+        endfor 
+    -%}
+{%- capture related_items -%}
+{%- for product in collection.products -%}
+  {%- unless product.handle == current_product -%}
+    {%- assign counter = counter | plus: 1 -%}
+        <li class="yv-similar-product-item">
+          {% liquid 
+            render 'product-grid' product: product, productClasses: 'xsmall-product-card', hideRelated: true, hide_options: true , hideHoverImage: true
+          %}
+        </li>
+  {%- endunless -%}
+  {%- if counter == 10 -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+
+<div id="similarItemContainer">
+    {%- if counter > 0 and nosimilar == 'true'-%}
+        <ul class="list-unstyled yv-similar-product-list">
+            {{ related_items }}
+        </ul>
+    {%- else- %}
+        <div class="yv-similar-notfound">
+            {% render 'not-found' similar: true %}
+        </div>
+    {%- endif -%}
+</div>

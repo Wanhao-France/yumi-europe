@@ -1,0 +1,250 @@
+<div class="container">
+    <div class="section-heading">
+      <{{ section.settings.seo_heading }}>{{ section.settings.heading | escape }}</{{ section.settings.seo_heading }}>
+    </div>
+  <div class="recently-viewed-wrapper row" data-section="/search?section_id={{ section.id }}&type=product&q=" data-product="{{ product.id }}" data-recent-viewed-products>
+          
+    {%- if search.performed -%}
+          {%- for item in search.results -%}
+          {%- case item.object_type -%}
+          {%- when 'product' -%}
+          <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2" data-product-grid>
+            {% render 'product-grid', product: item , hideRelated: true,customRadius:true%}
+          </div>
+          {%- endcase -%}
+          {%- endfor -%}
+      {% endif %}
+    </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+    #shopify-section-{{ section.id }} [data-recent-viewed-products]{
+      --layoutRadius:{{ section.settings.product_grid_radius_desktop }}px;
+      --product-spacing:{{ section.settings.product_grid_spacing_desktop }}px;
+    }
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  @media only screen and (max-width:767px) {
+    #shopify-section-{{ section.id }} [data-recent-viewed-products]{
+      --layoutRadius:{{ section.settings.product_grid_radius_mobile }}px;
+      --product-spacing:{{ section.settings.product_grid_spacing_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+  </style>
+{% schema %}
+  {
+    "name": "t:sections.recent-viewed-product.name",
+    "tag":"section",
+    "class": "recent-viewed-product-section hidden",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:common.header.recent_product_info.label"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "default": "Recently Viewed",
+        "label": "t:sections.recent-viewed-product.settings.heading.label"
+      },
+         {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+      {
+        "type": "range",
+        "id": "product_grid_radius_desktop",
+        "default": 10,
+        "label": "t:common.header.product_grid_radius_desktop.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "range",
+        "id": "product_grid_radius_mobile",
+        "default": 10,
+        "label": "t:common.header.product_grid_radius_mobile.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "range",
+        "id": "product_grid_spacing_desktop",
+        "default": 10,
+        "label": "t:common.header.product_grid_spacing_desktop.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "range",
+        "id": "product_grid_spacing_mobile",
+        "default": 10,
+        "label": "t:common.header.product_grid_spacing_mobile.label",
+        "min":0,
+        "max":40,
+        "step":1,
+        "unit":"px"
+      },
+      {
+        "type": "header",
+        "content": "t:common.header.color_singular_section.label"
+      },
+      {
+        "type": "select",
+        "id": "bgcolor",
+        "label": "t:common.header.background_section.label",
+        "default": "primary",
+        "options": [
+          {
+            "value": "primary",
+            "label": "t:common.header.primary.label"
+          },
+          {
+            "value": "secondary",
+            "label": "t:common.header.secondary.label"
+          },
+          {
+            "value": "tertiary",
+            "label": "t:common.header.tertiary.label"
+          },
+          {
+            "value": "quaternary",
+            "label": "t:common.header.quaternary.label"
+          },
+          {
+            "value": "gradient",
+            "label": "t:common.header.gradient.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "section_visibility",
+        "label": "t:common.section_visibility.label",
+        "default": "always",
+        "options": [
+          {
+            "label": "t:common.section_visibility.options.always.label",
+            "value": "always"
+          },
+          {
+            "label": "t:common.section_visibility.options.small_devices.label",
+            "value": "small"
+          },
+          {
+            "label": "t:common.section_visibility.options.large_devices.label",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "t:common.header.space_section.label"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:common.top_space_desktop.label",
+        "default": 60,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:common.bottom_space_desktop.label",
+        "default": 60,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:common.top_space_mobile.label",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:common.bottom_space_mobile.label",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ],
+  "presets": [
+    {
+      "name": "t:sections.recent-viewed-product.presets.name"
+    }
+  ]
+  }
+{% endschema %}

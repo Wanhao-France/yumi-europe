@@ -1,0 +1,191 @@
+{% liquid
+assign currencies_using_comma = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+                  assign uses_comma = false
+                  if currencies_using_comma contains cart.currency.iso_code
+                    assign uses_comma = true
+                  endif
+                %}
+<div class="filter-heading d-flex d-md-none">
+  <h4>{{ 'sections.collection_template.filter_by_label' | t }}</h4>
+  <button class="close-filter" id="cancelFilters">
+    <svg class="MobileCrossSvg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50" style=" fill:#000000;">
+      <g>
+        <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z "></path>
+      </g>
+    </svg>
+  </button>
+</div>
+<form id="FiltersForm" class="yv-collection-filter" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}100%{% else %}0px{% endif %}">
+  {%- if results.terms -%}
+  <input type="hidden" name="q" value="{{ results.terms | escape }}">
+  <input name="options[prefix]" type="hidden" value="last">
+  <input type="hidden" name="type" value="product">
+  {%- endif -%}
+  
+  {% if results.current_vendor or results.current_type %}
+    <input type="hidden" name="q" value="{{ results.current_vendor }}{{ results.current_type }}">
+  {% endif %}
+  
+  {%- for filter in results.filters -%}
+    {%- case filter.type -%}
+    {%- when 'list' -%}
+      {%- assign filterLabel = filter.label | downcase -%}
+      {%- assign colorOptions = settings.color_name | downcase -%}
+      <div class="yv-filter-name {% if colorOptions contains filterLabel %}yv-color-filter{% endif %}">
+        <h6 class="yv-filter-title text">
+          {{ filter.label | escape }} 
+        </h6>
+        <div class="yv-filter-content">
+          <ul class="list-unstyled yv-filter-content-list">
+            {% assign filterLimit = 5 %}
+            {% if colorOptions contains filterLabel %}
+            {% assign filterLimit = 100 %}
+            {% endif %}
+            {%- for value in filter.values limit: filterLimit -%}
+            <li class="yv-filter-item {{ settings.color_swatch_style }} {% if value.count == 0 and value.active == false %}disabled{% endif %}">
+              <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" title="{{ value.label | escape }}" id="Filter-{{ filter.label | handle }}-{{ forloop.index }}"
+                    {% if value.active %}checked{% endif %}
+                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    >
+              <span class="checkmark"></span>
+              <label for="Filter-{{ filter.label | handle }}-{{ forloop.index }}" title="{{ value.label | escape }}" 
+                {% if colorOptions contains filterLabel %}
+                {%- assign colorImage = value.label | handleize | append : '.png' -%}
+                  style="background-color:{{ value.label | escape }};background-image:url('{{ colorImage | asset_img_url : 100 }}');"{% endif %}>
+                {{ value.label | escape }} ({{ value.count }})
+              </label>
+            </li>
+            {% endfor %}
+          </ul>
+          {%- if filter.values.size > filterLimit -%}
+          <ul class="list-unstyled yv-filter-content-list more-options" style="display:none">
+            {%- for value in filter.values offset: filterLimit -%}
+            <li class="yv-filter-item {% if value.count == 0 and value.active == false %}disabled{% endif %}">
+              <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" id="Filter-{{ filter.label | handle }}-{{ forloop.index }}-1"
+                    {% if value.active %}checked{% endif %}
+                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    >
+              <span class="checkmark"></span>
+              <label for="Filter-{{ filter.label | handle }}-{{ forloop.index }}-1">
+                {{ value.label | escape }} ({{ value.count }})
+              </label>
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="" class="filters-expand no-js-hidden">
+            <svg viewBox="0 0 13 12" width="13" height="12">
+              <path class="horizontal" d="m6 0h1v13h-1z"></path>
+              <path d="m0 6h13v1h-13z"></path>
+            </svg>
+            <span>{{ 'sections.collection_template.filter_show_more' | t }}</span>
+          </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {% when 'price_range' %}
+      <div class="yv-filter-name" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %}">
+        {%- liquid 
+          if uses_comma
+          assign max_value = filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+          assign min_value = filter.range_min | money_without_currency | replace: '.', '' | replace: ',', '.' | floor
+          else
+          assign max_value = filter.range_max | money_without_currency 
+          assign min_value = filter.range_min | money_without_currency
+          endif
+
+
+          if filter.max_value.value
+            assign max_value = filter.max_value.value | money_without_currency
+          endif
+          if filter.min_value.value
+            assign min_value = filter.min_value.value | money_without_currency
+          endif 
+          -%}
+        <h6 class="yv-filter-title text">
+          {{ filter.label | escape }}
+        </h6>
+
+        <div class="mall-slider-handles price-range-select no-js-hidden" id="slider-round"             
+            {%- if uses_comma -%}
+            data-start="{{ min_value | replace: '.', '' | replace: ',', '.' | floor }}" 
+            data-end="{{ max_value | replace: '.', '' | replace: ',', '.' | floor }}" 
+            data-min="{{ filter.range_min | money_without_currency | replace: '.', '' | replace: ',', '.' | floor }}" 
+            data-max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' | floor }}" 
+            {%- else -%}
+            data-start="{{ min_value | replace: ',', '' | floor }}" 
+            data-end="{{ max_value | replace: ',', '' | floor }}" 
+            data-min="{{ filter.range_min | money_without_currency | replace: ',', '' | floor }}" 
+            data-max="{{ filter.range_max | money_without_currency | replace: ',', '' | floor }}"
+            {%- endif -%}
+            data-target="price" 
+            >
+        </div>
+        <div class="price-range-value">
+          <span class="js-visually-hide" >{%- if uses_comma_decimals -%}{{ filter.min_value.value | money_without_currency | replace: ',', '.' | floor }}{%- else -%}{{ filter.min_value.value | money_without_currency | replace: ',', '' | floor }}{% endif %}</span>
+      
+          <span class="js-visually-hide" >{%- if uses_comma_decimals -%}{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' | floor }}{%- else -%}{{ filter.max_value.value | money_without_currency | replace: ',', '' | floor }}{% endif %}</span>
+          <div class="field">
+
+          <label class="field__name" for="Filter-{{ filter.label | escape }}-GTE">From</label>
+          <div class="field-wrapper">
+            <span class="filter-currency">{{ cart.currency.symbol }}</span>
+            <input class="field__input"
+                name="{{ filter.min_value.param_name }}"
+                id="Filter-{{ filter.label | escape }}-GTE"
+                type="number"
+                min="0"
+                {%- if uses_comma_decimals -%}
+                max="{{ filter.range_max | money_without_currency | replace: ',', '.' | floor }}"
+                placeholder="{{ min_value | replace: ',', '.' | floor }}"
+                {% if filter.min_value.value %}
+                value="{{ min_value | replace: ',', '.' | floor }}"
+                {% endif %}
+                {%- else -%}
+                max="{{ filter.range_max | money_without_currency | replace: ',', '' | floor }}"
+                placeholder="{{ min_value | replace: ',', '' | floor }}"
+                {% if filter.min_value.value %}
+                value="{{ min_value | replace: ',', '' | floor }}"
+                {% endif %}
+                {% endif %}
+                data-min-value>
+        </div>
+        </div>
+        <div class="field">
+          <label class="field__name" for="Filter-{{ filter.label | escape }}-LTE">To</label>
+          <div class="field-wrapper">
+            <span class="filter-currency">{{ cart.currency.symbol }}</span>
+            <input class="field__input"
+                  name="{{ filter.max_value.param_name }}"
+                  id="Filter-{{ filter.label | escape }}-LTE"
+                  type="number"
+                  min="0"
+                  {% if uses_comma_decimals %}
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '.' | floor }}"
+                  placeholder="{{ max_value | replace: ',', '.' | floor }}"
+                  {% if filter.max_value.value %}
+                  value="{{ max_value | replace: ',', '.' | floor }}"
+                  {% endif %}
+                  {% else %}
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' | floor }}"
+                  placeholder="{{ max_value | replace: ',', '' | floor }}"
+                  {% if filter.min_value.value %}
+                  value="{{ max_value | replace: ',', '' | floor }}"
+                  {% endif %}
+                  {% endif %}
+                  data-max-value>
+          </div>
+          </div>
+        </div>
+      </div>
+    {% endcase %}
+  {% endfor %}
+    <noscript>    
+      <div class="yv-filter-name">
+        <button type="submit" class=" button black-btn small-btn med-btn">{{ 'sections.collection_template.apply' | t }}</button>
+      </div>
+    </noscript>
+  <div class="filter-apply d-flex d-md-none">
+    <button type="submit" class=" button black-btn small-btn btn-block">{{ 'sections.collection_template.apply' | t }}</button>
+    <a href="{{ clearAll }}" class="button secondary-button small-btn btn-block">{{ 'sections.collection_template.clear_all' | t }}</a>
+  </div>
+</form>

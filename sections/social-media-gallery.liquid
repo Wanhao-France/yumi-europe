@@ -1,0 +1,464 @@
+{{ 'social-media-gallery.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  <div class="yv-social-media-wrapper">
+    {% if section.settings.heading != blank or section.settings.description != blank %}
+      <div class="section-heading text-center">
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.seo_heading }} class="section-heading-title h2">{{ section.settings.heading }}</{{ section.settings.seo_heading }}>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="yv-social-media-desc">
+            {{
+              section.settings.description
+              | replace: '<p></p>', '<br />'
+              | replace: '<h1></h1>', '<br />'
+              | replace: '<h2></h2>', '<br />'
+              | replace: '<h3></h3>', '<br />'
+              | replace: '<h4></h4>', '<br />'
+              | replace: '<h5></h5>', '<br />'
+              | replace: '<h6></h6>', '<br />'
+            }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="yv-social-media-gallery">
+      {% for block in section.blocks %}
+        <div class="yv-social-media-gallery-item">
+          <div class="yv-social-media-gallery-img">
+            <div class="image-wrapper" style="padding-bottom:100%;">
+              {% if block.settings.image != blank %}
+                {% render 'lazy-image', image: block.settings.image %}
+              {% else %}
+                {%- capture currentCycle -%}{% cycle 1, 2, 3, 4, 5, 6 %}{%- endcapture -%}
+                {{ 'product-' | append: currentCycle | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            {% capture content %}
+            <div class="yv-social-media-icon-inner">
+              {% case section.settings.social_media_icon %}
+                {% when 'facebook' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M16.403,9H14V7c0-1.032,0.084-1.682,1.563-1.682h0.868c0.552,0,1-0.448,1-1V3.064c0-0.523-0.401-0.97-0.923-1.005 C15.904,2.018,15.299,1.999,14.693,2C11.98,2,10,3.657,10,6.699V9H8c-0.552,0-1,0.448-1,1v2c0,0.552,0.448,1,1,1l2-0.001V21 c0,0.552,0.448,1,1,1h2c0.552,0,1-0.448,1-1v-8.003l2.174-0.001c0.508,0,0.935-0.381,0.993-0.886l0.229-1.996 C17.465,9.521,17.001,9,16.403,9z"></path>
+                  </svg>
+                {% when 'instagram' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    id="Layer_1"
+                    x="0px"
+                    y="0px"
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 20 20"
+                    style="enable-background:new 0 0 20 20;"
+                    xml:space="preserve"
+                  >
+                    <path d="M6.9,10c0-1.7,1.4-3.1,3.1-3.1s3.1,1.4,3.1,3.1s-1.4,3.1-3.1,3.1S6.9,11.7,6.9,10 M5.3,10c0,2.6,2.1,4.7,4.7,4.7  s4.7-2.1,4.7-4.7S12.6,5.3,10,5.3S5.3,7.4,5.3,10 M13.8,5.1c0,0.6,0.5,1.1,1.1,1.1c0.6,0,1.1-0.5,1.1-1.1S15.5,4,14.9,4  S13.8,4.5,13.8,5.1 M6.3,17.5c-0.9,0-1.4-0.2-1.7-0.3c-0.4-0.2-0.7-0.4-1.1-0.7c-0.3-0.3-0.5-0.6-0.7-1.1c-0.1-0.3-0.3-0.8-0.3-1.7  c0-1-0.1-1.3-0.1-3.7s0-2.7,0.1-3.7c0-0.9,0.2-1.4,0.3-1.7C3,4.2,3.2,3.9,3.5,3.5C3.9,3.2,4.2,3,4.6,2.8c0.3-0.1,0.8-0.3,1.7-0.3  c1,0,1.3-0.1,3.7-0.1c2.5,0,2.7,0,3.7,0.1c0.9,0,1.4,0.2,1.7,0.3c0.4,0.2,0.7,0.4,1.1,0.7c0.3,0.3,0.5,0.6,0.7,1.1  c0.1,0.3,0.3,0.8,0.3,1.7c0,1,0.1,1.3,0.1,3.7c0,2.5,0,2.7-0.1,3.7c0,0.9-0.2,1.4-0.3,1.7c-0.2,0.4-0.4,0.7-0.7,1.1  c-0.3,0.3-0.6,0.5-1.1,0.7c-0.3,0.1-0.8,0.3-1.7,0.3c-1,0-1.3,0.1-3.7,0.1C7.5,17.5,7.3,17.5,6.3,17.5 M6.2,0.9  c-1,0-1.6,0.2-2.2,0.4C3.4,1.5,2.9,1.8,2.4,2.4C1.8,2.9,1.5,3.4,1.3,4C1.1,4.6,0.9,5.2,0.9,6.2c0,1-0.1,1.3-0.1,3.8s0,2.8,0.1,3.8  c0,1,0.2,1.6,0.4,2.2c0.2,0.6,0.5,1.1,1.1,1.6c0.5,0.5,1,0.8,1.6,1.1c0.6,0.2,1.3,0.4,2.2,0.4c1,0,1.3,0.1,3.8,0.1  c2.5,0,2.8,0,3.8-0.1c1,0,1.6-0.2,2.2-0.4c0.6-0.2,1.1-0.5,1.6-1.1c0.5-0.5,0.8-1,1.1-1.6c0.2-0.6,0.4-1.3,0.4-2.2  c0-1,0.1-1.3,0.1-3.8s0-2.8-0.1-3.8c0-1-0.2-1.6-0.4-2.2c-0.2-0.6-0.5-1.1-1.1-1.6c-0.5-0.5-1-0.8-1.6-1.1c-0.6-0.2-1.3-0.4-2.2-0.4  c-1,0-1.3-0.1-3.8-0.1C7.5,0.8,7.2,0.8,6.2,0.9"/>
+                  </svg>
+                {% when 'linkedin' %}
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 20 20"
+                    style="enable-background:new 0 0 20 20;"
+                    xml:space="preserve"
+                  >
+                    <path d="M0.7,3c0-0.6,0.2-1.1,0.6-1.5c0.4-0.4,1-0.6,1.6-0.6c0.7,0,1.2,0.2,1.6,0.6C5,1.9,5.2,2.4,5.2,3.1c0,0.6-0.2,1.1-0.6,1.5  c-0.4,0.4-1,0.6-1.6,0.6h0c-0.7,0-1.2-0.2-1.6-0.6S0.7,3.6,0.7,3z M1,19.1V6.8h4v12.3H1z M7.1,19.1h4v-6.9c0-0.4,0-0.8,0.1-1  c0.2-0.4,0.4-0.8,0.8-1.1c0.3-0.3,0.8-0.4,1.3-0.4c1.3,0,2,0.9,2,2.8v6.6h4v-7c0-1.8-0.4-3.2-1.3-4.1c-0.8-0.9-1.9-1.4-3.3-1.4  c-1.5,0-2.7,0.7-3.6,2v0h0l0,0V6.8h-4c0,0.4,0,1.6,0,3.7C7.2,12.5,7.2,15.4,7.1,19.1z"/>
+                  </svg>
+                {% when 'pinterest' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    viewBox="0 0 14.77 19"
+                    style="enable-background:new 0 0 20 20;"
+                  >
+                    <g id="Layer_1-2"><path d="M7.82,0C2.93,0,0,3.49,0,6.85c0,2.07,.85,3.65,2.28,4.23,.16,.06,.31,.06,.44,0s.22-.19,.26-.35c.03-.1,.07-.28,.12-.45,.04-.16,.08-.32,.1-.41,.08-.31,.05-.44-.18-.71-.46-.54-.68-1.21-.68-2.03,0-2.44,1.81-5.03,5.18-5.03,2.65,0,4.36,1.57,4.36,4,0,3.19-1.41,5.6-3.29,5.6-.53,0-1.01-.22-1.31-.6-.29-.36-.38-.83-.27-1.32,.12-.49,.27-1,.42-1.49,.27-.88,.53-1.72,.53-2.37,0-1.06-.62-1.74-1.58-1.74-1.24,0-2.2,1.28-2.2,2.91,0,.9,.26,1.55,.34,1.72-.11,.49-1.18,5-1.38,5.83-.34,1.46-.17,3.19-.04,4.09v.05c.02,.11,.09,.19,.2,.22,.02,0,.05,0,.07,0,.08,0,.16-.04,.22-.11l.03-.03c.45-.57,1.54-2.06,1.94-3.54,.1-.38,.52-2.02,.69-2.68,.51,.67,1.56,1.16,2.58,1.16,3.44,0,5.94-3.16,5.94-7.51C14.77,3.2,12.17,0,7.82,0Z"/></g>
+                  </svg>
+                {% when 'snapchat' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    viewBox="0 0 17.37 16.3"
+                    width="20px"
+                    height="20px"
+                    style="enable-background:new 0 0 20 20;"
+                  >
+                    <g id="Layer_1-2"><path d="M8.79,16.3s-.09,0-.13,0h0s-.06,0-.09,0c-1.03,0-1.69-.47-2.33-.92-.44-.31-.86-.61-1.35-.69-.24-.04-.48-.06-.71-.06-.41,0-.74,.06-.98,.11-.15,.03-.27,.05-.37,.05s-.21-.02-.25-.18c-.04-.14-.07-.27-.1-.4-.07-.33-.12-.54-.26-.56-1.63-.25-2.1-.6-2.2-.84-.01-.03-.02-.07-.03-.1,0-.09,.06-.18,.15-.19,2.51-.41,3.63-2.98,3.68-3.09h0c.15-.32,.18-.59,.09-.81-.17-.41-.73-.58-1.11-.7-.09-.03-.18-.06-.25-.08-.74-.29-.8-.59-.77-.75,.05-.26,.4-.44,.68-.44,.08,0,.15,.01,.2,.04,.33,.16,.63,.24,.89,.24,.36,0,.51-.15,.53-.17,0-.17-.02-.35-.03-.53-.07-1.19-.17-2.66,.21-3.5C5.42,.2,7.8,0,8.5,0c.02,0,.31,0,.31,0h.04c.71,0,3.1,.2,4.22,2.72,.38,.84,.28,2.32,.21,3.5v.05c-.01,.17-.02,.33-.03,.48,.02,.02,.16,.16,.49,.17h0c.25,0,.53-.09,.84-.23,.09-.04,.19-.05,.26-.05,.11,0,.21,.02,.3,.06h0c.25,.09,.42,.27,.42,.45,0,.17-.13,.43-.78,.69-.07,.03-.15,.05-.24,.08-.37,.12-.93,.3-1.11,.7-.09,.22-.06,.49,.09,.8h0c.05,.12,1.17,2.68,3.68,3.09,.09,.02,.16,.1,.15,.19,0,.04-.01,.07-.03,.1-.1,.24-.57,.59-2.2,.84-.13,.02-.19,.19-.26,.56-.03,.13-.06,.26-.1,.4-.03,.12-.11,.17-.23,.17h-.02c-.09,0-.21-.02-.37-.05-.28-.05-.59-.1-.98-.1-.23,0-.47,.02-.71,.06-.49,.08-.91,.38-1.35,.69-.64,.45-1.3,.92-2.33,.92Z"/></g>
+                  </svg>
+                {% when 'tikTok' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    viewBox="0 0 14.04 16.05"
+                    width="20px"
+                    height="20px"
+                    style="enable-background:new 0 0 20 20;"
+                  >
+                    <g id="Layer_1-2"><path d="M14.04,6.58c-1.38,0-2.73-.43-3.85-1.23v5.6c0,2.81-2.28,5.1-5.1,5.09C2.28,16.05,0,13.76,0,10.95c0-2.81,2.28-5.1,5.1-5.09,.23,0,.47,.02,.7,.05v2.82c-1.23-.39-2.55,.3-2.93,1.53s.3,2.55,1.53,2.93,2.55-.3,2.93-1.53c.07-.23,.11-.46,.11-.7V0h2.76c0,.23,.02,.47,.06,.7h0c.19,1.04,.81,1.94,1.69,2.52,.62,.41,1.35,.63,2.1,.63v2.74Z"/></g>
+                  </svg>
+                {% when 'tumblr' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    viewBox="0 0 9.09 16.05"
+                    width="20px"
+                    height="20px"
+                    style="enable-background:new 0 0 20 20;"
+                  >
+                    <g id="Layer_1-2"><path d="M6.41,16.05c-2.41,0-4.21-1.24-4.21-4.21V7.08H0v-2.58C2.41,3.88,3.42,1.8,3.54,0h2.51V4.08h2.92v2.99h-2.92v4.14c0,1.24,.63,1.67,1.62,1.67h1.42v3.16h-2.68Z"/></g>
+                  </svg>
+                {% when 'twitter' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="icon" viewBox="0 0 20 20">
+                    <path d="M19.551 4.208q-.815 1.202-1.956 2.038 0 .082.02.255t.02.255q0 1.589-.469 3.179t-1.426 3.036-2.272 2.567-3.158 1.793-3.963.672q-3.301 0-6.031-1.773.571.041.937.041 2.751 0 4.911-1.671-1.284-.02-2.292-.784T2.456 11.85q.346.082.754.082.55 0 1.039-.163-1.365-.285-2.262-1.365T1.09 7.918v-.041q.774.408 1.773.448-.795-.53-1.263-1.396t-.469-1.864q0-1.019.509-1.997 1.487 1.854 3.596 2.924T9.81 7.184q-.143-.509-.143-.897 0-1.63 1.161-2.781t2.832-1.151q.815 0 1.569.326t1.284.917q1.345-.265 2.506-.958-.428 1.386-1.732 2.18 1.243-.163 2.262-.611z"></path>
+                  </svg>
+                {% when 'vimeo' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    viewBox="0 0 18.82 16.28"
+                    width="20px"
+                    height="20px"
+                    style="enable-background:new 0 0 20 20;"
+                  >
+                    <g id="Layer_1-2"><path d="M18.81,3.77c-.08,1.83-1.36,4.34-3.84,7.52-2.56,3.32-4.72,4.99-6.49,4.99-1.1,0-2.03-1.01-2.78-3.04-.51-1.86-1.01-3.71-1.52-5.57-.56-2.02-1.17-3.04-1.81-3.04-.14,0-.63,.3-1.48,.89l-.89-1.14c.93-.82,1.84-1.63,2.75-2.45C3.99,.86,4.92,.3,5.54,.24c1.46-.14,2.37,.86,2.7,3,.37,2.31,.62,3.75,.76,4.31,.42,1.92,.89,2.88,1.39,2.88,.39,0,.99-.62,1.77-1.87,.79-1.24,1.21-2.19,1.27-2.84,.11-1.07-.31-1.61-1.27-1.61-.45,0-.92,.1-1.39,.31C11.7,1.39,13.47-.08,16.08,0c1.93,.06,2.85,1.31,2.73,3.76h0Z"/></g>
+                  </svg>
+                {% when 'youTube' %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Layer_1"
+                    viewBox="0 0 17.86 12.5"
+                    width="20px"
+                    height="20px"
+                    style="enable-background:new 0 0 20 20;"
+                  >
+                    <g id="Layer_1-2"><path d="M17.48,1.95c-.21-.77-.81-1.37-1.58-1.58-1.39-.37-6.98-.37-6.98-.37,0,0-5.58,0-6.98,.37-.77,.21-1.37,.81-1.58,1.58-.37,1.39-.37,4.3-.37,4.3,0,0,0,2.91,.37,4.3,.21,.77,.81,1.37,1.58,1.58,1.39,.37,6.98,.37,6.98,.37,0,0,5.58,0,6.98-.37,.77-.21,1.37-.81,1.58-1.58,.37-1.39,.37-4.3,.37-4.3,0,0,0-2.91-.37-4.3h0ZM7.14,8.93V3.57l4.64,2.68-4.64,2.68h0Z"/></g>
+                  </svg>
+              {% endcase %}
+              {% if block.settings.heading != blank %}
+              <span class="yv-site-title">{{ block.settings.heading }}</span>
+              {% endif %}
+            </div>
+          {% endcapture %}
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="yv-social-media-icon">
+                {{ content }}
+              </a>
+            {% else %}
+              <div class="yv-social-media-icon">
+                {{ content }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }}.shopify-section{
+      --overlayBg: {{ section.settings.overlay_color.red}},{{ section.settings.overlay_color.green}},{{ section.settings.overlay_color.blue}},{{ section.settings.overlay_opacity | divided_by:100.0}};
+    --contentColor: {{ section.settings.overlay_text_color}};
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.social_media_gallery.name",
+  "tag": "section",
+  "class": "section social-media-gallery-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings":[
+    {
+      "type":"text",
+      "label":"t:sections.social_media_gallery.settings.heading.label",
+      "id":"heading",
+      "default":"Heading"
+    },
+      {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+    {
+      "type":"richtext",
+      "label":"t:sections.social_media_gallery.settings.description.label",
+      "id":"description",
+      "default":"<p>Description here</p>"
+    },
+    {
+      "type": "select",
+      "id": "social_media_icon",
+      "label": "t:sections.social_media_gallery.settings.social_media_icon.label",
+      "default": "instagram",
+      "options": [
+        {
+          "value": "facebook",
+          "label": "Facebook"
+        },
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "linkedin",
+          "label": "Linkedin"
+        },
+        {
+          "value": "pinterest",
+          "label": "Pinterest"
+        },
+        {
+          "value": "snapchat",
+          "label": "Snapchat"
+        },
+        {
+          "value": "tikTok",
+          "label": "TikTok"
+        },
+        {
+          "value": "tumblr",
+          "label": "Tumblr"
+        },
+        {
+          "value": "twitter",
+          "label": "Twitter"
+        },
+        {
+          "value": "vimeo",
+          "label": "Vimeo"
+        },
+        {
+          "value": "youTube",
+          "label": "YouTube"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_singular_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_text_color",
+      "label": "t:sections.social_media_gallery.settings.overlay_text_color.label",
+      "default":"#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:sections.social_media_gallery.settings.overlay_color.label",
+      "default":"#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:sections.social_media_gallery.settings.overlay_opacity.label",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit":"%"
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 25,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 25,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "media",
+      "name": "t:sections.social_media_gallery.blocks.media.name",
+      "settings": [
+          {
+              "type":"image_picker",
+              "label":"t:sections.social_media_gallery.blocks.media.settings.image.label",
+              "id":"image"
+          },
+          {
+              "type":"text",
+              "label":"t:sections.social_media_gallery.blocks.media.settings.heading.label",
+              "info":"t:sections.social_media_gallery.blocks.media.settings.heading.info",
+              "id":"heading"
+          },
+          {
+              "type":"url",
+              "label":"t:sections.social_media_gallery.blocks.media.settings.link.label",
+              "id":"link"
+          }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.social_media_gallery.presets.name",
+      "blocks": [
+        {
+          "type": "media"
+        },
+        {
+          "type": "media"
+        },
+        {
+          "type": "media"
+        },
+        {
+          "type": "media"
+        },
+        {
+          "type": "media"
+        },
+        {
+          "type": "media"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

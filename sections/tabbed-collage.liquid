@@ -1,0 +1,536 @@
+<div class="{% if section.settings.enable_fullwidth %}full-width{% else %}container sm-container{% endif %}">
+  <div class="tabbed-collage-container img-position-{{ section.settings.media_alignment }}">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6">
+            {% for block in section.blocks %}
+              <div id="blockMedia-{{ block.id }}" class="tabbed-collage-image {% if forloop.first %}active{% endif %}" {% if forloop.first %}style="display:block"{% endif %}>
+                <div class="image-wrapper">
+                {% if block.settings.video != blank %}    
+                  <video class="tabbed-collage-video" controls>
+                    <source src="{{ block.settings.video.sources[0].url }}" type="video/mp4">
+                    <source src="{{ block.settings.video.sources[1].url }}">
+                  </video>
+                  {% elsif block.settings.product.featured_media != blank %}
+                     {% render 'lazy-image', image: block.settings.product.featured_media %}
+                  {% elsif block.settings.image != blank %}
+                     {% render 'lazy-image', image: block.settings.image %}
+                {% else %}
+                  {% if block.type == 'media' %}
+                    {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                {% endif %}
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="tabbed-collage-content">
+                <div class="yv-product-accordion yv-faq-accordion">
+                  {% for block in section.blocks %}
+                    {% case block.type %}
+                      {% when 'media' %}
+                    <div class="yv-accordion-card" {{ block.shopify_attributes }}>
+                      <div class="yv-accordion-header" content="accordion-{{ block.id }}" media="blockMedia-{{ block.id }}">
+                        <{{ block.settings.seo_heading }} class="accordion-heading">{{ block.settings.heading }}</{{ block.settings.seo_heading }}>
+                        <span>
+                          <svg width="13" viewBox="0 0 465 465" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M464.973 253.453V211.213H253.787V0.0266724H211.547V211.213H0.360016V253.453H211.547V464.64H253.787V253.453H464.973Z" fill="currentColor"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="yv-accordion-content tabdedColumn-Content" id="accordion-{{ block.id }}" >
+                        <div class="yv-content-body">
+                          {{ block.settings.description }}
+                        </div>
+                         {% if block.settings.btn_text != blank and block.settings.btn_link != blank %}
+                          <div class="yv-content-button">
+                            <a
+                              class="{% if block.settings.btn_as_link == true  %}link{% else %}button xsmall-btn{% endif %}"
+                              href="{{ block.settings.btn_link }}"
+                            >
+                              {{ block.settings.btn_text }}
+                            </a>
+                          </div>
+                        {% endif %}
+                      </div>
+                  </div>
+                  {% when 'product' %}
+                  <div class="yv-accordion-card" {{ block.shopify_attributes }}>
+                      <div class="yv-accordion-header" content="accordion-{{ block.id }}" media="blockMedia-{{ block.id }}">
+                        <h6 class="accordion-heading">
+                      {% liquid 
+                        if block.settings.heading != blank
+                         echo block.settings.heading
+                        elsif block.settings.product != blank
+                        echo block.settings.product.title
+                        else
+                          echo 'onboarding.product_title' | t 
+                        endif
+                      %}</h6>
+                        <span>
+                          <svg  width="13" viewBox="0 0 465 465" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M464.973 253.453V211.213H253.787V0.0266724H211.547V211.213H0.360016V253.453H211.547V464.64H253.787V253.453H464.973Z" fill="currentColor"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="yv-accordion-content tabdedColumn-Content" id="accordion-{{ block.id }}" >
+                        <div class="yv-content-body">
+                          {{ block.settings.description }}
+                        </div>
+                        {% liquid
+                          assign btn_link = block.settings.product.url
+                          if block.settings.btn_link
+                          assign btn_link = block.settings.btn_link
+                          endif
+                        %}
+                         {% if block.settings.btn_text != blank and btn_link != blank %}
+                          <div class="yv-content-button">
+                            <a
+                              class="{% if block.settings.btn_as_link == true  %}link{% else %}button xsmall-btn{% endif %}"
+                              href="{{ btn_link }}"
+                            >
+                              {{ block.settings.btn_text }}
+                            </a>
+                          </div>
+                        {% endif %}
+                      </div>
+                  </div>
+                      {% endcase %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }}.shopify-section {
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+  {% for block in section.blocks %}
+    #blockMedia-{{ block.id }} .image-wrapper{
+      {% if section.settings.desktop_height == 'adapt_image' %}
+         {% liquid
+           if block.settings.video != blank
+           assign ratio =  100 | divided_by: block.settings.video.aspect_ratio
+           elsif block.settings.product.featured_image != blank
+           assign ratio =  100 | divided_by: block.settings.product.featured_image.aspect_ratio
+           elsif block.settings.image != blank
+           assign ratio =  100 | divided_by: block.settings.image.aspect_ratio
+           else
+           assign ratio =  100 
+           endif 
+         %}
+        padding-bottom:{{ ratio }}%;
+        height:0
+        {% else %}
+        height:{{section.settings.desktop_height}};
+        {% endif %}
+    }
+  {% endfor %}
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+    {% for block in section.blocks %}
+      #blockMedia-{{ block.id }} .image-wrapper{
+        {% if section.settings.mobile_height == 'adapt_image' %}
+           {% liquid
+             if block.settings.video != blank
+             assign ratio =  100 | divided_by: block.settings.video.aspect_ratio
+             elsif block.settings.product.featured_image != blank
+             assign ratio =  100 | divided_by: block.settings.product.featured_image.aspect_ratio
+             elsif block.settings.image != blank
+             assign ratio =  100 | divided_by: block.settings.image.aspect_ratio
+             else
+             assign ratio =  100 
+             endif 
+           %}
+          padding-bottom:{{ ratio }}%;
+          height:0;
+          {% else %}
+          height:{{section.settings.mobile_height}};
+          {% endif %}
+      }
+    {% endfor %}
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+{% schema %}
+  {
+    "name": "t:sections.tabbed-collage.name",
+    "tag": "section",
+    "class": "tabbed-collage-section",
+    "settings":[
+      {
+        "type": "checkbox",
+        "id": "enable_fullwidth",
+        "label": "t:sections.tabbed-collage.settings.enable_fullwidth.label",
+        "default": false
+      },
+    {
+      "type": "select",
+      "id": "media_alignment",
+      "label": "t:sections.tabbed-collage.settings.media_alignment.label",
+      "default": "left",
+      "options": [
+        {
+          "label": "t:sections.tabbed-collage.settings.media_alignment.options.left.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.tabbed-collage.settings.media_alignment.options.right.label",
+          "value": "right"
+        }
+      ]
+    },
+      {
+        "type": "select",
+        "id": "desktop_height",
+        "label": "t:sections.tabbed-collage.settings.desktop_height.label",
+        "default": "500px",
+        "options": [
+          {
+            "value": "adapt_image",
+            "label": "t:sections.tabbed-collage.settings.height.options.adapt_image.label"
+          },
+          {
+            "value": "400px",
+            "label": "400px"
+          },
+          {
+            "value": "500px",
+            "label": "500px"
+          },
+          {
+            "value": "600px",
+            "label": "600px"
+          },
+          {
+            "value": "700px",
+            "label": "700px"
+          },
+          {
+            "value": "800px",
+            "label": "800px"
+          },
+          {
+            "value": "100vh",
+            "label": "t:sections.tabbed-collage.settings.height.options.full_screen.label"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "mobile_height",
+        "label": "t:sections.tabbed-collage.settings.mobile_height.label",
+        "default": "500px",
+        "options": [
+          {
+            "value": "adapt_image",
+            "label": "t:sections.tabbed-collage.settings.height.options.adapt_image.label"
+          },
+          {
+            "value": "300px",
+            "label": "300px"
+          },
+          {
+            "value": "400px",
+            "label": "400px"
+          },
+          {
+            "value": "500px",
+            "label": "500px"
+          },
+          {
+            "value": "600px",
+            "label": "600px"
+          },
+          {
+            "value": "100vh",
+            "label": "t:sections.tabbed-collage.settings.height.options.full_screen.label"
+          }
+        ]
+      },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+      {
+        "type": "header",
+        "content": "t:common.header.space_section.label"
+      },
+      {
+        "type": "range",
+        "id": "top_space_desktop",
+        "label": "t:common.top_space_desktop.label",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_desktop",
+        "label": "t:common.bottom_space_desktop.label",
+        "default": 50,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "top_space_mobile",
+        "label": "t:common.top_space_mobile.label",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      },
+      {
+        "type": "range",
+        "id": "bottom_space_mobile",
+        "label": "t:common.bottom_space_mobile.label",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    ],
+    "blocks": [
+      {
+        "type":"media",
+        "name":"t:sections.tabbed-collage.blocks.media.name",
+        "settings":[
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.tabbed-collage.blocks.media.settings.image.label"
+          },
+          {
+            "type": "video",
+            "id": "video",
+            "label": "t:sections.tabbed-collage.blocks.media.settings.video.label"
+          },
+          {
+            "type":"header",
+            "content": "t:sections.tabbed-collage.blocks.media.settings.content.content"
+          },
+          {
+            "type": "text",
+            "label": "t:sections.tabbed-collage.blocks.media.settings.heading.label",
+            "id": "heading",
+            "default": "Heading"
+          },
+           {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+          {
+            "type": "richtext",
+            "label": "t:sections.tabbed-collage.blocks.media.settings.description.label",
+            "id": "description",
+            "default": "<p>To provide clients insight into your brand, pair words with any image. Here you can tell a narrative, explain a product feature, or introduce a new campaign.</p>"
+          },
+          {
+            "type":"header",
+            "content": "t:sections.tabbed-collage.blocks.media.settings.button.content"
+          },
+          {
+            "type":"checkbox",
+            "id":"btn_as_link",
+            "default": false,
+            "label": "t:sections.tabbed-collage.blocks.media.settings.btn_as_link.label"
+      
+          },
+          {
+              "type": "text",
+              "id": "btn_text",
+              "default": "Button text",
+            "label": "t:sections.tabbed-collage.blocks.media.settings.btn_text.label"
+          },
+          {
+            "type": "url",
+            "id": "btn_link",
+            "label": "t:sections.tabbed-collage.blocks.media.settings.btn_link.label"
+          }
+        ]
+      },
+      {
+        "type":"product",
+        "name":"Product",
+        "settings":[
+          {
+            "type": "product",
+            "label": "t:sections.tabbed-collage.blocks.product.settings.product.label",
+            "id": "product"
+          },
+          {
+            "type":"header",
+            "content": "t:sections.tabbed-collage.blocks.product.settings.content.content"
+          },
+          {
+            "type": "text",
+            "label": "t:sections.tabbed-collage.blocks.product.settings.heading.label",
+            "id": "heading",
+            "default": "Heading"
+          },
+          {
+            "type": "richtext",
+            "label": "t:sections.tabbed-collage.blocks.product.settings.description.label",
+            "id": "description",
+            "default": "<p>To provide clients insight into your brand, pair words with any image. Here you can tell a narrative, explain a product feature, or introduce a new campaign.</p>"
+          },
+          {
+            "type":"header",
+            "content": "t:sections.tabbed-collage.blocks.product.settings.button.content"
+          },
+          {
+            "type":"checkbox",
+            "id":"btn_as_link",
+            "default": false,
+            "label": "t:sections.tabbed-collage.blocks.product.settings.btn_as_link.label"
+      
+          },
+          {
+              "type": "text",
+              "id": "btn_text",
+              "default": "Button text",
+            "label": "t:sections.tabbed-collage.blocks.product.settings.btn_text.label"
+          },
+          {
+            "type": "url",
+            "id": "btn_link",
+            "label": "t:sections.tabbed-collage.blocks.product.settings.btn_link.label"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+          "name": "t:sections.tabbed-collage.presets.name",
+          "blocks": [
+            {
+              "type": "media"
+            },
+            {
+              "type": "product"
+            },
+            {
+              "type": "media"
+            },
+            {
+              "type": "product"
+            }
+          ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

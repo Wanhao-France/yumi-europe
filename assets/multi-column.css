@@ -1,0 +1,27 @@
+.yv-multi-column-heading {
+    margin: 0px 0 10px 0;
+}
+.yv-multi-column-desc {
+    margin: 0 0 15px 0;
+}
+.yv-multicolumn-img {
+    position: relative;
+    background: var(--colorImageBg);
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.yv-multi-column-desc p {
+    max-width: 100%;
+}
+.yv-multicolumn-items {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+@media screen and (max-width:767px) {
+.yv-multicolumn-items {
+    gap: 20px;
+}
+}

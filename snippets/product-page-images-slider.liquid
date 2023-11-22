@@ -1,0 +1,280 @@
+{%- if product.media.size > 0 -%}
+{%- assign productImageSize = '1700' -%}
+<div class="product-detail-slider main-slider-wrapper thumbnail-position-{{ section.settings.carousel_thumbnail_position }}">
+  <div id="product-slider-{{ section.id }}" class="
+        yv-product-feature data-main-slider yv-product-big-slider yv-product-slider
+        {% if section.settings.carousel_height_desktop == 'adapt' %}slider-desktop-height-adapt{%- else -%}slider-desktop-height-fixed{% endif %}
+        {% if section.settings.carousel_height_mobile == 'adapt' %}slider-mobile-height-adapt{%- else -%}slider-mobile-height-fixed{% endif %}  {% if product.media.size > 1 %}multi-images{% endif %}
+      " {% if product.media.size> 1 %}
+    data-flickity-product-slider='
+    {"fade":true,
+    "contain": true,
+    "pageDots": true,
+    "resize": true,
+    "groupCells":true,
+    "touchVerticalScroll": false,
+    "prevNextButtons":true,
+    "draggable":false,
+    "adaptiveHeight": true
+    }
+    '
+    {% endif %}
+    data-desktop-only
+    >
+    {%- for media in product.media -%}
+    {%- case media.media_type -%}
+    {%- when 'image' -%}
+    <div class="yv-product-slider-item yv-product-image-item big__slider flickity-slider-item {% if settings.pass_through_product_images %} pass-through-color{% endif %}" id="media-main-{{ media.id }}" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}>
+      <div class="image-wrapper"
+        style="padding-bottom:{{ 1 | divided_by : media.preview_image.aspect_ratio | times: 100 }}%">
+        {%- assign mediaId = 'yv-product-image-item-' | append: media.id -%}
+        {%- render 'lazy-image',
+        id: mediaId,
+        class: 'yv-product-image' | append: (section.settings.enable_zoom_icon and section.settings.gallery_style == 'slider' ? ' yv-product-zoom-image' : ''),
+        image: media,
+        width: productImageSize
+        -%}
+
+        <a href="{{ media | image_url }}"  {% if section.settings.show_variant-media %} {% unless product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}data-fancybox="gallery{{ section.id }}"{% endunless%}{% else %}data-fancybox="gallery{{ section.id }}"{% endif %} data-thumb="{{ media | image_url }}"
+          class="{% if section.settings.enable_zoom_icon %}yv-product-zoom{% endif %} no-js-hidden" zoom-icon="{{ section.settings.enable_zoom_icon }}" aria-label="{{ media.alt | downcase | default: product.title | strip_html }}">
+          <div class="gallery-cursor">
+            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #fff;
+                  }
+                </style>
+              </defs>
+              <g id="Layer_1-2">
+                <g>
+                  <path class="cls-1" d="M20,0C8.97,0,0,8.97,0,20s8.97,20,20,20,20-8.97,20-20S31.03,0,20,0Z"></path>
+                  <polygon
+                    points="29.85 19.52 20.69 19.52 20.69 10.35 19.23 10.35 19.23 19.52 10.07 19.52 10.07 20.97 19.23 20.97 19.23 30.13 20.69 30.13 20.69 20.97 29.85 20.97 29.85 19.52">
+                  </polygon>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+    {%- when 'external_video' -%}
+    {% liquid
+    assign videoUrl = media | external_video_url
+    assign videoClass = 'yv-youtube-video no-js-hidden'
+    if videoUrl contains 'vimeo'
+    assign videoClass = 'yv-vimeo-video no-js-hidden'
+    endif
+    %}
+    <div class="yv-product-slider-item yv-product-external-video-item flickity-slider-item"
+      id="media-main-{{ media.id }}">
+      <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : media.aspect_ratio | times: 100 }}%">
+        {{
+        media
+        | external_video_url: autoplay: false
+        | external_video_tag: class: videoClass, loading: 'lazy'
+        }}
+        <noscript>
+          <a href="{{ media | external_video_url }}" target="_blank"
+            aria-label="{{ media.alt | default: product.title | strip_html }}">
+            {% comment %}theme-check-disable ImgWidthAndHeight{% endcomment %}
+            <img src="{{ media.preview_image | image_url: width: 2048 }}" alt="{{ media.preview_image.alt | escape }}"
+              loading="lazy">
+            {% comment %}theme-check-enable ImgWidthAndHeight{% endcomment %}
+          </a>
+        </noscript>
+      </div>
+    </div>
+    {%- when 'video' -%}
+    {%- liquid
+    assign htmlVideo = media.sources[0]
+    if media.sources[1] != blank
+    assign htmlVideo = media.sources[1]
+    endif
+    -%}
+    <div class="yv-product-slider-item yv-product-video-item flickity-slider-item" id="media-main-{{ media.id }}" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}>
+      <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : media.aspect_ratio | times: 100 }}%">
+        {{
+        media
+        | media_tag: loading: 'lazy', class: 'no-js-hidden', autoplay: false, controls: true, preload: 'none'
+        }}
+        <noscript>
+          <a href="{{ htmlVideo.url }}" target="_blank">
+            {% comment %}theme-check-disable ImgWidthAndHeight{% endcomment %}
+            <img src="{{ media.preview_image | image_url: width: 2048 }}" alt="{{ media.preview_image.alt | escape }}"
+              loading="lazy" aria-label="{{ media.alt | default: product.title | strip_html }}">
+            {% comment %}theme-check-enable ImgWidthAndHeight{% endcomment %}
+          </a>
+        </noscript>
+      </div>
+    </div>
+    {%- when 'model' -%}
+    {%- liquid
+    if media.preview_image.aspect_ratio
+    assign media_aspect_ratio = media.preview_image.aspect_ratio
+    endif
+    -%}
+    <div id="media-main-{{ media.id }}" class="yv-product-slider-item yv-product-model-item flickity-slider-item" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}>
+      <div class="product-single__media no-js-hidden" style="padding-bottom: {{ 100 | divided_by: media_aspect_ratio }}%"
+        data-media-id="{{ media.id }}">
+        {{
+        media
+        | model_viewer_tag: image_size: true, reveal: 'interaction', toggleable: true, data-model-id: media.id
+        }}
+
+        <button class="close-product-model hidden">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+            <path
+              d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z"
+              class="layer"></path>
+          </svg>
+        </button>
+      </div>
+      <button class="button button--full-width product__xr-button d-md-none d-lg-none no-js-hidden" type="button"
+        aria-label="{{ 'products.product.media.view_in_ar_button' | t }}" data-shopify-xr
+        data-shopify-model3d-id="{{ media.id }}" data-shopify-title="title" data-shopify-xr-hidden>
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-3d"
+          viewBox="18.24 17.35 24.52 28.3" width="44" height="44">
+          <path fill="currentcolor"
+            d="M30.5 17.35l-12.26 7.07v14.16l12.26 7.07 12.26-7.08V24.42L30.5 17.35zM20.24 37.42V25.58l10.26-5.93 10.13 5.85-10.13 5.88v12l-10.26-5.96z">
+          </path>
+        </svg>
+        {{ 'products.product.media.view_in_ar_button' | t }}
+      </button>
+      {% comment %}theme-check-disable ImgWidthAndHeight,ImgLazyLoading{% endcomment %}
+      <noscript>
+        <img src="{{ media.preview_image | image_url: width: 2048 }}" alt="{{ media.preview_image.alt | escape }}"
+          aria-label="{{ media.alt | default: product.title | strip_html }}">
+      </noscript>
+      {% comment %}theme-check-enable ImgWidthAndHeight,ImgLazyLoading{% endcomment %}
+    </div>
+    {%- endcase -%}
+    {%- endfor -%}
+  </div>
+  <div class="yv-product-small-slider-container " tabindex="-1"
+    style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %}">
+    <div id="product-thumb-slider-{{ section.id }}" class="yv-product-small-slider data-thumb-slider"
+      data-flickity-product-thumb-slider='
+          { "asNavFor": "#product-slider-{{ section.id }}", "contain": true, "pageDots": false,"cellAlign":"left","prevNextButtons": false}
+        ' data-desktop-only>
+      {%- for media in product.media -%}
+      <div class="yv-product-slider-item gallery__slide-img {% if settings.pass_through_product_images %} pass-through-color{% endif %}" id="media-thumb-{{ media.id }}" data-image="media-{{ media.id }}" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}>
+        {%- render 'lazy-image', image: media.preview_image, width: '70', sizes: '[70,80,90,100,110,120]' -%}
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- else -%}
+<div class="product-no-media">
+  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+</div>
+{%- endif -%}
+{% liquid
+  assign productMetaBlock = section.blocks | where: 'type', 'product-meta'
+  assign productMetaStatus = false
+  assign productMeta = ''
+  for block in productMetaBlock
+    if block.settings.show_as_tab and block.settings.heading != blank
+      if block.settings.show_availability or block.settings.show_sku or block.settings.show_vendor or block.settings.show_type or block.settings.show_collections or block.settings.show_tags
+        assign productMeta = block
+        assign productMetaStatus = true
+      endif
+    endif
+  endfor
+%}
+{% if section.settings.show_description or section.settings.content != blank or section.settings.show_reviews or productMetaStatus  %}
+<div class="yv-product-features d-none d-md-block">
+  <div class="yv-product-feature-list-wrapper" id="yvProductFeatureListwrapper">
+    <ul class="list-unstyled yv-product-feature-list yv-tabs" id="yvProductFeatureList">
+      {%- if product.media.size > 1 -%}
+      <li class="yv-tab-item">
+        <a class="yv-tab-link feature-link active" href="#product-slider-{{ section.id }}">Gallery</a>
+      </li>
+      {%- endif -%}
+      {% if section.settings.show_description %}
+      <li class="yv-tab-item">
+        <a class="yv-tab-link feature-link" href="#yv-product-feature-description">
+          {{- 'products.product.description' | t -}}
+        </a>
+      </li>
+      {% endif %}
+      {% if section.settings.content != blank %}
+      <li class="yv-tab-item">
+        <a class="yv-tab-link feature-link" href="#yv-product-feature-specification">
+          {{- section.settings.content_heading | default: 'Specification' -}}
+        </a>
+      </li>
+      {% endif %}
+       {% if section.settings.content2 != blank %}
+      <li class="yv-tab-item">
+        <a class="yv-tab-link feature-link" href="#yv-product-feature-specification2">
+          {{- section.settings.content_heading2 | default: 'Specification' -}}
+        </a>
+      </li>
+      {% endif %}
+   {% if section.settings.content3 != blank %}
+      <li class="yv-tab-item">
+        <a class="yv-tab-link feature-link" href="#yv-product-feature-specification3">
+          {{- section.settings.content_heading3 | default: 'Specification' -}}
+        </a>
+      </li>
+      {% endif %}
+    {% if productMeta.settings.heading != blank %}
+      <li class="yv-tab-item">
+        <a class="yv-tab-link feature-link" href="#yv-product-meta-details">
+          {{- productMeta.settings.heading -}}
+        </a>
+      </li>
+      {% endif %}
+
+    </ul>
+  </div>
+  <div class="yv-product-feature-content">
+    {% if section.settings.show_description %}
+    <div class="yv-product-feature desc-content" id="yv-product-feature-description">
+      <h5>{{ 'products.product.description' | t }}</h5>
+      <div class="yv-product-feature-tab-content rich-editor-text-content">
+        {{
+        product.description
+        | replace: '<table', '<div class="table-responsive"><table ' | replace: '</table>' , '</table></div>' }} </div>
+      </div>
+      {% endif %}
+      {% if section.settings.content != blank %}
+      <div class="yv-product-feature specification-content" id="yv-product-feature-specification">
+        <h5>{{ section.settings.content_heading | default: 'Specification' }}</h5>
+        <div class="yv-product-feature-tab-content">
+          {{ section.settings.content }}
+        </div>
+      </div>
+      {% endif %}
+
+     {% if section.settings.content2 != blank %}
+      <div class="yv-product-feature specification-content" id="yv-product-feature-specification2">
+        <h5>{{ section.settings.content_heading2 | default: 'Specification' }}</h5>
+        <div class="yv-product-feature-tab-content">
+          {{ section.settings.content2 }}
+        </div>
+      </div>
+      {% endif %}
+
+     {% if section.settings.content3 != blank %}
+      <div class="yv-product-feature specification-content" id="yv-product-feature-specification3">
+        <h5>{{ section.settings.content_heading3 | default: 'Specification' }}</h5>
+        <div class="yv-product-feature-tab-content">
+          {{ section.settings.content3 }}
+        </div>
+      </div>
+      {% endif %}
+     {% if productMeta.settings.heading != blank %}
+      <div class="yv-product-feature specification-content" id="yv-product-meta-details">
+        <h5>{{productMeta.settings.heading }}</h5>
+        <div class="yv-product-feature-tab-content">
+              {% render 'product-meta', product:product, current_variant:product.selected_or_first_available_variant, block: productMeta %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}

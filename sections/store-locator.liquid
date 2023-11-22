@@ -1,0 +1,389 @@
+{%- capture storeDetails -%}
+  {%- for block in section.blocks -%}
+   {%- if block.settings.store_name != blank or block.settings.store_name != blank or block.settings.store_detail != blank -%}
+            <div
+              class="yv-store-locator-details-item"
+              data-address="{{ block.settings.location }}"
+              data-label="{{ block.settings.store_name }}"
+            >
+              <div class="yv-store-locator-head">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
+                    <path d="M7 0C3.13 0 0 3.13 0 7C0 12.25 7 20 7 20C7 20 14 12.25 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z" fill="#000000"/>
+                  </svg>
+                </span>
+                <div class="yv-store-locator-heading">
+                  {% if block.settings.store_name != blank %}
+                    <p class="text-medium yv-store-locator-title">{{ block.settings.store_name }}</p>
+                  {% endif %}
+                  {% if block.settings.store_detail != blank %}
+                    <p>{{ block.settings.store_detail }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+                  {%- endif -%}
+          {%- endfor -%}
+  {%- endcapture -%}
+{% if storeDetails != blank and section.settings.btn != blank and section.blocks.size > 0 %}
+  <span class="yv-store-locator-btn no-js-hidden {{ section.settings.horizontal_position }}">
+    {{ section.settings.btn }}
+  </span>
+  <div class="yv-store-locator-wrapper">
+    <div class="yv-store-locator-modal">
+      <div class="yv-store-locator-wrapper-card">
+        <span class="yv-store-locator-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.2386 185.428C12.0316 180.221 12.0316 171.778 17.2386 166.572L166.572 17.2386C171.778 12.0316 180.221 12.0316 185.428 17.2386C190.636 22.4456 190.636 30.8878 185.428 36.0948L36.0948 185.428C30.8878 190.636 22.4456 190.636 17.2386 185.428Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.2386 17.2386C22.4456 12.0316 30.8878 12.0316 36.0948 17.2386L185.428 166.572C190.636 171.778 190.636 180.221 185.428 185.428C180.221 190.636 171.778 190.636 166.572 185.428L17.2386 36.0948C12.0316 30.8878 12.0316 22.4456 17.2386 17.2386Z" fill="black"/>
+          </svg>
+        </span>
+        <div class="yv-store-locator-wrapper-content">
+          <div class="yv-store-locator-details">
+            {% if section.settings.heading %}
+              <div class="section-heading">
+                <{{ section.settings.seo_heading }}>{{ section.settings.heading }}</{{ section.settings.seo_heading }}>
+              </div>
+            {% endif %}
+            {{ storeDetails }}
+            <button type="button" class="button btn-block store-location-save">{{ section.settings.confirm_btn }}</button>
+          </div>
+           <div class="yv-store-locator-map-box">  
+              <div class="yv-store-locator-map-box-inner">  
+                <div
+                class="yv-store-locator-map"
+                {% if section.settings.custom_marker != blank %}
+                data-marker="{{ section.settings.custom_marker | image_url:width:40 }}"
+                {% endif %}
+                >
+                  <iframe id="storeLocatorMap"></iframe>
+                </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+      #shopify-section-{{ section.id }} {
+        --vertical-position:{{ section.settings.vertical_position}}%;
+      }
+    #shopify-section-{{ section.id }} .yv-store-locator-btn{
+        --colorBtnPrimary:{{section.settings.btnbgcolor}};
+        --colorBtnPrimaryText:{{section.settings.btntextcolor}};
+    }
+    .store-locator-open {
+      overflow: hidden;
+    }
+      .section-heading {
+        margin-bottom: 15px;
+      }
+     .yv-store-locator-btn {
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       padding: 20px 6px;
+       font-size: var(--mediumText);
+       position: fixed;
+       cursor: pointer;
+       top: var(--vertical-position);
+       z-index: 2;
+       writing-mode: vertical-lr;
+       background-color: var(--colorBtnPrimary);
+       color: var(--colorBtnPrimaryText);
+     }
+      .yv-store-locator-btn.left{
+        left: 0;
+        border-radius: 0px 10px 10px 0px;
+      }
+      .yv-store-locator-btn.right{
+        left: unset;
+        right: 0;
+        border-radius: 10px 0 0 10px;
+      }
+
+     .yv-store-locator-wrapper {
+      display: none;
+       position: fixed;
+       z-index: 9999;
+       left: 0;
+       top: 0;
+       width: 100%;
+       height: 100%;
+       background-color: rgba(0, 0, 0, 0.8);
+       transition: all 0.5s ease-in-out;
+     }
+     .yv-store-locator-modal {
+        width: 100%;
+        max-width: 1170px;
+        margin: 0 auto;
+        max-height: 100%;
+        padding: 20px;
+        margin-top: auto;
+        margin-bottom: auto;
+     }
+    .yv-store-locator-wrapper-card {
+            position: relative;
+    }
+    .yv-store-locator-wrapper-content{
+        background: var(--primaryAlternateBg);
+        border: 6px solid var(--primaryColorBody);
+        padding: 32px;
+        display: grid;
+        grid-template-columns: 0.7fr 1fr;
+        grid-gap: 30px;
+        border-radius: 10px;
+        width: 100%;
+        position: relative;
+        height: 100vh;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+    .yv-store-locator-head {
+       display: flex;
+       align-items: baseline;
+       background: #FFFFFF;
+       box-shadow: 0px 0px 7px rgba(202, 202, 202, 0.25);
+       border-radius: 10px;
+       padding: 20px;
+       cursor: pointer;
+       margin-bottom: 16px;
+       border: 3px solid transparent;
+      transition:.2s ease;
+       overflow: hidden;
+     }
+     .yv-store-locator-head span  {
+         margin-right: 15px;
+         display: inline-block;
+         opacity: 0.4;
+     }
+     .yv-store-locator-head span svg {
+       vertical-align: middle;
+     }
+     .yv-store-locator-head:hover, .yv-store-locator-details-item.active .yv-store-locator-head {
+       border-color: #CECECE;
+     }
+      .yv-store-locator-head:hover span, .yv-store-locator-details-item.active .yv-store-locator-head span {
+       opacity: 1;
+      }
+    .yv-store-locator-map-box-inner{
+      position: sticky;
+      top: 0;
+    }
+     .yv-store-locator-map {
+       border: 2px solid #D7D7D7;
+       border-radius: 10px;
+       overflow: hidden;
+       height: 400px;
+     }
+    .yv-store-locator-close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .yv-store-locator-close svg {
+      width: 14px;
+      height: 14px;
+    }
+     .custom-marker {
+        width: 30px;
+        height: 30px;
+     }
+    .yv-store-locator-title {
+      font-style: var(--heading-font-style);
+      color: var(--heading_color);
+      font-family: var(--heading-font-family);
+      font-weight: var(--heading-font-weight);
+    }
+      @media (max-width:1199px){
+        .yv-store-locator-modal {
+            max-width: 870px;
+        }
+        .yv-store-locator-head {
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .yv-store-locator-head span {
+            margin-right: 10px;
+        }
+      }
+      @media (max-width:991px){
+
+        .yv-store-locator-wrapper-content {
+            padding: 20px;
+            grid-gap: 20px;
+        }
+      }
+      @media (max-width:767px){
+        .yv-store-locator-wrapper-content {
+           grid-template-columns: auto;
+        }
+        .yv-store-locator-details .section-heading {
+            padding-right: 30px;
+        }
+        .yv-store-locator-wrapper-content {
+            padding: 10px;
+              border: 4px solid var(--primaryColorBody);
+        }
+      }
+  </style>
+{% else %}
+  <style>
+  .grid__pickup-availabilities{
+    display:none !important;
+  }
+    </style>
+{% endif %}
+{% schema %}
+{
+  "name": "t:sections.store-locator.name",
+  "class":"store-locator-section",
+  "max_blocks":5,
+  "settings": [
+   {
+      "type": "text",
+      "label": "t:sections.store-locator.settings.heading.label",
+      "id": "heading",
+      "default":"Store pickup address"
+   },
+      {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+   {
+      "type": "text",
+      "label": "t:sections.store-locator.settings.btn.label",
+      "id": "btn",
+      "default":"Store locator"
+   },
+   {
+      "type": "text",
+      "label": "t:sections.store-locator.settings.confirm_btn.label",
+      "id": "confirm_btn",
+      "default":"Change preferred store"
+   },
+   {
+      "type": "image_picker",
+      "label": "t:sections.store-locator.settings.custom_marker.label",
+      "id": "custom_marker"
+   },
+    {
+        "type":"header",
+        "content":"t:sections.store-locator.settings.position.label"
+    },
+   {
+      "type": "select",
+      "label": "t:sections.store-locator.settings.horizontal_position.label",
+      "id": "horizontal_position",
+     "default":"left",
+     "options":[
+         {
+           "value":"left",
+           "label":"t:sections.store-locator.settings.horizontal_position.options.left.label"
+         },
+         {
+           "value":"right",
+           "label":"t:sections.store-locator.settings.horizontal_position.options.right.label"
+         }
+       ]
+     },
+     {
+          "type": "range",
+          "label": "t:sections.store-locator.settings.vertical_position.label",
+          "id": "vertical_position",
+          "min":5,
+          "max":75,
+          "unit":"%",
+          "default":50
+     },
+    {
+        "type": "header",
+        "content": "t:common.header.color_section.label"
+    },
+    {
+        "type": "color",
+        "id": "btnbgcolor",
+        "label": "t:sections.store-locator.settings.btnbgcolor.label",
+        "default": "#000000"
+    },
+    {
+        "type": "color",
+        "id": "btntextcolor",
+        "label": "t:sections.store-locator.settings.btntextcolor.label",
+        "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+  {
+    "type": "store_locator",
+    "name": "t:sections.store-locator.blocks.store.name",
+    "settings": [
+      {
+        "type": "text",
+        "label": "t:sections.store-locator.blocks.store.settings.store_name.label",
+        "id": "store_name",
+        "default":"Store name",
+        "info":"t:sections.store-locator.blocks.store.settings.store_name.info"
+      },
+      {
+        "type": "richtext",
+        "label": "t:sections.store-locator.blocks.store.settings.store_detail.label",
+        "id": "store_detail"
+      },
+      {
+        "type": "text",
+        "label": "t:sections.store-locator.blocks.store.settings.location.label",
+        "id": "location",
+       "default":"USA",
+        "info":"t:sections.store-locator.blocks.store.settings.location.info"
+      }
+    ]
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

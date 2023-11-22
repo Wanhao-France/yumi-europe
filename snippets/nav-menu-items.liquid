@@ -1,0 +1,49 @@
+{%- if link.links != blank -%}
+  <div class="row">
+    {%- if link.levels > 1 -%}
+      {%- liquid
+        if link.links.size == 1
+          assign chillinksClasses = 'col-12 col-sm-12 col-md-12'
+        elsif link.links.size == 2
+          assign chillinksClasses = 'col-12 col-sm-12 col-md-6'
+        elsif link.links.size == 3
+          assign chillinksClasses = 'col-12 col-sm-12 col-md-4'
+        elsif link.links.size == 4
+          assign chillinksClasses = 'col-12 col-sm-12 col-md-3'
+        else
+          assign chillinksClasses = 'col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2'
+        endif
+      -%}
+      {%- for childlink in link.links -%}
+        <div class="{{ chillinksClasses }}">
+          <div class="dropdown-inner-menu-item">
+            <a class="menu-category-title" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+            <ul class="list-unstyled">
+              {%- for grandchildlink in childlink.links -%}
+                <li>
+                  <a href="{{ grandchildlink.url }}" class="yv-dropdown-item-link">
+                    {{- grandchildlink.title | escape -}}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="col-12 col-sm-12 col-md-12">
+        <div class="dropdown-inner-menu-item">
+          <ul class="list-unstyled">
+            {%- for childlink in link.links -%}
+              <li>
+                <a class="yv-dropdown-item-link" href="{{ childlink.url }}"
+                  ><span>{{ childlink.title | escape }}</span></a
+                >
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

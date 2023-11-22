@@ -1,0 +1,154 @@
+<div class="yv-addon-button-wrapper">
+    <div class="yv-addon-button-modal">
+      <div class="yv-addon-button-wrapper-card">
+         <span class="yv-addon-button-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.2386 185.428C12.0316 180.221 12.0316 171.778 17.2386 166.572L166.572 17.2386C171.778 12.0316 180.221 12.0316 185.428 17.2386C190.636 22.4456 190.636 30.8878 185.428 36.0948L36.0948 185.428C30.8878 190.636 22.4456 190.636 17.2386 185.428Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.2386 17.2386C22.4456 12.0316 30.8878 12.0316 36.0948 17.2386L185.428 166.572C190.636 171.778 190.636 180.221 185.428 185.428C180.221 190.636 171.778 190.636 166.572 185.428L17.2386 36.0948C12.0316 30.8878 12.0316 22.4456 17.2386 17.2386Z" fill="black"/>
+          </svg>
+        </span>
+              <h6 class="form-heading">Ask a Question</h6>
+         {%- form 'contact', id: 'ContactForm' -%}
+           <input type="hidden" name="form_type" value="contact">
+           <input type="hidden" name="utf8" value="✓">
+           <input type="hidden" name="contact[from form]" value="Ask a question">
+           <input type="hidden" name="contact[product name]" value="{{ product.title }}">
+           <input type="hidden" name="contact[product url]" value="{{ product.url | prepend:  shop.url }}">
+           
+            <div class="row">
+              <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label for="ContactForm-username">{{ 'sections.contact.name' | t }}</label>
+                  <input type="text" class="form-control" id="ContactForm-username" name="contact[Name]" placeholder="{{ 'sections.contact.name' | t }}" required>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+                  <input
+                         autocomplete="email"
+                         type="email"
+                         id="ContactForm-email"
+                         class="form-control"
+                         name="contact[email]"
+                         spellcheck="false"
+                         autocapitalize="off"
+                         value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                         aria-required="true"
+                         {% if form.errors contains 'email' %}
+                         aria-invalid="true"
+                         aria-describedby="ContactForm-email-error"
+                         {% endif %}
+                         placeholder="{{ 'sections.contact.email' | t }}"
+                         required
+                         >
+                  {% if form.errors contains 'email' %}
+                  <span class="error-text">
+                    {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                  </span>
+                  {%- endif -%}
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label for="ContactForm-body">{{ 'sections.contact.message' | t }}</label>
+                  <textarea id="ContactForm-body" class="form-control" name="contact[Message]"  placeholder="{{ 'sections.contact.message' | t }}" rows="3" required>{{ form.body }}</textarea>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12">
+              <button type="submit" class="button btn-block">{{ block.settings.form_button }}</button>
+              </div>
+            </div>
+            {%- if form.posted_successfully? -%}
+            <span class="form-status form-status-list form__message success-text" tabindex="-1" >{{ 'templates.contact.form.post_success' | t }}</span>
+            {%- endif -%}
+            {%- endform -%}
+      </div>
+    </div>
+  </div>
+  <style>
+    .query-form-open {
+      overflow: hidden;
+    }
+    .yv-addon-button-modal .success-text {
+        margin-bottom: 0px;
+        margin-top: 10px;
+    }
+    .query-form-open main {
+      z-index:5;
+      background: var(--primaryColorBody);
+    }
+    .form-heading {
+      margin-bottom:15px;
+    }
+    .yv-addon-button-wrapper .form-group {
+        margin-bottom: 12px;
+    }
+    .yv-addon-button-wrapper .form-group label {
+        font-size: 12px;
+    }
+  .yv-addon-button-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    align-items: flex-start; 
+    justify-content: flex-start; 
+    overflow: hidden; 
+  }
+
+ .yv-addon-button-modal {
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    padding: 20px;
+    max-height: 100%;
+    overflow: auto;
+    margin-top: auto;
+    transition: all .3s linear 50ms;
+}
+  .query-form-open .yv-addon-button-modal {
+     animation: fade-up .3s  linear;
+  }
+    @keyframes fade-up {
+        from {
+          opacity:0;
+          visibility: hidden;
+          transform: translateY(30%);
+        }
+        to {
+          opacity:1;
+          visibility: visible;
+          transform: translateY(0%);
+        }
+    }
+.yv-addon-button-wrapper-card {
+    position:relative;
+    background-color: var(--primaryColorBody);
+    padding: 20px;
+    border-radius: var(--layoutRadius);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+   .yv-addon-button-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+.yv-addon-button-close svg {
+    width: 14px;
+    height: 14px;
+}
+  </style>

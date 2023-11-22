@@ -1,0 +1,33 @@
+{% if product.available %}
+          {% assign saleEndDate = block.settings.countdown_time %}
+          {% if saleEndDate != blank %}
+            <div data-product-countdown="{{ block.settings.countdown_time }}" {{ block.shopify_attributes }}>
+            {% if block.settings.countdown_title != blank %}
+            <div class="countdown-heading">
+               <h5 class=countdown_heading_title>
+                   {{ block.settings.countdown_title }}
+               </h5>
+            </div>
+            {% endif %}
+            <div id="countdown-timer">
+             <ul class="list-unstyled deal-counter-box center-countdown">
+                  <li class="deal-counter">
+                    <span class="yv-timers" id="dDays1">00</span><span class="count-type">{{ 'general.days' | t }}</span>
+                  </li>
+                  <li class="deal-counter">:</li>
+                  <li class="deal-counter">
+                    <span class="yv-timers" id="dHours1">00</span><span class="count-type">{{ 'general.hours' | t }}</span>
+                  </li>
+                  <li class="deal-counter">:</li>
+                  <li class="deal-counter">
+                    <span class="yv-timers" id="dMinutes1">00</span><span class="count-type">{{ 'general.minutes' | t }}</span>
+                  </li>
+                  <li class="deal-counter">:</li>
+                  <li class="deal-counter">
+                    <span class="yv-timers" id="dSeconds1">00</span><span class="count-type">{{ 'general.seconds' | t }}</span>
+                  </li>
+                </ul>
+            </div>
+            </div>
+          {% endif %}
+{% endif %}

@@ -1,0 +1,117 @@
+{% liquid
+  assign productMetaBlock = section.blocks | where: 'type', 'product-meta'
+  assign productMetaStatus = false
+  assign productMeta = ''
+  for block in productMetaBlock
+    if block.settings.show_as_tab and block.settings.heading != blank
+      if block.settings.show_availability or block.settings.show_sku or block.settings.show_vendor or block.settings.show_type or block.settings.show_collections or block.settings.show_tags
+        assign productMeta = block
+        assign productMetaStatus = true
+      endif
+    endif
+  endfor
+%}
+{% if section.settings.show_description or section.settings.content_heading != blank or section.settings.content_heading2 != blank or section.settings.content_heading3 != blank or productMetaStatus %}
+<div class="yv-product-accordion {{ position }}" id="yv-product-accordion">
+  
+  {% if section.settings.width == 'full' %}
+    <div class="container">
+    {% endif %}
+  {% if section.settings.show_description %}
+  <details class="yv-accordion-card"{% if section.settings.open_description_accordion %} open{% endif %}>
+    <summary class="yv-accordion-header{% if section.settings.open_description_accordion %} active{% endif %}" content="accordion-content-description">
+      <h6>{{ 'products.product.description' | t }}</h6>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" xml:space="preserve">
+        <rect class="v-line" x="6" y="0" width="2.1" height="14"/>
+        <rect class="h-line" x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+      </svg>
+    </summary>
+    <div id="accordion-content-description" class="yv-accordion-content"{% if section.settings.open_description_accordion %} style="display:block"{% endif %}>
+      <div class="yv-content-body rich-editor-text-content">
+        {{ product.description | replace: '<table', '<div class="table-responsive"><table ' | replace: '</table>', '</table></div>' }}
+      </div>
+    </div>
+  </details>
+  {% endif %}
+  {% if section.settings.content_heading != blank %}
+  <details class="yv-accordion-card">
+    <summary class="yv-accordion-header" content="accordion-content-{{ section.id }}">
+      <h6>{{ section.settings.content_heading }}</h6>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" xml:space="preserve">
+        <rect class="v-line" x="6" y="0" width="2.1" height="14"/>
+        <rect class="h-line" x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+      </svg>
+    </summary>
+    <div id="accordion-content-{{ section.id }}" class="yv-accordion-content">
+      <div class="yv-content-body">
+      {% if section.settings.content %}
+      {{ section.settings.content }}
+      {% else %}
+      {{ 'onboarding.rich_text_page' | t }}
+      {% endif %}
+      </div>
+    </div>
+  </details>
+  {% endif %}
+  
+  {% if section.settings.content_heading2 != blank %}
+  <details class="yv-accordion-card">
+    <summary class="yv-accordion-header" content="accordion-content2-{{ section.id }}">
+      <h6>{{ section.settings.content_heading2 }}</h6>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" xml:space="preserve">
+        <rect class="v-line" x="6" y="0" width="2.1" height="14"/>
+        <rect class="h-line" x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+      </svg>
+    </summary>
+    <div id="accordion-content2-{{ section.id }}" class="yv-accordion-content">
+      <div class="yv-content-body">
+      {% if section.settings.content2 %}
+      {{ section.settings.content2 }}
+      {% else %}
+      {{ 'onboarding.rich_text_page' | t }}
+      {% endif %}
+      </div>
+    </div>
+  </details>
+  {% endif %}
+  {% if section.settings.content_heading3 != blank %}
+  <details class="yv-accordion-card">
+    <summary class="yv-accordion-header" content="accordion-content3-{{ section.id }}">
+      <h6>{{ section.settings.content_heading3 }}</h6>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" xml:space="preserve">
+        <rect class="v-line" x="6" y="0" width="2.1" height="14"/>
+        <rect class="h-line" x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+      </svg>
+    </summary>
+    <div id="accordion-content3-{{ section.id }}" class="yv-accordion-content">
+      <div class="yv-content-body">
+      {% if section.settings.content3 %}
+      {{ section.settings.content3 }}
+      {% else %}
+      {{ 'onboarding.rich_text_page' | t }}
+      {% endif %}
+      </div>
+    </div>
+  </details>
+  {% endif %}
+  {% if productMeta.settings.heading != blank %}
+  <details class="yv-accordion-card">
+    <summary class="yv-accordion-header" content="accordion-content-{{ productMeta.id }}">
+      <h6>{{ productMeta.settings.heading }}</h6>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" xml:space="preserve">
+        <rect class="v-line" x="6" y="0" width="2.1" height="14"/>
+        <rect class="h-line" x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+      </svg>
+    </summary>
+    <div id="accordion-content-{{ productMeta.id }}" class="yv-accordion-content">
+      <div class="yv-content-body">
+              {% render 'product-meta', product:product, current_variant:product.selected_or_first_available_variant, block: productMeta %}
+      </div>
+    </div>
+  </details>
+  {% endif %}
+  {% if section.settings.width == 'full' %}
+  </div>
+    {% endif %}
+</div>
+{% endif %}

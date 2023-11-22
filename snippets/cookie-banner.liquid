@@ -1,0 +1,67 @@
+{% if settings.enable_cookie_banner %}
+<style>
+  .cookies-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    overflow: auto;
+    display:none;
+    transition: all .3s linear;
+    background-color: var(--primaryAlternateBg);
+}
+#cookies-banner-outer {
+    pointer-events: visible;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 25px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  #cookies-banner-outer span {
+    width: 100%;
+    display: block;
+}
+.cookies-banner-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 0 0 35%;
+}
+  .cookies-banner-btn .button {
+    margin: 0 5px;
+  }
+  @media (max-width:575px){
+    #cookies-banner-outer {
+padding: 15px 25px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+      .cookies-banner-btn .button {
+    margin-top:10px;
+  }
+  }
+</style>
+<div class="cookies-banner">
+  <div id="cookies-banner-outer">
+     {% if settings.description != blank %}
+    <div>{{ settings.description }}</div>
+      {% endif %}
+    <div class="cookies-banner-btn">
+      {% if settings.decline_cookie_btn_text != blank %}
+      <button class="button small-btn"  onclick="handleDecline()">{{ settings.decline_cookie_btn_text }}</button>
+      {% endif %}
+      {% if settings.accept_cookie_btn_text != blank %}
+      <button class="button small-btn secondary-button"  onclick="handleAccept()">{{ settings.accept_cookie_btn_text }}</button>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}

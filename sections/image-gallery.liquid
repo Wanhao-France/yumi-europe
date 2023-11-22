@@ -1,0 +1,310 @@
+<div class="offer-section-wrapper">
+  <div class="container sm-container">
+    <div class="section-heading center-heading">
+      {%- if section.settings.heading != blank -%}
+        <{{ section.settings.seo_heading }}>
+          {{ section.settings.heading }}
+        </{{ section.settings.seo_heading }}>
+      {%- endif -%}
+    </div>
+    <div class="yv-offers-outer">
+      <div class="row">
+        {% assign delay = 0.2 %}
+        {%- for block in section.blocks -%}
+          {%- capture style -%}{% cycle 1, 2, 3 %}{%- endcapture -%}
+          <div
+            id="yv-image-gallery-item-{{ block.id }}"
+            class="{% if section.blocks.size == 1 %}col-12{%else%}col-10{% endif %} col-sm-6 col-md-4"
+            {% if settings.enable_animation %}
+              data-aos="fade-up" data-aos-delay="{{ 50 | times : forloop.index }}"
+            {% endif %}
+            {{ block.shopify_attributes }}
+          >
+            <div class="yv-offer-item-box content-border-{{section.settings.show_border}}">
+              <a
+                href="{{ block.settings.link }}"
+                class="yv-offer-item {% if block.settings.heading == blank and block.settings.subheading == blank %}no-content{% endif %}"
+                aria-label="{{ block.settings.heading | default : shop.name }}"
+              >
+                {% if block.settings.image != blank %}
+                  {% render 'lazy-image', image: block.settings.image, sizes: '[375]' %}
+                {% else %}
+                  {{ 'product-' | append: style | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                {%- unless block.settings.heading == blank and block.settings.subheading == blank -%}
+                  <div class="yv-offer-detail bottom-left content-border-true ">
+                    {%- if block.settings.heading != blank -%}
+                      <h5 class="gallery-image-heading text-medium">{{ block.settings.heading }}</h5>
+                    {%- endif -%}
+                    {%- if block.settings.subheading != blank -%}
+                      <h5 class="gallery-image-subheading offer-item-desc">{{ block.settings.subheading }}</h5>
+                    {%- endif -%}
+                  </div>
+                {%- endunless -%}
+              </a>
+            </div>
+          </div>
+          {% assign delay = delay | plus: 0.1 %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  #shopify-section-{{ section.id }}.shopify-section{
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --primaryColorBody:var(--{{- section.settings.bgcolor -}}ColorBody);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+
+  {%- for block in section.blocks -%}
+    #yv-image-gallery-item-{{ block.id }} .gallery-image-heading {
+      color:{{ block.settings.headingcolor }};
+    }
+    #yv-image-gallery-item-{{ block.id }} .gallery-image-subheading {
+      color:{{ block.settings.subheadingcolor }};
+    }
+  {%- endfor -%}
+  @media only screen and (max-width:575px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+
+</style>
+{% schema %}
+{
+  "name": "t:sections.image-gallery.name",
+  "tag": "section",
+  "class": "offer-section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Add Your Heading Here",
+      "label": "t:sections.image-gallery.settings.heading.label"
+    },
+   {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "default": true,
+      "label": "t:sections.image-gallery.settings.show_border.label"
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.color_singular_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 45,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 45,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 35,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:sections.image-gallery.blocks.image.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.image-gallery.blocks.image.settings.heading.label",
+          "info": "t:sections.image-gallery.blocks.image.settings.heading.info"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "default": "Sub heading",
+          "label": "t:sections.image-gallery.blocks.image.settings.subheading.label",
+          "info": "t:sections.image-gallery.blocks.image.settings.subheading.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-gallery.blocks.image.settings.image.label",
+          "info": "t:sections.image-gallery.blocks.image.settings.image.info"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.image-gallery.blocks.image.settings.link.label"
+        },
+        {
+          "type": "header",
+          "content": "t:common.header.color_section.label"
+        },
+        {
+          "type": "color",
+          "id": "headingcolor",
+          "label": "t:sections.image-gallery.blocks.image.settings.heading.label",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "subheadingcolor",
+          "label": "t:sections.image-gallery.blocks.image.settings.subheading.label",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-gallery.presets.name",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,155 @@
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_n4.2b61d9dcf54d8ac8282cfd1ebb6964c79a7efcd1.woff2?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=e8e716a76e9473776eeadd8bac25db2862646fe457d902ee4d7e67252ee6e06a") format("woff2"),
+       url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_n4.420cbf408f643f8ff8fd948b99c10dade8b6af79.woff?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=f6daf7de8451a467a0d8da27e898f8a24bfe5cf8ec5a41d8183c1a1fe24d5745") format("woff");
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_n7.5bd4fb9346d13afb61b3d78f8a1e9f31b128b3d9.woff2?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=aafce82bd372d95b2a0282c84465200d5450de387db20aeb2ee68cc24b0c60b2") format("woff2"),
+       url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_n7.2bcf0f11aa6af91c784a857ef004bcca8c2d324d.woff?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=64d1dcae9d5f086b3e737f678409adac6eb05a206894a1316920eac9e3e72fe4") format("woff");
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_i4.e88a2041a6cfbeacffb96db0e8efdfaaa38ddc5c.woff2?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=b709af6b5702b615937132bce2b3ceef6ca6e723bfe1f323bf5292d96e779055") format("woff2"),
+       url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_i4.2c3733ccdf579e6e89e929a950e6a93484fdf6b4.woff?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=7f1b211554492442fb8a00f1dff93f0e54a02c7df1b905e7223b7d2623762924") format("woff");
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_i7.975ea93f521412ef99ca1e2e434d8ca6a5cf77e7.woff2?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=2a46739ecfa85ff3d1c65a7c92508d31387fc45705a78ce38bfc10ced6442cf4") format("woff2"),
+       url("//yumi-europe.myshopify.com/cdn/fonts/nunito_sans/nunitosans_i7.83b70272d04b71e88f25fc6834dc9b88e4ba4e95.woff?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=0c46b86e4bc1c278df99310f7956baa081404e21aa26ef5e7e41d52fdaa09bfb") format("woff");
+}
+
+@font-face {
+  font-family: Poppins;
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("//yumi-europe.myshopify.com/cdn/fonts/poppins/poppins_n6.e2fdd168541a5add2d1a8d6f2b89b09c9c9e690d.woff2?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=508d593db00f0ee4a0bc98098d6c18b3f2b1e3ec8a5850076dfd47d2ecbfb820") format("woff2"),
+       url("//yumi-europe.myshopify.com/cdn/fonts/poppins/poppins_n6.6d62d2d0f11a9ff578d200ad2154f9860db165c1.woff?h1=eXVtaS1ldXJvcGUuYWNjb3VudC5teXNob3BpZnkuY29t&hmac=d1396eeb5e92b958622445b1beab306966ea618b19a7d47ef85a683d288b5ff4") format("woff");
+}
+
+
+:root {
+  --gray: #ececec;
+  --dark-gray: #747474;
+  --green:#6cad61;
+  --red:#ec7c7c;
+  --heading-font-family:Poppins,sans-serif;
+  --heading-font-weight:600;
+  --font-family:"Nunito Sans",sans-serif;
+  --body-font-weight:400;
+  --body-font-weight-bold: 300;
+  --thin:100;
+  --light:300;
+  --normal:400;
+  --medium:500;
+  --semibold:600;
+  --bold:700; 
+  --extrabold:900;
+  --theme-color: #8f826b;
+  --theme-light-color: rgba(143, 130, 107, 0.1);
+  --colorTextBody: #000000;
+  --colorLightTextBody: rgba(0, 0, 0, 0.5);
+  --colorXlightTextBody: rgba(0, 0, 0, 0.3);
+  --colorXXlightTextBody: rgba(0, 0, 0, 0.1);
+  --cartDotColor: #efb34c;
+  --cartDotColorLight:rgba(239, 179, 76, 0.3);
+  --cartDotColorNull:rgba(239, 179, 76, 0);
+  --colorBtnPrimary: #000000;
+  --colorBtnPrimaryText: #ffffff; 
+  --colorBtnPrimaryBorder: #000000; 
+  --colorBtnSecondary: #ffffff;
+  --colorBtnSecondaryText:#000000;
+  --colorBtnSecondaryBorder:#000000;  
+  --primaryColorBody: #ffffff;
+  --saleBadgeBg:#efb34c;
+  --saleBadgeText:#ffffff;
+  --soldBadgeBg:#E22120;
+  --soldBadgeText:#ffffff;
+  --secondaryColorBody: #e1dcd8;
+  
+--primarySocialIconBg:#e6e6e6;
+    --primaryAlternateBg:#f2f2f2;--secondarySocialIconBg:#cbc2bb;--tertiarySocialIconBg:#18634d;--quaternarySocialIconBg:#dfd5cd;--secondarycolorTextBody: #000000;
+  --secondaryColorLightTextBody: rgba(0, 0, 0, 0.5);
+  --secondaryColorXlightTextBody: rgba(0, 0, 0, 0.3);
+  --secondary_heading_color: #000000;
+  --tertiaryColorBody:#0e3a2d;
+  --tertiarycolorTextBody: #ffffff;
+  --tertiaryColorLightTextBody: rgba(255, 255, 255, 0.5);
+  --tertiaryColorXlightTextBody: rgba(255, 255, 255, 0.3);
+  --tertiary_heading_color: #ffffff;
+  --gradientColorBody: linear-gradient(262deg, rgba(255, 235, 231, 1), rgba(238, 238, 238, 1) 100%);
+  --quaternaryColorBody: #f3efec;
+  --quaternarycolorTextBody: #181818;
+  --quaternaryColorLightTextBody: rgba(24, 24, 24, 0.5);
+  --quaternaryColorXlightTextBody: rgba(24, 24, 24, 0.3);
+  --quaternary_heading_color: #181818;
+  --colorImageBg: #f3efec;
+  --colorImageBorder: #eee;
+  --productImageBorder:0;
+  --articleImageBorder:0;
+  --collectionImageBorder:0;
+  --colorTextSavings: #E22120;
+  --colorBgSavings: #ffd1d1;
+  --heading_color: #000000;
+  --heading_base_size: 0.9;
+  --heading_spacing: 0.0em;
+  --heading_line_height: 1.1;
+  --base_spacing: 0.0em;
+  --base_line_height: 1.6;
+  --text_base_size: 1.0;
+  --buttonRadius: 6px;
+  --productGridRadius: 20px;
+  --headingTextTransform:;
+  --buttonFontFamily: var(--font-family);
+  --variantFontFamily: var(--font-family);
+  --filtersHeadingFontFamily: var(--font-family);
+  --priceFontFamily: var(--font-family);
+  --tabHeadingFontFamily: var(--font-family);
+  --tabHeadingTextTransform:;
+  --navigationFontFamily: var(--font-family);
+  --navigationTextTransform:;
+  --variantTextTransform:uppercase;
+  --xsmallText:calc(var(--text_base_size) * 10px);
+  --smallText: calc(var(--text_base_size) * 12px);
+  --text: calc(var(--text_base_size) * 14px);
+  --mediumText: calc(var(--text_base_size) * 16px);
+  --largeText: calc(var(--text_base_size) * 18px);
+  --xlargeText:  calc(var(--text_base_size) * 20px);
+  --buttonAnimationDirection:translateX(-100%);
+}
+@media (min-width:1025px) {
+  .button:before,
+  .pdp-action-container button.shopify-payment-button__button--hidden:before,
+  .pdp-action-container button.shopify-payment-button__button:before,
+  .tertiary-button:before {
+      content: "";
+      position: absolute;top:0;
+        right:0;
+        width:0;
+        height:100%;z-index: -1;
+      transition: 0.6s ease-in-out;
+  }
+  .button:hover:before,
+  .pdp-action-container button.shopify-payment-button__button--hidden:hover:before,
+  .pdp-action-container button.shopify-payment-button__button:hover:before,
+  .secondary-button:hover:before {right:auto;
+      left:0;
+      width:100%;}
+}

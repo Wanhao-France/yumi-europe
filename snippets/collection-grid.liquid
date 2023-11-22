@@ -1,0 +1,33 @@
+{% assign featuredImage =  collection.featured_image %}
+{% if collectionImage != blank %}
+{% assign featuredImage =  collectionImage %}
+{% endif %}
+{% assign collectionTitle =  'onboarding.collection_title' | t %}
+{% if collection != blank %}
+{%- liquid 
+  assign collectionTitle =  collection.title
+-%}
+{% endif %}
+<div class="col-12 col-sm-6 col-md-4 col-lg-3" {{ animationAttr }}  {{ block.shopify_attributes }}>
+  <div class="yv-collection-card-box">
+    <a href="{{ collection.url }}" class="yv-collection-featured-img"  aria-label="{{- collectionTitle -}}">
+      {%- if featuredImage != blank -%}
+      <div class="image-wrapper image-{{ settings.collection_image_style }}" {% if settings.collection_image_style == 'aspect' %}style="padding-bottom:{{ 1 | divided_by : featuredImage.aspect_ratio | times : 100 | plus : 1 }}%"{% endif %}}>
+      {% render 'lazy-image' image: featuredImage %}
+      </div>
+      {% else %}   
+        {%- if settings.collection_image_style != 'aspect' -%}
+        <div class="image-wrapper no-collection-image image-{{ settings.collection_image_style }}">
+        {%- endif -%}
+        {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- if settings.collection_image_style != 'aspect' -%}
+        </div>
+        {%- endif -%}
+      {% endif %}
+    </a>
+    <div class="yv-collection-detail">
+      <a href="{{ collection.url }}" class="yv-collection-title h6 heading-style" aria-label="{{- collectionTitle -}}">{{- collectionTitle -}}</a>
+    </div>
+    <a href="{{ collection.url }}" class="yv-collection-grid-hover"></a>
+  </div>
+</div>

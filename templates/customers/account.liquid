@@ -1,0 +1,291 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="yv-page-banner yv-account-page-banner">
+  <div class="page-banner-content">
+    <h2 class="page-banner-title">{{ 'customer.account.title' | t }}</h2>
+  </div>
+</div>
+<section class="shopify-section customer account">
+  <div class="container">
+    {% render 'account-header' %}
+    <div class="account-pages-content">
+      <h5>{{ 'customer.orders.page_title' | t }}</h5>
+      {% paginate customer.orders by 20 %}
+        {%- if customer.orders.size > 0 -%}
+          <div class="table-responsive">
+            <table class="order-history">
+              <caption class="visually-hidden">
+                {{ 'customer.orders.page_title' | t }}
+              </caption>
+              <thead>
+                <tr>
+                  <th id="ColumnOrder" scope="col">{{ 'customer.orders.order_number' | t }}</th>
+                  <th id="ColumnDate" scope="col">{{ 'customer.orders.date' | t }}</th>
+                  <th id="ColumnPayment" scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+                  <th id="ColumnFulfillment" scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th id="ColumnTotal" scope="col">{{ 'customer.orders.total' | t }}</th>
+                  {%- comment -%} Reorder column start here {%- endcomment -%}
+                  {% if settings.reorder_enable %}
+                  <th id="ColumnTotal" scope="col">Action</th>
+                  {% endif %}
+                  {%- comment -%} Reorder column end here {%- endcomment -%}
+                </tr>
+              </thead>
+              <tbody>
+                {%- for order in customer.orders -%}
+                  <tr>
+                    <td
+                      id="RowOrder-{{ forloop.index }}"
+                      headers="ColumnOrder"
+                      data-label="{{ 'customer.orders.order_number' | t }}"
+                    >
+                      <a
+                        href="{{ order.customer_url }}"
+                        aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                      >
+                        {{ order.name }}
+                      </a>
+                    </td>
+                    <td headers="ColumnOrder ColumnDate" data-label="{{ 'customer.orders.date' | t }}">
+                      {{ order.created_at | time_tag: format: 'date' }}
+                    </td>
+                    <td headers="ColumnOrder ColumnPayment" data-label="{{ 'customer.orders.payment_status' | t }}">
+                      <span class="payment-status {{ order.financial_status }}">
+                        {{- order.financial_status_label -}}
+                      </span>
+                    </td>
+                    <td
+                      headers="ColumnOrder ColumnFulfillment"
+                      data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                    >
+                      {{ order.fulfillment_status_label }}
+                    </td>
+                    <td headers="ColumnOrder ColumnTotal" data-label="{{ 'customer.orders.total' | t }}">
+                      {{ order.total_price | money_with_currency }}
+                    </td>
+                    {%- comment -%} Reorder html start here {%- endcomment -%}
+                    {% if settings.reorder_enable %}
+                        <td data-label="Action">
+                        <div class="action-container">
+                            <div class="Reorder__container">
+                            <div class="reorderItems complementary-products-wrapper">
+                                {% assign Variantcount = 0 %}
+                                {%- for line_item in order.line_items -%}
+                                <div class="reorder-single-item yv-complementary-product-box">
+                                    <a href="{{ ine_item.product.url }}" class="yv-complementary-product-img">
+                                    {%- if line_item.image != blank -%}
+                                        <div
+                                        class="image-wrapper"
+                                        style="padding-bottom:{{ 1 | divided_by : line_item.image .aspect_ratio | times: 100 }}%"
+                                        >
+                                        {%- render 'lazy-image',
+                                            image: line_item.image,
+                                            class: 'lazypreload',
+                                            width: '110x'
+                                        -%}
+                                        </div>
+                                    {%- else -%}
+                                        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                                    {%- endif -%}
+                                    </a>
+
+                                    <div class="yv-complementary-product-detail yv-product-information">
+                                    <span class="d-block">{{ line_item.title | strip_html }}</span>
+                                    <span class="d-block"></span>
+                                        {{- 'customer.order.reorder.item_status.heading' | t }}:
+                                        {% if line_item.variant.available %}
+                                        {% assign Variantcount = Variantcount | plus: 1 %}
+                                        {{ 'customer.order.reorder.item_status.available' | t }}
+                                        {%- elsif line_item.variant == blank -%}
+                                        {{ 'customer.order.reorder.item_status.unavailable' | t }}
+                                        {% elsif line_item.variant.available == false %}
+                                        {{ 'customer.order.reorder.item_status.out_of_stock' | t }}
+                                        {%- endif -%}
+                                    </span>
+
+                                    {% if line_item.variant.available %}
+                                        <span class="d-block inventory__left-items">
+                                        {{ 'customer.order.reorder.inventory' | t }}:
+                                        {{- line_item.variant.inventory_quantity -}}
+                                        </span>
+                                    {%- endif -%}
+                                    </div>
+                                    {% if line_item.variant.available %}
+                                    <div class="reorder-right-div">
+                                        <form class="formReorder" id="orderForm-{{ forloop.index }}">
+                                        <input type="hidden" name="note" value="{{- order.note -}}">
+                                        <input
+                                            type="hidden"
+                                            id="variantId"
+                                            name="id"
+                                            value="{{- line_item.variant_id -}}"
+                                        >
+                                        {%- unless line_item.properties == empty -%}
+                                            {%- for property in line_item.properties -%}
+                                            {%- unless property.last == empty -%}
+                                                <input
+                                                type="hidden"
+                                                name="properties[{{- property.first -}}]"
+                                                value="{{- property.last -}}"
+                                                >
+                                            {%- endunless -%}
+                                            {%- endfor -%}
+                                        {%- endunless -%}
+                                        <label class="visually-hidden" for="line-item-quantity-{{ forloop.index }}">
+                                            {{- 'sections.cart.headings.quantity' | t -}}
+                                        </label>
+                                        <div class="quantity cart-item-quantity">
+                                            <button
+                                            type="button"
+                                            class="quantity-button quantity-down ajaxcart__qty--minus"
+                                            data-id="43787586339067:91f1e041b8d6617343d3faa045cef26f"
+                                            data-line="1"
+                                            data-qty="9"
+                                            >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                x="0px"
+                                                y="0px"
+                                                width="14px"
+                                                height="14px"
+                                                viewBox="0 0 14 14"
+                                                xml:space="preserve"
+                                            >
+                                                <rect x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"></rect>
+                                            </svg>
+                                            </button>
+                                            <input
+                                            id="variantQty"
+                                            type="number"
+                                            class="ajaxcart__qty-num"
+                                            name="quantity"
+                                            minlength="1"
+                                            {% if line_item.variant.inventory_policy == 'deny' %}
+                                                maxlength="{{ line_item.variant.inventory_quantity }}"
+                                            {% endif %}
+                                            step="1"
+                                            value="1"
+                                            aria-label="{{ 'sections.cart.headings.quantity' | t }}"
+                                            >
+                                            <button
+                                            type="button"
+                                            class="quantity-button quantity-up ajaxcart__qty--plus"
+                                            data-line="1"
+                                            >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                x="0px"
+                                                y="0px"
+                                                width="14px"
+                                                height="14px"
+                                                viewBox="0 0 14 14"
+                                                xml:space="preserve"
+                                            >
+                                                <polygon points="14,6 8,6 8,0 6,0 6,6 0,6 0,8 6,8 6,14 8,14 8,8 14,8 "></polygon>
+                                            </svg>
+                                            </button>
+                                        </div>
+                                        <p class="form-status form-loading hidden">
+                                            <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            style="margin: auto; display: block; shape-rendering: auto;"
+                                            width="200px"
+                                            height="200px"
+                                            viewBox="0 0 100 100"
+                                            preserveAspectRatio="xMidYMid"
+                                            class="svg-loader"
+                                            >
+                                            <circle cx="50" cy="50" fill="none" stroke="#dddddd" stroke-width="6" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                                                <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                                            </circle>
+                                            </svg>
+                                        </p>
+                                        <p class="form-status form-success hidden">
+                                            <svg focusable="false" aria-hidden="true" viewBox="0 0 512 512">
+                                            <path fill="green" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+                                            </svg>
+                                        </p>
+                                        <p class="form-status form-error hidden">
+                                            <svg viewBox="0 0 41.93 41.89">
+                                            <g><g><g><path class="d" d="M26.26,20.95l14.54-14.53c.73-.73,1.13-1.67,1.13-2.65s-.4-1.92-1.13-2.64c-1.51-1.51-3.79-1.51-5.3,0l-14.54,14.53L6.42,1.13C4.91-.38,2.63-.38,1.13,1.13,.4,1.86,0,2.8,0,3.78s.4,1.92,1.13,2.65l14.54,14.53L1.12,35.48C.4,36.2,0,37.14,0,38.12s.4,1.92,1.12,2.65c1.45,1.45,3.84,1.45,5.29,0l14.54-14.53,14.54,14.53c.73,.72,1.67,1.12,2.65,1.12s1.92-.4,2.65-1.12c.73-.73,1.13-1.67,1.13-2.65,0-.98-.4-1.92-1.13-2.64l-14.54-14.53Z"></path></g></g></g>
+                                            </svg>
+                                        </p>
+                                        </form>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {%- endfor -%}
+                            </div>
+                            <div class="cart-warning-wrapper"></div>
+                            <div class="reorder-item-wrapper">
+                                <button
+                                type="button"
+                                class="link reorder__clear-cart"
+                                >
+                                {{ 'customer.order.reorder.clear_btn' | t}}
+                                </button>
+                                <button
+                                type="submit"
+                                class="button reorder__add_to_cart small-btn"
+                                {% if Variantcount == 0 %}
+                                    disabled
+                                {% endif %}
+                                >
+                                <span>{{ 'customer.order.reorder.atc_btn' | t}} </span>
+                                <svg
+                                    style="margin: auto; display: none; shape-rendering: auto;"
+                                    width="200px"
+                                    height="200px"
+                                    viewBox="0 0 100 100"
+                                    preserveAspectRatio="xMidYMid"
+                                    class="svg-loader"
+                                >
+                                    <circle cx="50" cy="50" fill="none" stroke="currentcolor"
+                                        stroke-width="6" r="35"
+                                        stroke-dasharray="164.93361431346415 56.97787143782138">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                            repeatCount="indefinite" dur="1s"
+                                            values="0 50 50;360 50 50" keyTimes="0;1" />
+                                    </circle>
+                                </svg>
+                                </button>
+                                <button
+                                type="button"
+                                class="button secondary-button reorder__cancel-item small-btn"
+                                >
+                                {{ 'customer.order.reorder.cancel_btn' | t}}
+                                </button>
+                            </div>
+                            </div>
+                            <button
+                            type="button"
+                            class="reorderButton button xsmall-btn"
+                            >
+                            {{ 'customer.order.reorder.button_text' | t}}
+                            </button>
+                        </div>
+                        </td>
+                    {% endif %}
+                    {%- comment -%} Reorder html end here {%- endcomment -%}
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+        {%- else -%}
+          <div class="nodatafound_wrapper">
+            <div class="nodatafound_box">
+              <p>{{ 'customer.orders.none' | t }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate, anchor: '' %}
+        {%- endif -%}
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'customer.js' | asset_url }}" defer></script>

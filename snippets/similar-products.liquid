@@ -1,0 +1,66 @@
+{% paginate collections['all'].products by 1000 %}
+{%- comment -%}
+Set either or both to true, if you want
+to limit yourself to items with same vendor, and/or type.
+{%- endcomment -%}
+
+{%- assign same_vendor = true -%}
+{%- assign same_type = true -%}
+
+{%- comment -%}
+Collections to ignore.
+Never pick related items from those.
+{%- endcomment -%}
+{%- liquid 
+  assign counter = 0
+  assign current_product = product 
+-%}
+{% assign vendor_handle = current_product.vendor %}
+{% assign productType = current_product.type %}
+{%- assign products = collections['all'].products  -%}
+{%- if settings.similar_condition == 'vendor' or settings.similar_condition == 'both' -%}
+{%- assign products = products | where: "vendor", vendor_handle  -%}
+  {% endif%}
+
+
+{%- if settings.similar_condition == 'type' or settings.similar_condition == 'both' -%}
+{%- assign products = products | where: "type", productType -%}
+{% endif%}
+{%- comment -%} theme-check-disable LiquidTag{%- endcomment -%}
+{%- capture related_items -%}
+
+{%- for product in products -%}
+
+  {%- unless product.handle == current_product.handle -%}
+        <li class="yv-similar-product-item">
+          {% liquid 
+            assign delay = 200 | times : forloop.index
+            if settings.enable_animation
+              assign animationAttr = 'data-aos="fade-up" data-aos-delay="' | append : delay | append : '"'  
+            else
+              assign animationAttr = ''
+          endif
+          render 'product-grid' product: product, productClasses: 'xsmall-product-card', animationAttr: animationAttr , hideRelated: true, hide_options: true , hideHoverImage: true
+          %}
+        </li>
+        {%- assign counter = counter | plus: 1 -%}
+  {%- endunless -%}
+  {%- if counter == 10 -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+
+{%- endcapture -%}
+{%- comment -%} theme-check-enable LiquidTag{%- endcomment -%}
+
+
+<div id="similarItemContainer" style="display:none">
+  {%- if related_items.size > 20 -%}
+  <ul class="list-unstyled yv-similar-product-list">
+    {{ related_items }}
+  </ul>
+  {%- else- %}
+  <div class="yv-similar-notfound">
+  {% render 'not-found' similar: true %}
+  </div>
+  {%- endif -%}
+</div>
+{% endpaginate %}

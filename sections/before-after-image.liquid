@@ -1,0 +1,345 @@
+<div class="container md-container">
+  {% if  section.settings.title != blank or section.settings.description != blank %}
+  <div class="section-heading text-center">
+  {% if section.settings.title != blank %}
+    <{{ section.settings.seo_heading }} class="section-heading-title">{{ section.settings.title }}</{{ section.settings.seo_heading }}>
+    {% endif %}
+  {% if section.settings.description != blank %}
+    <div class="section-heading-desc"><p>{{ section.settings.description }}</p></div>
+    {% endif %}
+  </div>
+    {% endif %}
+  {% if section.settings.fullwidth %}
+    </div>
+  {% endif %}
+  <div class="before-after-wrapper {% if settings.layout_style == 'rounded' and section.settings.fullwidth == false %}rounded{% endif %}">
+        <div class="before-after-main-image ">
+          {% if section.settings.before_text != blank %}
+           <h3 class="before-after-label {% if section.settings.text_alignment == 'top' %}top-left{% elsif section.settings.text_alignment == 'center' %}center-left{% else %}bottom-left{% endif %}">{{ section.settings.before_text }}</h3>
+          {% endif %}
+        {% assign firstImageRatio = 100 %}
+       {%- if section.settings.before_image_m != blank -%}
+        {% assign firstMobileImageRatio = 1 | divided_by : section.settings.before_image_m.aspect_ratio | times: 100 | minus : 1 %}
+        <div class="image-wrapper d-block d-md-none" style="padding-bottom:{{ firstMobileImageRatio }}%">           
+            {%- render 'lazy-image' image:section.settings.before_image_m -%} 
+        </div>
+        {%- endif %}
+       {%- if section.settings.before_image != blank -%}
+        {% assign firstImageRatio = 1 | divided_by : section.settings.before_image.aspect_ratio | times: 100 | minus : 1 %}
+        <div class="image-wrapper{% if section.settings.before_image_m != blank %} d-none d-md-block{% endif %}" style="padding-bottom:{{ firstImageRatio }}%">           
+            {%- render 'lazy-image' image:section.settings.before_image -%} 
+        </div>
+        {%- else -%}
+          {% liquid
+            assign placeholderClass = 'placeholder-svg'
+            if section.settings.before_image_m != blank
+            assign placeholderClass = 'placeholder-svg d-none d-md-block'
+            endif
+          %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: placeholderClass }}
+        {%- endif %}
+        </div>
+        <div class="before-after-overlay-image ">
+           {% if section.settings.after_text != blank %}
+          <h3 class="before-after-label {% if section.settings.text_alignment == 'top' %}top-right{% elsif section.settings.text_alignment == 'center' %}center-right{% else %}bottom-right{% endif %}">{{ section.settings.after_text }}</h3>
+             {% endif %}
+       {%- if section.settings.after_image_m != blank -%}
+        <div class="image-wrapper d-block d-md-none" style="padding-bottom:{{ firstMobileImageRatio }}%">           
+            {%- render 'lazy-image' image:section.settings.after_image_m -%} 
+        </div>
+        {%- endif %}
+       {%- if section.settings.after_image != blank -%}
+        <div class="image-wrapper" style="padding-bottom:{{ firstImageRatio }}%">
+            {%- render 'lazy-image' image:section.settings.after_image -%}
+        </div>
+        {%- else -%}
+          {% liquid
+            assign placeholderClass = 'placeholder-svg'
+            if section.settings.after_image_m != blank
+            assign placeholderClass = 'placeholder-svg d-none d-md-block'
+            endif
+          %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: placeholderClass }}
+        {%- endif %}
+        </div>
+        <div class="before-after-cursor">
+          <div class="before-after-cursor-point">
+            <svg xmlns="http://www.w3.org/2000/svg" width="49" height="29" viewBox="0 0 49 29" fill="none">
+              <rect y="29" width="29" height="49" rx="14.5" transform="rotate(-90 0 29)" fill="{{ section.settings.drag_bg_color }}"></rect>
+              <path d="M35 8L41 14.5L35 21" stroke="{{ section.settings.drag_text_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M14 8L8 14.5L14 21" stroke="{{ section.settings.drag_text_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+  </div>
+  {% unless section.settings.fullwidth %}
+    </div>
+  {% endunless %}
+<style>
+  #shopify-section-{{ section.id }}.shopify-section {
+    --imageClipPosition: 0px;
+    --dragStartPosition: {{ section.settings.drag_position }}%;
+    overflow: hidden;
+    background:{{- section.settings.bg_color -}};
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    --colorTextBody:{{- section.settings.description_color -}};
+    --heading_color:{{- section.settings.title_color -}};
+    --before_text_color:{{- section.settings.before_text_color -}};
+    --after_text_color:{{- section.settings.after_text_color -}};
+    --cursorBgColor:{{- section.settings.drag_bg_color -}};
+  }
+   @media only screen and (max-width:575px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+ 
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+ {% schema %} 
+  {
+    "name": "t:sections.before-after.name",
+    "tag": "section",
+    "class": "before-after-image",
+    "disabled_on": {
+    "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "fullwidth",
+        "label": "t:sections.before-after.settings.fullwidth.label",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.before-after.settings.title.label"
+      },
+      {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "t:sections.before-after.settings.description.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "before_image",
+        "label": "t:sections.before-after.settings.before_image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "before_image_m",
+        "label": "t:sections.before-after.settings.before_image_m.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "after_image",
+        "label": "t:sections.before-after.settings.after_image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "after_image_m",
+        "label": "t:sections.before-after.settings.after_image_m.label"
+      },
+      {
+        "type": "text",
+        "id": "before_text",
+        "label": "t:sections.before-after.settings.before_text.label",
+        "default":"Before"
+      },
+      {
+        "type": "text",
+        "id": "after_text",
+        "label": "t:sections.before-after.settings.after_text.label",
+        "default":"After"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "t:sections.before-after.settings.text_alignment.label",
+        "options": [
+          {
+            "value": "top",
+            "label": "t:sections.before-after.settings.text_alignment.options.top.label"
+          },
+          {
+            "value": "center",
+            "label": "t:sections.before-after.settings.text_alignment.options.center.label"
+          },
+          {
+            "value": "bottom",
+            "label": "t:sections.before-after.settings.text_alignment.options.bottom.label"
+          }
+        ],
+        "default": "bottom"
+      },
+      {
+        "type": "range",
+        "id": "drag_position",
+        "label": "t:sections.before-after.settings.drag_position.label",
+        "default":50,
+        "min":0,
+        "max":100,
+        "step":1,
+        "unit":"%"
+      },
+      {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "t:common.header.background_section.label"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "t:sections.before-after.settings.title.label",
+      "default":"#000000"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "t:sections.before-after.settings.description.label",
+      "default":"#000000"
+    },
+    {
+      "type": "color",
+      "id": "before_text_color",
+      "label": "t:sections.before-after.settings.before_text.label",
+      "default":"#000000"
+    },
+    {
+      "type": "color",
+      "id": "after_text_color",
+      "label": "t:sections.before-after.settings.after_text.label",
+      "default":"#000000"
+    },
+    {
+      "type": "color",
+      "id": "drag_bg_color",
+      "label": "t:sections.before-after.settings.drag_bg.label",
+      "default":"#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "drag_text_color",
+      "label": "t:sections.before-after.settings.drag_text.label",
+      "default":"#000000"
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.before-after.presets.name"
+      }
+    ]
+  }
+  {% endschema %}

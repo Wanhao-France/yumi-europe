@@ -1,0 +1,86 @@
+
+<div class="footer-dropdown">
+{%- if section.settings.enable_language_selector -%}
+<div class="disclosure btn-group dropup">
+  {% form 'localization', id: 'localization_form_language1' %}
+      <div class="country-select-box">
+        <div class="detail-box lang-dropdown" tabindex="0">
+          <div class="detail-summary country-dropdown-item cursor-pointer">
+            <span class="country-name">
+              {{- localization.language.iso_code }}
+            </span>
+          </div>
+          <div class="detail-expand lang-dropdown-expand  country-dropdown-expand">
+            <ul id="country__list" class="list-unstyled country-list">
+              {% for language in localization.available_languages %}
+                <li class="country-list-item ">
+                  <button
+                    type="submit"
+                    name="language_code"
+                    id="language-{{ section.id }}-{{ forloop.index }}"
+                    value="{{ language.iso_code }}"
+                    class="custom-checkbox radio-box body-font"
+                  >
+                  <span>
+                      {{ language.endonym_name | capitalize }}
+                  </span>
+                  </button>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+  {% endform %}
+</div>
+{%- endif -%}
+{%- if section.settings.enable_currency_selector -%}
+  <div class="disclosure btn-group dropup">
+      {% form 'localization', id: 'localization_form_currency1' %}
+      <div class="country-select-box">
+          <div class="detail-box country-dropdown" tabindex="0">
+          <div class="detail-summary country-dropdown-item cursor-pointer">
+            <span class="countryflags countryflag__{{ localization.country.iso_code }}"> </span>
+            <span class="country-name">
+              {{- localization.country.currency.iso_code }}
+            </span>
+          </div>
+          <div class="detail-expand country-dropdown-expand">
+            <ul id="country__list" class="list-unstyled country-list">
+              {% for country in localization.available_countries %}
+                <li class="country-list-item ">
+                  <button
+                    type="submit"
+                    name="country_code"
+                    id="country-{{ section.id }}-{{ forloop.index }}"
+                    value="{{ country.iso_code }}"
+                    class="custom-checkbox radio-box body-font"
+                  >
+                    <span class="countryflags countryflag__{{ country.iso_code }}"> </span>
+                    <span>
+                      {{ country.name }} ({{ country.currency.iso_code }}
+                      {{ country.currency.symbol }})
+                    </span>
+                  </button>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endform %} 
+  </div>
+{%- endif -%}
+</div>
+
+<script>
+  var localizationDropdown =  document.getElementsByClassName('lang-dropdown');
+  if(localizationDropdown){
+    Array.from(localizationDropdown).forEach(function(list) {
+      list.addEventListener('change', ()=>{	
+                            var form = list.closest('form');
+      form.submit();  
+    })      
+  })
+  }
+</script>

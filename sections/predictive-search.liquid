@@ -1,0 +1,155 @@
+{%- if predictive_search.performed -%}
+    {% if settings.enable_result_suggestions and predictive_search.resources.queries.size > 0 %}
+    <div class="yv-related-query" data-search-suggestions>
+      <h6 class="recent-search-title">{{ 'templates.search.suggestion' | t }}</h6>
+      <ul class="list-unstyled yv-related-query-list">
+        {%- for query in predictive_search.resources.queries -%}
+          <li id="predictive-search-option-query-{{ forloop.index }}" class="yv-related-query-item" role="option" aria-selected="false">
+            <a href="{{ query.url }}" class="yv-related-query-link" aria-label="{{ query.text }}">
+              {{ query.styled_text }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    {% endif %}
+  {%- if predictive_search.resources.products.size > 0
+    or predictive_search.resources.articles.size > 0
+    or predictive_search.resources.pages.size > 0
+  -%}
+    {%- assign activeTab = 'active' -%}
+    {%- assign activeContent = 'active' -%}
+    {%- assign resultType = 'product' -%}
+    <div class="yv-tabs-wrapper">
+      <ul class=" list-unstyled yv-tabs align-end">
+        {%- if predictive_search.resources.products.size > 0 -%}
+          <li
+            class="yv-tab-item yv-tab-result-head {{ activeTab }}"
+            data-results="filter-products"
+            data-resultUrl="{{ routes.search_url }}?type=product&q={{ predictive_search.terms }}&options[prefix]=last"
+          >
+            <a class="yv-tab-link">{{ 'templates.search.product' | t }}</a>
+          </li>
+          {%- assign activeTab = '' -%}
+        {%- endif -%}
+        {%- if predictive_search.resources.articles.size > 0 -%}
+          {%- liquid
+            if activeTab != ''
+              assign resultType = 'article'
+            endif
+          -%}
+          <li
+            class="yv-tab-item yv-tab-result-head {{ activeTab }}"
+            data-results="filter-articles"
+            data-resultUrl="{{ routes.search_url }}?type=article&q={{ predictive_search.terms }}&options[prefix]=last"
+          >
+            <a class="yv-tab-link">{{ 'templates.search.article' | t }}</a>
+          </li>
+          {%- assign activeTab = '' -%}
+        {%- endif -%}
+        {%- if predictive_search.resources.pages.size > 0 -%}
+          {%- liquid
+            if activeTab != ''
+              assign resultType = 'page'
+            endif
+          -%}
+          <li
+            class="yv-tab-item yv-tab-result-head {{ activeTab }}"
+            data-results="filter-pages"
+            data-resultUrl="{{ routes.search_url }}?type=page&q={{ predictive_search.terms }}&options[prefix]=last"
+          >
+            <a class="yv-tab-link">{{ 'templates.search.page' | t }}</a>
+          </li>
+        {%- endif -%}
+      </ul>
+      <div class="yv-tab-content">
+        {%- if predictive_search.resources.products.size > 0 -%}
+          <div id="filter-products" class="yv-tab-pane yv-search-result-list product-result {{ activeContent }}">
+            <div class="row">
+              {%- for product in predictive_search.resources.products limit: 7 -%}
+                {% if forloop.first %}
+                  <script>
+                   var recentProductHandle = '{{ product.handle }}';
+                  </script>
+                {% endif %}
+                <div class="col-4 col-sm-4 col-md-3 col-lg-2">
+                  {%- liquid
+                    assign productFormId = 'product-form-' | append: section.id
+                    assign mainClass = 'small-product-card'
+                    render 'product-grid', product: product, productFormId: productFormId, productClasses: mainClass , hideHoverImage: true, hide_options: true, hideRelated: true, hideQuickView: true
+                  -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- assign activeContent = '' -%}
+        {%- endif -%}
+        {%- if predictive_search.resources.articles.size > 0 -%}
+          <div id="filter-articles" class="yv-tab-pane yv-search-result-list blog-result {{ activeContent }}">
+            <div class="row">
+              {%- for article in predictive_search.resources.articles limit: 6 -%}
+                <div class="col-6 col-sm-6 col-md-4 col-lg-2" >
+                  <div class="yv-blog-card">
+                    <a href="{{- article.url -}}" class="yv-blog-card-img">
+                      {%- if article.image -%}             
+                        <div class="image-wrapper image-{{ settings.article_image_style }}" {% if settings.article_image_style == 'aspect' %}style="padding-bottom:{{ 1 | divided_by : article.image.aspect_ratio | times: 100 }}%"{% endif %}>
+                          {% render 'lazy-image' image: article.image %} 
+                        </div>
+                      {%- else -%}
+                        {%- if settings.article_image_style != 'aspect' -%}
+                          <div class="image-wrapper no-article-image image-{{ settings.article_image_style }}">
+                        {%- endif -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {%- if settings.article_image_style != 'aspect' -%}
+                          </div>
+                        {%- endif -%}                    
+                      {%- endif -%}
+                      <span class="yv-blog-date">{{ article.published_at | date: "%B %d, %Y" }}</span>
+                    </a>
+                    <div class="yv-blog-card-text">
+                      <h6 class="yv-blog-title">{{ article.title }}</h6> 
+                      <p class="yv-blog-desc">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+                      <a href="{{- article.url -}}" class="button xsmall-btn secondary-button">{{ 'blogs.article.read_more' | t }}</a>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- assign activeContent = '' -%}
+        {%- endif -%}
+        {%- if predictive_search.resources.pages.size > 0 -%}
+          <div id="filter-pages" class="yv-tab-pane yv-search-result-list page-result {{ activeContent }}">
+            <div class="row">
+              {%- for page in predictive_search.resources.pages limit: 3 -%}
+                <div class="col-6 col-sm-6 col-md-4">
+                  <div class="page-result-item">
+                    <h5 class="page-result-title">{{ page.title | strip_html }}</h5>
+                    <p class="page-result-desc">{{ page.content | strip_html | truncatewords: 20 }}</p>
+                    <a class="page-result-link" href="{{ page.url }}" title="{{ page.title | strip_html }}">{{ 'blogs.article.read_more' | t }}</a>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- assign activeContent = '' -%}
+        {%- endif -%}
+      </div>
+      <div>
+        <a
+          href="/search?type=product&q={{ predictive_search.terms }}&options%5Bprefix%5D=last"
+          class="search-result-bottom"
+          >
+            {{ 'templates.search.drawer_all_results' | t }}
+            </a
+        >
+      </div>
+    </div>
+    {%- else -%}
+    <div class="search-bar-no-results">
+      <h3>
+        {{ 'templates.search.no_suggestion' | t }}
+      </h3>
+    </div>
+  {%- endif -%}
+{%- endif -%}

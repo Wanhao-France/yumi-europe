@@ -1,0 +1,109 @@
+
+{%- if predictive_search.performed -%}
+    {% if settings.enable_result_suggestions and predictive_search.resources.queries.size > 0 %}
+        <div class="searchbar-suggestion">
+              <h6 class="searchbar-list-head text-small">{{ 'templates.search.suggestion' | t }}</h6>
+              <ul class="list-unstyled related-query-list">
+             {%- for query in predictive_search.resources.queries -%}
+                <li class="related-query-item"><a href="{{ query.url }}" class="related-query-link text-small" aria-label="{{ query.text }}">{{ query.styled_text }}</a></li>
+             {%- endfor -%}
+              </ul>
+        </div>
+    {% endif %}
+    {%- if predictive_search.resources.products.size > 0 or predictive_search.resources.articles.size > 0 or predictive_search.resources.pages.size > 0 -%}
+        <div class="searchbar-content-result">
+            {%- if predictive_search.resources.products.size > 0 -%}
+            <div class="searchbar-content-list">
+                <h6 class="searchbar-list-head text-small">{{ 'templates.search.product' | t }}</h6>
+                <ul class="list-unstyled searchbar-product-list searchbar-list">
+                    {%- for product in predictive_search.resources.products limit: 7 -%}
+                        <li class="searchbar-item searchbar-product-item">
+                                <div class="searchbar-product-card">
+                                    <a href="{{ product.url }}" class="searchbar-product-img" aria-label="{{ product.title }}">
+                                     {%- if product.featured_media != blank -%}
+                                      <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : product.featured_media.preview_image.aspect_ratio | times: 100 | minus : 1 }}%">
+                                          {%- render 'lazy-image' image: product.featured_media.preview_image, sizes:'[60]' -%}
+                                      </div>
+                                     {% else %}
+                                        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                                     {% endif %}
+                                   </a>
+                                    <div class="searchbar-product-info">
+                                        <a href="{{ product.url }}" class="yv-product-title" aria-label="{{ product.title }}">{{ product.title }}</a>
+                                            {%- if settings.show_price -%}
+                                            <div class="yv-prizebox" data-saved="{{ settings.show_saved_amount }}"  data-saved-style="{{ settings.saved_amount_style }}" data-price-wrapper="" {{ block.shopify_attributes }}>
+                                              {%- assign price_min = product.price_min | money -%}
+                                              {%- if product.price_varies -%}
+                                              <span class="yv-product-price price-varies">{{ 'products.product.price.from_price_html' | t : price : price_min }}</span>
+                                              {%- else -%}
+                                              <span class="yv-product-price">{{ price_min }}</span>
+                                              {%- endif -%}
+                                              {%- if product.compare_at_price_min > product.price_min -%}
+                                              <span class="yv-product-compare-price">{{ product.compare_at_price_min | money }}</span>
+                                              {%- endif -%}
+                                            </div>
+                                            {%- if current_variant.unit_price_measurement -%}
+                                            <p class="yv-product-unit-price">
+                                              {{ current_variant.unit_price | money }} / {% if current_variant.unit_price_measurement.reference_value != 1 %}{{ current_variant.unit_price_measurement.reference_value }}{% endif %} {{ current_variant.unit_price_measurement.reference_unit }}
+                                            </p>
+                                            {%- endif -%}
+                                            {%- endif -%}
+                                      </div>
+    
+                                </div>
+                        </li>
+                  {% endfor %}
+                </ul>
+            </div>
+            {%- endif -%}
+             {%  if predictive_search.resources.articles.size > 0 %}
+                <div class="searchbar-content-list">
+                  <h6 class="searchbar-list-head text-small">{{ 'templates.search.article' | t }}</h6>
+                  <ul class="list-unstyled searchbar-article-list searchbar-list">
+                     {%- for article in predictive_search.resources.articles limit: 6 -%}
+                          <li class="searchbar-article-item">
+                            <a href="{{- article.url -}}" class="searchbar-article-card">
+                              <div class="searchbar-article-img">
+                                 {%- if article.image != blank -%}
+                                      <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : article.image.preview_image.aspect_ratio | times: 100 | minus : 1 }}%">
+                                          {%- render 'lazy-image' image: article.image, sizes:'[60]' -%}
+                                      </div>
+                                     {% else %}
+                                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                     {% endif %}duct
+                              </div>
+                              <div class="searchbar-article-info">
+                                  <p>{{ article.title }}</p>
+                              </div>
+                            </a>
+                          </li>
+                      {% endfor %}
+                  </ul>
+                </div>
+            {% endif %}
+         {%- if predictive_search.resources.pages.size > 0-%}
+              <div class="searchbar-content-list">
+                  <h6 class="searchbar-list-head text-small">{{ 'templates.search.page' | t }}</h6>
+                  <ul class="list-unstyled searchbar-page-list searchbar-list">
+                    
+                          {%- for page in predictive_search.resources.pages limit: 6 -%}
+                              <li class="searchbar-item searchbar-page-item"><a href="{{ page.url }}" title="{{ page.title | strip_html }}" class="text-medium searchPage_link" >{{ page.title }}</a></li>
+                          {%- endfor -%}
+                      
+                  </ul>
+              </div>
+          {% endif %}
+        <div class="serach-result-bottomline">
+            <a class="all_results_link" href="{{ routes.search_url }}?type=product&q={{ predictive_search.terms }}&options%5Bprefix%5D=last" aria-label="result">
+                {{ 'templates.search.drawer_all_results' | t }}
+            </a>
+        </div>
+     </div>
+    {%- else -%}
+        <div class="search-bar-no-results">
+        <h3>
+            {{ 'templates.search.no_suggestion' | t }}
+        </h3>
+        </div>
+  {%- endif -%}
+{%- endif -%}

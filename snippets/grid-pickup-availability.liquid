@@ -1,0 +1,35 @@
+{%- if settings.show_grid_pickup -%}
+<div
+  class="grid__pickup-availabilities no-js-hidden"
+  data-root-url="{{ shop.url }}"
+  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  data-has-only-default-variant="{{ product.has_only_default_variant }}"
+>
+  <div class="grid-pickup-availability-preview-container">
+    {% assign pickup_availability = product.selected_or_first_available_variant.store_availabilities
+      | where: 'pick_up_enabled', true
+    %}
+    {% for avail in pickup_availability %}
+      <div
+        class="grid__avail-pickup hidden"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+        data-store="{{ avail.location.name }}"
+        data-store-available
+      >
+        {% if avail.available %}
+          <div class="yv-product-availability">{{ 'templates.collection.grid_availability' | t }} {{ avail.location.name }}</div>
+        {% else %}
+          <div class="yv-product-availability">{{ 'templates.collection.grid_out_of_stock' | t }} {{ avail.location.name }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="grid__avail-pickup hidden" data-store-unavailable>
+      <div class="yv-product-availability">{{ 'templates.collection.grid_unavailability' | t }} <span data-location-name></span></div>
+    </div>
+    <div class="grid__avail-pickup hidden" data-select-store>
+      <div class="yv-product-availability">{{ 'templates.collection.grid_select_store' | t }}</div>
+    </div>
+  </div>
+</div>
+{%- endif -%}

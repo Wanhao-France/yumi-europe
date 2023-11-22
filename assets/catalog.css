@@ -1,0 +1,203 @@
+.catalog-open .navbar {
+  position: relative;
+}
+.catalog-open::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 2;
+  transition: 0.5s ease-in-out;
+  opacity: 0.3;
+}
+.yv-browse-category-link {
+  margin-left: 30px;
+  display: none;
+}
+.yv-browse-category-link svg {
+  margin-left: 3px;
+  margin-bottom: -1px;
+}
+.top-header.header_3 .yv-browse-category .yv-browse-category-link{
+  position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.top-header.header_3 .category-menu-bar {
+  left: 40px;
+  width: calc(100% - 40px);
+}
+.catalog-open .nav__header.nav_2 {
+  opacity: 0.8;
+  pointer-events: none;
+}
+.category-menu-bar {
+  position: absolute;
+  left: calc(var(--headerlogoWidth) + 30px);
+  top: calc(50% + 25px);
+  z-index: 1;
+  width: calc(100% - calc(var(--headerlogoWidth) + 30px));
+  height: auto;
+  overflow: visible;
+  display: none;
+  transition: 0.3s ease-in-out;
+  flex-basis: 100%;
+  flex-grow: 1;
+}
+.category-menu {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 2px #0000000f;
+}
+.category-menu-link {
+  position: relative;
+  padding: 15px 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+}
+.category-menu::-webkit-scrollbar {
+  width: 2px;
+}
+.category-menu-link span {
+  padding-right: 10px;
+}
+.category-menu-link svg {
+  margin-left: auto;
+  transform: rotate(-90deg);
+}
+.category-megamenu-wrapper {
+  position: absolute;
+  left: calc(0% + 300px);
+  width: calc(100% - 300px);
+  top: 0;
+  background: var(--primaryColorBody);
+  z-index: 3;
+  overflow-y: auto;
+  height: 100%;
+  max-height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-shadow: none;
+  background-position: right bottom;
+}
+.category-menu-bar
+  .category-menu
+  .category-menu-item:hover
+  .category-megamenu-wrapper {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.category-megamenu-wrapper .container {
+  padding: 0;
+}
+.category-megamenu-wrapper .yv-listing-megamenus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.category-megamenu-wrapper .yv-listing-megamenu-container {
+  flex: 0 0 25%;
+}
+.category-megamenu-box .yv-listing-megamenu-item .yv-listing-megamenu-title {
+  padding-bottom: 5px;
+  font-weight: 700;
+}
+.category-menu-bar ul .yv-megamenu-product-box {
+  margin-top: 12px;
+  --layoutRadius: 5px;
+}
+.category-menu-bar .yv-listing-megamenu-item {
+  padding: 0 24px;
+  margin-bottom: 0;
+}
+.category-menu-bar .yv-megamenu-product-img {
+  min-width: 60px;
+  max-width: 60px;
+  margin-right: 15px;
+}
+
+@media (min-width: 992px) {
+  .yv-browse-category-link {
+    height: 40px;
+    min-width: 152px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+    border: 1px solid var(--header-form-border);
+     border-radius: var(--layoutRadius);
+  }
+  .header_4 .yv-browse-category-link {
+      border-radius: var(--layoutRadius) 0 0 var(--layoutRadius);
+}
+
+  .mobile-tabs-wrapper {
+    display: none;
+  }
+  .category-megamenu-wrapper .yv-listing-megamenu-container {
+    flex: 0 0 50%;
+  }
+}
+@media (min-width: 1200px) {
+  .category-megamenu-wrapper .yv-listing-megamenu-container {
+    flex: 0 0 33.3333%;
+  }
+}
+@media (min-width: 1441px) {
+  .category-megamenu-wrapper .yv-listing-megamenu-container {
+    flex: 0 0 25%;
+  }
+}
+@media (max-width: 991px) {
+  .mobile-tabs-wrapper {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+.mobile-tabs-wrapper li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+  .mobile-tabs-wrapper li.active {
+    background-color: #171717;
+  }
+  .side-menu .nav-item.dropdown .inner.grandchild li a > span {
+    display: block;
+    margin-bottom: 6px;
+  }
+  .yv-mobile-catelog .yv-mobile-category {
+    display: flex;
+    margin: 0;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header3 .yv-mobile-catelog .yv-mobile-category {
+    background-color: var(--hamburgerBackground);
+    color: var(--hamburgerText) !important;
+  }
+  .yv-mobile-category svg {
+    transform: rotate(-90deg);
+    transition: 0.5s ease-in-out;
+    width: 10px;
+  }
+  .nav-open .yv-mobile-category svg {
+    transform: rotate(90deg);
+  }
+}

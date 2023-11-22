@@ -1,0 +1,114 @@
+{%- if product.media.size > 0 -%} 
+{%- assign productImageSize = '1700' -%}
+<div class="yv-product-gallery-slider gallery-style">
+  <div class="yv-product-gallery-thumbs yv-product-small-slider sticky-item" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %}">
+      {%- for media in product.media -%}
+      <div class="yv-product-slider-item gallery-thumbs-item {% if settings.pass_through_product_images %} pass-through-color{% endif %}" data-image="media-{{ media.id }}" {% if section.settings.show_variant-media %}{% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}{% endif %}>
+        <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : media.preview_image.aspect_ratio | times: 100 }}%">  
+          {%- render 'lazy-image' image: media.preview_image, width: '90 ' -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="yv-product-gallery-items yv-product-slider {% if product.media.size > 1 %}multi-images{% endif %}">
+    {%- for media in product.media -%}
+    {%- case media.media_type -%}
+    {%- when 'image' -%}
+    <div class="yv-product-slider-item gallery-main-item yv-product-image-item flickity-slider-item  {% if settings.pass_through_product_images %} pass-through-color{% endif %}" id="media-{{ media.id }}" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}>
+      <div class="product-slider-item-wrapper">
+     <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : media.preview_image.aspect_ratio | times: 100 }}%">       
+      {%- render 'lazy-image' image: media, width: productImageSize -%}    
+      </div>
+      <a href="{{ media | image_url }}" data-thumb="{{ media | image_url }}" class="{% if section.settings.enable_zoom_icon %}yv-product-zoom{% endif %} no-js-hidden" zoom-icon="{{ section.settings.enable_zoom_icon }}" aria-label="{{ media.alt | downcase | default: product.title | strip_html }}" {% if section.settings.show_variant-media %} {% unless product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}data-fancybox="gallery{{ section.id }}"{% endunless%}{% else %}data-fancybox="gallery{{ section.id }}"{% endif %}>
+        <div class="gallery-cursor" >
+          <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><style>.cls-1{fill:#fff;}</style></defs><g id="Layer_1-2"><g><path class="cls-1" d="M20,0C8.97,0,0,8.97,0,20s8.97,20,20,20,20-8.97,20-20S31.03,0,20,0Z"></path><polygon points="29.85 19.52 20.69 19.52 20.69 10.35 19.23 10.35 19.23 19.52 10.07 19.52 10.07 20.97 19.23 20.97 19.23 30.13 20.69 30.13 20.69 20.97 29.85 20.97 29.85 19.52"></polygon></g></g></svg>
+        </div>
+      </a> 
+      </div>
+    </div>
+    {%- when 'external_video' -%}
+    {% liquid
+    	assign videoUrl = media | external_video_url 
+      	assign videoClass = 'yv-youtube-video no-js-hidden' 
+      	if videoUrl contains 'vimeo'
+        	assign videoClass = 'yv-vimeo-video no-js-hidden' 
+      	endif
+    %}
+    <div class="yv-product-slider-item gallery-main-item yv-product-external-video-item flickity-slider-item no-js-after-before" id="media-{{ media.id }}">
+      
+      <div class="video-wrapper" style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%" >
+        {{ media | external_video_url: autoplay: false | external_video_tag: class: videoClass, height : 500 , loading: "lazy" }}
+        <noscript>
+          <a href="{{ media | external_video_url }}" target="_blank">
+            {% comment %}theme-check-disable ImgWidthAndHeight{% endcomment %}
+            <img src="{{ media.preview_image | image_url: width: 2048 }}" alt="{{ media.preview_image.alt | escape }}" loading="lazy" aria-label="{{ media.alt | downcase | default: product.title | strip_html }}">        	
+            {% comment %}theme-check-enable ImgWidthAndHeight{% endcomment %}
+          </a>
+        </noscript>
+      </div>
+     </div>
+    {%- when 'video' -%}
+    {%- liquid
+            	assign htmlVideo = media.sources[0]
+            	if media.sources[1] != blank
+                assign htmlVideo = media.sources[1]
+                endif
+            -%}
+    <div class="yv-product-slider-item gallery-main-item yv-product-video-item flickity-slider-item {% if settings.pass_through_product_images %} pass-through-color{% endif %}" id="media-{{ media.id }}" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %} >
+      <div class="video-wrapper" style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%" >
+      {{ media | media_tag: loading : "lazy" , class : 'no-js-hidden', autoplay: false, controls: true, preload: "none", autoplay: false }}
+     <noscript>
+        <a href="{{ htmlVideo.url }}" target="_blank">
+          {% comment %}theme-check-disable ImgWidthAndHeight{% endcomment %}
+          <img src="{{ media.preview_image | image_url: width: 2048 }}" alt="{{ media.preview_image.alt | escape }}" loading="lazy" aria-label="{{ media.alt | downcase | default: product.title | strip_html }}">        	
+          {% comment %}theme-check-enable ImgWidthAndHeight{% endcomment %}
+        </a>
+      </noscript>
+      </div>
+    </div>
+    {%- when 'model' -%}
+    {%- liquid
+              if media.preview_image.aspect_ratio
+                assign media_aspect_ratio = media.preview_image.aspect_ratio
+              endif
+            -%}
+    <div id="media-{{ media.id }}" class="yv-product-slider-item gallery-main-item yv-product-model-item flickity-slider-item" {% if section.settings.show_variant-media %}variant-color="{{ media.alt | downcase }}" {% if product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}style="display: none"{% endif %}{% endif %}>
+      <div class="product-single__media no-js-hidden" style="padding-top: {{ 100 | divided_by: media_aspect_ratio }}%" data-media-id="{{ media.id }}">
+        {{ media | model_viewer_tag: image_size : true, reveal: 'interaction', toggleable: true, data-model-id: media.id }}
+
+        <button class="close-product-model hidden">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40">
+            <path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"></path>
+          </svg>
+        </button>
+      </div>
+        <button
+        class="button button--full-width product__xr-button no-js-hidden d-md-none d-lg-none"
+        type="button"
+        aria-label="{{ 'products.product.media.view_in_ar_button' | t }}"
+        data-shopify-xr
+        data-shopify-model3d-id="{{ media.id }}"
+        data-shopify-title="title"
+        data-shopify-xr-hidden
+        >
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-3d" viewBox="18.24 17.35 24.52 28.3" width="44" height="44">
+            <path fill="currentcolor" d="M30.5 17.35l-12.26 7.07v14.16l12.26 7.07 12.26-7.08V24.42L30.5 17.35zM20.24 37.42V25.58l10.26-5.93 10.13 5.85-10.13 5.88v12l-10.26-5.96z"></path>
+          </svg>
+          {{ 'products.product.media.view_in_ar_button' | t }}
+      </button> 
+      <noscript>
+        {% comment %}theme-check-disable ImgWidthAndHeight{% endcomment %}
+          <img src="{{ media.preview_image | image_url: width: 2048 }}" alt="{{ media.preview_image.alt | escape }}" loading="lazy" aria-label="{{ media.alt | default: product.title | strip_html }}">        	
+        {% comment %}theme-check-enable ImgWidthAndHeight{% endcomment %}
+      </noscript>
+    
+    </div>
+    {%- endcase -%}
+    {%- endfor -%} 
+  </div>
+</div>
+{%- else -%}
+<div class="product-no-media">
+  {{ 'image' | placeholder_svg_tag : 'placeholder-svg' }}
+</div>
+{%- endif -%}    

@@ -1,0 +1,128 @@
+{% if section.settings.catalog_menu != blank  %}
+  <div class="yv-browse-category">
+  {% if section.settings.view_catalog != blank %}
+    <a class="yv-browse-category-link" id="catalog-view" aria-controls="nav">
+      {{- section.settings.view_catalog }}
+    {% if section.settings.view_catalog != blank %}
+      <svg width="8" fill="currentColor" viewBox="0 0 448 512">
+        <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path>
+      </svg>
+    {% endif %}
+    </a>
+  {% endif %}
+{% if section.settings.view_catalog  %}
+<div class="category-menu-bar-outer">
+  <div class="category-menu-bar" id="view-catalog">
+    <ul class="list-unstyled category-menu">
+      {% for link in linklists[section.settings.catalog_menu].links %}
+        {% liquid
+          assign linkImage = ''
+          if link.type == 'collection_link'
+            assign collect = link.object
+            assign linkImage = collect.featured_image
+          elsif link.type == 'product_link'
+            assign product = link.object
+            assign linkImage = product.featured_image
+          endif
+        %}
+        {%  assign menuTitle = link.title | handleize %}
+        {% capture menubadge %}
+          {%  for block in section.blocks %}
+            {% if block.type == 'menu-badge' %}
+              {% assign badgetitle =  block.settings.badge_label | handleize  %}
+              {% if block.settings.menu_badge != blank and  badgetitle == menuTitle %}
+                 <span class="navPages-label new-label" id="menu-badge-{{ block.id }}">{{ block.settings.menu_badge }}</span>
+              {% endif %}
+            {% endif %}
+          {% endfor  %}    
+          {% endcapture %}
+        {% if link.links != blank %}
+          <li class="category-menu-item">
+            <a href="{{ link.url }}" class="category-menu-link"
+              ><span>{{ link.title | escape }}</span>
+              {% if menubadge != blank %}
+                {{ menubadge }}
+              {% endif  %}
+              <svg width="8" fill="currentColor" viewBox="0 0 448 512">
+                <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path>
+              </svg>
+            </a>
+            <div class="category-megamenu-wrapper">
+              <div class="container">
+                <div class="category-megamenu-box">
+                  <div class="yv-listing-megamenus grid-container">
+                    {%- for childlink in link.links -%}
+                      <div class="yv-listing-megamenu-container">
+                        <div class="yv-listing-megamenu-item">
+                          <a href="{{ childlink.url }}" class="yv-listing-megamenu-title">
+                            {{- childlink.title | escape -}}
+                          </a>
+                          {% if childlink.links != blank %}
+                            <ul class="list-unstyled">
+                              {%- for grandchildlink in childlink.links -%}
+                                {% liquid
+                                  assign grandlinkImage = ''
+                                  if grandchildlink.type == 'collection_link'
+                                    assign collect = grandchildlink.object
+                                    assign grandlinkImage = collect.featured_image
+                                  elsif grandchildlink.type == 'product_link'
+                                    assign product = grandchildlink.object
+                                    assign grandlinkImage = product.featured_image
+                                  elsif grandchildlink.type == 'article_link'
+                                    assign article = grandchildlink.object
+                                    assign grandlinkImage = article.image
+                                  endif
+                                %}
+                                <li class="yv-megamenu-product-box">
+                                  {%- if grandlinkImage != blank -%}
+                                    <a href="{{ grandchildlink.url }}" class="yv-megamenu-product-img">
+                                      <div
+                                        class="image-wrapper"
+                                        style="padding-bottom:{{ 1 | divided_by : grandlinkImage.aspect_ratio | times: 100 }}%"
+                                      >
+                                        {%- render 'lazy-image',
+                                          image: grandlinkImage,
+                                          class: 'lazypreload',
+                                          width: '80x',
+                                           sizes:'[60,70,80,90,100]'
+                                        -%}
+                                      </div>
+                                    </a>
+                                  {%- endif -%}
+                                  <div class="yv-megamenu-product-detail yv-product-information">
+                                    <a href="{{ grandchildlink.url }}" class="">{{ grandchildlink.title }}</a>
+                                  </div>
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                          {% endif %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% else %}
+          <li class="category-menu-item">
+            <a href="{{ link.url }}" class="category-menu-link">
+              <span>{{ link.title | escape }}</span>
+                {% if menubadge != blank %}
+                  {{ menubadge }}
+                {% endif  %}
+              <!--
+                <svg width="8" fill="currentColor" viewBox="0 0 448 512">
+                  <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path>
+                </svg>
+              -->
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+  {% endif %}
+</div>
+{% endif  %}

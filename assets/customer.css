@@ -1,0 +1,816 @@
+.error-container ul li a,
+.login-bottom-box p a {
+    text-decoration: underline
+}
+
+.order-history td a,
+.total td {
+    font-weight: 700
+}
+
+.left-side-content {
+    border-right: 1px solid var(--colorXXlightTextBody);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.yv-login-form {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 550px;
+    padding: 60px 55px 70px;
+    text-align: left;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.frgt-pw {
+    text-decoration: none;
+    display: inline-flex;
+    cursor: pointer
+}
+
+.yv-reset-password-form input#password {
+    scroll-margin-top: 200px
+}
+
+.right-side-content {
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%
+}
+
+.customer-page-content {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0
+}
+
+.customer-page-title {
+    margin-bottom: 20px
+}
+
+.customer-page-desc {
+    margin-bottom: 40px;
+}
+
+.yv-customer-pages form {
+    margin-top: 26px
+}
+
+.form-title {
+    margin-bottom: 5px
+}
+
+.login-bottom-box {
+    margin-top: 20px
+}
+
+.address-side-drawer-body label,
+.customer table,
+.fulfillment * {
+    font-size: var(--smallText)
+}
+
+.login-bottom-box p a {
+    text-underline-offset: 3px;
+    font-weight: 700;
+}
+
+.error-container {
+    background-color: #ff00000a;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+    border-radius: var(--layoutRadius);
+    border: 2px solid #eb001b21
+}
+
+.error-container ul {
+    margin-top: 0;
+    list-style-type: none
+}
+
+.error-container ul li {
+    color: var(--red);
+    padding-left: 22px
+}
+
+#RecoverEmail-email-error,
+.error-container ul li a {
+    color: var(--red)
+}
+
+.success-container {
+    margin-top: 16px;
+    color: var(--green)
+}
+
+.form__message svg {
+    width: 15px;
+    height: 15px;
+    vertical-align: sub;
+    margin-right: 5px
+}
+
+.table-responsive {
+    margin: 0 0 20px
+}
+
+.customer table thead {
+    background-color: var(--theme-light-color);
+    border-bottom: 0
+}
+
+.customer table td {
+    border: 0
+}
+
+.account-header-tabs,
+.order-details tbody tr {
+    border-bottom: 1px solid var(--colorXXlightTextBody)
+}
+
+.payment-status {
+    padding: 2px 9px;
+    border-radius: 20px;
+    color: #000;
+    font-size: var(--smallText)
+}
+
+.payment-status.voided {
+    background-color: #d3d9f1
+}
+
+.payment-status.paid,
+.payment-status.partially_paid {
+    background-color: #d1efd1
+}
+
+.payment-status.partially_refunded,
+.payment-status.refunded {
+    background-color: #fff0d5
+}
+
+.payment-status.authorized {
+    background-color: #fddbdb
+}
+
+.account-pages-content h5,
+.address-side-drawer-body .form-group,
+.order-detail-head {
+    margin-bottom: 15px
+}
+
+.account-pages-content .d-flex,
+.product-name-link {
+    margin-bottom: 10px
+}
+
+.order-details .order-detail-product {
+    display: flex;
+    max-width: 400px;
+    white-space: normal
+}
+
+td.product-order-img-wrapper {
+    width: 110px;
+    padding-right: 0
+}
+
+.product-order-img {
+    border-radius: var(--layoutRadius);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    background-color: var(--colorImageBg)
+}
+
+.shopify-section.customer.account {
+    padding: 40px 0 80px
+}
+
+.product-name-link {
+    display: block
+}
+
+.fulfillment * {
+    margin-bottom: 8px
+}
+
+.fulfillment a {
+    color: var(--theme-color);
+    display: inline-block;
+    padding: 4px 9px;
+    background-color: #fbf3ef;
+    color: #000;
+    border-radius: 20px;
+    margin-top: 5px
+}
+
+.order-details tfoot tr:not(.total) td {
+    padding-bottom: 0;
+    font-size: var(--mediumText)
+}
+
+.account-pages-header {
+    margin-bottom: 50px
+}
+
+.account-header-tabs {
+    display: flex;
+    justify-content: flex-start;
+    position: relative
+}
+
+.account-header-tabs a:not(.button) {
+    display: inline-block;
+    position: relative;
+    border-bottom: 3px solid transparent;
+    margin-right: 30px;
+    padding: 18px 0;
+    text-transform: uppercase;
+    opacity: .4;
+    line-height: 1;
+    font-weight: bold;
+    font-family: var(--tabHeadingFontFamily);
+    color: var(--colorTextBody)
+}
+
+.account-header-tabs a:not(.button).active {
+    border-color: var(--colorTextBody);
+    opacity: 1
+}
+
+.account-header-tabs a:last-child {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px 20px
+}
+
+.account-pages-content .d-flex p {
+    margin-left: 11px;
+    color: var(--dark-gray)
+}
+
+.order-detail-address {
+    border: 1px solid var(--colorXXlightTextBody);
+    margin-bottom: 20px;
+    border-radius: var(--layoutRadius);
+    overflow: hidden;
+}
+
+.order-detail-address h6 {
+    padding: 14px 20px;
+}
+
+.order-detail-address p {
+    padding: 13px 20px;
+    opacity: .7
+}
+
+.order-detail-address .address-bill-status {
+    justify-content: space-between;
+    padding: 10px 20px;
+    display: flex;
+    background-color: var(--theme-light-color)
+}
+
+.order-detail-address .address-bill-status span {
+    display: inline-block;
+    padding: 2px 13px;
+    font-size: var(--smallText);
+    border-radius: 20px;
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 1px 1px #00000021
+}
+
+.cart-discount svg,
+.order-detail-product .list-unstyled svg {
+    width: 10px;
+    vertical-align: middle;
+    margin-right: 3px;
+    fill: currentColor;
+}
+
+.address-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 100%
+}
+
+.address-list li {
+    max-width: 19%;
+    flex: 0 0 19%;
+    border: 1px solid var(--colorXXlightTextBody);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    min-height: 250px;
+    margin-right: 17px;
+    margin-bottom: 20px;
+    border-radius: var(--layoutRadius);
+    overflow: hidden;
+}
+
+#yvForgetPassword,
+#yvForgetPassword:target+#yvLogin,
+.address-list .addressPopUp {
+    display: none
+}
+
+.address-header {
+    margin-bottom: 10px;
+    background-color: var(--theme-light-color);
+    padding: 14px 20px
+}
+
+.address-content {
+    padding: 6px 20px 40px
+}
+
+.address-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    right: 5px
+}
+
+.address-footer .address-btn {
+    margin: 0 5px;
+    color: var(--colorTextBody);
+}
+
+.address-footer .address-btn svg {
+    vertical-align: middle;
+    fill: currentcolor;
+    width: 17px;
+    height: 17px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+.address-footer .address-btn:hover,
+.address-footer .address-btn:hover svg {
+    color: var(--theme-color);
+    fill: var(--theme-color)
+}
+
+.address-list li.add-address {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-light-color);
+    border: 0;
+    margin-right: 0
+}
+
+.address-list li.add-address .link,
+.address-list li.add-address .link h6 {
+    color: var(--theme-color);
+}
+
+.address-list li.add-address svg path {
+    fill: currentColor;
+}
+
+.address-side-drawer-body {
+    padding: 20px 30px;
+    height: 100%
+}
+
+.address-side-drawer-body .form-control {
+    min-height: 40px
+}
+
+.address-side-drawer-body form {
+    height: calc(100% - 50px)
+}
+
+.address-side-drawer-body .address-form-body {
+    height: 100%;
+    overflow-y: auto
+}
+
+.address-form-footer {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--primaryColorBody);
+    padding: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.address-form-footer button {
+    max-width: 48%;
+    flex: 0 0 48%;
+    min-width: auto;
+    min-height: 42px;
+    line-height: 1
+}
+
+#yvForgetPassword:target {
+    display: flex
+}
+
+.cart-discount {
+    margin-left: 20px;
+    font-size: var(--smallText)
+}
+
+@media (max-width:1440px) {
+    .yv-login-form {
+        min-height: 600px;
+        max-width: 470px;
+        padding: 50px 50px 60px
+    }
+    .address-side-drawer-body {
+        padding: 20px
+    }
+    .address-list li {
+        max-width: 23.3%;
+        flex: 0 0 23.3%
+    }
+    .order-detail-product .product-order-img {
+        width: 70px
+    }
+    .order-detail-address h6 {
+        padding: 14px 20px
+    }
+    .order-details {
+        white-space: nowrap
+    }
+    .order-detail-responsive {
+        overflow-x: auto;
+        border-right: 1px solid var(--colorXXlightTextBody)
+    }
+}
+
+@media (max-width:1199px) {
+    .yv-login-form {
+        max-width: 390px;
+        padding: 30px 35px 40px
+    }
+    .customer-page-content {
+        max-width: 370px
+    }
+    .customer-page-title {
+        margin-bottom: 10px
+    }
+    .customer-page-desc {
+        margin-bottom: 30px;
+    }
+    .account-pages-header {
+        margin-bottom: 30px
+    }
+    .address-list li {
+        max-width: 30%;
+        flex: 0 0 30%;
+        min-height: 220px
+    }
+    .order-detail-product .product-order-img {
+        width: 50px
+    }
+}
+
+@media (max-width:991px) {
+    .right-side-content {
+        justify-content: left
+    }
+    .yv-login-form {
+        max-width: 350px;
+        padding: 30px 25px;
+    }
+    .customer-page-content {
+        max-width: 260px;
+        margin: 10px 0
+    }
+    .yv-customer-pages form {
+        margin-top: 15px
+    }
+    .customer-page-desc {
+        margin-bottom: 30px;
+    }
+    .left-side-content {
+        border: 0
+    }
+    .address-list li {
+        max-width: 31.3%;
+        flex: 0 0 31.3%;
+        min-height: 200px;
+        margin-right: 15px
+    }
+    .address-header {
+        padding: 10px 16px
+    }
+    .address-content {
+        padding: 5px 16px 40px
+    }
+    .order-detail-address {
+        margin-top: 20px;
+        margin-bottom: 0
+    }
+    .product-name-link {
+        margin-bottom: 6px
+    }
+}
+
+@media (max-width:767px) {
+    .yv-login-form {
+        min-height: 500px;
+        height: auto;
+        border-bottom: 1px solid var(--colorXXlightTextBody)
+    }
+    .yv-register-form {
+        max-width: 70%
+    }
+    .customer .order-details tbody td:before,
+    .customer tfoot td:first-of-type,
+    .customer th,
+    .customer thead,
+    .right-side-content,
+    .yv-login-form label {
+        display: none
+    }
+    .customer-page-title,
+    .form-title {
+        text-align: center;
+        margin-bottom: 7px;
+    }
+    .yv-login-form .form-title+p {
+        text-align: center;
+        margin-bottom: 25px
+    }
+    .shopify-section.customer.account {
+        padding: 40px 0
+    }
+    .customer table {
+        border: transparent
+    }
+    .customer tbody tr {
+        border: 1px solid var(--colorXXlightTextBody);
+        margin-bottom: 20px
+    }
+    tr td {
+        padding: 16px 10px
+    }
+    .customer td:nth-child(odd):not(.product-order-img-wrapper) {
+        background-color: var(--colorXXlightTextBody)
+    }
+    .customer td {
+        display: flex;
+        text-align: right
+    }
+    .customer td::before {
+        content: attr(data-label);
+        padding-right: 2rem;
+        text-transform: uppercase;
+        font-family: var(--heading-font-family);
+        flex-grow: 1;
+        text-align: left;
+        font-weight: 700;
+        color: var(--colorTextBody)
+    }
+    .customer td:first-of-type {
+        display: flex;
+        align-items: center
+    }
+    .customer tr {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%
+    }
+    .account-header-tabs a:last-child {
+        min-width: auto;
+        padding: 10px 15px;
+    }
+    .address-list li {
+        max-width: 47%;
+        flex: 0 0 47%;
+        margin-right: 13px
+    }
+    .order-detail-responsive {
+        border-right: 0
+    }
+    .customer .order-details tbody td {
+        display: flex;
+        text-align: left
+    }
+    .order-details .order-detail-product {
+        max-width: 100%
+    }
+    .product-order-img-wrapper {
+        padding-bottom: 0
+    }
+}
+
+@media (max-width:575px) {
+    .yv-login-form {
+        padding-left: 0;
+        padding-right: 0
+    }
+    .yv-register-form {
+        max-width: 90%
+    }
+    .account-header-tabs a:not(.button) {
+        padding: 12px 0;
+        margin-right: 20px;
+    }
+    .address-form-footer button {
+        min-height: 37px
+    }
+}
+
+@media (max-width:480px) {
+    .address-list li {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+        margin-right: 0;
+        min-height: auto
+    }
+    .address-list li.add-address {
+        padding: 30px;
+        margin-bottom: 0;
+        min-height: 150px
+    }
+    .address-side-drawer-body form {
+        height: calc(100% - 105px)
+    }
+    .address-form-footer {
+        flex-wrap: wrap
+    }
+    .address-form-footer button {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin: 0 0 10px
+    }
+}
+
+@media (max-width:414px) {
+    .yv-register-form {
+        max-width: 100%
+    }
+}
+
+@media (max-width:360px) {
+    .account-header-tabs a:not(.button) {
+        font-size: var(--smallText);
+    }
+}
+
+
+/* Reorder CSS start */
+
+.reorderPopupShow {
+    overflow: hidden;
+}
+
+.yv-reorder-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--colorLightTextBody);
+    z-index: 99;
+    overflow: auto;
+    display: none;
+    transition: all 0.3s linear;
+}
+
+.reorderPopupShow .yv-reorder-popup {
+    display: block;
+}
+
+.yv-reorder-popup-Container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    padding: 50px 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 650px;
+    width: 100%;
+    max-height: 100%;
+    transition: all .3s linear;
+}
+
+.yv-reorder-popup-body {
+    background-color: var(--primaryColorBody);
+    padding: 20px;
+    border-radius: var(--layoutRadius);
+}
+
+.reorder-item-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.reorder-item-wrapper .button {
+    margin-left: 10px;
+}
+
+.reorder-item-wrapper .reorder__continue {
+    display: block;
+}
+
+.Reorder__container,
+.reorder-item-wrapper.addToCart .reorder__continue,
+.yv-reorder-popup-body .Reorder__container.addToCart .cart-warning-wrapper,
+.yv-reorder-popup-body .Reorder__container.cart-empty .cart-warning-wrapper,
+.yv-reorder-popup-body .Reorder__container.addToCart .reorder__continue {
+    display: none;
+}
+
+.yv-reorder-popup-body .Reorder__container {
+    display: block;
+}
+
+.yv-reorder-popup-body .Reorder__container.cart-warning .reorder-item-wrapper .reorder__clear-cart,
+.yv-reorder-popup-body .Reorder__container.cart-warning .reorder-item-wrapper .reorder__add_to_cart,
+.yv-reorder-popup-body .Reorder__container.addToCart .reorder__add_to_cart {
+    display: block;
+}
+
+.cart-warning-wrapper {
+    margin-top: 15px;
+}
+
+.reorder-right-div .quantity {
+    max-width: 120px;
+    height: 40px;
+}
+
+.theme-layout-rounded .reorder-right-div .quantity.quantity-button {
+    width: 24px;
+    height: 24px;
+}
+
+.reorder-right-div {
+    position: relative;
+    padding-left: 30px;
+    margin-left: auto;
+}
+
+.reorder-right-div .form-status {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    border-radius: 100%;
+}
+
+.form-status svg {
+    fill: currentColor;
+    width: 100%;
+    height: 100%;
+}
+
+.form-status.form-loading {
+    background: transparent;
+    padding: 0;
+    color: var(--colorTextBody);
+}
+
+.form-status.form-success {
+    background: #e4f3ef;
+    color: var(--green);
+    padding: 6px;
+}
+
+.form-status.form-error {
+    background: #ffebeb;
+    color: red;
+}
+
+
+/* Reorder CSS end */

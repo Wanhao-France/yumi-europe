@@ -1,0 +1,94 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign preorder = false -%}
+{%- if settings.enable_preorder
+  and current_variant.inventory_policy == 'continue'
+  and current_variant.inventory_quantity <= 0
+-%}
+  {%- assign preorder = true -%}
+{%- endif -%}
+<div
+  id="yvProductStickyBar"
+  class="yv-product-viewbar sticky-atc-position-{{ block.settings.sticky_add_to_cart_position }} {% if block.settings.sticky_add_to_cart_position == 'top'%}sticky-item{% endif %}"
+  style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %}"
+>
+  <div class="container">
+    <div class="productErrors error-text" style="display:none;"></div>
+    <div class="product-view-wrapper">
+      <div class="product-view-detail">
+        {%- if product.media.size > 0 -%}
+          <div class="product-view-img {% if settings.pass_through_product_images %} pass-through-color{% endif %}">
+            <div
+              class="image-wrapper"
+              style="padding-bottom:{{ 1 | divided_by : product.featured_media.preview_image.aspect_ratio | times: 100 | minus : 1 }}%"
+            >
+              {%- render 'lazy-image', image: product.featured_media.preview_image, width: '150' -%}
+            </div>
+          </div>
+        {%- endif -%}
+        <div class="product-view-name">
+          <h6>{{ product.title }}</h6>
+        </div>
+      </div>
+      <div class="product-view-link">
+        {% unless product.has_only_default_variant %}
+          {%- for option in product.options_with_values -%}
+            <div class="product-view-dropdown">
+              <select
+                name="sticky-option-{{ forloop.index }}"
+                data-name="option-{{forloop.index}}"
+                class="product-view-varint-select sticky-bar-product-options form-control"
+              >
+                {% for value in option.values %}
+                  <option
+                    value="{{value | escape }}"
+                    {% if option.selected_value == value %}
+                      selected
+                    {% endif %}
+                  >
+                    {{ value }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+        {% endunless %}
+        {% render 'product-form-price', current_variant: current_variant, sticky: true %}
+        <button
+          type="submit"
+          class="button xsmall-btn Sd_addProduct Sd_addProductSticky"
+          form="{{ 'product-form-' | append: section.id }}"
+          {% unless current_variant.available %}
+            disabled
+          {% endunless %}
+        >
+          <span>
+            {%- unless current_variant.available -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- else -%}
+              {%- if preorder -%}
+                {{ 'products.product.preorder' | t }}
+              {%- else -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- endif -%}
+            {%- endunless -%}
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="margin: auto; display: none; shape-rendering: auto;"
+            width="200px"
+            height="200px"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="xMidYMid"
+            class="svg-loader"
+          >
+            <circle cx="50" cy="50" fill="none" stroke="currentcolor" stroke-width="6" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+              <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+            </circle>
+          </svg>
+        </button>
+        <button title="Close" class="pdp-view-close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

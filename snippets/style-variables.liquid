@@ -1,0 +1,466 @@
+ {% liquid
+      assign bodyfontbold = settings.type_base_font_family | font_modify: 'weight', 'bold'
+      assign bodyfontitalic = settings.type_base_font_family | font_modify: 'style', 'italic'
+      assign bodyfontbolditalic = bodyfontbold | font_modify: 'style', 'italic'
+      assign headingfontbolditalic =settings.type_heading_font_family | font_modify: 'style', 'italic'
+%}
+{% style %}
+ 
+{{ settings.type_base_font_family | font_face : font_display: 'swap' }}
+{{ bodyfontbold | font_face : font_display: 'swap' }}
+{{ bodyfontitalic | font_face : font_display: 'swap' }}
+{{ bodyfontbolditalic | font_face : font_display: 'swap' }}
+{{ settings.type_heading_font_family | font_face : font_display: 'swap' }}
+{{ headingfontbolditalic | font_face : font_display: 'swap' }}
+
+:root {
+  --gray: #ececec;
+  --dark-gray: #747474;
+  --green:#6cad61;
+  --red:#ec7c7c;
+  --heading-font-family:{{ settings.type_heading_font_family.family }},{{ settings.type_heading_font_family.fallback_families }};
+  --heading-font-weight:{{ settings.type_heading_font_family.weight }};
+  --heading-font-style:{{ settings.type_heading_font_family.style }};
+  --font-family:{{ settings.type_base_font_family.family }},{{ settings.type_base_font_family.fallback_families }};
+  --font-weight:{{ settings.type_base_font_family.weight }};
+  --font-style:{{ settings.type_base_font_family.style }};
+  --body-font-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+  --thin:100;
+  --light:300;
+  --normal:400;
+  --medium:500;
+  --semibold:600;
+  --bold:700; 
+  --extrabold:900;
+  --theme-color: {{ settings.color_base | default: '#9d6348' }};
+  --theme-light-color: {{ settings.color_base | color_modify: 'alpha', 0.1 }};
+  --colorTextBody: {{ settings.color_body_text }};
+  --colorLightTextBody: {{ settings.color_body_text | color_modify: 'alpha', 0.5 }};
+  --colorXlightTextBody: {{ settings.color_body_text | color_modify: 'alpha', 0.3 }};
+  --colorXXlightTextBody: {{ settings.color_body_text | color_modify: 'alpha', 0.1 }};
+  --cartDotColor: {{ settings.color_cart_dot }};
+  --cartDotColorLight:{{ settings.color_cart_dot | color_modify : 'alpha' , 0.3 }};
+  --cartDotColorNull:{{ settings.color_cart_dot | color_modify : 'alpha' , 0 }};
+  --colorBtnPrimary: {{ settings.color_button | default: '#000' }};
+  --colorBtnPrimaryText: {{ settings.color_button_text | default: '#fff' }}; 
+  --colorBtnPrimaryBorder: {{ settings.color_button_border | default: '#000' }}; 
+  --colorBtnSecondary: {{ settings.secondary_color_button | default: '#fff' }};
+  --colorBtnSecondaryText:{{ settings.secondary_color_button_text | default: '#000' }};
+  --colorBtnSecondaryBorder:{{ settings.secondary_color_button_border | default: '#000' }};  
+  --primaryColorBody: {{ settings.color_body_bg }};
+  --saleBadgeBg:{{ settings.sale_badge_bg }};
+  --saleBadgeText:{{ settings.sale_badge_text }};
+  --soldBadgeBg:{{ settings.sold_badge_bg }};
+  --soldBadgeText:{{ settings.sold_badge_text }};
+  --secondaryColorBody: {{ settings.secondary_color_body_bg }};
+  --product-grid-image-size:{{ settings.product_image_size}};
+  {% liquid 
+    assign primarycolorBrightness = settings.color_body_bg | color_brightness
+    assign secondarycolorBrightness = settings.secondary_color_body_bg | color_brightness
+    assign tertiarycolorBrightness = settings.tertiary_color_body_bg | color_brightness
+    assign quaternarycolorBrightness = settings.quaternary_color_body_bg | color_brightness
+  %}
+  {%- if primarycolorBrightness < 130 -%}
+    --primarySocialIconBg:{{ settings.color_body_bg | color_lighten: 10 }};
+    --primaryAlternateBg:{{ settings.color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --primarySocialIconBg:{{ settings.color_body_bg | color_darken: 10 }};
+    --primaryAlternateBg:{{ settings.color_body_bg | color_darken: 5 }};
+  {%- endif -%}
+  {%- if secondarycolorBrightness < 130 -%}
+    --secondarySocialIconBg:{{ settings.secondary_color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --secondarySocialIconBg:{{ settings.secondary_color_body_bg | color_darken: 10 }};
+  {%- endif -%}
+  {%- if tertiarycolorBrightness < 130 -%}
+    --tertiarySocialIconBg:{{ settings.tertiary_color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --tertiarySocialIconBg:{{ settings.tertiary_color_body_bg | color_darken: 10 }};
+  {%- endif -%}
+  {%- if quaternarycolorBrightness < 130 -%}
+    --quaternarySocialIconBg:{{ settings.quaternary_color_body_bg | color_lighten: 10 }};
+    {%- else -%}
+    --quaternarySocialIconBg:{{ settings.quaternary_color_body_bg | color_darken: 10 }};
+  {%- endif -%}
+  --secondarycolorTextBody: {{ settings.secondary_color_body_text }};
+  --secondaryColorLightTextBody: {{ settings.secondary_color_body_text | color_modify: 'alpha', 0.5 }};
+  --secondaryColorXlightTextBody: {{ settings.secondary_color_body_text | color_modify: 'alpha', 0.3 }};
+  --secondary_heading_color: {{ settings.secondary_heading_color | default: '#000000' }};
+  --tertiaryColorBody:{{ settings.tertiary_color_body_bg }};
+  --tertiarycolorTextBody: {{ settings.tertiary_color_body_text }};
+  --tertiaryColorLightTextBody: {{ settings.tertiary_color_body_text | color_modify: 'alpha', 0.5 }};
+  --tertiaryColorXlightTextBody: {{ settings.tertiary_color_body_text | color_modify: 'alpha', 0.3 }};
+  --tertiary_heading_color: {{ settings.tertiary_heading_color | default: '#000000' }};
+  --gradientColorBody: {{ settings.gradient_color_body_bg }};
+  --quaternaryColorBody: {{ settings.quaternary_color_body_bg }};
+  --quaternarycolorTextBody: {{ settings.quaternary_color_body_text }};
+  --quaternaryColorLightTextBody: {{ settings.quaternary_color_body_text | color_modify: 'alpha', 0.5 }};
+  --quaternaryColorXlightTextBody: {{ settings.quaternary_color_body_text | color_modify: 'alpha', 0.3 }};
+  --quaternary_heading_color: {{ settings.quaternary_heading_color | default: '#000000' }};
+  --colorImageBg: {{ settings.color_image_bg }};
+  --colorImageBorder: {{ settings.color_image_border }};
+  --productImageBorder: {%- if settings.product_image_border -%}1px solid {{ settings.color_image_border }}{%- else -%}0{%- endif -%};
+  --articleImageBorder: {%- if settings.article_image_border -%}1px solid {{ settings.color_image_border }}{%- else -%}0{%- endif -%};
+  --collectionImageBorder: {%- if settings.collection_image_border -%}1px solid {{ settings.color_image_border }}{%- else -%}0{%- endif -%};
+  --colorTextSavings: {{ settings.color_savings_text | default: '#E22120' }};
+  --colorBgSavings: {{ settings.bg_savings_text | default: '#ffe18c' }};
+  --heading_color: {{ settings.heading_color | default: '#000000' }};
+  --heading_base_size: {{ settings.heading_font_scale | divided_by : 100.00 }};
+  --heading_spacing: {{ settings.type_header_spacing | default: "0" | divided_by: 1000.00 }}em;
+  --heading_line_height: {{ settings.type_heading_line_height | default: 1.2 }};
+  --base_spacing: {{ settings.type_base_spacing | default: "50" | divided_by: 1000.00 }}em;
+  --base_line_height: {{ settings.type_base_line_height | default: 1.4 }};
+  --text_base_size: {{ settings.type_base_size| divided_by : 100.00 }};
+  --buttonRadius: {{ settings.button_radius }}px;
+  --productGridRadius: {{ settings.product_grid_radius }};
+  --headingTextTransform: {%- if settings.heading_text_transform == 'capitalize' -%}{%- else -%}uppercase{%- endif -%};
+  --buttonFontFamily: var({{ settings.buttons_font_family }});
+  --buttonFontStyle: var({{ settings.buttons_font_family | replace:'family','style'}});
+  --buttonFontWeight: var({{ settings.buttons_font_family | replace:'family','weight'}});
+  --variantFontFamily: var({{ settings.option_title_font_family }});
+  --variantFontStyle: var({{ settings.option_title_font_family | replace:'family','style'}});
+  --variantFontWeight: var({{ settings.option_title_font_family | replace:'family','weight'}});
+  --filtersHeadingFontFamily: var({{ settings.filters_heading_font_family }});
+  --filtersHeadingFontStyle: var({{ settings.filters_heading_font_family | replace:'family','style'}});
+  --filtersHeadingFontWeight: var({{ settings.filters_heading_font_family | replace:'family','weight'}});
+  --priceFontFamily: var({{ settings.price_font_family }});
+  --priceFontStyle: var({{ settings.price_font_family | replace:'family','style'}});
+  --priceFontWeight: var({{ settings.price_font_family | replace:'family','weight'}});
+  --tabHeadingFontFamily: var({{ settings.tab_heading_font_family }});
+  --tabHeadingFontStyle: var({{ settings.tab_heading_font_family | replace:'family','style'}});
+  --tabHeadingFontWeight: var({{ settings.tab_heading_font_family | replace:'family','weight'}});
+  --tabHeadingTextTransform: {%- if settings.tab_heading_font_family == '--font-family' -%}{%- else -%}uppercase{%- endif -%};
+  --navigationFontFamily: var({{ settings.navigation_font_family }});
+  --navigationFontStyle: var({{ settings.navigation_font_family | replace:'family','style'}});
+  --navigationFontWeight: var({{ settings.navigation_font_family | replace:'family','weight'}});
+  --navigationTextTransform: {%- if settings.navigation_font_family == '--font-family' -%}{%- else -%}uppercase{%- endif -%};
+  --variantTextTransform: {%- if settings.option_title_capital == 'capitalize' -%}{%- else -%}uppercase{%- endif -%};
+  --xsmallText:calc(var(--text_base_size) * 10px);
+  --smallText: calc(var(--text_base_size) * 12px);
+  --text: calc(var(--text_base_size) * 14px);
+  --mediumText: calc(var(--text_base_size) * 16px);
+  --largeText: calc(var(--text_base_size) * 18px);
+  --xlargeText:  calc(var(--text_base_size) * 20px);
+  --buttonAnimationDirection:{%- case settings.buttonAnimation -%}
+  {%- when 'left' -%}
+  translateX(-100%)
+  {%- when 'right' -%}
+  translateX(100%)
+  {%- when 'top' -%}
+  translateY(-100%)
+  {%- when 'bottom' -%}
+  translateY(100%)
+  {%- endcase -%};
+}
+@media (min-width:1025px) {
+  .button:before,
+  .pdp-action-container button.shopify-payment-button__button--hidden:before,
+  .pdp-action-container button.shopify-payment-button__button:before,
+  .tertiary-button:before {
+      content: "";
+      position: absolute;      
+      {%- case settings.buttonAnimation -%}
+      {%- when 'left' -%}
+        top:0;
+        right:0;
+        width:0;
+        height:100%;
+      {%- when 'right' -%}
+        top:0;
+        left:0;
+        width:0;
+        height:100%;
+      {%- when 'top' -%}
+        bottom:0;
+        left:0;
+        width:100%;
+        height:0;
+      {%- when 'bottom' -%}
+        top:0;
+        left:0;
+        width:100%;
+        height:0;
+      {%- endcase -%}
+      z-index: -1;
+      transition: 0.6s ease-in-out;
+  }
+  .button:hover:before,
+  .pdp-action-container button.shopify-payment-button__button--hidden:hover:before,
+  .pdp-action-container button.shopify-payment-button__button:hover:before,
+  .secondary-button:hover:before {
+    {%- case settings.buttonAnimation -%}
+    {%- when 'right' -%}
+      right:0;
+      left:auto;
+      width:100%;
+    {%- when 'left' -%}
+      right:auto;
+      left:0;
+      width:100%;
+    {%- when 'bottom' -%}
+      bottom:0;
+      top:auto;
+      height:100%;
+    {%- when 'top' -%}
+      bottom:auto;
+      top:0;
+      height:100%;
+
+    {%- endcase -%}
+  }
+}
+.yv-product-title{
+  opacity:{{ settings.product_title_opacity | divided_by:100.0}};
+}
+  
+.countryflags { display:flex; background: url("{{ 'countryFlagsLow.png' | asset_url }}") no-repeat top left; width: 20px; height: 20px; flex-shrink: 0; filter: drop-shadow(0px 2px 3px rgb(0 0 0 / 0.1)); }
+.countryflag__AD { background-position: 0 0; } .countryflag__AE { background-position: -21px 0; } .countryflag__AF {
+background-position: 0 -21px; } .countryflag__African_nion { background-position: -21px -21px; } .countryflag__AG {
+background-position: -42px 0; } .countryflag__AI { background-position: -42px -21px; } .countryflag__AL {
+background-position: 0 -42px; } .countryflag__AM { background-position: -21px -42px; } .countryflag__AMS {
+background-position: -42px -42px; } .countryflag__AO { background-position: -63px 0; } .countryflag__AQ {
+background-position: -63px -21px; } .countryflag__AR { background-position: -63px -42px; } .countryflag__AS {
+background-position: 0 -63px; } .countryflag__AT { background-position: -21px -63px; } .countryflag__AU {
+background-position: -42px -63px; } .countryflag__AW { background-position: -63px -63px; } .countryflag__AX {
+background-position: -84px 0; } .countryflag__AZ { background-position: -84px -21px; } .countryflag__BA {
+background-position: -84px -42px; } .countryflag__BB { background-position: -84px -63px; } .countryflag__BD {
+background-position: 0 -84px; } .countryflag__BE { background-position: -21px -84px; } .countryflag__BF {
+background-position: -42px -84px; } .countryflag__BG { background-position: -63px -84px; } .countryflag__BH {
+background-position: -84px -84px; } .countryflag__BI { background-position: -105px 0; } .countryflag__BJ {
+background-position: -105px -21px; } .countryflag__BL { background-position: -105px -42px; } .countryflag__BM {
+background-position: -105px -63px; } .countryflag__BN { background-position: -105px -84px; } .countryflag__BO {
+background-position: 0 -105px; } .countryflag__BQ-BO { background-position: -21px -105px; } .countryflag__BQ-SA {
+background-position: -42px -105px; } .countryflag__BQ-SE { background-position: -63px -105px; } .countryflag__BR {
+background-position: -84px -105px; } .countryflag__BS { background-position: -105px -105px; } .countryflag__BT {
+background-position: -126px 0; } .countryflag__BV { background-position: -126px -21px; } .countryflag__BW {
+background-position: -126px -42px; } .countryflag__BY { background-position: -126px -63px; } .countryflag__BZ {
+background-position: -126px -84px; } .countryflag__CA { background-position: -126px -105px; } .countryflag__CC {
+background-position: 0 -126px; } .countryflag__CD { background-position: -21px -126px; } .countryflag__CF {
+background-position: -42px -126px; } .countryflag__CG { background-position: -63px -126px; } .countryflag__CH {
+background-position: -84px -126px; } .countryflag__CI { background-position: -105px -126px; } .countryflag__CK {
+background-position: -126px -126px; } .countryflag__CL { background-position: -147px 0; } .countryflag__CM {
+background-position: -147px -21px; } .countryflag__CN { background-position: -147px -42px; } .countryflag__CO {
+background-position: -147px -63px; } .countryflag__CR { background-position: -147px -84px; } .countryflag__CU {
+background-position: -147px -105px; } .countryflag__CV { background-position: -147px -126px; } .countryflag__CW {
+background-position: 0 -147px; } .countryflag__CX { background-position: -21px -147px; } .countryflag__CY {
+background-position: -42px -147px; } .countryflag__CZ { background-position: -63px -147px; } .countryflag__DE {
+background-position: -84px -147px; } .countryflag__DJ { background-position: -105px -147px; } .countryflag__DK {
+background-position: -126px -147px; } .countryflag__DM { background-position: -147px -147px; } .countryflag__DO {
+background-position: -168px 0; } .countryflag__DZ { background-position: -168px -21px; } .countryflag__EC {
+background-position: -168px -42px; } .countryflag__EE { background-position: -168px -63px; } .countryflag__EG {
+background-position: -168px -84px; } .countryflag__EH { background-position: -168px -105px; } .countryflag__ER {
+background-position: -168px -126px; } .countryflag__ES { background-position: -168px -147px; } .countryflag__ET {
+background-position: 0 -168px; } .countryflag__EUROPE { background-position: -21px -168px; } .countryflag__FI {
+background-position: -42px -168px; } .countryflag__FJ { background-position: -63px -168px; } .countryflag__FK {
+background-position: -84px -168px; } .countryflag__FM { background-position: -105px -168px; } .countryflag__FO {
+background-position: -126px -168px; } .countryflag__FR { background-position: -147px -168px; } .countryflag__GA {
+background-position: -168px -168px; } .countryflag__GB { background-position: -189px -63px; } .countryflag__GB-NIR {
+background-position: -189px -21px; } .countryflag__GB-SCT { background-position: -189px -42px; } .countryflag__GB-UKM {
+background-position: -189px -63px; } .countryflag__GB-WLS { background-position: -189px -84px; } .countryflag__GD {
+background-position: -189px -105px; } .countryflag__GE { background-position: -189px -126px; } .countryflag__GF {
+background-position: -189px -147px; } .countryflag__GG { background-position: -189px -168px; } .countryflag__GH {
+background-position: 0 -189px; } .countryflag__GI { background-position: -21px -189px; } .countryflag__GL {
+background-position: -42px -189px; } .countryflag__GM { background-position: -63px -189px; } .countryflag__GN {
+background-position: -84px -189px; } .countryflag__GP { background-position: -105px -189px; } .countryflag__GP {
+background-position: -126px -189px; } .countryflag__GQ { background-position: -147px -189px; } .countryflag__GR {
+background-position: -168px -189px; } .countryflag__GS { background-position: -189px -189px; } .countryflag__GT {
+background-position: -210px 0; } .countryflag__GU { background-position: -210px -21px; } .countryflag__GW {
+background-position: -210px -42px; } .countryflag__GY { background-position: -210px -63px; } .countryflag__HK {
+background-position: -210px -84px; } .countryflag__HM { background-position: -210px -105px; } .countryflag__HN {
+background-position: -210px -126px; } .countryflag__HR { background-position: -210px -147px; } .countryflag__HT {
+background-position: -210px -168px; } .countryflag__HU { background-position: -210px -189px; } .countryflag__ID {
+background-position: 0 -210px; } .countryflag__IE { background-position: -21px -210px; } .countryflag__IL {
+background-position: -42px -210px; } .countryflag__IM { background-position: -63px -210px; } .countryflag__IN {
+background-position: -84px -210px; } .countryflag__IO { background-position: -105px -210px; } .countryflag__IQ {
+background-position: -126px -210px; } .countryflag__IR { background-position: -147px -210px; } .countryflag__IS {
+background-position: -168px -210px; } .countryflag__IT { background-position: -189px -210px; } .countryflag__JE {
+background-position: -210px -210px; } .countryflag__JM { background-position: -231px 0; } .countryflag__JO {
+background-position: -231px -21px; } .countryflag__JP { background-position: -231px -42px; } .countryflag__KG {
+background-position: -231px -63px; } .countryflag__KH { background-position: -231px -84px; } .countryflag__KI {
+background-position: -231px -105px; } .countryflag__KM { background-position: -231px -126px; } .countryflag__KN {
+background-position: -231px -147px; } .countryflag__KN-SK { background-position: -231px -168px; } .countryflag__KP {
+background-position: -231px -189px; } .countryflag__KR { background-position: -231px -210px; } .countryflag__KW {
+background-position: 0 -231px; } .countryflag__KY { background-position: -21px -231px; } .countryflag__KZ {
+background-position: -42px -231px; } .countryflag__LA { background-position: -63px -231px; } .countryflag__LB {
+background-position: -84px -231px; } .countryflag__LC { background-position: -105px -231px; } .countryflag__LI {
+background-position: -126px -231px; } .countryflag__LK { background-position: -147px -231px; } .countryflag__LR {
+background-position: -168px -231px; } .countryflag__LS { background-position: -189px -231px; } .countryflag__LT {
+background-position: -210px -231px; } .countryflag__LU { background-position: -231px -231px; } .countryflag__LV {
+background-position: -252px 0; } .countryflag__LY { background-position: -252px -21px; } .countryflag__MA {
+background-position: -252px -42px; } .countryflag__MC { background-position: -252px -63px; } .countryflag__MD {
+background-position: -252px -84px; } .countryflag__ME { background-position: -252px -105px; } .countryflag__MF {
+background-position: -252px -126px; } .countryflag__MG { background-position: -252px -147px; } .countryflag__MH {
+background-position: -252px -168px; } .countryflag__MK { background-position: -252px -189px; } .countryflag__ML {
+background-position: -252px -210px; } .countryflag__MM { background-position: -252px -231px; } .countryflag__MN {
+background-position: 0 -252px; } .countryflag__MO { background-position: -21px -252px; } .countryflag__MP {
+background-position: -42px -252px; } .countryflag__MQ { background-position: -63px -252px; } .countryflag__MQ-UNF {
+background-position: -84px -252px; } .countryflag__MR { background-position: -105px -252px; } .countryflag__MS {
+background-position: -126px -252px; } .countryflag__MT { background-position: -147px -252px; } .countryflag__MU {
+background-position: -168px -252px; } .countryflag__MV { background-position: -189px -252px; } .countryflag__MW {
+background-position: -210px -252px; } .countryflag__MX { background-position: -231px -252px; } .countryflag__MY {
+background-position: -252px -252px; } .countryflag__MZ { background-position: -273px 0; } .countryflag__NA {
+background-position: -273px -21px; } .countryflag__NC { background-position: -273px -42px; } .countryflag__NE {
+background-position: -273px -63px; } .countryflag__NF { background-position: -273px -84px; } .countryflag__NG {
+background-position: -273px -105px; } .countryflag__NI { background-position: -273px -126px; } .countryflag__NL {
+background-position: -273px -147px; } .countryflag__NO { background-position: -273px -168px; } .countryflag__NP {
+background-position: -273px -189px; } .countryflag__NR { background-position: -273px -210px; } .countryflag__NU {
+background-position: -273px -231px; } .countryflag__NZ { background-position: -273px -252px; } .countryflag__OM {
+background-position: 0 -273px; } .countryflag__PA { background-position: -21px -273px; } .countryflag__PE {
+background-position: -42px -273px; } .countryflag__PF { background-position: -63px -273px; } .countryflag__PG {
+background-position: -84px -273px; } .countryflag__PH { background-position: -105px -273px; } .countryflag__PK {
+background-position: -126px -273px; } .countryflag__PL { background-position: -147px -273px; } .countryflag__PM {
+background-position: -168px -273px; } .countryflag__PM-UNF { background-position: -189px -273px; } .countryflag__PN {
+background-position: -210px -273px; } .countryflag__PR { background-position: -231px -273px; } .countryflag__PS {
+background-position: -252px -273px; } .countryflag__PT { background-position: -273px -273px; } .countryflag__PW {
+background-position: -294px 0; } .countryflag__PY { background-position: -294px -21px; } .countryflag__QA {
+background-position: -294px -42px; } .countryflag__RAINBOW { background-position: -294px -63px; } .countryflag__RE {
+background-position: -294px -84px; } .countryflag__RO { background-position: -294px -105px; } .countryflag__RS {
+background-position: -294px -126px; } .countryflag__RU { background-position: -294px -147px; } .countryflag__RW {
+background-position: -294px -168px; } .countryflag__SA { background-position: -294px -189px; } .countryflag__SB {
+background-position: -294px -210px; } .countryflag__SC { background-position: -294px -231px; } .countryflag__SD {
+background-position: -294px -252px; } .countryflag__SE { background-position: -294px -273px; } .countryflag__SG {
+background-position: 0 -294px; } .countryflag__SH { background-position: -21px -294px; } .countryflag__SI {
+background-position: -42px -294px; } .countryflag__SJ { background-position: -63px -294px; } .countryflag__SK {
+background-position: -84px -294px; } .countryflag__SL { background-position: -105px -294px; } .countryflag__SM {
+background-position: -126px -294px; } .countryflag__SN { background-position: -147px -294px; } .countryflag__SO {
+background-position: -168px -294px; } .countryflag__SR { background-position: -189px -294px; } .countryflag__SS {
+background-position: -210px -294px; } .countryflag__ST { background-position: -231px -294px; } .countryflag__SV {
+background-position: -252px -294px; } .countryflag__SX { background-position: -273px -294px; } .countryflag__SY {
+background-position: -294px -294px; } .countryflag__SZ { background-position: -315px 0; } .countryflag__TC {
+background-position: -315px -21px; } .countryflag__TD { background-position: -315px -42px; } .countryflag__TF {
+background-position: -315px -63px; } .countryflag__TG { background-position: -315px -84px; } .countryflag__TH {
+background-position: -315px -105px; } .countryflag__TJ { background-position: -315px -126px; } .countryflag__TK {
+background-position: -315px -147px; } .countryflag__TL { background-position: -315px -168px; } .countryflag__TM {
+background-position: -315px -189px; } .countryflag__TN { background-position: -315px -210px; } .countryflag__TO {
+background-position: -315px -231px; } .countryflag__TR { background-position: -315px -252px; } .countryflag__TT {
+background-position: -315px -273px; } .countryflag__TV { background-position: -315px -294px; } .countryflag__TW {
+background-position: 0 -315px; } .countryflag__TZ { background-position: -21px -315px; } .countryflag__UA {
+background-position: -42px -315px; } .countryflag__UG { background-position: -63px -315px; } .countryflag__UM {
+background-position: -84px -315px; } .countryflag__Union_f_outh_merican_ations { background-position: -105px -315px; }
+.countryflag__US { background-position: -126px -315px; } .countryflag__UY { background-position: -147px -315px; }
+.countryflag__UZ { background-position: -168px -315px; } .countryflag__VA { background-position: -189px -315px; }
+.countryflag__VC { background-position: -210px -315px; } .countryflag__VE { background-position: -231px -315px; }
+.countryflag__VG { background-position: -252px -315px; } .countryflag__VI { background-position: -273px -315px; }
+.countryflag__VN { background-position: -294px -315px; } .countryflag__VU { background-position: -315px -315px; }
+.countryflag__WF { background-position: -336px 0; } .countryflag__WS { background-position: -336px -21px; }
+.countryflag__XK { background-position: -336px -42px; } .countryflag__YE { background-position: -336px -63px; }
+.countryflag__YT-UNF { background-position: -336px -84px; } .countryflag__ZA { background-position: -336px -105px; }
+.countryflag__ZM { background-position: -336px -126px; } .countryflag__ZW { background-position: -336px -147px; }
+
+  .langdrop {
+    display: flex;
+    align-items: center;
+}
+
+.langdrop .select-box {
+    margin: 0 5px;
+}
+
+.langdrop .select-box .form-control {
+    padding: 4px 10px;
+    min-height: 36px;
+    min-width: 140px;
+    max-width: 200px;
+    border-radius: 5px;
+    background: var(--footer-form-bg);
+    color: var(--footer-form-text-color);
+    border-color: var(--footer-form-border-color);
+}
+
+.country-dropdown,
+.lang-dropdown {
+    position: relative;
+}
+  
+.country-dropdown-item {
+    position: relative;
+    min-height: 40px;
+    max-width: 100%;
+    width: max-content;
+    padding: 4px 10px 4px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    border: 0;
+    font-size: var(--text);
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.footer-dropdown .country-dropdown-item {
+    min-height: 34px;
+    padding: 4px 24px 4px 10px;
+}
+
+.countryflags {
+    margin-right: 10px;
+}
+.country-dropdown-item .country-name {
+  line-height: 11px;
+}
+
+.active .country-dropdown-expand {
+    max-height: 300px;
+    overflow: auto;
+    transition: max-height 0.5s ease;
+}
+
+.country-dropdown-expand {
+    display: none;
+    position: absolute;
+    width: max-content;
+    min-width: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--primaryColorBody);
+    left: 0;
+    bottom: 120%;
+    border-radius: 5px;
+    z-index: 2;
+    transition: all 0.5s ease;
+    box-shadow: 0 1px 10px #00000026;
+}
+
+  .announcement-bar-main-wrapper .country-dropdown-expand {
+    bottom: auto;
+    top: 100%;
+}
+
+.country-list {
+    padding: 6px 4px;
+}
+
+.country-list-item {
+    color: var(--footer-text-color);
+    padding: 5px 10px;
+    font-size: var(--small-text);
+}
+
+.country-list-item .custom-checkbox {
+    display: flex;
+    align-items: flex-start;
+    padding-left: 0;
+    background: transparent;
+    color: var(--footer-form-text-color);
+    font-size: var(--xsmall-text);
+    text-align: left;
+}
+
+.country-dropdown-item:after {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-right-style: solid;
+    border-right-width: 2px;
+    content: "";
+    display: inline-block;
+    height: 6px;
+    right: 14px;
+    position: absolute;
+    top: calc(50% - 5px);
+    width: 6px;
+    border-color: var(--footer-form-text-color);
+    filter: none;
+    transform: rotate(45deg);
+}
+
+{% endstyle %}

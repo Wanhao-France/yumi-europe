@@ -1,0 +1,130 @@
+{% if settings.newsletter_pop_enable %}
+  <style>
+    .yv-newsletter-popup{
+      --popupBackground:{{ settings.newsletter_bk }};
+      --popupHeadingColor:{{ settings.newsletter_heading_color }};
+      --popupTextColor:{{ settings.newsletter_description_color }};
+      --colorBtnPrimaryText:{{ settings.newsletter_btn_text }};
+      --colorBtnPrimary:{{ settings.newsletter_btn_bg }};
+      --colorBtnPrimaryBorder:{{ settings.newsletter_btn_border }};
+    }
+  </style>
+  {{ 'newsletter-popup.css' | asset_url | stylesheet_tag }}
+  <div
+    class="yv-newsletter-popup"
+    aria-live="polite"
+    tabindex="0"
+    style="--layoutRadius:{% if settings.layout_style == 'rounded' %}20px{% else %}0px{% endif %};"
+  >
+    <div class="yv-newsletter-popup-outer">
+      <a class="pop_cross" href="#" aria-label="{{ 'accessibility.close' | t }}">
+        <svg height="13" viewbox="0 0 13 13" width="13">
+          <path d="M1235.63,300.5l5.11-5.115a0.813,0.813,0,0,0-1.15-1.15l-5.11,5.115-5.12-5.115a0.813,0.813,0,1,0-1.15,1.15l5.12,5.115-5.12,5.116a0.809,0.809,0,0,0,0,1.15,0.82,0.82,0,0,0,.58.238,0.8,0.8,0,0,0,.57-0.238l5.12-5.115,5.11,5.115a0.814,0.814,0,0,0,1.15,0,0.809,0.809,0,0,0,0-1.15Z" transform="translate(-1228 -294)"/>
+        </svg>
+      </a>
+      <div class="yv-newsletter-popup-body">
+        {% if settings.newsletter_left_image != blank %}
+          <div class="news-img">
+            {% render 'lazy-image', image: settings.newsletter_left_image %}
+          </div>
+        {% endif %}
+        <div class="yv-newsletter-popup-content ">
+          <div class="yv-newsletter-popup-content-box">
+            <div class="yv-newsletter-popup-text text-center">
+              <h5>{{ settings.newsletter_heading }}</h5>
+              <div class="newsDescription rich-editor-text-content">
+                {{ settings.newsletter_description }}
+              </div>
+            </div>
+            {%- form 'customer', id: 'contact-form-popup', class: 'contact-form' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input type="hidden" name="contact[context]" value="popup">
+              <div class="input-news-letter">
+                {% if form.posted_successfully? %}
+                  <span class="success-text">{{ 'newsletter.success' | t }}</span>
+                <script>
+                    localStorage.setItem('theme:popup-filled', 'true');
+                </script>
+                {% else %}
+                  <div class="form-group">
+                    <label for="EmailId" class="visually-hidden">{{ 'newsletter.email_placeholder' | t }}</label>
+                    <input
+                      class="form-control enter-email"
+                      type="email"
+                      name="contact[email]"
+                      id="EmailId"
+                      value="{%- if form.context == 'popup' -%}{{ form.email }}{% endif %}"
+                      placeholder="{{ 'newsletter.email_placeholder' | t }}"
+                      autocapitalize="off"
+                      required
+                    >
+                  </div>
+
+                  {%- if form.errors -%}
+                    <span class="form-group error-text" id="Newsletter-error--{{ section.id }}">
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </span>
+                  {%- endif -%}
+                  <button class="button btn-block" id="SubscribeBtn" name="commit">
+                    <span>{{ 'newsletter.button_label' | t }}</span>
+                  </button>
+                {% endif %}
+              </div>
+            {% endform %}
+
+            {% if settings.show_newsletter_social %}
+              {% render 'social-media-icons', showLabel: true %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script>
+    /* NEWSLETTER POPUP STARTS */
+    document.addEventListener("DOMContentLoaded",function(){
+      var getnew_Pop = Cookies.get('Newsletter_closed');
+      if (getnew_Pop != 'Newsletter_closed_val' && window.location.pathname.indexOf('/challenge') < 0) {
+        setTimeout(function () {
+          localStorage.setItem('theme:popup-filled', 'false');
+          $('body').addClass('NewsletterActive').addClass('scrollHidden');
+          $('.yv-newsletter-popup').addClass('active').trigger('focus');
+          focusElement = window;
+          if ($('.yv-newsletter-popup').find('.news-img').length > 0) {
+            setTimeout(function () {
+              $('.yv-newsletter-popup').addClass('show-image');
+            }, 1000);
+          }
+        }, 5000);
+      }
+      $('body').on('click', '.yv-newsletter-popup .pop_cross', function (e) {
+        e.preventDefault();
+        var form = $(this).parent().find('form');
+        var date = new Date();
+        date.setTime(date.getTime() + parseInt('{{ settings.popup_cookie }}') * 24 * 60 * 60 * 1000);
+        Cookies.set('Newsletter_closed', 'Newsletter_closed_val', { expires: date, path: '/' });
+        $('.yv-newsletter-popup').removeClass('active');
+        $('body').removeClass('NewsletterActive').removeClass('scrollHidden');
+        window.focus();
+        focusElement = '';
+      });
+    $('button[name="commit"]').click(function (e) {
+        e.preventDefault();
+        var form = $(this).closest('form');
+        form.submit();
+        console.log(posted_successfully);
+      });
+      if(localStorage.getItem("theme:popup-filled") === "true"){
+        var date = new Date();
+        date.setTime(date.getTime() + parseInt('{{ settings.popup_cookie }}') * 24 * 60 * 60 * 1000);
+        Cookies.set('Newsletter_closed', 'Newsletter_closed_val', { expires: date, path: '/' });
+        $('.yv-newsletter-popup').removeClass('active');
+        $('body').removeClass('NewsletterActive').removeClass('scrollHidden');
+        window.focus();
+        focusElement = ''; 
+      }
+    });
+    /* NEWSLETTER POPUP ENDS */
+  </script>
+{% endif %}

@@ -1,0 +1,291 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+    <div class="yv-faq-detail">
+      {%- if section.settings.heading != blank -%}
+        <{{ section.settings.seo_heading }}>{{ section.settings.heading }}</{{ section.settings.seo_heading }}>
+      {%- endif -%}
+      <div class="yv-product-accordion yv-faq-accordion">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.heading != blank or block.settings.answer != blank -%}
+            <div class="yv-accordion-card">
+              <div
+                class="yv-accordion-header faq-{{ section.id }} faqSection-header {% if forloop.first %}active{% endif %}"
+                content="faq-content-{{ block.id }}"
+              >
+                <h6 class="accordion-heading text-medium">{{ block.settings.heading }}</h6>
+                <svg viewBox="0 0 13 12" width="13" height="12">
+                  <path d="m6 0h1v13h-1z" class="v-line"></path>
+                  <path d="m0 6h13v1h-13z" class="h-line"></path>
+                </svg>
+              </div>
+              <div
+                class="yv-accordion-content faqSection-content"
+                id="faq-content-{{ block.id }}"
+                {% if forloop.first %}
+                  style="display:block;"
+                {% endif %}
+              >
+                <div class="yv-content-body">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<style>
+  #shopify-section-{{ section.id }}.shopify-section {
+    background:var(--{{- section.settings.bgcolor -}}ColorBody);
+    padding-top:{{ section.settings.top_space_desktop }}px;
+    padding-bottom:{{ section.settings.bottom_space_desktop }}px;
+    {%- unless section.settings.bgcolor == 'primary' or section.settings.bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.bgcolor -}}_heading_color);
+    --colorLightTextBody:var(--{{- section.settings.bgcolor -}}ColorLightTextBody);
+    --colorXlightTextBody:var(--{{- section.settings.bgcolor -}}ColorXlightTextBody);
+    {%- endunless -%}
+  }
+  #shopify-section-{{ section.id }}.shopify-section .yv-accordion-header{
+    background:var(--{{- section.settings.row_bgcolor -}}ColorBody);
+    {%- unless section.settings.row_bgcolor == 'primary' or section.settings.row_bgcolor == 'gradient' -%}
+    --colorTextBody:var(--{{- section.settings.row_bgcolor -}}colorTextBody);
+    --heading_color:var(--{{- section.settings.row_bgcolor -}}_heading_color);
+    {%- endunless -%}
+  }
+  @media only screen and (max-width:575px) {
+    #shopify-section-{{ section.id }}.shopify-section{
+      padding-top:{{ section.settings.top_space_mobile }}px;
+      padding-bottom:{{ section.settings.bottom_space_mobile }}px;
+    }
+  }
+  {% if section.settings.section_visibility == 'large' %}
+      @media (max-width: 767px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+    {% elsif section.settings.section_visibility == 'small' %}
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }}{
+          display: none !important;
+        }
+      }
+  {% endif %}
+</style>
+{% schema %}
+{
+  "name": "t:sections.faq-section.name",
+  "tag": "section",
+  "class": "faq-section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header"]
+   },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "FAQs",
+      "label": "t:sections.faq-section.settings.heading.label"
+    },
+    {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+      },
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bgcolor",
+      "label": "t:common.header.background_section.label",
+      "default": "primary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "row_bgcolor",
+      "label": "t:sections.faq-section.settings.row_bgcolor.label",
+      "default": "secondary",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:common.header.primary.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:common.header.secondary.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:common.header.tertiary.label"
+        },
+        {
+          "value": "quaternary",
+          "label": "t:common.header.quaternary.label"
+        },
+        {
+          "value": "gradient",
+          "label": "t:common.header.gradient.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_visibility",
+      "label": "t:common.section_visibility.label",
+      "default": "always",
+      "options": [
+        {
+          "label": "t:common.section_visibility.options.always.label",
+          "value": "always"
+        },
+        {
+          "label": "t:common.section_visibility.options.small_devices.label",
+          "value": "small"
+        },
+        {
+          "label": "t:common.section_visibility.options.large_devices.label",
+          "value": "large"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:common.header.space_section.label"
+    },
+    {
+      "type": "range",
+      "id": "top_space_desktop",
+      "label": "t:common.top_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_desktop",
+      "label": "t:common.bottom_space_desktop.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "top_space_mobile",
+      "label": "t:common.top_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "bottom_space_mobile",
+      "label": "t:common.bottom_space_mobile.label",
+      "default": 30,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "t:sections.faq-section.blocks.faq.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Frequently asked question",
+          "label": "t:sections.faq-section.blocks.faq.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "default": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>",
+          "label": "t:sections.faq-section.blocks.faq.settings.answer.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq-section.presets.name",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

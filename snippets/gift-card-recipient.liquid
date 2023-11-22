@@ -1,0 +1,77 @@
+
+  {%- assign gift_card_recipient_control_flag = 'properties[__shopify_send_gift_card_to_recipient]' -%}
+  <div
+    class="gift-card-box"
+  data-gift-card-box
+    data-section-id="{{ section.id }}"
+    data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  >
+    <div class="custom-checkbox gift__card-checkbox no-js-hidden">
+    <input id="Recipient-Checkbox-{{ section.id }}"
+      class="checkmark-input" 
+      type="checkbox" 
+      name="{{ gift_card_recipient_control_flag }}" 
+      unchecked
+      disabled
+      data-js-gift-card-selector
+      >
+    <span class="checkmark"></span>
+    <label for="Recipient-Checkbox-{{ section.id }}">{{ 'products.product.recipient.form.checkbox' | t }}</label>
+  </div>
+    <div class="gift-card-content no-js-visible" data-gift-card-content>
+      <div class="field form-group">
+          <input
+            class="form-control"
+            id="Recipient-email-{{ section.id }}"
+            type="email"
+            data-attr="{{ 'products.product.recipient.form.email' | t }}"
+            placeholder="{{ 'products.product.recipient.form.email' | t }}"
+            name="properties[Recipient email]"
+            value="{{ form.email }}"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="RecipientForm-email-error-{{ section.id }}"
+            {% endif %}
+          >
+          <label class="hidden" for="Recipient-email-{{ section.id }}">
+            {{- 'products.product.recipient.form.email' | t -}}
+          </label>
+      </div>
+      <div class="field form-group">
+          <input
+            class="form-control"
+            autocomplete="{{ 'products.product.recipient.form.name' | t }}"
+            type="text"
+            data-attr="{{ 'products.product.recipient.form.name' | t }}"
+            id="Recipient-name-{{ section.id }}"
+            name="properties[Recipient name]"
+            placeholder="{{ 'products.product.recipient.form.name_optional' | t }}"
+            value="{{ form.name }}"
+          >
+          <label class="hidden" for="Recipient-name-{{ section.id }}">
+            {{- 'products.product.recipient.form.name' | t -}}
+          </label>
+      </div>
+      <div class="field form-group">
+          <label class="hidden" for="Recipient-message-{{ section.id }}">
+            {{ 'products.product.recipient.form.message' | t }}
+          </label>
+          <textarea
+            rows="5"
+            id="Recipient-message-{{ section.id }}"
+            data-attr="textarea"
+            name="properties[Message]"
+            maxlength="200"
+            placeholder="{{ 'products.product.recipient.form.message_optional' | t }}"
+            aria-label="{{ 'products.product.recipient.form.message' | t }}"
+          >{{ form.message }}</textarea>
+      </div>
+    </div>
+    <input
+      type="hidden"
+      name="{{ gift_card_recipient_control_flag }}"
+      value="if_present"
+      id="Recipient-Control-{{ section.id }}"
+      data-no-js-gift-card-selector
+    >
+  </div>

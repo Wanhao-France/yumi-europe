@@ -1,0 +1,91 @@
+{%- if product.selling_plan_groups.size > 0 -%}
+<script>
+  {%- for selling_plan_group  in product.selling_plan_groups -%}
+  var selling_Plan_Group_{{- selling_plan_group.id -}} = {
+    "id":"{{- selling_plan_group.id -}}",
+    "name":"{{ selling_plan_group.name }}",
+    "selling_plans":{
+    {%- for selling_plan in selling_plan_group.selling_plans %}
+    {%- liquid 
+      for option in selling_plan.options
+        assign option_name =  option.name
+        assign option_position =  option.position
+        assign option_value =  option.value
+      endfor 
+
+
+      for price_adjustment in selling_plan.price_adjustments limit: 1      
+        assign position =  price_adjustment.position
+        assign value =  price_adjustment.value
+        assign type =  price_adjustment.value_type
+      endfor 
+    -%}
+    "selling_Plan_Id_{{ selling_plan.id }}":{
+    "id":{{ selling_plan.id }},
+    "name": "{{ selling_plan.name }}",
+    "description": "{{ selling_plan.description }}",
+    "recurring_deliveries" :"{{ selling_plan.recurring_deliveries }}",
+    "options": {
+    "name":"{{ option_name }}",
+    "position":"{{ option_position }}",
+    "value":"{{ option_value }}"
+  },
+      "price_adjustments": {
+        "position":"{{ position }}",
+        "value":"{{ value }}",
+        "type":"{{ type }}"
+      }
+  }{%- unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  }
+  };
+  {%- endfor %}
+</script>
+{% endif %}
+<script type="application/json" data-name="variant-json">
+[ {%- for variant in product.variants -%}
+{
+"available": {{- variant.available -}},
+"compare_at_price": {%- if variant.compare_at_price -%}{{-variant.compare_at_price-}}{%-else-%}null{%- endif -%},
+"featured_media": {{- variant.featured_media | json -}},
+"id": {{- variant.id -}},
+"inventory_management": "{{- variant.inventory_management -}}",
+"inventory_policy": "{{- variant.inventory_policy -}}",
+"inventory_quantity": "{{- variant.inventory_quantity -}}",
+"name":{{- product.title | json }},
+"option1": {{- variant.option1 | json -}},
+"option2": {{- variant.option2 | json -}},
+"option3": {{- variant.option3 | json -}},
+"options": {{ variant.options | json }},
+"price": {{- variant.price -}},
+"sku": "{{- variant.sku -}}",
+{% if variant.unit_price_measurement %}
+"unit_price_measurement":true,
+"unit_price":{{- variant.unit_price -}},
+"reference_value":{{- variant.unit_price_measurement.reference_value -}},
+"reference_unit":"{{- variant.unit_price_measurement.reference_unit -}}",
+{%-else-%}
+"unit_price_measurement":false,
+{%- endif -%}
+"title":{{- variant.title | json -}},
+"store_availabilities":"{{- variant.store_availabilities -}}",
+"selling_plans":{
+{%- for selling_plan_allocation in variant.selling_plan_allocations -%}
+"plan_{{ selling_plan_allocation.selling_plan.id }}":{
+            "group_id":"{{ selling_plan_allocation.selling_plan_group_id }}",
+            "price":"{{ selling_plan_allocation.price }}",
+            "compare_at_price":"{{ selling_plan_allocation.compare_at_price }}",
+            {%- assign group = product.selling_plan_groups | where: 'id', selling_plan_allocation.selling_plan_group_id -%}
+            {%- assign plan = group[0].selling_plans | where: 'id', selling_plan_allocation.selling_plan.id -%}
+            "allocation_value":"{{ plan[0].price_adjustments[0].value }}",
+            "allocation_type":"{{ plan[0].price_adjustments[0].value_type }}"
+}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+}
+}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}]
+</script>
+
+          <script type="application/json" data-name="main-product-options">
+            {{ product.options_with_values | json }}
+          </script>

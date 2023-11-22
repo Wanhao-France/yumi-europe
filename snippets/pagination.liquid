@@ -1,0 +1,36 @@
+{% comment %}
+Renders a pagination bar
+
+Accepts:
+- paginate: {Object} Paginate Liquid object (required)
+
+Usage:
+{% render 'pagination', paginate: paginate %}
+{% endcomment %}
+<ul class="list-unstyled yv-pagination">
+  <li class="yv-pagination-item{% unless paginate.previous %} disabled{% endunless %}">
+    <{% if paginate.previous %}a href="{{ paginate.previous.url }}{{ anchor }}"{% else %}span{% endif %} class="yv-pagination-link yv-pagination-icon" aria-label="{{ 'general.pagination.previous' | t }}">
+      	<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M15.526 18.966L8.559 12l6.967-6.967"></path></svg>
+    </{% if paginate.previous %}a{% else %}span{% endif %}>
+  </li>
+  {% for part in paginate.parts %}
+  {% if part.is_link %}
+  <li class="yv-pagination-item">
+    <a href="{{ part.url }}{{ anchor }}" class="yv-pagination-link" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{part.title}}</a>
+  </li>
+  {%- else -%}
+  {%- if part.title == paginate.current_page -%}
+  <li class="yv-pagination-item yv-pagination-text active">
+    {{ part.title }}</li> 
+  {%- else -%}  
+  <li class="yv-pagination-item">
+    {{ part.title }}</li>  
+  {%- endif -%}
+  {% endif %}
+  {% endfor %}
+  <li class="yv-pagination-item{% unless paginate.next %} disabled{% endunless %}">
+    <{% if paginate.next %}a href="{{ paginate.next.url }}{{ anchor }}"{% else %}span{% endif %} class="yv-pagination-link yv-pagination-icon" aria-label="{{ 'general.pagination.next' | t }}">
+      	<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M8.474 18.966L15.44 12 8.474 5.033"></path></svg>
+    </{% if paginate.next %}a{% else %}span{% endif %}>
+  </li>
+</ul>

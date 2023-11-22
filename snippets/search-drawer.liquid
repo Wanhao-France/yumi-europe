@@ -1,0 +1,63 @@
+<div class="search-bar-container" aria-live="polite" tabindex="0">
+  <div class="search-bar-input">
+    <div class="container">
+      <form action="{{ routes.search_url }}" method="get" role="search">
+          <input name="type" type="hidden" value="product">
+          <input name="options[prefix]" type="hidden" value="last">
+        <div class="input-with-icon">
+          <button class="search-icon-btn" type="submit" aria-label="{{ 'templates.search.drawer_placeholder' | t }}">
+            <svg x="0px" y="0px" viewBox="0 0 19 19" >
+              <g id="Layer_2_00000097485305687718570450000012444786711219352711_">
+                <g id="Layer_1-2_00000170264823178984080880000007986600501065017505_">
+                  <path d="M18.9,18.1l-5.2-5.2c2.8-3.2,2.5-8.2-0.8-11s-8.2-2.5-11,0.8s-2.5,8.2,0.8,11c2.9,2.6,7.3,2.6,10.2,0l5.2,5.2
+                           c0.1,0.1,0.2,0.2,0.4,0.2c0.3,0,0.6-0.2,0.6-0.5C19,18.3,19,18.2,18.9,18.1z M7.8,14.5c-3.7,0-6.7-3-6.7-6.7c0-3.7,3-6.7,6.7-6.7
+                           c3.7,0,6.6,3,6.7,6.7C14.5,11.5,11.5,14.5,7.8,14.5C7.8,14.5,7.8,14.5,7.8,14.5z"></path>
+                </g>
+              </g>
+            </svg>
+          </button>
+          <label class="visually-hidden" for="search-drawer-query-input">{{ 'templates.search.drawer_placeholder' | t }}</label>
+          <input 
+            id="search-drawer-query-input" 
+            type="text" 
+            name="q"
+            {% if settings.enable_search_prompts %}
+              {% if settings.search_prompts_1 != blank or settings.search_prompts_2 != blank or settings.search_prompts_2 != blank%}
+                 placeholder="{{ settings.search_prompts_1 }}" 
+                 data-placeholder-one="{{ settings.search_prompts_1 }}" 
+                 data-placeholder-two="{{ settings.search_prompts_2 }}" 
+                 data-placeholder-three="{{ settings.search_prompts_3 }}"
+                data-search-prompts
+              {% else %}
+                 placeholder="{{ 'general.search.search' | t }}"
+              {% endif %}
+            {% else %}
+               placeholder="{{ 'general.search.search' | t }}"
+            {% endif %} 
+            class="form-control search-input {% if settings.enable_search_prompts %} enable-searchpromt{% endif %}" 
+            autocomplete="off">
+          <button class="input-group-append yv-search-drawer-close" aria-label="{{ 'templates.search.drawer_close' | t }}">
+            <svg viewBox="0 0 17.02 17.02" class="search-close" fill="currentColor">
+              <g id="Layer_2V" data-name="Layer 2">
+                <g id="Layer_1-2G" data-name="Layer 1">
+                  <polygon points="17.02 0.93 16.09 0 8.51 7.58 0.93 0 0 0.93 7.58 8.51 0 16.09 0.93 17.02 8.51 9.44 16.09 17.02 17.02 16.09 9.44 8.51 17.02 0.93"/>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+    <div class="search-drawer-result-count yv-visually-hidden" role="status">
+    </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    {% if settings.enable_result_suggestions %}
+    <div class="yv-related-query" data-search-suggestions></div>
+    {% endif %}
+    <div class="recent-search-list ActiveSearch" id="recent_search_list"></div>
+    <div class="yv-search-result-container {% if settings.product_image_style != 'aspect' %} result-product-image-{{ settings.product_image_style }}{% endif %}" style="--productImgRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %}">      
+    </div>
+  </div>
+</div>
+<script src="{{ 'search.js' | asset_url }}" defer></script>

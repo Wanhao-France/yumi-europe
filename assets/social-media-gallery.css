@@ -1,0 +1,76 @@
+.social-media-gallery-section {
+  --overlayBg:rgba(0,0,0,0.5);
+  --contentColor:#fff;
+}
+
+.yv-social-media-gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 14px;
+    margin-top: 25px;
+}
+.yv-social-media-gallery-img {
+    position: relative;
+    background: var(--colorImageBg);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.yv-social-media-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    opacity: 0;
+    transition: .3s all linear;
+}
+.yv-social-media-icon-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    padding: 10px;
+    text-align: center;
+}
+.yv-social-media-gallery-img:hover:before {
+    opacity: 1;
+}
+.yv-social-media-gallery-img:hover .yv-social-media-icon {
+    opacity: 1;
+}
+.yv-site-title {
+    color: var(--contentColor);
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+}
+.yv-social-media-gallery-img:before {
+    content: "";
+    background: rgba(var(--overlayBg));
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: .3s all linear;
+}
+.yv-social-media-icon-inner svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--contentColor);
+    display: block;
+}
+
+@media screen and (max-width:767px) {
+    .yv-social-media-gallery {
+    grid-template-columns: repeat(2,1fr);
+}
+}

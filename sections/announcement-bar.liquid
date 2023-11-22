@@ -1,0 +1,648 @@
+{%- liquid
+  assign show_bar = false
+  unless section.settings.first_text == blank and section.settings.last_text == blank and section.settings.date == blank
+    assign show_bar = true
+  endunless
+-%}
+{%- capture announcements -%}
+  {%- liquid 
+    assign limit = 1
+   if section.settings.layout == 'marquee'
+     if section.blocks.size > 1
+     assign limit = 5
+       else
+     assign limit = 10
+   endif 
+   endif 
+   -%}
+   {%- if section.blocks.size > 0-%}
+   {%- for i in (1..limit) -%}
+   {%- if section.settings.layout == 'marquee' -%}
+        <div class="announcement-bar__message-marquee">
+     {%- endif -%}
+    {%- for block in section.blocks -%}
+      {% unless block.settings.first_text == blank
+        and block.settings.last_text == blank
+        and block.settings.date == blank
+      %}
+        <div class="announcement-bar__message" {{ block.shopify_attributes }}>
+          {%- unless block.settings.icon == 'none' %}
+            <span class="announcement_icon">{% render 'icons', icon: block.settings.icon -%}</span>
+          {%- endunless -%}
+          {%- if block.settings.first_text != blank -%}
+            <p>{{- block.settings.first_text -}}</p>
+          {%- endif -%}
+          {%- if block.settings.date != blank -%}
+            <div id="announcementTimer" class="hidden" tabindex="0">
+              <input type="hidden" id="eventDate" class="eventDate" value="{{- block.settings.date -}}">
+              <ul class="list-unstyled">
+                <li><span id="days"></span>:</li>
+                <li><span id="hours"></span>:</li>
+                <li><span id="minutes"></span>:</li>
+                <li><span id="seconds"></span></li>
+              </ul>
+            </div>
+            <p id="dayHours"></p>
+          {%- endif -%}
+          {%- if block.settings.btn != blank and block.settings.link != blank -%}
+            <a class="announce-btn" href="{{ block.settings.link }}">{{- block.settings.btn -}}</a>
+          {%- endif %}
+        </div>
+      {%- endunless -%}
+    {%- endfor -%}
+   {%- if section.settings.layout == 'marquee' -%}
+        </div>
+     {%- endif -%}
+  {%- endfor -%}
+     {%- endif -%}
+{%- endcapture -%}
+{%- if section.settings.show_bar and announcements != blank -%}
+  <style>
+   {%- liquid
+    assign opacity = section.settings.overlay_opacity | divided_by: 100.0
+  -%}
+    #shopify-section-{{ section.id }} {
+      --announce-height: {{ section.settings.desktop_height }};
+      --animation-speed:{{ section.settings.marquee_speed }}s;
+      border-color:transparent !important;
+      --announcement-overlay-bg:{{ section.settings.overlay_color }};
+      --announcement-overlay-opacity: {{ opacity }};
+      {%- if section.settings.bg_style == 'gradient' -%}
+      background: {{ section.settings.bgcolor2 }};
+        {%- else -%}
+        background-color:{{ section.settings.bgcolor }};
+        {%- endif -%}
+        }
+   
+  {%- if section.settings.bg_style != 'gradient' -%}
+    .announcement-bar .localization-dropdown{
+      background-color:{{ section.settings.bgcolor }};
+    }
+  {%- endif -%}
+  
+    #shopify-section-{{ section.id }} .announcement-bar .announcement-bar__message,
+    #shopify-section-{{ section.id }} .announcement-bar .announcement-bar__message *,
+    #shopify-section-{{ section.id }} .announcement-bar .announcement-bar__message ul li span,
+    #shopify-section-{{ section.id }} .announcement-bar .announcement_icon,
+    #shopify-section-{{ section.id }} .announcement-bar .announce_close,
+    #shopify-section-{{ section.id }} .country-select-box .detail-summary span,
+  #shopify-section-{{ section.id }} .country-select-box .detail-summary:after{
+      color:{{ section.settings.fontcolor }};
+    }
+    #shopify-section-{{ section.id }} .announcement-bar .announcement-bar__message .announce-btn{
+      color:{{ section.settings.btn_fontcolor }};
+      background-color:{{ section.settings.btn_bgcolor }};
+      border-color:{{ section.settings.bborder_color }};
+    }
+   @media screen and (max-width:767px){
+    #shopify-section-{{ section.id }}{
+    --announce-height :{{ section.settings.mobile_height }};
+    }
+   }
+  </style>
+    <div class="announcement-bar-background">
+   {% liquid 
+        if section.settings.image_mobile != blank
+          assign mobileImage = true
+          assign mobileClass = 'mobile-img d-block d-md-none'
+          render 'lazy-image', image: section.settings.image_mobile, class: mobileClass
+        endif
+        assign desktopClass = animationClass
+        if mobileImage
+          assign desktopClass = 'd-none d-md-block ' 
+        endif
+        if section.settings.background_img != blank
+          render 'lazy-image', image: section.settings.background_img, class: desktopClass
+        endif
+     %}
+  </div>
+  <div id="announcement-main-{{ section.id }}"  class="hidden container {% if section.settings.desktop_height == 'adapt_image' %} height-adapt{%- else -%} height-fixed{% endif %}">
+  <div class="announcement-bar-main-wrapper align-center d-flex">
+    
+    {% liquid
+      if section.settings.enable_language_selector or section.settings.enable_currency_selector
+        echo '<div class="d-none d-lg-block">'
+        render 'header-localization' section:section 
+        echo '</div>'
+      endif
+    %}
+  <div
+    id="announcement{{ section.id }}"
+    class="announcement-bar close-icon-{{ section.settings.show_close }}"
+    role="region"
+    aria-label="{{ 'sections.announcement.heading' | t }}"
+  >
+    <div
+      class="announcement-bar-wrapper{% if section.settings.layout == 'marquee' %} marque-enabled{% if section.settings.marquee_direction == 'right' %} ltr{% endif %}{% endif %}"
+      {% if section.blocks.size > 1 and section.settings.layout == 'carousel' %}
+        data-manual="true"
+        data-flickity-slider='
+          {"wrapAround":true,
+          "contain": true,
+          "pauseAutoPlayOnHover": false,
+          "resize": true,
+          "touchVerticalScroll": false,
+          "pageDots": false,
+          "prevNextButtons":false,
+          "autoPlay":5000,
+          "arrowShape":"M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" }
+        '
+      {% endif %}
+    >
+  {{ announcements }}
+    </div>
+      {%- if section.settings.show_close -%}
+      <button type="button" class="announce_close" aria-label="{{ 'sections.announcement.close' | t }}">
+        <svg viewBox="0 0 41.93 41.89">
+          <g><g ><g><path class="d" d="M26.26,20.95l14.54-14.53c.73-.73,1.13-1.67,1.13-2.65s-.4-1.92-1.13-2.64c-1.51-1.51-3.79-1.51-5.3,0l-14.54,14.53L6.42,1.13C4.91-.38,2.63-.38,1.13,1.13,.4,1.86,0,2.8,0,3.78s.4,1.92,1.13,2.65l14.54,14.53L1.12,35.48C.4,36.2,0,37.14,0,38.12s.4,1.92,1.12,2.65c1.45,1.45,3.84,1.45,5.29,0l14.54-14.53,14.54,14.53c.73,.72,1.67,1.12,2.65,1.12s1.92-.4,2.65-1.12c.73-.73,1.13-1.67,1.13-2.65,0-.98-.4-1.92-1.13-2.64l-14.54-14.53Z"/></g></g></g>
+        </svg>
+      </button>
+    {%- endif -%}
+    </div>
+    </div>
+  </div>
+
+            {% else %}
+  <style>
+    #shopify-section-{{ section.id }}{
+      display:none;
+    }
+  </style>
+{%- endif -%}
+  <script>
+    function announcementTimer(){
+      const second = 1000,
+            minute = second * 60,
+            hour = minute * 60,
+            day = hour * 24;
+
+      var eventdates = document.getElementsByClassName("eventDate");
+
+      if(eventdates.length > 0) {
+        Array.from(eventdates).forEach(function(eventdate) {
+          const myArr = eventdate.value.split("/");
+          let _day = myArr[0];
+          let _month = myArr[1];
+          let _year = myArr[2];
+          let _date = _month+"/"+_day+"/"+_year+" 00:00:00";
+          let countDown = new Date(_date).getTime();
+
+          x = setInterval(function() {
+            let now = new Date().getTime(),
+            distance = countDown - now;
+            if(distance > 0){
+              let parent = eventdate.closest(".announcement-bar__message");
+              parent.querySelector("#announcementTimer").classList.remove('hidden');
+              var leftDays = Math.floor(distance / (day));
+              let daysHours = parent.querySelector("#dayHours");
+              let days = parent.querySelector("#days");
+              let hours = parent.querySelector("#hours");
+              let minutes = parent.querySelector("#minutes");
+              let seconds = parent.querySelector("#seconds");
+              if(daysHours){
+                if(leftDays > 0){
+                  daysHours.textContent= '{{ 'general.days' | t }}';
+                }
+                else{
+                  parent.querySelector("#dayHours").textContent = '{{ 'general.hours' | t }}';
+                }
+              }
+              if(days){
+                days.innerText = pad2(leftDays);
+              }
+              if(hours){
+                hours.innerText = pad2(Math.floor((distance % (day)) / (hour)));
+              }
+              if(minutes){
+                minutes.innerText = pad2(Math.floor((distance % (hour)) / (minute)));
+              }
+              if(seconds){
+                seconds.innerText = pad2(Math.floor((distance % (minute)) / second));
+              }
+            }
+            else{
+              clearInterval(x);
+            }
+          }, 0)
+        });
+      }
+
+      setTimeout(function(){
+        var getnew_Pop = Cookies.get('announcement_closed');
+        if(getnew_Pop != "true"){
+          document.querySelector('body').classList.add('announcement-open');
+        }
+      },500);
+    }
+
+    function initAnnouncement(){
+      var getnew_Pop = Cookies.get('announcement_closed');
+      if(getnew_Pop != "true"){
+        $('#announcement-main-{{ section.id }}').removeClass('hidden');
+         $('body').removeClass('announcement-open');
+        let announcementSlider = $('#announcement{{ section.id }}').find('[data-flickity-slider]');
+        if(announcementSlider.length > 0){
+          setTimeout(function(){
+            announcementSlider.attr('data-manual','false')
+            flickitySlider(announcementSlider);
+            {%- comment -%} $(".announcement-bar-wrapper.flickity-enabled").flickity('resize') {%- endcomment -%}
+          },500);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", announcementTimer,false);
+    document.addEventListener("DOMContentLoaded", initAnnouncement,false);
+
+    document.addEventListener("shopify:section:load", announcementTimer,false);
+    document.addEventListener("shopify:section:load", initAnnouncement,false);
+    document.addEventListener("DOMContentLoaded",function(){
+        $('.announce_close').click(function(){
+          $('.announcement-bar').slideToggle();
+          $('#announcement-main-{{ section.id }}').addClass('hidden');
+          var date = new Date();
+          date.setTime(date.getTime() + (parseInt(24 * 60 * 60 * 1000)));
+          Cookies.set('announcement_closed', 'true', { expires: date, path: '/' });
+          $('body').removeClass('announcement-open');
+           let announcementHeight =0;
+             $('body').css('--announcement-height',announcementHeight+'px');
+          setTimeout(function(){
+            let headerHeight = $('#headerSection').height();
+            $('.yv-collections-topbar').css('top',headerHeight+'px');
+          },500);
+        });
+    });
+  </script>
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "class": "announcement-bar-section",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:common.icon.label",
+          "default": "gift",
+          "options": [
+            {
+              "label": "t:sections.announcement-bar.settings.icon.none.label",
+              "value": "none"
+            },
+            {
+              "label": "t:common.icon.options.chat.label",
+              "value": "chat"
+            },
+            {
+              "label": "t:common.icon.options.eye.label",
+              "value": "eye"
+            },
+            {
+              "label": "t:common.icon.options.file.label",
+              "value": "file"
+            },
+            {
+              "label": "t:common.icon.options.gift.label",
+              "value": "gift"
+            },
+            {
+              "label": "t:common.icon.options.global.label",
+              "value": "global"
+            },
+            {
+              "label": "t:common.icon.options.heart.label",
+              "value": "heart"
+            },
+            {
+              "label": "t:common.icon.options.phone.label",
+              "value": "phone"
+            },
+            {
+              "label": "t:common.icon.options.refund.label",
+              "value": "refund"
+            },
+            {
+              "label": "t:common.icon.options.search.label",
+              "value": "search"
+            },
+            {
+              "label": "t:common.icon.options.secure.label",
+              "value": "secure"
+            },
+            {
+              "label": "t:common.icon.options.shipping.label",
+              "value": "shipping"
+            },
+            {
+              "label": "t:common.icon.options.smile.label",
+              "value": "smile"
+            },
+            {
+              "label": "t:common.icon.options.support.label",
+              "value": "support"
+            },
+            {
+              "label": "t:common.icon.options.tag.label",
+              "value": "tag"
+            },
+            {
+              "label": "t:common.icon.options.thumb.label",
+              "value": "thumb"
+            },
+            {
+              "label": "t:common.icon.options.user.label",
+              "value": "user"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "t:common.header.text_section.label"
+        },
+        {
+          "type": "text",
+          "id": "first_text",
+          "label": "t:sections.announcement-bar.settings.first_text.label",
+          "default": "Announcement Here"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "t:sections.announcement-bar.settings.date.label",
+          "info": "t:sections.announcement-bar.settings.date.info"
+        },
+        {
+          "type": "header",
+          "content": "t:common.header.button_section.label"
+        },
+        {
+          "type": "text",
+          "id": "btn",
+          "label": "t:sections.announcement-bar.settings.btn.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.announcement-bar.settings.link.label"
+        }       
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.show_bar.label"
+    },
+    {
+      "type": "header",
+      "content": "t:common.background_image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_img",
+      "label": "t:sections.slider.blocks.slide.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:sections.slider.blocks.slide.settings.image_mobile.label"
+    },
+    {
+      "type": "select",
+      "id": "desktop_height",
+      "label": "t:sections.slider.settings.desktop_height.label",
+      "default": "adapt_image",
+      "options": [
+        {
+          "value": "adapt_image",
+          "label": "t:common.banner.height.options.adapt.label"
+        },
+        {
+          "value": "100px",
+          "label": "t:common.banner.height.options.small.label"
+        },
+        {
+          "value": "150px",
+          "label": "t:common.banner.height.options.medium.label"
+        },
+        {
+          "value": "200px",
+          "label": "t:common.banner.height.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_height",
+      "label": "t:sections.slider.settings.mobile_height.label",
+      "default": "adapt_image",
+      "options": [
+        {
+          "value": "adapt_image",
+          "label": "t:common.banner.height.options.adapt.label"
+        },
+        {
+          "value": "50px",
+          "label": "t:common.banner.height.options.small.label"
+        },
+        {
+          "value": "100px",
+          "label": "t:common.banner.height.options.medium.label"
+        },
+        {
+          "value": "150px",
+          "label": "t:common.banner.height.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "default": "carousel",
+      "label": "t:sections.announcement-bar.settings.layout.label",
+      "options":[
+        {
+          "value":"carousel",
+          "label":"t:sections.announcement-bar.settings.layout.options.carousel.label"
+        },
+        {
+          "value":"marquee",
+          "label":"t:sections.announcement-bar.settings.layout.options.marquee.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.show_close.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.carousel.heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "carousel_rotate",
+      "label": "t:sections.announcement-bar.settings.carousel_rotate.label",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "carousel_interval", 
+      "label": "t:sections.announcement-bar.settings.carousel_interval.label",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.marquee.heading"
+    },
+    {
+      "type": "select",
+      "id": "marquee_direction",
+      "label": "t:sections.announcement-bar.settings.marquee_direction.label",
+      "default": "left",
+      "options":[
+        {
+          "label":"t:sections.announcement-bar.settings.marquee_direction.options.left.label",
+          "value":"left"
+        },
+        {
+          "label":"t:sections.announcement-bar.settings.marquee_direction.options.right.label",
+          "value":"right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed", 
+      "label": "t:sections.announcement-bar.settings.marquee_speed.label",
+      "min": 1,
+      "max":60,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.enable_language_selector.heading"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.announcement-bar.settings.enable_language_selector.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.enable_language_selector.label",
+      "info": "t:sections.announcement-bar.settings.enable_language_selector.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.show_currency.heading"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.announcement-bar.settings.show_currency.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_currency_selector",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.show_currency.label",
+      "info": "t:sections.announcement-bar.settings.show_currency.info"
+    },
+
+    {
+      "type": "header",
+      "content": "t:common.header.color_section.label"
+    },
+    {
+      "type": "color",
+      "id": "fontcolor",
+      "default": "#ffffff",
+      "label": "t:sections.announcement-bar.settings.fontcolor.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:common.header.background_section.label"
+    },
+    {
+      "type": "select",
+      "id": "bg_style",
+      "label": "t:sections.announcement-bar.settings.bg_style.label",
+      "default": "solid",
+      "options": [
+        {
+          "label": "t:sections.announcement-bar.settings.bg_style.solid.label",
+          "value": "solid"
+        },
+        {
+          "label": "t:sections.announcement-bar.settings.bg_style.gradient.label",
+          "value": "gradient"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bgcolor",
+      "default": "#181818",
+      "label": "t:sections.announcement-bar.settings.bgcolor.label"
+    },
+    {
+      "type": "color_background",
+      "id": "bgcolor2",
+      "label": "t:sections.announcement-bar.settings.bgcolor2.label"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:common.overlay_color.label"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:common.overlay_opacity.label",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:common.header.button_section.label"
+    },
+    {
+      "type": "color",
+      "id": "btn_bgcolor",
+      "default": "#ffffff",
+      "label": "t:sections.announcement-bar.settings.btn_bgcolor.label"
+    },
+    {
+      "type": "color",
+      "id": "btn_fontcolor",
+      "default": "#181818",
+      "label": "t:sections.announcement-bar.settings.btn_fontcolor.label"
+    },
+    {
+      "type": "color",
+      "id": "bborder_color",
+      "default": "#ffffff",
+      "label": "t:sections.announcement-bar.settings.bborder_color.label"
+    }
+  ]
+}
+{% endschema %}
+

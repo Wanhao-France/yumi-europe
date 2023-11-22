@@ -1,0 +1,217 @@
+{%- assign sidebarContent = false -%}
+{%- capture sideBarData -%}
+<div class="section-heading">
+  {%- if section.settings.subheading != blank -%}
+  {%- assign sidebarContent = true -%}
+  <h6>{{ section.settings.subheading }}</h6>
+  {%- endif -%}
+  {%- if section.settings.heading != blank -%}
+  {%- assign sidebarContent = true -%}
+  <h2 class="h6">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+</div>
+{%- if section.blocks.size > 0 -%}
+<div class="yv-offer-sidebar-outer" >
+  <div class="offer-sidebar-slider"
+  {% if section.blocks.size > 1 %}
+  data-flickity-slider='{"contain": true,"resize": true,"touchVerticalScroll": false, "pageDots": false,"prevNextButtons":true }'
+  {% endif %}>
+    {%- for block in section.blocks -%}
+    <div id="yv-offer-sidebar-item-{{ block.id }}" class="yv-offer-sidebar-item" {{ block.shopify_attributes }}>
+      <div class="yv-sidebar-offer-item">
+        {%- if block.settings.image != blank -%}
+          {%- assign sidebarContent = true -%}
+        {%- render 'lazy-image' image: block.settings.image, width: '500x' -%}
+        {%- endif -%}
+      </div>
+      <div class="yv-offer-sidebar-detail">
+        {%- if block.settings.heading != blank -%}
+          {%- assign sidebarContent = true -%}
+        <p class="">{{ block.settings.heading }}</p>
+        {%- endif -%}
+        {%- if block.settings.highlight_text != blank -%}
+          {%- assign sidebarContent = true -%}
+        <p class="h4 offer-hightlight-text">{{ block.settings.highlight_text }}</p>
+        {%- endif -%}
+        {% if block.settings.linktext != blank and block.settings.link != blank %}
+          {%- assign sidebarContent = true -%}
+        <a href="{{ block.settings.link }}"class="link">{{ block.settings.linktext }}</a>
+        {% endif %}
+      </div>
+    </div>
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}
+<button class="offer-close">
+  <svg width="11" height="11" viewBox="0 0 11 11">
+    <path d="M10.1818 0.178336C10.0166 0.182234 9.85973 0.251358 9.74539 0.370597L5.49978 4.6162L1.25417 0.370597C1.19586 0.310652 1.12611 0.263019 1.04905 0.230518C0.971992 0.198018 0.889196 0.181311 0.805565 0.181388C0.681284 0.181542 0.55987 0.218741 0.456833 0.288234C0.353796 0.357726 0.273813 0.456357 0.227104 0.571527C0.180394 0.686696 0.169077 0.813176 0.194598 0.934809C0.22012 1.05644 0.281321 1.1677 0.370385 1.25439L4.61599 5.49999L0.370385 9.7456C0.310401 9.80319 0.262511 9.87217 0.229521 9.9485C0.19653 10.0248 0.179101 10.107 0.178255 10.1901C0.177409 10.2733 0.193162 10.3558 0.224593 10.4327C0.256024 10.5097 0.3025 10.5797 0.361299 10.6385C0.420099 10.6973 0.490039 10.7437 0.567025 10.7752C0.644011 10.8066 0.726495 10.8224 0.809645 10.8215C0.892796 10.8207 0.974942 10.8032 1.05127 10.7703C1.1276 10.7373 1.19658 10.6894 1.25417 10.6294L5.49978 6.38378L9.74539 10.6294C9.80298 10.6894 9.87196 10.7373 9.94829 10.7703C10.0246 10.8032 10.1068 10.8207 10.1899 10.8215C10.2731 10.8224 10.3555 10.8066 10.4325 10.7752C10.5095 10.7437 10.5795 10.6973 10.6383 10.6385C10.6971 10.5797 10.7435 10.5097 10.775 10.4327C10.8064 10.3558 10.8222 10.2733 10.8213 10.1901C10.8205 10.107 10.803 10.0248 10.77 9.9485C10.737 9.87217 10.6892 9.80319 10.6292 9.7456L6.38357 5.49999L10.6292 1.25439C10.7201 1.16718 10.7826 1.05452 10.8084 0.931187C10.8342 0.807854 10.8221 0.679604 10.7737 0.563257C10.7253 0.446911 10.6429 0.3479 10.5373 0.27921C10.4317 0.21052 10.3078 0.175358 10.1818 0.178336Z"/>
+    </svg>
+    
+</button>
+<script>
+document.addEventListener("DOMContentLoaded",function(){ 
+  if ($(window).scrollTop() > ($(window).height() / 2)) {
+      $('#shopify-section-{{ section.id }}').show();
+  }
+  $(window).on('scroll', function() {
+      if ($(this).scrollTop() > ($(this).height() / 2)) {
+          $('#shopify-section-{{ section.id }}').show();
+      } else {
+          $('#shopify-section-{{ section.id }}').hide();
+      }
+      closeVideoMedia();
+  }) 
+  $("body").on('click','.yv-coupan-panel',function(){
+    $("body").addClass("offer-open");
+    $(".yv-coupan-sidebar-element").addClass("open");
+    if($(".yv-coupan-sidebar").find("[data-flickity-slider]").hasClass('flickity-enabled')){
+      $(".yv-coupan-sidebar").find("[data-flickity-slider]").flickity('resize');
+    }
+  });
+  $("body").on('click','.offer-close',function(){
+    $("body").removeClass("offer-open");
+    $(".yv-coupan-sidebar-element").removeClass("open");
+  });
+}) 
+</script>
+{%- endcapture -%}
+<div class="offer-sidebar-box position-{{ section.settings.horizontal_position }}" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %}">
+<div class="yv-coupan-panel yv-coupan-panel-{{ section.id }}">
+{{ section.settings.button_text | default: 'Coupon' }}
+</div>
+<div class="yv-coupan-sidebar-element">
+<div class="yv-coupan-sidebar">
+{%- if section.settings.enable_sidebar and sidebarContent -%} 
+  {{- sideBarData -}}
+{%- endif -%}
+</div>
+</div>
+</div>
+<style>
+  #shopify-section-{{ section.id }}{
+    display:none;
+    --btnBackgroundColor:{{ section.settings.btnbgcolor }};
+    --btnTextColor:{{ section.settings.btntextcolor }};
+    --btnBackgroundColorLight:{{ section.settings.btnbgcolor | color_modify : 'alpha' , 0.3 }};
+    --btnBackgroundColorNull:{{ section.settings.btnbgcolor | color_modify : 'alpha' , 0 }};
+  }
+  #shopify-section-{{ section.id }} .yv-coupan-sidebar,
+  #shopify-section-{{ section.id }} .yv-coupan-panel{
+  	bottom:{{ section.settings.vertical_position }}%;
+  }
+</style>
+{% schema %}
+{
+  "name": "t:sections.offer-sidebar.name",
+  "class": "offer-sidebar-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sidebar",
+      "default": false,
+      "label": "t:sections.offer-sidebar.settings.enable_sidebar.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Heading Here",
+      "label": "t:sections.offer-sidebar.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Sub Heading Here",
+      "label": "t:sections.offer-sidebar.settings.subheading.label"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Coupon",
+      "label": "t:sections.offer-sidebar.settings.button_text.label",
+      "info": "t:sections.offer-sidebar.settings.button_text.info"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_position",
+      "label": "t:sections.offer-sidebar.settings.horizontal_position.label",
+      "default": "left",
+      "options": [
+        {
+          "label": "t:sections.offer-sidebar.settings.horizontal_position.left.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.offer-sidebar.settings.horizontal_position.right.label",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "vertical_position",
+      "label": "t:sections.offer-sidebar.settings.vertical_position.label",
+      "default": 5,
+      "min": 5,
+      "max": 65,
+      "unit": "%"
+    },
+    {
+        "type": "header",
+        "content": "t:common.header.color_section.label"
+    },  
+    {
+        "type": "color",
+        "id": "btnbgcolor",
+        "label": "t:sections.offer-sidebar.settings.btnbgcolor.label",
+        "default": "#46c0bf"
+    },  
+    {
+        "type": "color",
+        "id": "btntextcolor",
+        "label": "t:sections.offer-sidebar.settings.btntextcolor.label",
+        "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "t:sections.offer-sidebar.blocks.offer.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Offer Title",
+          "label": "t:sections.offer-sidebar.blocks.offer.settings.heading.label",
+          "info": "t:sections.offer-sidebar.blocks.offer.settings.heading.info"
+        },
+        {
+          "type": "text",
+          "id": "highlight_text",
+          "default": "Offer",
+          "label": "t:sections.offer-sidebar.blocks.offer.settings.highlight_text.label",
+          "info": "t:sections.offer-sidebar.blocks.offer.settings.highlight_text.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.offer-sidebar.blocks.offer.settings.image.label",
+          "info": "t:sections.offer-sidebar.blocks.offer.settings.image.info"
+        },
+        {
+          "type": "text",
+          "id": "linktext",
+          "label": "t:sections.offer-sidebar.blocks.offer.settings.linktext.label",
+          "default":"Shop now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.offer-sidebar.blocks.offer.settings.link.label"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

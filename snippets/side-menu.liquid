@@ -1,0 +1,444 @@
+<div id="mobileMenu" class="side-menu">
+  <div class="side-menu-header">
+    <a href="#header" class="close-btn">
+      <svg viewBox="0 0 17.02 17.02" class="icon icon-close">
+        <g id="Layer_15" data-name="Layer 15">
+          <g id="Layer_1-2A" data-name="Layer 1">
+            <polygon points="17.02 0.93 16.09 0 8.51 7.58 0.93 0 0 0.93 7.58 8.51 0 16.09 0.93 17.02 8.51 9.44 16.09 17.02 17.02 16.09 9.44 8.51 17.02 0.93"></polygon>
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+
+  {% unless section.settings.header_style == 'header3' %}
+    {% if section.settings.enable_catalog and section.settings.catalog_menu != blank %}
+      <ul class="list-unstyled mobile-tabs-wrapper">
+        <li class="menu-tab active" data-tab="#menu-view">{{ 'sections.header.menu' | t }}</li>
+        <li class="menu-tab" data-tab="#mobile-view-catalog">
+          {% if section.settings.view_catalog != blank %}{{ section.settings.view_catalog }}{% endif %}
+        </li>
+      </ul>
+    {% endif %}
+  {% endunless %}
+  <div class="inner-side">
+  {% liquid 
+    if catalogDesktop
+      render 'catalog-sidemenu'
+    endif 
+  %}
+    <div
+      class="side-menu-wrapper tabcontent{% if catalogDesktop %} d-lg-none{% endif %} {% if section.settings.header_style == "header3" %}hidden{% endif %}"
+      id="menu-view"
+    >
+      <div class="collapse navbar-collapse navbar-collapse-sidebar">
+        {%- assign itemCount = 1 -%}
+        <ul class="list-unstyled navbar-nav navbar-nav-sidebar">
+          {%- for link in linklists[section.settings.menu].links -%}
+            {%- liquid
+              assign itemCount = itemCount | plus: 1
+              assign menuTitle = link.title | handleize
+              assign menuDropdown = ''
+              assign blockData = ''
+              for block in section.blocks
+                assign blockParent = block.settings.title | handleize
+                if blockParent == menuTitle
+                  assign blockData = block
+                  break
+                endif
+              endfor
+            -%}
+            {%- capture menuDropdown -%}
+  
+          {%- case blockData.type -%}
+  
+          {%-comment-%}Mega Menu Style 1{%-endcomment-%}
+  
+          {%-when 'style-1' -%}
+  
+          {%- if blockData.settings.show_submenu -%}
+          {%- for childlink in link.links -%}
+          <li class="nav-item {% if childlink.links != blank %}dropdown{% endif %} ">
+            {%- unless childlink.links != blank -%}
+            <a class="toggle-level" href="{{ childlink.url }}">
+              {{ childlink.title | escape   }}</a>
+            {%- else -%}
+            <button class="toggle-level">
+              {{ childlink.title | escape   }}</button>
+            {%- endunless -%}
+            {%- if childlink.links != blank -%}
+            <div class="inner grandchild">
+              <ul class="list-unstyled">
+                {%- for grandchildlink in childlink.links -%}
+                <li class="nav-item">
+                  <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape   }}</a>
+                </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+            {% endif %}
+          </li>
+          {%- endfor -%}	
+          {%- endif -%}
+          {%- capture megaMenuProducts -%}
+          {%- for i in (1..6) -%}
+          {%- assign productIndex = 'product' | append: i -%}
+          {%- if blockData.settings[productIndex] != blank -%}
+          <div class="col-12">
+            <div class="dropdown-inner-menu-item product-menu-item">
+              {%- render 'product-grid' product: blockData.settings[productIndex], productClasses: 'xsmall-product-card', hideRelated: true, hide_options: true , hideHoverImage: true -%}
+            </div>
+          </div>
+          {%- endif -%}        		
+          {%- endfor -%}
+          {%- endcapture -%}
+          {%- if megaMenuProducts != blank -%}
+          <div class="row">
+            {{- megaMenuProducts -}}
+          </div>
+          {%- endif -%}
+  
+  
+          {%- comment -%}Mega Menu Style 2{%- endcomment -%}
+  
+          {%-when 'style-2' -%}  
+  
+          {%- for i in (1..2) -%}
+          {%- assign collectionIndex = 'collection' | append: i -%}
+          {%- assign collection = blockData.settings[collectionIndex] -%}
+          {%- if collection != blank -%}
+          <li class="nav-item dropdown">
+  
+            <button class="toggle-level">{{ collection.title }}</button>
+  
+            <div class="inner grandchild">        
+              <div class="inner-child-menu">
+                <ul class="list-unstyled yv-megamenu-product-list ">
+                  {%- for product in collection.products limit: 4 -%} 
+                  {%- assign current_variant = product.selected_or_first_available_variant -%}       
+                  <li class="yv-megamenu-product-box">
+                    <div class="yv-megamenu-product-img">                 
+                      {%- if product.featured_media != blank -%}
+                      <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : product.featured_media.preview_image.aspect_ratio | times: 100 }}%">
+                      {%- render 'lazy-image' image: product.featured_media.preview_image, class : 'lazypreload', width: '110x' -%}
+                      </div>
+                      {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                    <div class="yv-megamenu-product-detail yv-product-information">
+                      <a href="{{ product.url }}" class="">{{ product.title | strip_html }}</a>            
+                      <div class="yv-prizebox">
+                        <span class="yv-product-price">{{ current_variant.price | money }}</span>
+                        {%- if current_variant.compare_at_price > current_variant.price -%}
+                        <span class="yv-product-compare-price"> {{ current_variant.compare_at_price | money }}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+          {%- capture imageContent -%}
+          {%- for i in (1..2) -%}
+          {%- liquid 
+            assign imageIndex = 'image' | append: i
+            assign headingIndex = 'heading' | append: i
+            assign subheadingIndex = 'subheading' | append: i
+            assign linkIndex = 'link' | append: i
+            assign image = blockData.settings[imageIndex]
+            assign heading = blockData.settings[headingIndex]
+            assign subheading = blockData.settings[subheadingIndex]
+            assign imageLink = blockData.settings[linkIndex] 
+          -%}
+          {%- if image != blank or heading != blank or subheading != blank -%}
+          <div class="col-12">
+            <a href="{{ imageLink }}" class="yv-megamenu-collection">
+              {%- if image != blank -%}
+              <div class="image-wrapper" style="padding-bottom:{{ 1 | divided_by : image.aspect_ratio | times: 100 | minus : 1 }}%">
+              {%- render 'lazy-image' image: image, class : 'lazypreload' -%}
+              </div>
+              {%- endif -%}
+              {%- if heading != blank or subheading != blank -%}
+              <div class="yv-megamenu-collection-detail">
+                {%- if heading != blank -%}
+                <span class="yv-megamenu-collection-subtitle">{{ heading }}</span>
+                {%- endif -%}
+                {%- if subheading != blank -%}
+                <h5 class="yv-megamenu-collection-title">{{ subheading }}</h5>
+                {%- endif -%}
+              </div>
+              {%- endif -%}
+            </a>
+          </div>
+          {%- endif -%}
+          {%- endfor -%}
+          {%- endcapture -%}
+          {%- if imageContent != blank -%}
+          <li class="nav-item dropdown">
+            <div class="row">
+              {{ imageContent }}
+            </div>
+          </li>
+          {%- endif -%}
+          {%- comment -%}Mega Menu Style 3{%- endcomment -%}
+  
+          {%-when 'style-3' -%}  
+  
+          {%- for i in (1..12) -%}
+          {% assign collectionIndex = 'collection' | append: i %}
+          {% assign collection = blockData.settings[collectionIndex] %}
+          {%- if collection != blank and collection.all_products_count > 0 -%} 
+          <li class="nav-item dropdown">
+            <button href="{{ collection.url }}" class="toggle-level">{{ collection.title }}</button>
+  
+            <div class="inner grandchild">        
+              <div class="inner-child-menu">
+                <ul class="list-unstyled">
+                  {%- for product in collection.products limit: blockData.settings.products_count -%}
+                  <li>
+                    <a href="{{ product.url }}" class="yv-megamenu-item-link">{{ product.title | strip_html }}</a>
+                  </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </div>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+  
+  
+          {%- endcase -%}
+          {%- endcapture -%}
+            {% liquid
+              assign dropDown = false
+              if link.links != blank
+                if blockData.type == 'style-1' and blockData.settings.show_submenu
+                  assign dropDown = true
+                else
+                  assign dropDown = true
+                endif
+              endif
+            -%}
+
+            {% capture menubadge %}
+              {%  for block in section.blocks %}
+                {% if block.type == 'menu-badge' %}
+                  {% assign badgetitle =  block.settings.badge_label | handleize  %}
+                  {% if block.settings.menu_badge != blank and  badgetitle == menuTitle %}
+                     <span class="navPages-label new-label" id="menu-badge-{{ block.id }}">{{ block.settings.menu_badge }}</span>
+                  {% endif %}
+                {% endif %}
+              {% endfor  %} 
+               
+            {% endcapture %} 
+            <li class="nav-item sidemenu-animation sidemenu-animation-delay-{{ forloop.index }} {% if dropDown or menuDropdown != '' %}dropdown{% endif %} {% if link.current %}active{% endif %}">
+              {%- unless dropDown or menuDropdown != '' -%}
+                <a href="{{ link.url }}" class="list-menu__item {% if dropDown  or menuDropdown != '' %}toggle {% endif %}" >
+                  {{ link.title | split: '{badge' | first | escape }}
+                  {% if menubadge != blank %}
+                    {{ menubadge }}
+                  {% endif  %}
+                </a>
+              {%- else -%}
+                <button class="list-menu__item {% if dropDown  or menuDropdown != '' %}toggle {% endif %}" href="{{ link.url }}" >
+                  {{ link.title | split: '{badge' | first | escape }}
+                  {% if menubadge != blank %}
+                    {{ menubadge }}
+                  {% endif  %}
+                </button>
+              {% endunless %}
+              {%- if dropDown or menuDropdown != '' -%}
+                <div class="inner child">
+                  <ul class="list-unstyled">
+                    {%- if menuDropdown != '' -%}
+                      {{ menuDropdown }}
+                    {% else %}
+                      {%- for childlink in link.links -%}
+                        <li class="nav-item {% if childlink.links != blank %}dropdown{% endif %}">
+                          {%- unless childlink.links != blank -%}
+                            <a class="toggle-level" href="{{ childlink.url }}">
+                              {{ childlink.title | split: '{badge' | first | escape -}}
+                            </a>
+                          {%- else -%}
+                            <button class="toggle-level">
+                              {{ childlink.title | split: '{badge' | first | escape }}
+                            </button>
+                          {%- endunless -%}
+                          {%- if childlink.links != blank -%}
+                            <div class="inner grandchild">
+                              <ul class="list-unstyled">
+                                {%- for grandchildlink in childlink.links -%}
+                                  <li class="nav-item">
+                                    <a href="{{ grandchildlink.url }}">
+                                      {{- grandchildlink.title | split: '{badge' | first | escape -}}
+                                    </a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          {% endif %}
+                        </li>
+                      {%- endfor -%}
+                    {%- endif -%}
+                  </ul>
+                </div>
+              {% endif %}
+            </li>
+          {%- endfor -%}
+          {%- if customer -%}
+            <li class="nav-item sidemenu-animation sidemenu-animation-delay-{{ itemCount }} {% if link.current %}active{% endif %}">
+              <a class="list-menu__item" href="{{- routes.account_url -}}">{{ 'customer.account.title' | t }}</a>
+            </li>
+          {%- endif -%}
+        </ul>
+      </div>
+      <div class="lower-nav">
+        <div class="menu-login-btn">
+          {%- if customer -%}
+            <a class="drawer-login-btn" href="{{ routes.account_logout_url }}">{{ 'customer.log_out' | t }}</a>
+          {%- else -%}
+            <a class="drawer-login-btn" href="{{ routes.account_login_url }}">{{ 'customer.log_in' | t }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    <div
+      class="--- mobile-category-menu-bar tabcontent{% if catalogDesktop %} d-lg-none{% endif %} {% unless section.settings.header_style == "header3" %}hidden{% endunless %}"
+      id="mobile-view-catalog"
+    >
+      <ul class="list-unstyled navbar-nav navbar-nav-sidebar">
+        {%- for link in linklists[section.settings.catalog_menu].links -%}
+         {% assign menuTitle = link.title | handleize  %} 
+         {% capture menubadge %}
+          {%  for block in section.blocks %}
+            {% if block.type == 'menu-badge' %}
+              {% assign badgetitle =  block.settings.badge_label | handleize  %}
+              {% if block.settings.menu_badge != blank and  badgetitle == menuTitle %}
+                 <span class="navPages-label new-label" id="menu-badge-{{ block.id }}">{{ block.settings.menu_badge }}</span>
+              {% endif %}
+            {% endif %}
+          {% endfor  %} 
+        {% endcapture %} 
+          <li class="nav-item sidemenu-animation {% if link.links != blank %}dropdown{% endif %} sidemenu-animation-delay-{{ forloop.index }} {% if link.current %}active{% endif %}">
+            {%- unless link.links != blank -%}
+              <a class="list-menu__item" href="{{ link.url }}">
+                {{ link.title | escape }}
+                  {% if menubadge != blank %}
+                    {{ menubadge }}
+                  {% endif  %}
+              </a>
+            {%- else -%}
+              <button class="list-menu__item {% if link.links  != '' %}toggle {% endif %}" href="{{ link.url }}">
+                {{ link.title | escape }}
+                  {% if menubadge != blank %}
+                    {{ menubadge }}
+                  {% endif  %}
+              </button>
+            {% endunless %}
+
+            <div class="inner child">
+              <ul class="list-unstyled">
+                {%- for childlink in link.links -%}
+                  <li class="nav-item {% if childlink.links != blank %}dropdown{% endif %}">
+                    {%- unless childlink.links != blank -%}
+                      <a class="toggle-level" href="{{ childlink.url }}"> {{ childlink.title | escape }}</a>
+                    {%- else -%}
+                      <button class="toggle-level">
+                        {{ childlink.title | escape }}
+                      </button>
+                    {%- endunless -%}
+                    {%- if childlink.links != blank -%}
+                      <div class="inner grandchild">
+                        <ul class="list-unstyled">
+                          {%- for grandchildlink in childlink.links -%}
+                            {% liquid
+                              assign grandlinkImage = ''
+                              if grandchildlink.type == 'collection_link'
+                                assign collect = grandchildlink.object
+                                assign grandlinkImage = collect.featured_image
+                              elsif grandchildlink.type == 'product_link'
+                                assign product = grandchildlink.object
+                                assign grandlinkImage = product.featured_image
+                              elsif grandchildlink.type == 'article_link'
+                                assign article = grandchildlink.object
+                                assign grandlinkImage = article.image
+                                assign grandlinkhref = article.link
+                              endif
+                            %}
+                            <li class="nav-item">
+                              <a href="{{ grandchildlink.url }}">
+                                <span>
+                                  {{ grandchildlink.title | escape }}
+                                </span>
+                                <div
+                                  class="image-wrapper"
+                                  style="padding-bottom:{{ 1 | divided_by : grandlinkImage.aspect_ratio | times: 100 }}%"
+                                >
+                                  {%- render 'lazy-image', image: grandlinkImage, class: 'lazypreload', width: '80x' -%}
+                                </div>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {% endif %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </li>
+        {%- endfor -%}
+        {%- if customer -%}
+          <li class="nav-item sidemenu-animation sidemenu-animation-delay-{{ itemCount }} {% if link.current %}active{% endif %}">
+            <a class="list-menu__item" href="{{- routes.account_url -}}">{{ 'customer.account.title' | t }}</a>
+          </li>
+        {%- endif -%}
+      </ul>
+      <div class="lower-nav">
+        <div class="menu-login-btn">
+          {%- if customer -%}
+            <a class="drawer-login-btn" href="{{ routes.account_logout_url }}">{{ 'customer.log_out' | t }}</a>
+          {%- else -%}
+            <a class="drawer-login-btn" href="{{ routes.account_login_url }}">{{ 'customer.log_in' | t }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    {% liquid
+      if section.settings.enable_language_selector or section.settings.enable_currency_selector
+        if catalogDesktop
+        echo '<div class="header-form d-lg-none">'
+          else
+        echo '<div class="header-form">'
+         endif
+        render 'header-localization', section: section, formId: 'headerMobileForm'
+        echo '</div>'
+      endif
+    %}
+          
+    {% render 'social-media-icons' catalogDesktop:catalogDesktop %}
+    {%- if section.settings.trust_badge_logo != blank -%}
+      <div class="header__icons {% if catalogDesktop %}d-lg-none{% endif %}">
+        <div class="header-img d-block d-lg-none">
+          {%- if section.settings.trust_badge_link != blank -%}
+            <a href="{{ section.settings.trust_badge_link }}">
+          {% endif %}
+          <img
+            src="{{ section.settings.trust_badge_logo | img_url: 'master' }}"
+            alt="{{ section.settings.trust_badge_logo.alt | default: shop.name | strip_html }}"
+            width="{{ section.settings.trust_badge_logo.width }}"
+            height="{{ section.settings.trust_badge_logo.height }}"
+          >
+          {%- if section.settings.trust_badge_link != blank -%}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

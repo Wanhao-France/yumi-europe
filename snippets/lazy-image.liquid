@@ -1,0 +1,39 @@
+{% comment %}theme-check-disable ImgWidthAndHeight,ImgLazyLoading,DeprecateLazysizes,DeprecatedFilter{% endcomment %}
+{%- assign img_url = image | image_url: width: '100' | replace: 'width=100', 'width={width}' -%}
+<img
+  {% if id != blank %}
+    id="{{ id }}"
+  {% endif %}
+  class="{% if settings.enable_lazyload %}lazyload no-js-hidden{% endif %} {{ class }}"
+  {% if settings.enable_lazyload %}
+    data-src="{{ img_url }}"
+  {% else %}
+    src="{{ image | img_url: 'master' }}"
+  {% endif %}
+  data-aspectratio="{{ image.aspect_ratio }}"
+  data-sizes="auto"
+  data-widths="{{ sizes }}"
+  width="{{ image.width }}"
+  height="{{ image.height }}"
+  data-original="{{ image | image_url }}"
+  alt="{{ image.alt | escape }}"
+  lazyload="lazy"
+  style="object-position:{{ image.presentation.focal_point }}"
+>
+{% if settings.enable_lazyload %}
+  <div class="yuva-loader">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+  <noscript>
+    <img
+      class="{{ class }}"
+      src="{{ image | img_url: 'master' }}"
+      alt="{{ image.alt | default: shop.name | strip_html }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+    >
+  </noscript>
+{% endif %}
+{% comment %}theme-check-enable ImgWidthAndHeight,ImgLazyLoading,DeprecateLazysizes,DeprecatedFilter{% endcomment %}

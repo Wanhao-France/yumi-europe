@@ -1,0 +1,469 @@
+{{ 'cart.min.css' | asset_url | stylesheet_tag }}
+<div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}" data-cart-wrapper>
+  {%- if cart.item_count == 0 -%}
+  <div
+    class="continue-shopping"
+    data-cart-empty
+  >
+    <svg class="emptyCartIcon" fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
+      <g><g><g><path d="M44.812,105.331h-3.955c-5.861,0-10.63-4.785-10.63-10.667c-0.052-2.917,1.049-5.661,3.098-7.692     c1.421-1.408,3.182-2.349,5.109-2.753L24.573,19H4c-1.104,0-2-0.896-2-2s0.896-2,2-2h22.192c0.004,0,0.011,0,0.017,0     c0.008,0,0.015-0.002,0.022,0c0.001,0,0.002,0,0.003,0c0,0,0.015,0,0.022,0c0.002,0,0.004,0,0.006,0c0.001,0,0.001,0,0.001,0     c0.004,0,0.004,0,0.006,0s0.004,0,0.006,0c0,0.001,0.003,0,0.005,0c0.006,0,0.011-0.003,0.017,0.001c0.002,0,0.004,0,0.006,0     c0.001,0,0.002,0,0.004,0h0.001c0.002,0,0.003,0,0.005,0c0,0,0.003,0.001,0.006,0l0,0c0.004,0,0.008,0,0.012,0.001l0,0     c0.009,0,0.018,0.001,0.026,0.002l0,0c0.013,0.001,0.025,0.002,0.038,0.003l0,0c0.002,0,0.004,0,0.005,0H26.4     c0.002,0,0.003,0,0.005,0l0,0c0.004,0,0.007,0.001,0.011,0.001c0,0,0,0,0,0c0.004,0,0.007,0,0.011,0.001l0,0     c0.023,0.003,0.047,0.006,0.069,0.009h0.001c0.002,0,0.003,0,0.005,0.001l0,0c0.002,0,0.004,0,0.006,0.001l0,0     c0.001,0,0.003,0,0.005,0.001l0,0c0.002,0,0.003,0,0.005,0c0,0,0.002,0,0.005,0.001h0.001c0.002,0,0.003,0,0.005,0.001l0,0     c0.002,0,0.004,0,0.006,0.001l0,0c0.009,0.001,0.018,0.003,0.026,0.005l0,0c0.002,0,0.004,0,0.005,0.001l0,0     c0.041,0.007,0.081,0.017,0.12,0.026l0,0c0.002,0,0.004,0.001,0.005,0.001h0.001c0.002,0.001,0.005,0.001,0.005,0.001     c0.002,0,0.003,0,0.005,0.001l0,0c0.002,0,0.004,0.001,0.006,0.001l0,0c0.001,0,0.003,0.001,0.005,0.001l0,0     c0.003,0.001,0.007,0.002,0.01,0.003l0,0c0.007,0.002,0.014,0.004,0.021,0.005v0c0.002,0,0.004,0,0.005,0.001     c0,0,0.003,0,0.005,0.001c0.003,0,0.003,0.001,0.006,0.001c0,0,0,0,0,0c0.002,0,0.003,0,0.005,0.001v0     c0.002,0,0.01,0.005,0.005,0.001c0.002,0,0.004,0.001,0.005,0.001h0.001c0.001,0,0.003,0.001,0.004,0.001h0.001     c0.002,0.001,0.005,0.001,0.005,0.001c0.002,0,0.003,0.001,0.005,0.001c0.001,0,0.003,0.001,0.005,0.002l0,0     c0.002,0,0.004,0.001,0.005,0.001c0,0,0.002,0,0.006,0.001l0,0c0.002,0.001,0.005,0.002,0.005,0.002     c0.001,0.001,0.008,0.004,0.005,0.001c0.003,0.001,0.005,0.001,0.005,0.001c0.004,0.001,0.005,0.002,0.005,0.002     c0.004,0.001,0.004,0.001,0.006,0.001c0.001,0,0.002,0.001,0.004,0.001c0,0,0.002,0.001,0.004,0.001     c0.002,0.001,0.003,0.001,0.005,0.002c0.002,0,0.003,0,0.005,0.001c0.001,0,0.002,0,0.002,0c0.002,0.001,0.005,0.001,0.005,0.002     c0.002,0.001,0.005,0.001,0.005,0.002c0.002,0,0.003,0,0.004,0.001l0.001,0c0.004,0.001,0.004,0.001,0.006,0.002     s0.003,0.001,0.005,0.001c0.002,0.001,0.003,0.002,0.005,0.002c0.002,0.001,0.003,0.002,0.005,0.002     c0.001,0.001,0.003,0.001,0.005,0.002c0.002,0,0.003,0.001,0.005,0.001c0.002,0,0.002,0.002,0.005,0.002     c0.002,0.001,0.003,0.002,0.005,0.002c0.002,0.001,0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002     s0.005,0.001,0.005,0.002c0.002,0.001,0.005,0.001,0.005,0.002c0.001,0,0.004-0.002,0.005,0.002c0.001,0,0.004-0.002,0.005,0.002     c0.002,0,0.005,0.001,0.005,0.002c0.002,0,0.005,0.001,0.005,0.002c0.002,0.001,0.005,0.001,0.005,0.002     c0.002,0.001,0.005,0.001,0.005,0.002c0.002,0.001,0.005,0.002,0.005,0.002c0.002,0.001,0.003,0.002,0.005,0.002     c0.001,0-0.003,0,0.005,0.002c0.001,0-0.003-0.002,0.005,0.002c0.001,0,0-0.001,0.005,0.002c0.001,0.001,0,0.001,0.005,0.002     c0.001,0-0.004-0.003,0.005,0.002c0.002,0,0.003,0,0.005,0.002c0.002,0.001,0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002     c0.002,0,0.003,0.001,0.005,0.002s0.003,0.002,0.005,0.002c0,0.001,0.003,0.001,0.005,0.002c0,0,0.003,0.001,0.005,0.002     c0,0.002,0.003,0.002,0.004,0.002c0.002,0,0.003,0.001,0.005,0.002s0.003,0.001,0.005,0.002c0.001,0,0.001,0,0.001,0     c0.003,0.001,0.004,0.001,0.005,0.002c0.003,0,0.004,0,0.005,0.002c0.001,0.001,0.003,0.001,0.004,0.002l0.001,0     c0.001,0-0.004-0.004,0.005,0.002c0.002,0.001,0.003,0.001,0.005,0.002c0.002,0.001,0.003,0.002,0.005,0.002     c0.001,0.001,0.004,0.002,0.004,0.002c0.002,0,0.004,0.001,0.005,0.002s0.003,0.001,0.004,0.002l0.001,0     c0.001,0,0.002,0.001,0.004,0.002c0,0,0.002,0,0.004,0.002c0.001,0,0.001,0,0.001,0c0.002,0.001,0.003,0.001,0.004,0.002h0.001     c0.001,0.001,0.004,0.001,0.005,0.002s-0.001,0.001,0.005,0.002c0.001,0.001,0.002,0.001,0.004,0.002v0     c0.003,0.001,0.006,0.003,0.009,0.004c0,0,0.001,0.001,0.005,0.002c0.001,0,0.003,0.002,0.005,0.002l0,0     c0.003,0.002,0.006,0.003,0.009,0.005l0,0c0.002,0.001,0.003,0.002,0.005,0.002l0,0c0.001,0.001,0.003,0.002,0.005,0.003l0,0     c0.001,0,0.003,0.001,0.004,0.002c0,0,0,0,0.001,0c0.003,0.001,0.006,0.003,0.009,0.005l0,0c0.004,0.002,0.009,0.005,0.014,0.008     l0,0c0.001,0.001,0.003,0.001,0.004,0.002h0.001c0.001,0.001,0.003,0.002,0.004,0.002l0,0c0.482,0.275,0.843,0.747,0.965,1.32     l14.7,68.995c0.23,1.081-0.459,2.143-1.539,2.373c-0.085,0.018-0.169,0.03-0.253,0.038c-0.083,0.008-0.168,0.01-0.252,0.009     c-1.778-0.06-3.436,0.598-4.663,1.816c-1.267,1.256-1.946,2.966-1.914,4.816c0,3.711,2.975,6.702,6.63,6.702h3.955     c1.105,0,2,0.896,2,2S45.917,105.331,44.812,105.331z"/><path d="M94.242,105.331H60.084c-1.104,0-2-0.896-2-2s0.896-2,2-2h34.158c1.104,0,2,0.896,2,2     S95.347,105.331,94.242,105.331z"/><path d="M52.448,113c-5.313,0-9.637-4.337-9.637-9.669s4.323-9.669,9.637-9.669s9.636,4.337,9.636,9.669     S57.762,113,52.448,113z M52.448,97.662c-3.108,0-5.637,2.543-5.637,5.669S49.34,109,52.448,109c3.107,0,5.636-2.543,5.636-5.669     S55.556,97.662,52.448,97.662z"/><path d="M101.879,113c-5.313,0-9.637-4.337-9.637-9.669s4.323-9.669,9.637-9.669s9.636,4.337,9.636,9.669     S107.192,113,101.879,113z M101.879,97.662c-3.108,0-5.637,2.543-5.637,5.669S98.771,109,101.879,109     c3.107,0,5.636-2.543,5.636-5.669S104.986,97.662,101.879,97.662z"/></g><path d="M108.673,87.948h-67.78c-0.944,0-1.76-0.66-1.956-1.583l-10.219-47.96    c-0.126-0.59,0.021-1.206,0.401-1.675s0.951-0.742,1.555-0.742H124c0.639,0,1.238,0.305,1.615,0.82s0.484,1.18,0.29,1.789    l-15.327,47.96C110.313,87.385,109.543,87.948,108.673,87.948z M42.512,83.948h64.7l14.049-43.96H33.145L42.512,83.948z"/><g><path d="M77.337,77.878c-1.104,0-2-0.896-2-2V48.057c0-1.104,0.896-2,2-2s2,0.896,2,2v27.821     C79.337,76.982,78.441,77.878,77.337,77.878z"/><path d="M99.155,77.878c-1.104,0-2-0.896-2-2V48.057c0-1.104,0.896-2,2-2s2,0.896,2,2v27.821     C101.155,76.982,100.26,77.878,99.155,77.878z"/><path d="M55.519,77.878c-1.104,0-2-0.896-2-2V48.057c0-1.104,0.896-2,2-2s2,0.896,2,2v27.821     C57.519,76.982,56.623,77.878,55.519,77.878z"/></g></g></g>
+    </svg>
+    <h4>{{ 'sections.cart.empty' | t }}</h4>
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="button "
+      aria-label="{{ 'general.continue_shopping' | t }}"
+    >
+      {{- 'general.continue_shopping' | t -}}
+    </a>
+  </div>
+  {%- else-%}
+    <div class="row" data-cart-form>
+      <div class="col-sm-12 col-md-12 col-lg-8">
+        <form action="{{ routes.cart_url }}" class="yv-cart-content critical-hidden" method="post" id="cart">
+          <div class="section-heading between-heading">
+            <{{ section.settings.seo_heading }}>{{ 'sections.cart.title' | t }}</{{ section.settings.seo_heading }}>
+            <span>{{ 'sections.cart.heading_html' | t: itemCount: cart.item_count }}</span>
+          </div>
+          <div class="yv-cart-content-box">
+            {%- if settings.enable_shipping and settings.shipping_rate != blank -%}
+              <div class="free_shipping hidden" data-free-shipping-container>
+                <p data-free-shipping-text></p>
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style="width:0%"
+                    data-free-shipping-bar
+                  ></div>
+                </div>
+              </div>
+            {%- endif -%}
+            <table class="yv-cart-table">
+              <tbody data-cart-items>
+                {% assign giftWrapProductStatus = false %}
+                {%- for item in cart.items -%}
+                  {% liquid
+                    assign isGiftWrapProduct = false
+                    if item.product_id == settings.gift_wrap_product.id
+                    assign giftWrapProductStatus = true
+                    assign isGiftWrapProduct = true
+                    endif                    
+                  %}
+                  <tr>
+                    <th scope="row" data-label="product img">
+                      <a class="cart-img" href="{{ item.url }}" aria-label="{{ item.product.title | strip_html }}">
+                        {%- if item.image != blank -%}
+                          {%- render 'lazy-image', image: item.image -%}
+                        {%- else -%}
+                          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder-svg' }}
+                        {%- endif -%}
+                      </a>
+                    </th>
+                    <td class="cart-prd-details" data-label="product detail">
+                      <a
+                        class="yv-product-title"
+                        href="{{ item.url }}"
+                        aria-label="{{ item.product.title | strip_html }}"
+                      >
+                        {{- item.product.title | strip_html -}}
+                      </a>
+                      <div class="yv-cart-product-details">
+                        {%- unless item.variant.title == null or item.variant.title == 'Default Title' -%}
+                          <p class="">{{ item.variant.title | strip_html }}</p>
+                        {%- endunless -%}
+                        {%- if item.selling_plan_allocation -%}
+                          <p class="">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                        {%- endif -%}
+                        <div class="yv-product-information">
+                          <div
+                            class="yv-prizebox"
+                            data-saved="true"
+                            data-saved-style="percentage"
+                            data-price-wrapper=""
+                          >
+                            {%- if item.original_price != item.final_price -%}
+                              <span class="yv-product-price">{{ item.final_price | money }}</span>
+                              <span class="yv-product-compare-price">{{ item.original_price | money }}</span>
+                            {%- else -%}
+                              <span class="yv-product-price">{{ item.original_price | money }}</span>
+                            {%- endif -%}
+                          </div>
+                          {%- if item.unit_price_measurement -%}
+                            <small class="yv-product-unit-price">
+                              {{ item.variant.unit_price | money }}
+                              /
+                              {%- if item.variant.unit_price_measurement.reference_value != 1 %}
+                                {{ item.variant.unit_price_measurement.reference_value -}}
+                              {%- endif %}
+                              {{ item.variant.unit_price_measurement.reference_unit }}
+                            </small>
+                          {%- endif -%}
+                        </div>
+                        {%- if item.discounts.size > 0 -%}
+                          <ul
+                            class="discounts list-unstyled"
+                            role="list"
+                            aria-label="{{ 'customer.order.discount' | t }}"
+                            data-item-discount="{{ forloop.index0 }}"
+                          >
+                            {%- for discount in item.discounts -%}
+                              <li class="discounts__discount coupanName">
+                                <svg x="0px" y="0px" width="15px" height="15px" viewBox="0 0 15 15">
+                                  <style>
+                                    .st0{clip-path:url(#SVGID_00000165956311262374056750000003758549857970351779_);}
+                                  </style>
+                                  <g>
+                                    <g style="clip-path:url(#SVGID_00000026141808041203487550000009411451200903998388_);">
+                                      <path d="M2.1,0.2c-1,0-1.9,0.8-1.9,1.9v4.7c0,0.5,0.2,0.9,0.5,1.3l6.2,6.2c0.7,0.7,1.9,0.7,2.7,0l4.6-4.6c0.7-0.7,0.7-1.9,0-2.7    L8.1,0.8C7.7,0.4,7.2,0.2,6.8,0.2L2.1,0.2L2.1,0.2z M3.7,5.4c-0.9,0-1.7-0.8-1.7-1.7c0-0.9,0.8-1.7,1.7-1.7c0.9,0,1.7,0.8,1.7,1.7    C5.4,4.6,4.6,5.4,3.7,5.4L3.7,5.4z"/>
+                                    </g>
+                                  </g>
+                                </svg>
+                                <small class="item__discount">{{ discount.title }}</small>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                        {%- for property in item.properties -%}
+                          {%- assign property_first_char = property.first | slice: 0 -%}
+                          {%- if property.last != blank and property_first_char != '_' -%}
+                            <p
+                              ><strong>{{ property.first }}</strong>:
+                              {%- if property.last contains '/uploads/' -%}
+                                <a href="{{ property.last }}" target="_blank" aria-label="{{ property.first }}">
+                                  {{ property.last | split: '/' | last }}
+                                </a>
+                              {%- else -%}
+                                {{ property.last }}
+                              {%- endif -%}
+                            </p>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </td>
+                    <td class="cart-quantity" data-label="quantity">
+                        {% unless isGiftWrapProduct %}
+                      <label class="visually-hidden" for="line-item-quantity-{{ forloop.index }}">
+                        {{- 'sections.cart.headings.quantity' | t -}}
+                      </label>
+                      <div class="quantity cart-item-quantity">
+                        <button
+                          type="button"
+                          class="quantity-button quantity-down line_item_change no-js-hidden"
+                          data-line="{{ forloop.index }}"
+                        >
+                          <svg x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14">
+                            <rect x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)" width="2.1" height="14"/>
+                          </svg>
+                        </button>
+                        <input
+                          id="line-item-quantity-{{ forloop.index }}"
+                          type="number"
+                          name="updates[]"
+                          data-initial="{{ item.quantity }}"
+                          data-line="{{ forloop.index }}"
+                          value="{{item.quantity}}"
+                          data-line-quantity="{{ forloop.index0 }}"
+                          aria-label="{{ 'sections.cart.headings.quantity' | t }}"
+                        >
+                        <button
+                          type="button"
+                          class="quantity-button quantity-up line_item_change no-js-hidden"
+                          data-line="{{ forloop.index }}"
+                        >
+                          <svg x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14">
+                            <polygon points="14,6 8,6 8,0 6,0 6,6 0,6 0,8 6,8 6,14 8,14 8,8 14,8 "/>
+                          </svg>
+                        </button>
+                      </div>
+                      <div id="cartItemError-{{ forloop.index }}" class="cart-item-error error-text" role="alert"></div>
+                          {% endunless %}
+                    </td>
+                    <td class="cart-price" data-label="price">
+                      <div class="yv-product-information d-none d-sm-block">
+                        <div class="yv-prizebox" data-saved="true" data-saved-style="percentage" data-price-wrapper="">
+                          {%- if item.original_line_price != item.final_line_price -%}
+                            <span class="yv-product-price text-large">{{- item.final_line_price | money -}}</span>
+                            <span class="yv-product-compare-price">{{- item.original_line_price | money -}}</span>
+                          {%- else -%}
+                            <span class="yv-product-price text-large">{{- item.original_line_price | money -}}</span>
+                          {%- endif -%}
+                        </div>
+                        {%- if item.unit_price_measurement -%}
+                          <small class="yv-product-unit-price">
+                            {{ item.variant.unit_price | money }}
+                            /
+                            {%- if item.variant.unit_price_measurement.reference_value != 1 %}
+                              {{ item.variant.unit_price_measurement.reference_value -}}
+                            {%- endif %}
+                            {{ item.variant.unit_price_measurement.reference_unit }}
+                          </small>
+                        {%- endif -%}
+                      </div>
+                    </td>
+                    <td class="cart-remove" data-label="action">
+                      <a
+                        href="{{ item.url_to_remove }}"
+                        class="remove-icon line_item_remove"
+                        data-line="{{ forloop.index }}"
+                      >
+                        <svg viewBox="0 0 106.92 120.95">
+                          <g><g><path d="M102.85,16.14h-21.31V4.05c-.08-2.19-1.83-3.96-4.03-4.05H29.13c-2.03,.29-3.56,2-3.6,4.05v12.09H3.79C1.71,16.24-.09,18.29,0,20.38s2.14,3.89,4.22,3.81h8V107.52c0,7.43,6.2,13.43,13.64,13.43h55.35c7.43,0,13.64-6,13.64-13.43V24.19h8c2.14,.05,4.07-1.9,4.07-4.05s-1.94-4.05-4.07-4ZM33.53,8.05h40v8.1H33.53V8.05Zm53.31,99.47c0,2.95-2.36,5.38-5.63,5.38H25.86c-3.27,0-5.64-2.43-5.64-5.38V24.19H86.84V107.52Z"/><path d="M64.78,98.83c2.08,0,4.03-2,3.98-4.09V41.83c-.02-2.23-1.79-4.06-4.02-4.14h0c-2.21,.12-3.95,1.93-3.98,4.14v52.91c-.05,2.1,1.9,4.09,4.03,4.09Z"/><path d="M42.15,98.83c2.14,0,4.03-2,4.03-4.09V41.83c-.02-2.23-1.79-4.06-4.02-4.14h0c-2.21,.12-3.95,1.93-3.98,4.14v52.91c-.05,2.1,1.89,4.09,3.97,4.09Z"/></g></g>
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+        {%- if section.settings.shipping_estimate_enable -%}
+          <div class="yv-shipping-estimations-box no-js-hidden">
+            <div id="shipping_estimations_template" class="yv-shipping-estimations">
+              <div class="section-heading">
+                <h6>{{ 'sections.cart.shipping_estimates.heading' | t }}</h6>
+              </div>
+              <div class="row align-items-end">
+                <div class="col-12 form-group" id="ShippingWrapperResponse" style="display:none;"></div>
+                <div class="col-12 col-sm-4 col-md-4 col-lg-3 form-group">
+                  <label for="shippingCountry">
+                    {{ 'sections.cart.shipping_estimates.country' | t }}
+                  </label>
+                  <div class="select">
+                    <select
+                      id="shippingCountry"
+                      name="shipping_address[country]"
+                      data-address-country-select
+                      data-default="{{ shop.address.country }}"
+                      autocomplete="country"
+                      class="form-control"
+                    >
+                      {{ country_option_tags }}
+                    </select>
+                  </div>
+                </div>
+                <div
+                  id="shippingProvinceContainer"
+                  class="col-12 col-sm-4 col-md-4 col-lg-3 form-group"
+                  style="display:none;"
+                >
+                  <label for="shippingProvince">
+                    {{ 'sections.cart.shipping_estimates.province' | t }}
+                  </label>
+                  <div class="select">
+                    <select
+                      id="shippingProvince"
+                      name="shipping_address[province]"
+                      autocomplete="address-level1"
+                      class="form-control"
+                    ></select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4 col-lg-3 form-group">
+                  <label for="shippingZip">
+                    {{ 'sections.cart.shipping_estimates.zip' | t }}
+                  </label>
+                  <div class="select">
+                    <input
+                      type="text"
+                      id="shippingZip"
+                      name="shipping_address[zip]"
+                      class="form-control"
+                      placeholder="Pin Code"
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-sm-5 col-md-4 col-lg-3 form-group">
+                  <button type="button" id="getShippingEstimates" class="button btn-block">
+                    {{ 'sections.cart.shipping_estimates.button' | t }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-4">
+        <div class="cart-sidebar">
+          <div class="cart-total-details">
+            <h5>{{ 'sections.cart.price_detail' | t }}</h5>
+            {%- if section.settings.show_cart_note -%}
+              <textarea
+                class="seller-box-input"
+                name="note"
+                form="cart"
+                id="Cart-note"
+                placeholder="Special instructions for seller"
+              >{{ cart.note }}</textarea>
+            {%- endif -%}
+            <ul class="list-unstyled cart-total-list">
+              <li
+                class="text-medium {% if cart.cart_level_discount_applications.size == 0 %}hidden{% endif %}"
+                data-cart-original
+              >
+                <span>{{ 'sections.cart.subtotal' | t }} </span>
+                <strong data-cart-original-price>{{ cart.original_total_price | money }}</strong>
+              </li>
+              {%- if cart.cart_level_discount_applications.size > 0 -%}
+                {%- for discount in cart.cart_level_discount_applications -%}
+                  <li class="text-medium" data-cart-discount>
+                    <span>{{ 'sections.cart.discount' | t }}['{{ discount.title }}'] </span>
+                    <strong>-{{ discount.total_allocated_amount | money }}</strong>
+                  </li>
+                {%- endfor -%}
+              {% endif %}
+              <li class="cart-total-item text-large" data-cart-total>
+                <p>{{ 'sections.cart.new_subtotal' | t }}</p>
+                <strong class="h2" data-cart-total-price>{{ cart.total_price | money }}</strong>
+              </li>
+            </ul>
+        {% if settings.gift_wrap_product != blank
+          and settings.gift_wrap_text != blank
+          and settings.gift_wrap_product.available
+          and giftWrapProductStatus == false
+        %}
+          <div class="giftcard-box">
+            <label for="GiftWrapProduct" class="custom-checkbox">
+              <input
+                type="checkbox"
+                id="GiftWrapProduct"
+                name="giftCard"
+                data-product="{{ settings.gift_wrap_product.first_available_variant.id }}"
+                value=""
+              >
+              <span class="checkmark"></span>
+              {{ settings.gift_wrap_text }}
+            </label>
+          </div>
+        {% endif %}
+            <div class="cart-btn">
+              <noscript>
+                <button type="submit" id="cartUpdate" form="cart" class="button btn-block secondary-button">
+                  {{ 'sections.cart.update' | t }}
+                </button>
+              </noscript>
+              <button type="submit" name="checkout" id="cartCheckout" form="cart" class="button btn-block med-btn">
+                {{ 'sections.cart.checkout' | t }}
+              </button>
+              <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+            </div>
+            <p class="checkout-text">
+              {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+              {%- elsif cart.taxes_included -%}
+                {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+              {%- elsif shop.shipping_policy.body != blank -%}
+                {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+              {%- else -%}
+                {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+              {%- endif -%}
+            </p>
+            {%- if section.settings.payment_enable -%}
+              <div class="yv-payment-methods">
+                <ul class="list-unstyled list list-payment justify-content-center">
+                  {%- for type in shop.enabled_payment_types -%}
+                    <li class="list-payment__item">
+                      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="go-back">
+            <a
+              href="{{ routes.all_products_collection_url }}"
+              class="btn"
+              aria-label="{{ 'general.continue_shopping' | t }}"
+            >
+              {{- 'general.continue_shopping' | t -}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% render 'cart-upsell-products' %}
+  {% endif %}
+</div>
+<style>
+  {% assign colorBrightness = settings.color_body_bg | color_brightness %}
+  {%- if colorBrightness < 130 -%}
+    #shipping_estimations_template.yv-shipping-estimations select{
+      background: url({{ 'select-arrow-white.png' | asset_url }}) no-repeat 91% 52% /10px;
+    }
+  {%- else -%}
+  #shipping_estimations_template.yv-shipping-estimations select{
+    background:url({{ 'lang-dropdown-arrow.svg' | asset_url }}) no-repeat 91% 52% /10px;
+  }
+  {%- endif -%}
+</style>
+{% schema %}
+{
+  "name": "t:sections.main-cart.name",
+  "tag": "section",
+  "class": "cart-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "default": true,
+      "label": "t:sections.main-cart.settings.show_cart_note.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.main-cart.settings.payment_enable.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "shipping_estimate_enable",
+      "default": true,
+      "label": "t:sections.main-cart.settings.shipping_estimate_enable.label"
+    },
+    {
+          "type": "select",
+          "id": "seo_heading",
+          "label": "t:common.header.heading_tag.label",
+          "info": "t:common.header.heading_tag.info",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:common.header.heading_tag.options.h1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.header.heading_tag.options.h2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:common.header.heading_tag.options.h3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:common.header.heading_tag.options.h4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:common.header.heading_tag.options.h5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:common.header.heading_tag.options.h6.label"
+            }
+          ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}
