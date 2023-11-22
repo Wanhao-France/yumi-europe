@@ -1,1 +1,101 @@
-{"type":"header","name":"Header Group","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"fec792eb-1815-4f3f-a124-64bc23d77ae3":{"type":"announcement","settings":{"icon":"gift","first_text":"Announcement Here","date":"","btn":"","link":""}}},"block_order":["fec792eb-1815-4f3f-a124-64bc23d77ae3"],"settings":{"show_bar":true,"show_close":true,"fontcolor":"#ffffff","bg_style":"solid","bgcolor":"#5b554e","bgcolor2":"","btn_bgcolor":"#ffffff","btn_fontcolor":"#181818","bborder_color":"#ffffff"}},"header":{"type":"header","settings":{"header_style":"header3","enable_sticky_header":true,"logo_width":140,"logo_position":"center","menu":"main-menu","menu_position":"center","show_search":true,"header_bgcolor":"#4d473f","header_textcolor":"#ffffff","header_textcolor_hover":"#9b9b9b","hamburger_bgcolor":"#4d473f","hamburger_textcolor":"#ffffff","hamburger_textcolor_hover":"#9b9b9b"}}},"order":["announcement-bar","header"]}
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "fec792eb-1815-4f3f-a124-64bc23d77ae3": {
+          "type": "announcement",
+          "settings": {
+            "icon": "tag",
+            "first_text": "-30% sur les PLA LUMINOUS BLEU avec le code PROMO : LUMI",
+            "date": "",
+            "btn": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "fec792eb-1815-4f3f-a124-64bc23d77ae3"
+      ],
+      "settings": {
+        "show_bar": true,
+        "desktop_height": "adapt_image",
+        "mobile_height": "adapt_image",
+        "layout": "carousel",
+        "show_close": true,
+        "carousel_rotate": false,
+        "carousel_interval": 5,
+        "marquee_direction": "left",
+        "marquee_speed": 5,
+        "enable_language_selector": true,
+        "enable_currency_selector": true,
+        "fontcolor": "#ffffff",
+        "bg_style": "solid",
+        "bgcolor": "#5b554e",
+        "bgcolor2": "",
+        "overlay_color": "",
+        "overlay_opacity": 50,
+        "btn_bgcolor": "#ffffff",
+        "btn_fontcolor": "#181818",
+        "bborder_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "header_style": "header3",
+        "enable_sticky_header": true,
+        "sticky_header_style": "on_scroll_up",
+        "enable_transparent_header": true,
+        "logo": "shopify:\/\/shop_images\/Wanhao_LOGO.png",
+        "logo_width": 140,
+        "logo_position": "center",
+        "menu_navigations": "click",
+        "menu": "main-menu",
+        "type_font_size": 15,
+        "menu_position": "center",
+        "enable_catalog": false,
+        "enable_catalog_drawer": false,
+        "view_catalog": "View catalog",
+        "catalog_menu": "main-menu",
+        "trust_badge_link": "",
+        "show_search": true,
+        "account_type": "page",
+        "cart_icon": "cart",
+        "enable_sticky_cart": false,
+        "icon_weight": "thin",
+        "enable_language_selector": true,
+        "enable_currency_selector": true,
+        "header_bgcolor": "#4d473f",
+        "header_textcolor": "#ffffff",
+        "header_textcolor_hover": "#9b9b9b",
+        "transparent_text_color": "#000000",
+        "hamburger_bgcolor": "#4d473f",
+        "hamburger_textcolor": "#ffffff",
+        "hamburger_textcolor_hover": "#9b9b9b",
+        "full_width_bgcolor": "",
+        "full_width_textcolor": "",
+        "full_width_textcolor_hover": "",
+        "mobile_menu_bg_color": "#000000",
+        "mobile_menu_text_color": "#ffffff",
+        "sub-menu_text_color": "#ffffff",
+        "mobile_menu_border_color": "#727272",
+        "catalogmenu_bg": "#f7f7f7",
+        "catologtext_color": "#000000",
+        "catologtext_hover": "#8f826b",
+        "catalog_bg": "#ddd",
+        "catalog_text": "#FFFFFF",
+        "catalog_text_border": "#EDEDED",
+        "searchbar_text": "#000000",
+        "searchbar_icon_bg": "#EDEDED",
+        "searchbar_icon_color": "#000000"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
