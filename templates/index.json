@@ -22,13 +22,13 @@
             "button2_alternate": true,
             "desktop_content_position": "d-center-left",
             "mobile_content_position": "m-center",
-            "title_color": "#000000",
-            "subtitle_color": "#000000",
-            "subtitle_bgcolor": "#ffffff",
-            "desc_color": "#000000",
-            "btn_bg": "#000000",
+            "title_color": "#e28000",
+            "subtitle_color": "#f3efec",
+            "subtitle_bgcolor": "#000000",
+            "desc_color": "#e28000",
+            "btn_bg": "#e28000",
             "btn_text": "#ffffff",
-            "btn_border": "#000000",
+            "btn_border": "#e28000",
             "overlay_color": "",
             "overlay_opacity": 50,
             "title_color_m": "#000000",
@@ -120,7 +120,7 @@
             "desktop_content_position": "d-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "rgba(0,0,0,0)",
-            "textcolor": "#000000",
+            "textcolor": "#e28000",
             "text_shadow_color": "#000000",
             "button_text_color": "#ffffff",
             "button_bg_color": "#000000",
@@ -149,7 +149,7 @@
             "desktop_content_position": "d-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "rgba(0,0,0,0)",
-            "textcolor": "#000000",
+            "textcolor": "#e28000",
             "text_shadow_color": "#000000",
             "button_text_color": "#ffffff",
             "button_bg_color": "#000000",
@@ -178,7 +178,7 @@
             "desktop_content_position": "d-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
-            "textcolor": "#000000",
+            "textcolor": "#e28000",
             "text_shadow_color": "#000000",
             "button_text_color": "#ffffff",
             "button_bg_color": "#000000",
@@ -247,7 +247,7 @@
             "collection": "impremente-230",
             "heading": "",
             "subheading": "",
-            "headingcolor": "#000000",
+            "headingcolor": "#e28000",
             "subheadingcolor": "#000000"
           }
         },
@@ -257,7 +257,7 @@
             "collection": "pla-premium",
             "heading": "",
             "subheading": "",
-            "headingcolor": "#000000",
+            "headingcolor": "#e28000",
             "subheadingcolor": "#000000"
           }
         },
@@ -267,8 +267,8 @@
             "collection": "la-gamme-dimprimante-3d-la-plus-performante-du-marche",
             "heading": "",
             "subheading": "",
-            "headingcolor": "#000000",
-            "subheadingcolor": "#000000"
+            "headingcolor": "#e28000",
+            "subheadingcolor": "#ff9800"
           }
         }
       },
