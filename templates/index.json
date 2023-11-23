@@ -308,10 +308,26 @@
             "heading": "",
             "collection": "filement"
           }
+        },
+        "f31d4eed-9ec4-44cc-9684-f79f6ee6f82a": {
+          "type": "collection",
+          "settings": {
+            "heading": "",
+            "collection": ""
+          }
+        },
+        "d24de5c4-33ed-40d2-a1f7-26d753209a9c": {
+          "type": "collection",
+          "settings": {
+            "heading": "Impremente 230",
+            "collection": "impremente-230"
+          }
         }
       },
       "block_order": [
-        "0bda1fc3-b8d3-49a7-824a-bad32523c906"
+        "0bda1fc3-b8d3-49a7-824a-bad32523c906",
+        "f31d4eed-9ec4-44cc-9684-f79f6ee6f82a",
+        "d24de5c4-33ed-40d2-a1f7-26d753209a9c"
       ],
       "settings": {
         "heading": "Collection Trending Product",
