@@ -215,7 +215,7 @@
     "44837886-0c70-48e1-92a6-429479c4bee0": {
       "type": "rotating-text",
       "settings": {
-        "text1": "<p>Add promotional text here <\/p>",
+        "text1": "<p>-30% sur les PLA LUMINOUS BLEU avec le code PROMO : LUMI<\/p>",
         "text2": "",
         "row1_font_family": "--heading-font-family",
         "row2_font_family": "--font-family",
@@ -228,7 +228,7 @@
         "section_border": true,
         "bgcolor": "#ffffff",
         "bg_gradient_color": "",
-        "text1color": "#000000",
+        "text1color": "#e28000",
         "outlinetext1color": "#000000",
         "text2color": "#a56748",
         "outlinetext2color": "#a56748",
