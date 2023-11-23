@@ -21,6 +21,7 @@
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
           "type": "sku",
+          "disabled": true,
           "settings": {
           }
         },
@@ -73,7 +74,7 @@
         "93052535-2a09-4134-b941-8252cca20fee"
       ],
       "settings": {
-        "gallery_style": "gallery",
+        "gallery_style": "slider",
         "show_description": true,
         "open_description_accordion": false,
         "show_variant-media": false,
