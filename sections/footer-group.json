@@ -1,1 +1,148 @@
-{"type":"footer","name":"Footer Group","sections":{"footer":{"type":"footer","blocks":{"7f8888a0-c33a-407c-a7a4-b16c76cf5425":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}},"59a36a52-3fb3-4ad2-b44b-fc555f5f7d02":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}},"86421bd8-a313-4bf7-a109-b2ed476a3892":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}},"f84cfcb5-0145-4c11-ac10-d9a33a88e5c2":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}},"ea148cce-ea93-4530-b8b8-1c929e0d6d3c":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}},"61354853-5f80-469e-8859-b2656f120321":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}}},"block_order":["7f8888a0-c33a-407c-a7a4-b16c76cf5425","59a36a52-3fb3-4ad2-b44b-fc555f5f7d02","86421bd8-a313-4bf7-a109-b2ed476a3892","f84cfcb5-0145-4c11-ac10-d9a33a88e5c2","ea148cce-ea93-4530-b8b8-1c929e0d6d3c","61354853-5f80-469e-8859-b2656f120321"],"settings":{"image_width":110,"subtext":"","enable_language_selector":true,"enable_currency_selector":true,"payment_enable":true,"footer_bg":"#f3efec","footer_heading":"#000000","footer_text":"#767676","footer_text_hover":"#3c3c3c"}},"offer-sidebar":{"type":"offer-sidebar","blocks":{"3c184a8c-b344-4a00-bcc1-815922498300":{"type":"offer","settings":{"heading":"Offer Title","highlight_text":"Offer","linktext":"Shop now","link":""}},"eefd02b4-3264-40df-b101-73e51cb795f3":{"type":"offer","settings":{"heading":"Offer Title","highlight_text":"Offer","linktext":"Shop now","link":""}}},"block_order":["3c184a8c-b344-4a00-bcc1-815922498300","eefd02b4-3264-40df-b101-73e51cb795f3"],"settings":{"enable_sidebar":false,"heading":"Heading Here","subheading":"Sub Heading Here","button_text":"Coupon","horizontal_position":"left","vertical_position":5,"btnbgcolor":"#46c0bf","btntextcolor":"#ffffff"}}},"order":["footer","offer-sidebar"]}
+{
+  "type": "footer",
+  "name": "Footer Group",
+  "sections": {
+    "af5b97cb-5d66-4593-9089-95bfaa7ff260": {
+      "type": "rich-text",
+      "blocks": {
+        "sections--15143328645185__af5b97cb-5d66-4593-9089-95bfaa7ff260-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "heading": "Rich text",
+            "seo_heading": "h2",
+            "content": "<p>Use this section to welcome customers to your store, say a bit about your brand, or share news and seasonal promotions.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "sections--15143328645185__af5b97cb-5d66-4593-9089-95bfaa7ff260-richtext-1"
+      ],
+      "settings": {
+        "content_width": "container sm-container",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "7f8888a0-c33a-407c-a7a4-b16c76cf5425": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "59a36a52-3fb3-4ad2-b44b-fc555f5f7d02": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "86421bd8-a313-4bf7-a109-b2ed476a3892": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "f84cfcb5-0145-4c11-ac10-d9a33a88e5c2": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "ea148cce-ea93-4530-b8b8-1c929e0d6d3c": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "61354853-5f80-469e-8859-b2656f120321": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "7f8888a0-c33a-407c-a7a4-b16c76cf5425",
+        "59a36a52-3fb3-4ad2-b44b-fc555f5f7d02",
+        "86421bd8-a313-4bf7-a109-b2ed476a3892",
+        "f84cfcb5-0145-4c11-ac10-d9a33a88e5c2",
+        "ea148cce-ea93-4530-b8b8-1c929e0d6d3c",
+        "61354853-5f80-469e-8859-b2656f120321"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "image_width": 110,
+        "subtext": "",
+        "enable_language_selector": true,
+        "show_language_background": true,
+        "enable_currency_selector": true,
+        "show_currency_background": true,
+        "payment_enable": true,
+        "hide_copyright_content": false,
+        "custom_copyright_content": "",
+        "show_policies": false,
+        "footer_bg": "#f3efec",
+        "footer_heading": "#000000",
+        "footer_text": "#767676",
+        "footer_text_hover": "#3c3c3c"
+      }
+    },
+    "offer-sidebar": {
+      "type": "offer-sidebar",
+      "blocks": {
+        "3c184a8c-b344-4a00-bcc1-815922498300": {
+          "type": "offer",
+          "settings": {
+            "heading": "Offer Title",
+            "highlight_text": "Offer",
+            "linktext": "Shop now",
+            "link": ""
+          }
+        },
+        "eefd02b4-3264-40df-b101-73e51cb795f3": {
+          "type": "offer",
+          "settings": {
+            "heading": "Offer Title",
+            "highlight_text": "Offer",
+            "linktext": "Shop now",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "3c184a8c-b344-4a00-bcc1-815922498300",
+        "eefd02b4-3264-40df-b101-73e51cb795f3"
+      ],
+      "settings": {
+        "enable_sidebar": false,
+        "heading": "Heading Here",
+        "subheading": "Sub Heading Here",
+        "button_text": "Coupon",
+        "horizontal_position": "left",
+        "vertical_position": 5,
+        "btnbgcolor": "#46c0bf",
+        "btntextcolor": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "af5b97cb-5d66-4593-9089-95bfaa7ff260",
+    "footer",
+    "offer-sidebar"
+  ]
+}
