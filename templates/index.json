@@ -86,7 +86,7 @@
         "6a0fc043-132e-47a9-9531-f9ff98c79671"
       ],
       "settings": {
-        "nav_style": "arrows-top-left",
+        "nav_style": "arrows-bottom-right",
         "content_below_image": false,
         "rotate": false,
         "interval": 5,
