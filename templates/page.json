@@ -95,11 +95,62 @@
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
       }
+    },
+    "a35eb6a7-c9f6-48a6-af9f-c0a9dd0369d6": {
+      "type": "image-with-text",
+      "blocks": {
+        "b4b62921-3506-4484-a015-f1282a07826d": {
+          "type": "button",
+          "settings": {
+            "btn_text": "Notice de Montage PDF",
+            "btn_link": "https:\/\/www.dropbox.com\/scl\/fi\/21nazpuz64p4j7f8c7mwb\/D12-230-EVO-FR-V1.7.pdf?rlkey=h911mg1c3tfnpar7wnahjcla5&dl=1",
+            "button_size": "large"
+          }
+        },
+        "11521951-b78d-48a3-b5c5-7b917639f1a1": {
+          "type": "button",
+          "settings": {
+            "btn_text": "Firmware",
+            "btn_link": "https:\/\/www.dropbox.com\/sh\/drf4phxth67dx9x\/AAAbua5YVtsCPFy_kkQQ5Nhma?dl=1",
+            "button_size": "large"
+          }
+        },
+        "fb3e42d3-0390-4545-9d06-49975323fe5a": {
+          "type": "button",
+          "settings": {
+            "btn_text": "E-learning EVO MEGAKIT",
+            "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-evo-megakit-44\/",
+            "button_size": "large"
+          }
+        }
+      },
+      "block_order": [
+        "b4b62921-3506-4484-a015-f1282a07826d",
+        "11521951-b78d-48a3-b5c5-7b917639f1a1",
+        "fb3e42d3-0390-4545-9d06-49975323fe5a"
+      ],
+      "settings": {
+        "enable_fullwidth": false,
+        "image": "shopify:\/\/shop_images\/MegaKit_480x480_21e2afa7-0155-4ff9-9a21-31426a15b0de.webp",
+        "image_shadow": true,
+        "enable_image_animation": true,
+        "image_alignment": "left",
+        "image_height": "aspect",
+        "content_position": "center",
+        "bgcolor": "primary",
+        "image_shadow_color": "#dddddd",
+        "section_visibility": "always",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
     "main-page",
     "d7ff217e-a010-4040-8571-41d842243d9a",
-    "7db56bcd-e86f-4a1a-b6e3-d53b66476013"
+    "7db56bcd-e86f-4a1a-b6e3-d53b66476013",
+    "a35eb6a7-c9f6-48a6-af9f-c0a9dd0369d6"
   ]
 }
