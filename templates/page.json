@@ -1,1 +1,78 @@
-{"sections":{"main-page":{"type":"main-page","settings":{}}},"order":["main-page"]}
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "seo_heading": "h2",
+        "banner_height_desktop": "auto",
+        "banner_height_mobile": "auto",
+        "bgcolor": "#f5efec",
+        "textcolor": "#181818"
+      }
+    },
+    "d7ff217e-a010-4040-8571-41d842243d9a": {
+      "type": "rich-text",
+      "blocks": {
+        "template--15143329038401__d7ff217e-a010-4040-8571-41d842243d9a-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "heading": "Bien démarrer avec vos produits",
+            "seo_heading": "h2",
+            "content": "<p><strong>Découvrez les ressources essentielles pour le fonctionnement de votre imprimante 3D et apprenez les bases de l'impression 3D. Sur les liens suivants, vous trouverez tous les outils nécessaires pour maximiser votre expérience :<\/strong><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15143329038401__d7ff217e-a010-4040-8571-41d842243d9a-richtext-1"
+      ],
+      "settings": {
+        "content_width": "container sm-container",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
+    "7db56bcd-e86f-4a1a-b6e3-d53b66476013": {
+      "type": "image-with-text",
+      "blocks": {
+        "f4506183-d5e4-4791-bb7b-4ba7041dfba4": {
+          "type": "button",
+          "settings": {
+            "btn_text": "D12 - 230",
+            "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-1",
+            "button_size": "large"
+          }
+        }
+      },
+      "block_order": [
+        "f4506183-d5e4-4791-bb7b-4ba7041dfba4"
+      ],
+      "settings": {
+        "enable_fullwidth": false,
+        "image": "shopify:\/\/shop_images\/Bien_DEmarer_480x480_270dd3c1-574c-44d6-a323-ab4719b7a915.webp",
+        "image_shadow": true,
+        "enable_image_animation": false,
+        "image_alignment": "left",
+        "image_height": "aspect",
+        "content_position": "center",
+        "bgcolor": "primary",
+        "image_shadow_color": "#dddddd",
+        "section_visibility": "always",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "d7ff217e-a010-4040-8571-41d842243d9a",
+    "7db56bcd-e86f-4a1a-b6e3-d53b66476013"
+  ]
+}
