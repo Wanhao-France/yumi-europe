@@ -526,8 +526,8 @@
     "a1b176c3-f07e-4422-aca7-8c39a39d35db": {
       "type": "rotating-text",
       "settings": {
-        "text1": "<p>Add Promotional<strong> Text Here<\/strong><\/p>",
-        "text2": "",
+        "text1": "",
+        "text2": "<p>-25% sur FILAMENTS, RESINE via CODE : BLACK, -20% sur les pièces détachées et accessoires CODE : FRIDAY<\/p>",
         "row1_font_family": "--heading-font-family",
         "row2_font_family": "--font-family",
         "row1_direction": "left",
@@ -541,8 +541,8 @@
         "bg_gradient_color": "",
         "text1color": "#000000",
         "outlinetext1color": "#0e3a2d",
-        "text2color": "#a56748",
-        "outlinetext2color": "#a56748",
+        "text2color": "#e28000",
+        "outlinetext2color": "#e28000",
         "section_visibility": "always",
         "top_space_desktop": 0,
         "bottom_space_desktop": 0,
