@@ -63,21 +63,12 @@
             "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-500-pro-max-33",
             "button_size": "large"
           }
-        },
-        "e659fea8-c117-492a-93fb-d24d0308c320": {
-          "type": "button",
-          "settings": {
-            "btn_text": "Button text",
-            "btn_link": "",
-            "button_size": "med"
-          }
         }
       },
       "block_order": [
         "f4506183-d5e4-4791-bb7b-4ba7041dfba4",
         "d89aa275-5ae3-4c9e-9a60-c349ad5ed90b",
-        "03f5c64b-c3fe-444c-88c0-96283a145dca",
-        "e659fea8-c117-492a-93fb-d24d0308c320"
+        "03f5c64b-c3fe-444c-88c0-96283a145dca"
       ],
       "settings": {
         "enable_fullwidth": false,
