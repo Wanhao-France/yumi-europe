@@ -554,7 +554,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "imprimante-vedette",
-        "products_count": 6,
+        "products_count": 8,
         "slider_full_width": false,
         "product_as_stacked": true,
         "over_image_product": false,
