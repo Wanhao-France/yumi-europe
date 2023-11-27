@@ -44,8 +44,26 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "220395e5-c672-484c-b9ed-fe8a28aa1200": {
+          "type": "style-1",
+          "settings": {
+            "title": "nano",
+            "show_submenu": true,
+            "product1": "angel-nanoblocks",
+            "product2": "",
+            "product3": "",
+            "product4": "",
+            "product5": "",
+            "product6": ""
+          }
+        }
+      },
+      "block_order": [
+        "220395e5-c672-484c-b9ed-fe8a28aa1200"
+      ],
       "settings": {
-        "header_style": "header3",
+        "header_style": "header4",
         "enable_sticky_header": true,
         "sticky_header_style": "on_scroll_up",
         "enable_transparent_header": true,
