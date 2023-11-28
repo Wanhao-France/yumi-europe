@@ -44,25 +44,6 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "e61210fd-21d7-4317-8d57-dd300e3cd375": {
-          "type": "style-2",
-          "settings": {
-            "title": "Imprementes 3D & Laser",
-            "collection1": "flsun",
-            "collection2": "impremente-230",
-            "heading1": "",
-            "subheading1": "",
-            "link1": "",
-            "heading2": "",
-            "subheading2": "",
-            "link2": ""
-          }
-        }
-      },
-      "block_order": [
-        "e61210fd-21d7-4317-8d57-dd300e3cd375"
-      ],
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
