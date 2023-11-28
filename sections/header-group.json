@@ -44,6 +44,26 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e": {
+          "type": "style-2",
+          "settings": {
+            "title": "Impremantes 3D & Laser",
+            "collection1": "impremente-230",
+            "collection2": "flsun",
+            "image1": "shopify:\/\/shop_images\/Yumi-LA4.jpg",
+            "heading1": "",
+            "subheading1": "",
+            "link1": "shopify:\/\/products\/yumi-l-a4-laser-pour-gravure-et-decoupe-pre-commande",
+            "heading2": "",
+            "subheading2": "",
+            "link2": ""
+          }
+        }
+      },
+      "block_order": [
+        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e"
+      ],
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
