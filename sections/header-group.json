@@ -45,28 +45,25 @@
     "header": {
       "type": "header",
       "blocks": {
-        "9a49d87b-9c2c-4cb4-8cdc-0e1d7be7b854": {
-          "type": "style-3",
+        "ea22b6d1-ba62-4b4f-b4c8-57d1d1f12f42": {
+          "type": "style-2",
           "settings": {
-            "title": "Filements",
-            "products_count": 7,
-            "collection1": "filement",
-            "collection2": "filaments-pla-wanhao-premium",
-            "collection3": "",
-            "collection4": "",
-            "collection5": "",
-            "collection6": "",
-            "collection7": "",
-            "collection8": "",
-            "collection9": "",
-            "collection10": "",
-            "collection11": "",
-            "collection12": ""
+            "title": "Filaments",
+            "collection1": "filaments-pla-wanhao-premium",
+            "collection2": "impremente-230",
+            "image1": "shopify:\/\/shop_images\/Rose.jpg",
+            "heading1": "",
+            "subheading1": "",
+            "link1": "",
+            "image2": "shopify:\/\/shop_images\/Wanhao_duplicator_7_V1.5_en_stock_france_europe_model_imprime_DLP_UV_405nm_17_d5585bb1-8b41-4ddb-97c7-bab6810c8a7d.jpg",
+            "heading2": "",
+            "subheading2": "",
+            "link2": ""
           }
         }
       },
       "block_order": [
-        "9a49d87b-9c2c-4cb4-8cdc-0e1d7be7b854"
+        "ea22b6d1-ba62-4b4f-b4c8-57d1d1f12f42"
       ],
       "settings": {
         "header_style": "header4",
