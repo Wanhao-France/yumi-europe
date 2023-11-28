@@ -44,6 +44,30 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "9a49d87b-9c2c-4cb4-8cdc-0e1d7be7b854": {
+          "type": "style-3",
+          "settings": {
+            "title": "Filements",
+            "products_count": 7,
+            "collection1": "filement",
+            "collection2": "filaments-pla-wanhao-premium",
+            "collection3": "",
+            "collection4": "",
+            "collection5": "",
+            "collection6": "",
+            "collection7": "",
+            "collection8": "",
+            "collection9": "",
+            "collection10": "",
+            "collection11": "",
+            "collection12": ""
+          }
+        }
+      },
+      "block_order": [
+        "9a49d87b-9c2c-4cb4-8cdc-0e1d7be7b854"
+      ],
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
