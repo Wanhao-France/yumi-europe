@@ -955,11 +955,11 @@
     "241580ea-bd0e-4db7-b075-509b6cb71c9c": {
       "type": "newsletter",
       "settings": {
-        "heading": "Join Our Newsletter",
+        "heading": "Newsletter",
         "seo_heading": "h2",
-        "description": "Sign up it only takes a second to be the news.",
-        "placeholder": "Email Address",
-        "btn": "Subscribe",
+        "description": "",
+        "placeholder": "Adresse Courriel",
+        "btn": "s'inscire",
         "bgcolor": "quaternary",
         "button_text_color": "#ffffff",
         "button_bg_color": "#000000",
