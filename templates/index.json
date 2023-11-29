@@ -248,20 +248,20 @@
     "9fe78f99-a723-4384-97f0-0ab9a53d574e": {
       "type": "featured-collections-carousel",
       "blocks": {
-        "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-0": {
+        "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-1": {
           "type": "collection",
           "settings": {
-            "collection": "impremente-230",
+            "collection": "filement",
             "heading": "",
             "subheading": "",
             "headingcolor": "#e28000",
             "subheadingcolor": "#000000"
           }
         },
-        "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-1": {
+        "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-0": {
           "type": "collection",
           "settings": {
-            "collection": "pla-premium",
+            "collection": "impremente-230",
             "heading": "",
             "subheading": "",
             "headingcolor": "#e28000",
@@ -280,8 +280,8 @@
         }
       },
       "block_order": [
-        "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-0",
         "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-1",
+        "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-0",
         "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-3"
       ],
       "custom_css": [
@@ -562,7 +562,7 @@
     "892e650b-bd66-447a-b397-5081a12a90e6": {
       "type": "featured-collection",
       "settings": {
-        "collection": "imprimante-vedette",
+        "collection": "wanhao-duplicator-12",
         "products_count": 8,
         "slider_full_width": false,
         "product_as_stacked": true,
