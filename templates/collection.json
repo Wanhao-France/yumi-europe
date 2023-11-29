@@ -15,9 +15,10 @@
         "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-1": {
           "type": "image",
           "settings": {
-            "heading": "Heading",
-            "subheading": "Sub heading",
-            "link": ""
+            "heading": "PLA Premium",
+            "subheading": "Noir Muzo",
+            "image": "shopify:\/\/shop_images\/W3-DPLABLACK1000.jpg",
+            "link": "shopify:\/\/products\/pla-wanhao-noir-1kg"
           }
         },
         "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-2": {
