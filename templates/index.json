@@ -12,8 +12,8 @@
             "banner_title": "YUMI L-A4 LASER",
             "seo_heading": "h2",
             "banner_desc": "LASER POUR GRAVURE ET DÉCOUPE",
-            "desktop_title_size": 82,
-            "mobile_title_size": 36,
+            "desktop_title_size": 26,
+            "mobile_title_size": 26,
             "button_size": "default",
             "button_text": "Shop Now",
             "button_link": "shopify:\/\/products\/yumi-l-a4-laser-pour-gravure-et-decoupe-pre-commande",
@@ -94,8 +94,8 @@
         "content_below_image": false,
         "rotate": false,
         "interval": 5,
-        "desktop_height": "adapt_image",
-        "mobile_height": "adapt_image",
+        "desktop_height": "750px",
+        "mobile_height": "550px",
         "bgcolor": "primary"
       }
     },
