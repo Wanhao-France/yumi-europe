@@ -189,7 +189,7 @@
       "restock": "Réassort bientôt",
       "out_of_stock": "Rupture de stock",
       "low_stock": "Seul {{ stock }} unités restantes",
-      "off": "DÉSACTIVÉ",
+      "off": "Économiser",
       "similar_products": "produits similaires",
       "view_product": "Voir le produit",
       "more_options": "{{item}}Plus",
