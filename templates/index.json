@@ -657,16 +657,18 @@
         "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-0": {
           "type": "image",
           "settings": {
-            "heading": "Heading",
-            "subheading": "Sub heading",
-            "link": ""
+            "heading": "PLA Premium",
+            "subheading": "Noir Muzo",
+            "image": "shopify:\/\/shop_images\/W3-DPLABLACK1000.jpg",
+            "link": "shopify:\/\/products\/pla-wanhao-noir-1kg"
           }
         },
         "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-2": {
           "type": "image",
           "settings": {
-            "heading": "Heading",
-            "subheading": "Sub heading",
+            "heading": "Duplicator",
+            "subheading": "12-230 Pro",
+            "image": "shopify:\/\/shop_images\/Rose.jpg",
             "link": ""
           }
         }
