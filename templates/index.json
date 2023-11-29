@@ -302,8 +302,8 @@
         "button_size": "small",
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 40,
-        "bottom_space_desktop": 40,
+        "top_space_desktop": 15,
+        "bottom_space_desktop": 15,
         "top_space_mobile": 35,
         "bottom_space_mobile": 35
       }

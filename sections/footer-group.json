@@ -30,7 +30,7 @@
 
       ],
       "settings": {
-        "image_width": 110,
+        "image_width": 50,
         "subtext": "",
         "enable_language_selector": true,
         "show_language_background": true,
