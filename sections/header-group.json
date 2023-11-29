@@ -71,13 +71,13 @@
             "collection3": "collections-pla-premium-matte-wanhao",
             "collection4": "filaments-pla-wanhao-premium-2kg-5kg",
             "collection5": "pla-premium-fluo-neon",
-            "collection6": "",
-            "collection7": "",
-            "collection8": "",
-            "collection9": "",
-            "collection10": "",
-            "collection11": "",
-            "collection12": ""
+            "collection6": "pla-hyper",
+            "collection7": "pla-silk-wanhao",
+            "collection8": "pla-galaxy",
+            "collection9": "pla-magic",
+            "collection10": "filaments-tpu-wanhao-premium",
+            "collection11": "pla-flexible",
+            "collection12": "filament-petg-wanhao"
           }
         }
       },
