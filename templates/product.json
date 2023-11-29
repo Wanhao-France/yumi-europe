@@ -87,6 +87,8 @@
         "width": "half",
         "style": "accordion",
         "accordion_content_alignment": "left",
+        "content_heading": "heading",
+        "content": "",
         "content_heading2": "",
         "content2": "",
         "content_heading3": "",
@@ -117,6 +119,7 @@
         "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-0",
         "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-1"
       ],
+      "disabled": true,
       "settings": {
         "text_alignment": "left",
         "section_visibility": "always",
@@ -236,6 +239,7 @@
         "6bc36cab-3762-4af3-baea-4a3ea05db1e1",
         "9a2a28fc-fa77-4d0f-a123-c29095a1655e"
       ],
+      "disabled": true,
       "settings": {
         "enable_fullwidth": false,
         "image_layout": "rounded",
