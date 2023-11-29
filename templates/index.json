@@ -271,7 +271,7 @@
         "template--16809124069669__9fe78f99-a723-4384-97f0-0ab9a53d574e-1667804924ee962633-3": {
           "type": "collection",
           "settings": {
-            "collection": "la-gamme-dimprimante-3d-la-plus-performante-du-marche",
+            "collection": "tous-les-accessoires",
             "heading": "",
             "subheading": "",
             "headingcolor": "#e28000",
@@ -318,25 +318,25 @@
             "collection": "filement"
           }
         },
-        "f31d4eed-9ec4-44cc-9684-f79f6ee6f82a": {
-          "type": "collection",
-          "settings": {
-            "heading": "",
-            "collection": ""
-          }
-        },
         "d24de5c4-33ed-40d2-a1f7-26d753209a9c": {
           "type": "collection",
           "settings": {
             "heading": "Impremente 230",
             "collection": "impremente-230"
           }
+        },
+        "7aee4281-2738-4333-a755-13979499fdd8": {
+          "type": "collection",
+          "settings": {
+            "heading": "FLSUN",
+            "collection": "flsun"
+          }
         }
       },
       "block_order": [
         "0bda1fc3-b8d3-49a7-824a-bad32523c906",
-        "f31d4eed-9ec4-44cc-9684-f79f6ee6f82a",
-        "d24de5c4-33ed-40d2-a1f7-26d753209a9c"
+        "d24de5c4-33ed-40d2-a1f7-26d753209a9c",
+        "7aee4281-2738-4333-a755-13979499fdd8"
       ],
       "settings": {
         "heading": "Collection Trending Product",
