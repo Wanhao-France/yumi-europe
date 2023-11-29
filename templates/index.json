@@ -94,8 +94,8 @@
         "content_below_image": false,
         "rotate": false,
         "interval": 5,
-        "desktop_height": "750px",
-        "mobile_height": "550px",
+        "desktop_height": "adapt_image",
+        "mobile_height": "adapt_image",
         "bgcolor": "primary"
       }
     },
@@ -212,7 +212,7 @@
         "image_spacing_mobile": 4,
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 10,
+        "top_space_desktop": 0,
         "bottom_space_desktop": 0,
         "top_space_mobile": 10,
         "bottom_space_mobile": 35
