@@ -86,6 +86,9 @@
         "093308ec-5a07-42a5-b2aa-e44479115be4",
         "6a0fc043-132e-47a9-9531-f9ff98c79671"
       ],
+      "custom_css": [
+        "img {padding: 10rem; background: #fff;}"
+      ],
       "settings": {
         "nav_style": "arrows-bottom-right",
         "content_below_image": false,
@@ -191,6 +194,9 @@
         "template--16809124069669__42e8f498-dcf5-4202-8783-84def3fc423e-1667801289f4a3a907-0",
         "template--16809124069669__42e8f498-dcf5-4202-8783-84def3fc423e-1667801289f4a3a907-1",
         "2bef2f9c-8829-412c-a14a-2970859440d0"
+      ],
+      "custom_css": [
+        "img {padding: 5rem; background: #fff;}"
       ],
       "settings": {
         "enable_fullwidth": true,
