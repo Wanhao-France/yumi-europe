@@ -39,7 +39,7 @@
     "enable_animation": true,
     "button_radius": 6,
     "product_image_style": "square",
-    "enable_search_prompts": false,
+    "enable_search_prompts": true,
     "search_prompts_2": "Search for articles",
     "search_prompts_3": "Search for collections",
     "enable_cart_drawer": true,
