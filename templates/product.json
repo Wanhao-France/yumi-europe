@@ -111,18 +111,11 @@
             "bgcolor": "secondary",
             "image_shadow_color": "#d1c9c4"
           }
-        },
-        "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-2": {
-          "type": "text",
-          "settings": {
-            "content": "<p>To provide clients insight into your brand, pair words with any image. Here you can tell a narrative, explain a product feature, or introduce a new campaign.<\/p>"
-          }
         }
       },
       "block_order": [
         "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-0",
-        "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-1",
-        "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-2"
+        "template--16809124299045__6cf7bc97-dd54-475a-9bff-20c3912ab04b-166781832969539b4d-1"
       ],
       "settings": {
         "text_alignment": "left",
