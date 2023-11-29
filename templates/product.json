@@ -75,7 +75,7 @@
       ],
       "settings": {
         "gallery_style": "slider",
-        "show_description": false,
+        "show_description": true,
         "open_description_accordion": true,
         "show_variant-media": false,
         "enable_shipping_policy": true,
