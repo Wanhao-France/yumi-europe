@@ -1,1 +1,58 @@
-{"sections":{"main-page":{"type":"main-page","settings":{"banner_height_desktop":"auto","banner_height_mobile":"auto","bgcolor":"#f3efec","textcolor":"#181818"}},"main":{"type":"contact-page-template","settings":{"contact_heading":"Support","phone_heading":"Phone","phone_number":"+1234567890","email_heading":"email","email":"info@email.com","address_heading":"Address","address":"#123 abc main city","form_heading":"Get In Touch","form_button":"SEND MESSAGE"}},"d4990aa8-00b1-4fd3-bf9d-3832c1bd440a":{"type":"map","settings":{"full_width":true,"mapaddress":"","map_style":"roadmap","bgcolor":"primary"}},"ffdeadde-5060-4cc0-bf3c-1351ff984a59":{"type":"spacer","settings":{"height_desktop":2,"height_mobile":2,"bgcolor":"primary"}}},"order":["main-page","main","d4990aa8-00b1-4fd3-bf9d-3832c1bd440a","ffdeadde-5060-4cc0-bf3c-1351ff984a59"]}
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "settings": {
+        "seo_heading": "h2",
+        "banner_height_desktop": "auto",
+        "banner_height_mobile": "auto",
+        "bgcolor": "#f3efec",
+        "textcolor": "#181818"
+      }
+    },
+    "main": {
+      "type": "contact-page-template",
+      "settings": {
+        "contact_heading": "Support",
+        "phone_heading": "Phone",
+        "phone_number": "+1234567890",
+        "email_heading": "email",
+        "email": "info@email.com",
+        "address_heading": "Address",
+        "address": "WANHAO FRANCE , 2 AVENUE DU HOGGAR , 91940 LES ULIS",
+        "form_heading": "Prenez contact avec nous",
+        "form_button": "ENVOYER LE MESSAGE"
+      }
+    },
+    "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a": {
+      "type": "map",
+      "settings": {
+        "full_width": true,
+        "mapaddress": "https:\/\/maps.app.goo.gl\/c6zjTmUpyoNyZVWr9",
+        "map_style": "terrain",
+        "image": "shopify:\/\/shop_images\/Capture_d_ecran_2023-11-29_a_16.38.07.png",
+        "content_position": "middle-left",
+        "desktop_height": "500px",
+        "m_content_position": "overlay",
+        "mobile_height": "500px",
+        "bgcolor": "primary",
+        "section_visibility": "always"
+      }
+    },
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59": {
+      "type": "spacer",
+      "settings": {
+        "height_desktop": 2,
+        "height_mobile": 2,
+        "bgcolor": "primary",
+        "custom_color": ""
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "main",
+    "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a",
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59"
+  ]
+}
