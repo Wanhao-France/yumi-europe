@@ -27,11 +27,19 @@
             "heading": "PLA Premium Matte",
             "collection": "collections-pla-premium-matte-wanhao"
           }
+        },
+        "c500424f-6c59-4a19-b4c3-241b0dba12ed": {
+          "type": "collection",
+          "settings": {
+            "heading": "Filement Spéciaux",
+            "collection": "filament-speciaux-wanhao"
+          }
         }
       },
       "block_order": [
         "0a261265-f102-46f7-9d70-570aeb75cbd3",
-        "935c2bba-919b-4018-aaa5-d560d95f986e"
+        "935c2bba-919b-4018-aaa5-d560d95f986e",
+        "c500424f-6c59-4a19-b4c3-241b0dba12ed"
       ],
       "settings": {
         "heading": "Collection Trending Product",
