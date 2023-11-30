@@ -94,7 +94,7 @@
         "content_below_image": false,
         "rotate": false,
         "interval": 5,
-        "desktop_height": "750px",
+        "desktop_height": "650px",
         "mobile_height": "550px",
         "bgcolor": "primary"
       }
