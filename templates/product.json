@@ -82,7 +82,7 @@
         "enable_zoom_icon": true,
         "content_divider_mobile": "none",
         "carousel_thumbnail_position": "center",
-        "carousel_height_desktop": "adapt",
+        "carousel_height_desktop": "600px",
         "carousel_height_mobile": "adapt",
         "width": "half",
         "style": "accordion",
