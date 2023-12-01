@@ -202,7 +202,7 @@
         "enable_fullwidth": true,
         "image_layout": "rounded",
         "enable_image_animation": true,
-        "enable_hover_effect": false,
+        "enable_hover_effect": true,
         "image_radius_desktop": 10,
         "image_radius_mobile": 10,
         "heading_size": "h2",
