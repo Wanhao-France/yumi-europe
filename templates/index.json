@@ -986,7 +986,7 @@
         "template--16809124069669__9a1fe066-2f93-4cd9-9406-69df7c56cc79-16678017855c9a4f01-1": {
           "type": "column",
           "settings": {
-            "icon": "shipping",
+            "icon": "refund",
             "heading": "Add Heading here",
             "seo_heading": "h2",
             "subtext": "Add subtext here"
@@ -995,7 +995,7 @@
         "template--16809124069669__9a1fe066-2f93-4cd9-9406-69df7c56cc79-16678017855c9a4f01-2": {
           "type": "column",
           "settings": {
-            "icon": "shipping",
+            "icon": "support",
             "heading": "Add Heading here",
             "seo_heading": "h2",
             "subtext": "Add subtext here"
@@ -1004,7 +1004,7 @@
         "template--16809124069669__9a1fe066-2f93-4cd9-9406-69df7c56cc79-16678017855c9a4f01-3": {
           "type": "column",
           "settings": {
-            "icon": "shipping",
+            "icon": "thumb",
             "heading": "Add Heading here",
             "seo_heading": "h2",
             "subtext": "Add subtext here"
