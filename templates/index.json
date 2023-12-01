@@ -199,7 +199,7 @@
 
       ],
       "settings": {
-        "enable_fullwidth": true,
+        "enable_fullwidth": false,
         "image_layout": "rounded",
         "enable_image_animation": true,
         "enable_hover_effect": false,
