@@ -580,7 +580,7 @@
         "hide_description": false,
         "collection_desc": "",
         "bgcolor": "primary",
-        "collection_title_color": "#e28000",
+        "collection_title_color": "rgba(0,0,0,0)",
         "collection_desc_color": "#e28000",
         "section_visibility": "always",
         "top_space_desktop": 35,
