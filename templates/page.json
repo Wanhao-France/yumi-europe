@@ -37,42 +37,141 @@
         "bottom_space_mobile": 30
       }
     },
-    "190d08bd-1316-406c-9742-00b2df7ac820": {
-      "type": "image-with-text",
+    "97fad72d-5efb-4cb9-8561-e39332bd2a56": {
+      "type": "split-slider",
       "blocks": {
-        "23fd8a7e-e15e-4067-bd8f-34d3faf3c590": {
-          "type": "button",
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-1": {
+          "type": "slide",
           "settings": {
-            "btn_text": "Duplicator 12-230",
-            "btn_link": "",
-            "button_size": "med"
+            "image": "shopify:\/\/shop_images\/Rose.jpg",
+            "banner_subtitle": "",
+            "banner_title": "",
+            "seo_heading": "h2",
+            "desktop_title_size": 70,
+            "mobile_title_size": 36,
+            "button_text": "Duplicator 12-230",
+            "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-1",
+            "button_size": "default",
+            "mobile_content_position": "flex-end",
+            "mobile_content_alignment": "flex-start",
+            "title_color": "#000000",
+            "subtitle_color": "#9D6348",
+            "subtitle_bgcolor": "#F4EAE2",
+            "btn_bg": "#000000",
+            "btn_text": "#ffffff",
+            "btn_border": "#000000",
+            "title_color_m": "#ffffff",
+            "subtitle_color_m": "#9D6348",
+            "subtitle_bgcolor_m": "#FFF9EF",
+            "btn_bg_m": "#ffffff",
+            "btn_text_m": "#000000",
+            "btn_border_m": "#ffffff"
+          }
+        },
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2": {
+          "type": "slide",
+          "settings": {
+            "banner_subtitle": "Banner Sub Heading Here",
+            "banner_title": "Banner Heading Here",
+            "seo_heading": "h2",
+            "desktop_title_size": 70,
+            "mobile_title_size": 36,
+            "button_text": "Shop Now",
+            "button_link": "shopify:\/\/collections\/all",
+            "button_size": "default",
+            "mobile_content_position": "flex-end",
+            "mobile_content_alignment": "flex-start",
+            "title_color": "#000000",
+            "subtitle_color": "#9D6348",
+            "subtitle_bgcolor": "#F4EAE2",
+            "btn_bg": "#000000",
+            "btn_text": "#ffffff",
+            "btn_border": "#000000",
+            "title_color_m": "#ffffff",
+            "subtitle_color_m": "#9D6348",
+            "subtitle_bgcolor_m": "#FFF9EF",
+            "btn_bg_m": "#ffffff",
+            "btn_text_m": "#000000",
+            "btn_border_m": "#ffffff"
+          }
+        },
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3": {
+          "type": "slide",
+          "settings": {
+            "banner_subtitle": "Banner Sub Heading Here",
+            "banner_title": "Banner Heading Here",
+            "seo_heading": "h2",
+            "desktop_title_size": 70,
+            "mobile_title_size": 36,
+            "button_text": "Shop Now",
+            "button_link": "shopify:\/\/collections\/all",
+            "button_size": "default",
+            "mobile_content_position": "flex-end",
+            "mobile_content_alignment": "flex-start",
+            "title_color": "#000000",
+            "subtitle_color": "#9D6348",
+            "subtitle_bgcolor": "#F4EAE2",
+            "btn_bg": "#000000",
+            "btn_text": "#ffffff",
+            "btn_border": "#000000",
+            "title_color_m": "#ffffff",
+            "subtitle_color_m": "#9D6348",
+            "subtitle_bgcolor_m": "#FFF9EF",
+            "btn_bg_m": "#ffffff",
+            "btn_text_m": "#000000",
+            "btn_border_m": "#ffffff"
+          }
+        },
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-4": {
+          "type": "slide",
+          "settings": {
+            "banner_subtitle": "Banner Sub Heading Here",
+            "banner_title": "Banner Heading Here",
+            "seo_heading": "h2",
+            "desktop_title_size": 70,
+            "mobile_title_size": 36,
+            "button_text": "Shop Now",
+            "button_link": "shopify:\/\/collections\/all",
+            "button_size": "default",
+            "mobile_content_position": "flex-end",
+            "mobile_content_alignment": "flex-start",
+            "title_color": "#000000",
+            "subtitle_color": "#9D6348",
+            "subtitle_bgcolor": "#F4EAE2",
+            "btn_bg": "#000000",
+            "btn_text": "#ffffff",
+            "btn_border": "#000000",
+            "title_color_m": "#ffffff",
+            "subtitle_color_m": "#9D6348",
+            "subtitle_bgcolor_m": "#FFF9EF",
+            "btn_bg_m": "#ffffff",
+            "btn_text_m": "#000000",
+            "btn_border_m": "#ffffff"
           }
         }
       },
       "block_order": [
-        "23fd8a7e-e15e-4067-bd8f-34d3faf3c590"
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-1",
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2",
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3",
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-4"
       ],
       "settings": {
-        "enable_fullwidth": false,
-        "image": "shopify:\/\/shop_images\/Duplicator_12_NOIR_ORANGE_MONO_9db60082-35a3-4c49-81f9-997dc07fd58f.png",
-        "image_shadow": true,
-        "enable_image_animation": true,
-        "image_alignment": "left",
-        "image_height": "aspect",
-        "content_position": "center",
-        "bgcolor": "primary",
-        "image_shadow_color": "#dddddd",
-        "section_visibility": "always",
-        "top_space_desktop": 60,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
+        "arrows": false,
+        "thumbnails": true,
+        "rotate": false,
+        "interval": 5,
+        "desktop_height": "750px",
+        "mobile_height": "550px",
+        "bgcolor": "",
+        "enable_overlay": true,
+        "overlaycolor": "#000000"
       }
     }
   },
   "order": [
     "main-page",
     "273531e5-c4fc-46d4-9c91-bcb31a640852",
-    "190d08bd-1316-406c-9742-00b2df7ac820"
+    "97fad72d-5efb-4cb9-8561-e39332bd2a56"
   ]
 }
