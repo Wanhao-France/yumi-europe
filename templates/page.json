@@ -37,99 +37,34 @@
         "bottom_space_mobile": 30
       }
     },
-    "a0ca00f0-768f-44cb-9ba6-76c23836e823": {
-      "type": "timeline",
+    "190d08bd-1316-406c-9742-00b2df7ac820": {
+      "type": "image-with-text",
       "blocks": {
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-1": {
-          "type": "slide",
+        "23fd8a7e-e15e-4067-bd8f-34d3faf3c590": {
+          "type": "button",
           "settings": {
-            "navigation_label": "12-230",
-            "heading": "Duplicator",
-            "seo_heading": "h2",
-            "heading_size": "h2",
-            "subheading": "12-230",
-            "description": "",
-            "btn_text": "D12-230",
-            "link": "",
-            "button_size": "xsmall",
-            "btn_as_link": false
-          }
-        },
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-2": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "Label",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "heading_size": "h2",
-            "subheading": "Sub heading",
-            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
-            "btn_text": "",
-            "link": "",
-            "button_size": "default",
-            "btn_as_link": false
-          }
-        },
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-3": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "Label",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "heading_size": "h2",
-            "subheading": "Sub heading",
-            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
-            "btn_text": "",
-            "link": "",
-            "button_size": "default",
-            "btn_as_link": false
-          }
-        },
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-4": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "Label",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "heading_size": "h2",
-            "subheading": "Sub heading",
-            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
-            "btn_text": "",
-            "link": "",
-            "button_size": "default",
-            "btn_as_link": false
-          }
-        },
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-5": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "Label",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "heading_size": "h2",
-            "subheading": "Sub heading",
-            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
-            "btn_text": "",
-            "link": "",
-            "button_size": "default",
-            "btn_as_link": false
+            "btn_text": "Duplicator 12-230",
+            "btn_link": "",
+            "button_size": "med"
           }
         }
       },
       "block_order": [
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-1",
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-2",
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-3",
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-4",
-        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-5"
+        "23fd8a7e-e15e-4067-bd8f-34d3faf3c590"
       ],
       "settings": {
-        "navigation_position": "top",
-        "image_style": "aspect",
+        "enable_fullwidth": false,
+        "image": "shopify:\/\/shop_images\/Duplicator_12_NOIR_ORANGE_MONO_9db60082-35a3-4c49-81f9-997dc07fd58f.png",
+        "image_shadow": true,
+        "enable_image_animation": true,
+        "image_alignment": "left",
+        "image_height": "aspect",
+        "content_position": "center",
         "bgcolor": "primary",
+        "image_shadow_color": "#dddddd",
         "section_visibility": "always",
         "top_space_desktop": 60,
-        "bottom_space_desktop": 60,
+        "bottom_space_desktop": 30,
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
       }
@@ -138,6 +73,6 @@
   "order": [
     "main-page",
     "273531e5-c4fc-46d4-9c91-bcb31a640852",
-    "a0ca00f0-768f-44cb-9ba6-76c23836e823"
+    "190d08bd-1316-406c-9742-00b2df7ac820"
   ]
 }
