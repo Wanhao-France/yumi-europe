@@ -73,6 +73,9 @@
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee"
       ],
+      "custom_css": [
+
+      ],
       "settings": {
         "gallery_style": "slider",
         "show_description": true,
@@ -87,7 +90,7 @@
         "width": "half",
         "style": "accordion",
         "accordion_content_alignment": "left",
-        "content_heading": "heading",
+        "content_heading": "",
         "content": "",
         "content_heading2": "",
         "content2": "",

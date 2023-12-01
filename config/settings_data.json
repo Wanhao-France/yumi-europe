@@ -53,6 +53,7 @@
     "show_reviews": true,
     "show_inventory": true,
     "product_hover_auto_slide": false,
+    "enable_color_swatches": false,
     "product_grid_content_alignment": "text-left",
     "newsletter_pop_enable": false,
     "newsletter_description": "<p>Join our Newsletter<\/p>",
