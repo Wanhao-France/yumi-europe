@@ -11,61 +11,133 @@
         "textcolor": "#181818"
       }
     },
-    "19ac7a9b-bfbe-4810-9674-57fa78e68213": {
-      "type": "tabbed-collections",
+    "273531e5-c4fc-46d4-9c91-bcb31a640852": {
+      "type": "rich-text",
       "blocks": {
-        "0a261265-f102-46f7-9d70-570aeb75cbd3": {
-          "type": "collection",
+        "template--15143329038401__273531e5-c4fc-46d4-9c91-bcb31a640852-richtext-1": {
+          "type": "richtext",
           "settings": {
-            "heading": "PLA Premium",
-            "collection": "filaments-pla-wanhao-premium"
-          }
-        },
-        "935c2bba-919b-4018-aaa5-d560d95f986e": {
-          "type": "collection",
-          "settings": {
-            "heading": "PLA Premium Matte",
-            "collection": "collections-pla-premium-matte-wanhao"
-          }
-        },
-        "c500424f-6c59-4a19-b4c3-241b0dba12ed": {
-          "type": "collection",
-          "settings": {
-            "heading": "Filement Spéciaux",
-            "collection": "filament-speciaux-wanhao"
+            "heading": "BIEN DÉMARRER AVEC VOS PRODUITS WANHAO",
+            "seo_heading": "h2",
+            "content": "<p><strong>Découvrez les ressources essentielles pour le fonctionnement de votre imprimante 3D et apprenez les bases de l'impression 3D. Sur les liens suivants, vous trouverez tous les outils nécessaires pour maximiser votre expérience :<\/strong><\/p>"
           }
         }
       },
       "block_order": [
-        "0a261265-f102-46f7-9d70-570aeb75cbd3",
-        "935c2bba-919b-4018-aaa5-d560d95f986e",
-        "c500424f-6c59-4a19-b4c3-241b0dba12ed"
+        "template--15143329038401__273531e5-c4fc-46d4-9c91-bcb31a640852-richtext-1"
       ],
       "settings": {
-        "heading": "Collection Trending Product",
-        "seo_heading": "h2",
-        "heading_size": "h2",
-        "tabs_position": "bottom",
-        "tabs_alignment": "left-start",
-        "products_style": "carousel",
-        "products_per_row": 6,
-        "product_grid_radius_desktop": 10,
-        "product_grid_radius_mobile": 10,
-        "product_grid_spacing_desktop": 10,
-        "product_grid_spacing_mobile": 10,
-        "hide_tab_name": false,
-        "show_tabs_border": true,
+        "content_width": "container sm-container",
+        "content_alignment": "center",
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 40,
-        "bottom_space_desktop": 15,
-        "top_space_mobile": 15,
-        "bottom_space_mobile": 15
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
+    "a0ca00f0-768f-44cb-9ba6-76c23836e823": {
+      "type": "timeline",
+      "blocks": {
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-1": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "12-230",
+            "heading": "Duplicator",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "subheading": "12-230",
+            "description": "",
+            "btn_text": "D12-230",
+            "link": "",
+            "button_size": "xsmall",
+            "btn_as_link": false
+          }
+        },
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-2": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "Label",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "subheading": "Sub heading",
+            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
+            "btn_text": "",
+            "link": "",
+            "button_size": "default",
+            "btn_as_link": false
+          }
+        },
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-3": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "Label",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "subheading": "Sub heading",
+            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
+            "btn_text": "",
+            "link": "",
+            "button_size": "default",
+            "btn_as_link": false
+          }
+        },
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-4": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "Label",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "subheading": "Sub heading",
+            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
+            "btn_text": "",
+            "link": "",
+            "button_size": "default",
+            "btn_as_link": false
+          }
+        },
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-5": {
+          "type": "slide",
+          "settings": {
+            "navigation_label": "Label",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "subheading": "Sub heading",
+            "description": "<p>To provide clients insight into your brand, pair words with any image to introduce a new campaign.<\/p>",
+            "btn_text": "",
+            "link": "",
+            "button_size": "default",
+            "btn_as_link": false
+          }
+        }
+      },
+      "block_order": [
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-1",
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-2",
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-3",
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-4",
+        "template--15143329038401__a0ca00f0-768f-44cb-9ba6-76c23836e823-slide-5"
+      ],
+      "settings": {
+        "navigation_position": "top",
+        "image_style": "aspect",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 60,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
       }
     }
   },
   "order": [
     "main-page",
-    "19ac7a9b-bfbe-4810-9674-57fa78e68213"
+    "273531e5-c4fc-46d4-9c91-bcb31a640852",
+    "a0ca00f0-768f-44cb-9ba6-76c23836e823"
   ]
 }
