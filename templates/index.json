@@ -203,7 +203,7 @@
         "image_layout": "rounded",
         "enable_image_animation": true,
         "enable_hover_effect": false,
-        "image_radius_desktop": 10,
+        "image_radius_desktop": 2,
         "image_radius_mobile": 10,
         "heading_size": "h2",
         "button_size": "xsmall",
