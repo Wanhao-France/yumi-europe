@@ -531,68 +531,6 @@
         "bottom_space_mobile": 0
       }
     },
-    "cc770632-b78d-42ab-89fe-7f766e1a3d7a": {
-      "type": "featured-product",
-      "blocks": {
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-title-1": {
-          "type": "title",
-          "settings": {
-            "seo_heading": "h2"
-          }
-        },
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-review-star-1": {
-          "type": "review-star",
-          "settings": {
-          }
-        },
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-price-1": {
-          "type": "price",
-          "settings": {
-          }
-        },
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-variant-1": {
-          "type": "variant",
-          "settings": {
-          }
-        },
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-quantity-1": {
-          "type": "quantity",
-          "settings": {
-          }
-        },
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-button-1": {
-          "type": "button",
-          "settings": {
-            "dynamic_checkout_btn": true,
-            "enable_fullwidth": false
-          }
-        }
-      },
-      "block_order": [
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-title-1",
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-review-star-1",
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-price-1",
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-variant-1",
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-quantity-1",
-        "template--16790799548667__cc770632-b78d-42ab-89fe-7f766e1a3d7a-button-1"
-      ],
-      "settings": {
-        "enable_fullwidth": false,
-        "heading": "",
-        "enable_marquee": false,
-        "marquee_speed": 2,
-        "product": "duplicator-12-230-m2-pro",
-        "featured_image_position": "left",
-        "featured_height_desktop": "adapt",
-        "featured_height_mobile": "adapt",
-        "bgcolor": "quaternary",
-        "section_visibility": "always",
-        "top_space_desktop": 70,
-        "bottom_space_desktop": 70,
-        "top_space_mobile": 40,
-        "bottom_space_mobile": 0
-      }
-    },
     "08a794cb-be09-40d3-9dae-24ba5188a73d": {
       "type": "testimonials",
       "blocks": {
@@ -936,7 +874,6 @@
     "3666ad5c-9a57-4da8-85e3-51e692e12b68",
     "a1b176c3-f07e-4422-aca7-8c39a39d35db",
     "892e650b-bd66-447a-b397-5081a12a90e6",
-    "cc770632-b78d-42ab-89fe-7f766e1a3d7a",
     "08a794cb-be09-40d3-9dae-24ba5188a73d",
     "9d3737ce-a378-4261-895d-443ec2a8707f",
     "f583e80f-f0e8-47cd-ba5c-8eab2e4e85b3",
