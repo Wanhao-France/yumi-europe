@@ -5,15 +5,6 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "163565a2-7e03-49d2-b53a-c53fec07f9bd": {
-          "type": "text",
-          "settings": {
-            "image_link": "",
-            "image_width": 100,
-            "heading": "À PROPOS DE YUMI",
-            "description": "Yumi est une gamme de produits créée par Wanhao.\nL'entreprise Wanhao fondée en 2018 propose une large gamme à petit prix imprimante 3d ainsi qu'un large choix de filament imprimante 3d. Les bobines de filament pla 1.75 mm sont d'une qualité incomparable. Wanhao FRANCE vous invite à visiter notre site et espère que vous apprécierez notre filament pla 1.75 ainsi que notre large gamme d'imprimante 3D."
-          }
-        },
         "7f8888a0-c33a-407c-a7a4-b16c76cf5425": {
           "type": "link_list",
           "settings": {
@@ -23,7 +14,6 @@
         }
       },
       "block_order": [
-        "163565a2-7e03-49d2-b53a-c53fec07f9bd",
         "7f8888a0-c33a-407c-a7a4-b16c76cf5425"
       ],
       "custom_css": [
@@ -32,14 +22,14 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/Wanhao_LOGO.png",
         "image_width": 80,
-        "subtext": "",
+        "subtext": "<p>Yumi est une gamme de produits créée par Wanhao. L'entreprise Wanhao fondée en 2018 propose une large gamme à petit prix imprimante 3d ainsi qu'un large choix de filament imprimante 3d. Les bobines de filament pla 1.75 mm sont d'une qualité incomparable. Wanhao FRANCE vous invite à visiter notre site et espère que vous apprécierez notre filament pla 1.75 ainsi que notre large gamme d'imprimante 3D.<\/p>",
         "enable_language_selector": true,
         "show_language_background": true,
         "enable_currency_selector": true,
         "show_currency_background": true,
         "payment_enable": true,
         "hide_copyright_content": false,
-        "custom_copyright_content": "",
+        "custom_copyright_content": "© 2023 YUMI",
         "show_policies": false,
         "footer_bg": "#2a323d",
         "footer_heading": "#ffffff",
