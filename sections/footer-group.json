@@ -41,10 +41,10 @@
         "hide_copyright_content": false,
         "custom_copyright_content": "",
         "show_policies": false,
-        "footer_bg": "#f3efec",
-        "footer_heading": "#000000",
-        "footer_text": "#767676",
-        "footer_text_hover": "#3c3c3c"
+        "footer_bg": "#2a323d",
+        "footer_heading": "#ffffff",
+        "footer_text": "#eeeeee",
+        "footer_text_hover": "#ffffff"
       }
     },
     "offer-sidebar": {
