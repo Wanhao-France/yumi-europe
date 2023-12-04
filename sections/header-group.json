@@ -110,7 +110,7 @@
         "enable_language_selector": true,
         "enable_currency_selector": true,
         "header_bgcolor": "#ffffff",
-        "header_textcolor": "#ffffff",
+        "header_textcolor": "#5c5c5c",
         "header_textcolor_hover": "#9b9b9b",
         "transparent_text_color": "#000000",
         "hamburger_bgcolor": "#e98d11",
