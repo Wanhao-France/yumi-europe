@@ -495,8 +495,8 @@
       "settings": {
         "heading": "Collection Trending Product",
         "seo_heading": "h2",
-        "heading_size": "h2",
-        "tabs_position": "right",
+        "heading_size": "h5",
+        "tabs_position": "bottom",
         "tabs_alignment": "left-start",
         "products_style": "stacked",
         "products_per_row": 5,
