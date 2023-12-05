@@ -245,7 +245,43 @@
             "link": "shopify:\/\/products\/pla-wanhao-noir-1kg"
           }
         },
+        "2b803948-741b-4ccb-8e0e-d8e7ad90c93a": {
+          "type": "image",
+          "settings": {
+            "heading": "PLA Premium",
+            "subheading": "Noir Muzo",
+            "image": "shopify:\/\/shop_images\/W3-DPLABLACK1000.jpg",
+            "link": "shopify:\/\/products\/pla-wanhao-noir-1kg"
+          }
+        },
+        "696082cd-941c-401d-a2a4-e7a936151389": {
+          "type": "image",
+          "settings": {
+            "heading": "PLA Premium",
+            "subheading": "Noir Muzo",
+            "image": "shopify:\/\/shop_images\/W3-DPLABLACK1000.jpg",
+            "link": "shopify:\/\/products\/pla-wanhao-noir-1kg"
+          }
+        },
         "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-2": {
+          "type": "image",
+          "settings": {
+            "heading": "Duplicator",
+            "subheading": "12-230 Pro",
+            "image": "shopify:\/\/shop_images\/Rose.jpg",
+            "link": ""
+          }
+        },
+        "e8322e7c-fff0-440f-81c0-36cf06c6e672": {
+          "type": "image",
+          "settings": {
+            "heading": "Duplicator",
+            "subheading": "12-230 Pro",
+            "image": "shopify:\/\/shop_images\/Rose.jpg",
+            "link": ""
+          }
+        },
+        "4901e8c8-efb3-4e6e-ade7-5cb917efd440": {
           "type": "image",
           "settings": {
             "heading": "Duplicator",
@@ -257,14 +293,18 @@
       },
       "block_order": [
         "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-0",
-        "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-2"
+        "2b803948-741b-4ccb-8e0e-d8e7ad90c93a",
+        "696082cd-941c-401d-a2a4-e7a936151389",
+        "template--16809124069669__3cbbfa89-d25e-4de7-8bc3-53ff9de7e5b1-166780006432774596-2",
+        "e8322e7c-fff0-440f-81c0-36cf06c6e672",
+        "4901e8c8-efb3-4e6e-ade7-5cb917efd440"
       ],
       "settings": {
         "enable_fullwidth": true,
         "heading": "",
         "seo_heading": "h2",
         "heading_size": "h2",
-        "gallery_style": "auto-slide",
+        "gallery_style": "stacked",
         "slide_direction": "left",
         "image_style": "circle",
         "image_size": "small",
@@ -301,7 +341,7 @@
             "button_size_m": "xsmall",
             "content_width_m": "medium",
             "overlayopacity": 0,
-            "desktop_content_position": "d-center",
+            "desktop_content_position": "d-top-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "rgba(0,0,0,0)",
             "textcolor": "#000000",
@@ -329,7 +369,7 @@
             "button_size_m": "xsmall",
             "content_width_m": "medium",
             "overlayopacity": 0,
-            "desktop_content_position": "d-center",
+            "desktop_content_position": "d-top-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "rgba(0,0,0,0)",
             "textcolor": "#000000",
@@ -357,7 +397,7 @@
             "button_size_m": "xsmall",
             "content_width_m": "medium",
             "overlayopacity": 0,
-            "desktop_content_position": "d-center",
+            "desktop_content_position": "d-top-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
             "textcolor": "#000000",
@@ -385,7 +425,7 @@
             "button_size_m": "xsmall",
             "content_width_m": "medium",
             "overlayopacity": 0,
-            "desktop_content_position": "d-center",
+            "desktop_content_position": "d-top-center",
             "mobile_content_position": "m-center",
             "overlaycolor": "rgba(0,0,0,0)",
             "textcolor": "#000000",
