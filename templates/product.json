@@ -87,7 +87,7 @@
         "gallery_style": "slider",
         "show_description": true,
         "open_description_accordion": true,
-        "show_variant-media": false,
+        "show_variant-media": true,
         "enable_shipping_policy": true,
         "enable_zoom_icon": true,
         "content_divider_mobile": "none",
