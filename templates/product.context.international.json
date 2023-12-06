@@ -1,5 +1,5 @@
 {
-  "parent": "index.json",
+  "parent": "product.json",
   "context": {
     "market": "international"
   },
