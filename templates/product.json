@@ -269,74 +269,12 @@
         "top_space_mobile": 35,
         "bottom_space_mobile": 0
       }
-    },
-    "166133727946ffaeaa": {
-      "type": "text-with-icons",
-      "blocks": {
-        "5f2a17c3-6834-4f30-ac33-dd871134b6c4": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
-        },
-        "1619ab47-2031-4339-961b-21ca08f7f33e": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
-        },
-        "f37730b5-14aa-462c-bbfe-db24fa287e5b": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
-        },
-        "d192928f-441f-42d2-852c-5e1864672797": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
-        }
-      },
-      "block_order": [
-        "5f2a17c3-6834-4f30-ac33-dd871134b6c4",
-        "1619ab47-2031-4339-961b-21ca08f7f33e",
-        "f37730b5-14aa-462c-bbfe-db24fa287e5b",
-        "d192928f-441f-42d2-852c-5e1864672797"
-      ],
-      "settings": {
-        "column_background": false,
-        "mobile_column_count": "1",
-        "icon_background": false,
-        "icon_position": "top",
-        "bgcolor": "secondary",
-        "column_background_color": "",
-        "icon_background_color": "",
-        "section_visibility": "always",
-        "top_space_desktop": 25,
-        "bottom_space_desktop": 25,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
-      }
     }
   },
   "order": [
     "main-product",
     "6cf7bc97-dd54-475a-9bff-20c3912ab04b",
     "product_recommendations",
-    "8c17cb82-109c-4b83-968b-5a4214762d42",
-    "166133727946ffaeaa"
+    "8c17cb82-109c-4b83-968b-5a4214762d42"
   ]
 }
