@@ -135,7 +135,7 @@
         "desktop_height": 480,
         "mobile_height": 350,
         "autoplay": false,
-        "video_size": "cover",
+        "video_size": "contain",
         "bg_pattern": "none",
         "title": "POP MICHOU AVEC LA TEAM RHINO",
         "seo_heading": "h2",
