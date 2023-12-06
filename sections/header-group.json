@@ -30,7 +30,7 @@
         "marquee_direction": "left",
         "marquee_speed": 5,
         "enable_language_selector": true,
-        "enable_currency_selector": true,
+        "enable_currency_selector": false,
         "fontcolor": "#ffffff",
         "bg_style": "solid",
         "bgcolor": "#000000",
