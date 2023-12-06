@@ -60,30 +60,10 @@
             "subheading2": "",
             "link2": "shopify:\/\/products\/wanhao-klipper-pad"
           }
-        },
-        "604d50aa-33f3-4da0-9605-c61959943ac2": {
-          "type": "style-3",
-          "settings": {
-            "title": "Filaments",
-            "products_count": 7,
-            "collection1": "mega-pack-grossiste",
-            "collection2": "filaments-pla-wanhao-premium",
-            "collection3": "collections-pla-premium-matte-wanhao",
-            "collection4": "filaments-pla-wanhao-premium-2kg-5kg",
-            "collection5": "pla-premium-fluo-neon",
-            "collection6": "pla-hyper",
-            "collection7": "pla-silk-wanhao",
-            "collection8": "pla-galaxy",
-            "collection9": "pla-magic",
-            "collection10": "filaments-tpu-wanhao-premium",
-            "collection11": "pla-flexible",
-            "collection12": "filament-petg-wanhao"
-          }
         }
       },
       "block_order": [
-        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e",
-        "604d50aa-33f3-4da0-9605-c61959943ac2"
+        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e"
       ],
       "settings": {
         "header_style": "header4",

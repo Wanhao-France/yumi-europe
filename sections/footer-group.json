@@ -46,7 +46,7 @@
         "subtext": "",
         "enable_language_selector": true,
         "show_language_background": true,
-        "enable_currency_selector": true,
+        "enable_currency_selector": false,
         "show_currency_background": true,
         "payment_enable": true,
         "hide_copyright_content": false,
