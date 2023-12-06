@@ -2,25 +2,6 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
-    "0560663d-8060-40dd-9e4a-8d2acdc22efa": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Join Our Newsletter",
-        "seo_heading": "h2",
-        "description": "Sign up it only takes a second to be the news.",
-        "placeholder": "Email Address",
-        "btn": "Subscribe",
-        "bgcolor": "secondary",
-        "button_text_color": "#ffffff",
-        "button_bg_color": "#000000",
-        "button_border_color": "#000000",
-        "section_visibility": "always",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -30,10 +11,21 @@
             "heading": "Links",
             "menu": "main-menu"
           }
+        },
+        "455a5653-ce50-4b33-b793-246ed8c8cd98": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Newsletter",
+            "show_newsletter": true,
+            "placeholder": "Email address",
+            "show_social": true,
+            "enable_follow_on_shop": false
+          }
         }
       },
       "block_order": [
-        "7f8888a0-c33a-407c-a7a4-b16c76cf5425"
+        "7f8888a0-c33a-407c-a7a4-b16c76cf5425",
+        "455a5653-ce50-4b33-b793-246ed8c8cd98"
       ],
       "custom_css": [
 
@@ -95,7 +87,6 @@
     }
   },
   "order": [
-    "0560663d-8060-40dd-9e4a-8d2acdc22efa",
     "footer",
     "offer-sidebar"
   ]
