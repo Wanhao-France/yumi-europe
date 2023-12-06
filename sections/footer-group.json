@@ -2,6 +2,25 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "0560663d-8060-40dd-9e4a-8d2acdc22efa": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join Our Newsletter",
+        "seo_heading": "h2",
+        "description": "Sign up it only takes a second to be the news.",
+        "placeholder": "Email Address",
+        "btn": "Subscribe",
+        "bgcolor": "secondary",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#000000",
+        "button_border_color": "#000000",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -76,6 +95,7 @@
     }
   },
   "order": [
+    "0560663d-8060-40dd-9e4a-8d2acdc22efa",
     "footer",
     "offer-sidebar"
   ]
