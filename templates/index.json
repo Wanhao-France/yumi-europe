@@ -54,9 +54,106 @@
         "mobile_height": "550px",
         "bgcolor": "primary"
       }
+    },
+    "a349f2c1-8a51-4dfd-8e80-bf4bc92e3807": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "99f0b404-68e6-4130-9a30-2e2832145a11": {
+          "type": "collection",
+          "settings": {
+            "heading": "",
+            "collection": "la-gamme-dimprimante-3d-la-plus-performante-du-marche"
+          }
+        }
+      },
+      "block_order": [
+        "99f0b404-68e6-4130-9a30-2e2832145a11"
+      ],
+      "settings": {
+        "heading": "Introducing the epitome of 3D printers, crafted with French ingenuity – a symphony of innovation and precision.",
+        "seo_heading": "h1",
+        "heading_size": "h5",
+        "tabs_position": "bottom",
+        "tabs_alignment": "left-start",
+        "products_style": "stacked",
+        "products_per_row": 5,
+        "product_grid_radius_desktop": 10,
+        "product_grid_radius_mobile": 10,
+        "product_grid_spacing_desktop": 10,
+        "product_grid_spacing_mobile": 10,
+        "hide_tab_name": true,
+        "show_tabs_border": true,
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 15,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
+    },
+    "f89f2a02-302c-4616-9d0c-6baf6984632f": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "d9f73f85-a45c-4b64-9167-1737b6edbbbf": {
+          "type": "collection",
+          "settings": {
+            "heading": "",
+            "collection": "top-15-filaments"
+          }
+        }
+      },
+      "block_order": [
+        "d9f73f85-a45c-4b64-9167-1737b6edbbbf"
+      ],
+      "settings": {
+        "heading": "TOP 15 1.75MM FILAMENTS",
+        "seo_heading": "h2",
+        "heading_size": "h5",
+        "tabs_position": "bottom",
+        "tabs_alignment": "left-start",
+        "products_style": "stacked",
+        "products_per_row": 5,
+        "product_grid_radius_desktop": 10,
+        "product_grid_radius_mobile": 10,
+        "product_grid_spacing_desktop": 10,
+        "product_grid_spacing_mobile": 10,
+        "hide_tab_name": true,
+        "show_tabs_border": true,
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 15,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
+    },
+    "a271a87b-336a-42d2-a947-1576afeca280": {
+      "type": "video-section",
+      "settings": {
+        "videofile": "https:\/\/youtu.be\/eLrHylkOJOQ",
+        "fullwidth": true,
+        "desktop_height": 480,
+        "mobile_height": 350,
+        "autoplay": false,
+        "video_size": "cover",
+        "bg_pattern": "none",
+        "title": "POP MICHOU AVEC LA TEAM RHINO",
+        "seo_heading": "h2",
+        "subtitle": "",
+        "overlay_content": true,
+        "title_color": "#000000",
+        "subtitle_color": "#000000",
+        "btn_color": "#000000",
+        "overlay_color": "#ffffff",
+        "overlay_opacity": 0,
+        "section_visibility": "always"
+      }
     }
   },
   "order": [
-    "ed9b21bd-d2f2-41b4-bc1e-49497b61c201"
+    "ed9b21bd-d2f2-41b4-bc1e-49497b61c201",
+    "a349f2c1-8a51-4dfd-8e80-bf4bc92e3807",
+    "f89f2a02-302c-4616-9d0c-6baf6984632f",
+    "a271a87b-336a-42d2-a947-1576afeca280"
   ]
 }
