@@ -60,10 +60,25 @@
             "subheading2": "",
             "link2": "shopify:\/\/products\/wanhao-klipper-pad"
           }
+        },
+        "e07d6497-4338-4398-8e1a-9eae33678846": {
+          "type": "style-2",
+          "settings": {
+            "title": "Filaments",
+            "collection1": "",
+            "collection2": "",
+            "heading1": "",
+            "subheading1": "",
+            "link1": "",
+            "heading2": "",
+            "subheading2": "",
+            "link2": ""
+          }
         }
       },
       "block_order": [
-        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e"
+        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e",
+        "e07d6497-4338-4398-8e1a-9eae33678846"
       ],
       "settings": {
         "header_style": "header4",
