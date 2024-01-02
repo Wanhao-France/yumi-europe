@@ -199,9 +199,37 @@
         "top_space_mobile": 5,
         "bottom_space_mobile": 5
       }
+    },
+    "bd1ae4f1-1a99-480a-a31f-ac4c36662c98": {
+      "type": "rotating-text",
+      "settings": {
+        "text1": "<ul><li><h4>Flat 50% Off<\/h4><\/li><\/ul>",
+        "text2": "",
+        "row1_font_family": "--heading-font-family",
+        "row2_font_family": "--font-family",
+        "row1_direction": "left",
+        "row2_direction": "right",
+        "heading_font_size": 16,
+        "subheading_font_size": 24,
+        "heading_font_size_m": 18,
+        "subheading_font_size_m": 16,
+        "section_border": true,
+        "bgcolor": "#ffffff",
+        "bg_gradient_color": "linear-gradient(93deg, rgba(251, 51, 166, 1), rgba(251, 152, 61, 1) 37%, rgba(127, 72, 176, 1) 75%, rgba(48, 145, 211, 1) 100%)",
+        "text1color": "#000000",
+        "outlinetext1color": "#000000",
+        "text2color": "#A56748",
+        "outlinetext2color": "#A56748",
+        "section_visibility": "always",
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
     }
   },
   "order": [
-    "8e052e20-72f0-4cb9-93dd-e19803eab968"
+    "8e052e20-72f0-4cb9-93dd-e19803eab968",
+    "bd1ae4f1-1a99-480a-a31f-ac4c36662c98"
   ]
 }
