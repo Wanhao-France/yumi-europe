@@ -1,159 +1,207 @@
 {
   "sections": {
-    "ed9b21bd-d2f2-41b4-bc1e-49497b61c201": {
-      "type": "slider",
+    "8e052e20-72f0-4cb9-93dd-e19803eab968": {
+      "type": "collage",
       "blocks": {
-        "template--15143329169473__ed9b21bd-d2f2-41b4-bc1e-49497b61c201-slide-1": {
-          "type": "slide",
+        "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-1": {
+          "type": "image",
           "settings": {
-            "videofile": "",
-            "banner_subtitle": "",
-            "banner_title": "",
+            "image_width": "col-md-6",
+            "heading": "Heading",
             "seo_heading": "h2",
-            "banner_desc": "",
-            "desktop_title_size": 70,
-            "mobile_title_size": 36,
-            "button_size": "large",
-            "button_text": "",
-            "button_link": "shopify:\/\/collections\/all",
-            "button_text2": "",
-            "button_link2": "",
-            "button2_alternate": true,
+            "enable_text_shadow": false,
+            "subheading": "Sub heading",
+            "link": "",
+            "btn_text": "",
+            "outline_button": false,
+            "heading_size": "h2",
+            "button_size": "xsmall",
+            "content_width": "medium",
+            "heading_size_m": "h2",
+            "button_size_m": "xsmall",
+            "content_width_m": "medium",
+            "overlayopacity": 0,
             "desktop_content_position": "d-center",
             "mobile_content_position": "m-center",
-            "title_color": "#000000",
-            "subtitle_color": "#000000",
-            "subtitle_bgcolor": "#DCDCDC",
-            "desc_color": "#000000",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_border": "#000000",
-            "overlay_color": "",
-            "overlay_opacity": 50,
-            "title_color_m": "#ffffff",
-            "subtitle_color_m": "#000000",
-            "subtitle_bgcolor_m": "#DCDCDC",
-            "desc_color_m": "#ffffff",
-            "btn_bg_m": "#ffffff",
-            "btn_text_m": "#000000",
-            "btn_border_m": "#ffffff",
-            "overlay_color_m": "",
-            "overlay_opacity_m": 50
+            "overlaycolor": "#000000",
+            "textcolor": "#000000",
+            "text_shadow_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_border_color": "#000000"
           }
-        }
-      },
-      "block_order": [
-        "template--15143329169473__ed9b21bd-d2f2-41b4-bc1e-49497b61c201-slide-1"
-      ],
-      "settings": {
-        "nav_style": "arrows-bottom-right",
-        "content_below_image": false,
-        "rotate": false,
-        "interval": 5,
-        "desktop_height": "650px",
-        "mobile_height": "550px",
-        "bgcolor": "primary"
-      }
-    },
-    "a349f2c1-8a51-4dfd-8e80-bf4bc92e3807": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "99f0b404-68e6-4130-9a30-2e2832145a11": {
-          "type": "collection",
+        },
+        "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-2": {
+          "type": "image",
           "settings": {
-            "heading": "",
-            "collection": "la-gamme-dimprimante-3d-la-plus-performante-du-marche"
+            "image_width": "col-md-6",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "enable_text_shadow": false,
+            "subheading": "Sub heading",
+            "link": "",
+            "btn_text": "",
+            "outline_button": false,
+            "heading_size": "h2",
+            "button_size": "xsmall",
+            "content_width": "medium",
+            "heading_size_m": "h2",
+            "button_size_m": "xsmall",
+            "content_width_m": "medium",
+            "overlayopacity": 0,
+            "desktop_content_position": "d-center",
+            "mobile_content_position": "m-center",
+            "overlaycolor": "#000000",
+            "textcolor": "#000000",
+            "text_shadow_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_border_color": "#000000"
+          }
+        },
+        "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-3": {
+          "type": "image",
+          "settings": {
+            "image_width": "col-md-3",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "enable_text_shadow": false,
+            "subheading": "Sub heading",
+            "link": "",
+            "btn_text": "",
+            "outline_button": false,
+            "heading_size": "h2",
+            "button_size": "xsmall",
+            "content_width": "medium",
+            "heading_size_m": "h2",
+            "button_size_m": "xsmall",
+            "content_width_m": "medium",
+            "overlayopacity": 0,
+            "desktop_content_position": "d-center",
+            "mobile_content_position": "m-center",
+            "overlaycolor": "#000000",
+            "textcolor": "#000000",
+            "text_shadow_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_border_color": "#000000"
+          }
+        },
+        "0472529e-39dd-4126-a7d1-b4e49b4ecb61": {
+          "type": "image",
+          "settings": {
+            "image_width": "col-md-3",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "enable_text_shadow": false,
+            "subheading": "Sub heading",
+            "link": "",
+            "btn_text": "",
+            "outline_button": false,
+            "heading_size": "h2",
+            "button_size": "xsmall",
+            "content_width": "medium",
+            "heading_size_m": "h2",
+            "button_size_m": "xsmall",
+            "content_width_m": "medium",
+            "overlayopacity": 0,
+            "desktop_content_position": "d-center",
+            "mobile_content_position": "m-center",
+            "overlaycolor": "#000000",
+            "textcolor": "#000000",
+            "text_shadow_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_border_color": "#000000"
+          }
+        },
+        "6081fdee-e161-44db-a60a-957e71b06e06": {
+          "type": "image",
+          "settings": {
+            "image_width": "col-md-3",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "enable_text_shadow": false,
+            "subheading": "Sub heading",
+            "link": "",
+            "btn_text": "",
+            "outline_button": false,
+            "heading_size": "h2",
+            "button_size": "xsmall",
+            "content_width": "medium",
+            "heading_size_m": "h2",
+            "button_size_m": "xsmall",
+            "content_width_m": "medium",
+            "overlayopacity": 0,
+            "desktop_content_position": "d-center",
+            "mobile_content_position": "m-center",
+            "overlaycolor": "#000000",
+            "textcolor": "#000000",
+            "text_shadow_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_border_color": "#000000"
+          }
+        },
+        "43889a9f-7a8d-4ccc-9367-36d60aebc18a": {
+          "type": "image",
+          "settings": {
+            "image_width": "col-md-3",
+            "heading": "Heading",
+            "seo_heading": "h2",
+            "enable_text_shadow": false,
+            "subheading": "Sub heading",
+            "link": "",
+            "btn_text": "",
+            "outline_button": false,
+            "heading_size": "h2",
+            "button_size": "xsmall",
+            "content_width": "medium",
+            "heading_size_m": "h2",
+            "button_size_m": "xsmall",
+            "content_width_m": "medium",
+            "overlayopacity": 0,
+            "desktop_content_position": "d-center",
+            "mobile_content_position": "m-center",
+            "overlaycolor": "#000000",
+            "textcolor": "#000000",
+            "text_shadow_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_border_color": "#000000"
           }
         }
       },
       "block_order": [
-        "99f0b404-68e6-4130-9a30-2e2832145a11"
+        "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-1",
+        "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-2",
+        "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-3",
+        "0472529e-39dd-4126-a7d1-b4e49b4ecb61",
+        "6081fdee-e161-44db-a60a-957e71b06e06",
+        "43889a9f-7a8d-4ccc-9367-36d60aebc18a"
       ],
       "settings": {
-        "heading": "Introducing the epitome of 3D printers, crafted with French ingenuity – a symphony of innovation and precision.",
-        "seo_heading": "h1",
-        "heading_size": "h5",
-        "tabs_position": "bottom",
-        "tabs_alignment": "left-start",
-        "products_style": "stacked",
-        "products_per_row": 5,
-        "product_grid_radius_desktop": 10,
-        "product_grid_radius_mobile": 10,
-        "product_grid_spacing_desktop": 10,
-        "product_grid_spacing_mobile": 10,
-        "hide_tab_name": true,
-        "show_tabs_border": true,
+        "enable_fullwidth": true,
+        "image_layout": "sharp",
+        "enable_image_animation": true,
+        "enable_hover_effect": false,
+        "image_radius_desktop": 2,
+        "image_radius_mobile": 2,
+        "heading_size": "h2",
+        "button_size": "xsmall",
+        "space_in_images": true,
+        "image_spacing_desktop": 10,
+        "image_spacing_mobile": 10,
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 40,
-        "bottom_space_desktop": 15,
-        "top_space_mobile": 15,
-        "bottom_space_mobile": 15
-      }
-    },
-    "f89f2a02-302c-4616-9d0c-6baf6984632f": {
-      "type": "tabbed-collections",
-      "blocks": {
-        "d9f73f85-a45c-4b64-9167-1737b6edbbbf": {
-          "type": "collection",
-          "settings": {
-            "heading": "",
-            "collection": "top-15-filaments"
-          }
-        }
-      },
-      "block_order": [
-        "d9f73f85-a45c-4b64-9167-1737b6edbbbf"
-      ],
-      "settings": {
-        "heading": "TOP 15 1.75MM FILAMENTS",
-        "seo_heading": "h2",
-        "heading_size": "h5",
-        "tabs_position": "bottom",
-        "tabs_alignment": "left-start",
-        "products_style": "stacked",
-        "products_per_row": 5,
-        "product_grid_radius_desktop": 10,
-        "product_grid_radius_mobile": 10,
-        "product_grid_spacing_desktop": 10,
-        "product_grid_spacing_mobile": 10,
-        "hide_tab_name": true,
-        "show_tabs_border": true,
-        "bgcolor": "primary",
-        "section_visibility": "always",
-        "top_space_desktop": 40,
-        "bottom_space_desktop": 15,
-        "top_space_mobile": 15,
-        "bottom_space_mobile": 15
-      }
-    },
-    "a271a87b-336a-42d2-a947-1576afeca280": {
-      "type": "video-section",
-      "settings": {
-        "videofile": "https:\/\/youtu.be\/eLrHylkOJOQ",
-        "fullwidth": true,
-        "desktop_height": 480,
-        "mobile_height": 350,
-        "autoplay": false,
-        "video_size": "contain",
-        "bg_pattern": "none",
-        "title": "POP MICHOU AVEC LA TEAM RHINO",
-        "seo_heading": "h2",
-        "subtitle": "",
-        "overlay_content": true,
-        "title_color": "#000000",
-        "subtitle_color": "#000000",
-        "btn_color": "#000000",
-        "overlay_color": "#ffffff",
-        "overlay_opacity": 0,
-        "section_visibility": "always"
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 50,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 20
       }
     }
   },
   "order": [
-    "ed9b21bd-d2f2-41b4-bc1e-49497b61c201",
-    "a349f2c1-8a51-4dfd-8e80-bf4bc92e3807",
-    "f89f2a02-302c-4616-9d0c-6baf6984632f",
-    "a271a87b-336a-42d2-a947-1576afeca280"
+    "8e052e20-72f0-4cb9-93dd-e19803eab968"
   ]
 }
