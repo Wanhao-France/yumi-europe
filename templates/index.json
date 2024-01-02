@@ -191,13 +191,13 @@
         "button_size": "xsmall",
         "space_in_images": true,
         "image_spacing_desktop": 10,
-        "image_spacing_mobile": 10,
+        "image_spacing_mobile": 5,
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 50,
-        "top_space_mobile": 20,
-        "bottom_space_mobile": 20
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 5,
+        "bottom_space_mobile": 5
       }
     }
   },
