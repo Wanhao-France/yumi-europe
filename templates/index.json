@@ -102,7 +102,7 @@
             "link": "shopify:\/\/collections\/flsun",
             "btn_text": "Shop Now",
             "outline_button": false,
-            "heading_size": "h2",
+            "heading_size": "h5",
             "button_size": "xsmall",
             "content_width": "medium",
             "heading_size_m": "h3",
