@@ -1,3 +1,8 @@
+<div class="nueva-seccion">
+  <h2>{{ section.settings.nueva_seccion_titulo }}</h2>
+  <!-- Agrega más contenido o configuraciones según sea necesario -->
+</div>
+
 <header class="header"
   data-header-sticky="{{ section.settings.enable_sticky_header }}"
   data-header-sticky-style="{{ section.settings.sticky_header_style }}"  
@@ -1112,6 +1117,20 @@
         }
       ]
     }
+  
+  ,
+{
+  "type": "nueva-seccion",
+  "name": "Nueva Sección",
+  "settings": [
+    {
+      "type": "text",
+      "id": "nueva_seccion_titulo",
+      "label": "Título de la Nueva Sección"
+    }
+  ]
+}
+
   ]
 }
 {% endschema %}
