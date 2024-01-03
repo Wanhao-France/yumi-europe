@@ -7,6 +7,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
+            "image": "shopify:\/\/shop_images\/Rose.webp",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -35,6 +36,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
+            "image": "shopify:\/\/shop_images\/Rose-2_30e789d6-8b5c-416b-955e-ccfc6beea5f4.webp",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
