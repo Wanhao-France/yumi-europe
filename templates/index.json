@@ -65,6 +65,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/header-2-example.webp",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -82,7 +83,7 @@
             "desktop_content_position": "d-center-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
-            "textcolor": "#000000",
+            "textcolor": "#ffffff",
             "text_shadow_color": "#000000",
             "button_text_color": "#ffffff",
             "button_bg_color": "rgba(0,0,0,0)",
