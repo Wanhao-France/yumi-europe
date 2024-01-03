@@ -1,5 +1,3 @@
-
-
 <header class="header"
   data-header-sticky="{{ section.settings.enable_sticky_header }}"
   data-header-sticky-style="{{ section.settings.sticky_header_style }}"  
@@ -361,10 +359,6 @@
     </script>
   {%- endif -%}
 </header>
-<div class="nueva-seccion">
-  <h2>{{ section.settings.nueva_seccion_titulo }}</h2>
-  <!-- Agrega más contenido o configuraciones según sea necesario -->
-</div>
 {% unless request.page_type contains 'customers' or customer %}
   {% if section.settings.account_type == 'popup' %}
     <div class="yv-login-popup account-wrapper" data-account-popup>
@@ -1118,20 +1112,6 @@
         }
       ]
     }
-  
-  ,
-{
-  "type": "nueva-seccion",
-  "name": "Nueva Sección",
-  "settings": [
-    {
-      "type": "text",
-      "id": "nueva_seccion_titulo",
-      "label": "Título de la Nueva Sección"
-    }
-  ]
-}
-
   ]
 }
 {% endschema %}
