@@ -418,12 +418,70 @@
         "top_space_mobile": 15,
         "bottom_space_mobile": 15
       }
+    },
+    "f6bdcedc-a27e-4f88-bfc3-446dd6d90c47": {
+      "type": "lookbook",
+      "blocks": {
+        "template--15143329169473__f6bdcedc-a27e-4f88-bfc3-446dd6d90c47-look-1": {
+          "type": "look",
+          "settings": {
+            "collection_image": "shopify:\/\/shop_images\/Rose.jpg",
+            "collection": "impremente-230",
+            "heading": "",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "product_item": [
+
+            ]
+          }
+        },
+        "template--15143329169473__f6bdcedc-a27e-4f88-bfc3-446dd6d90c47-look-2": {
+          "type": "look",
+          "settings": {
+            "collection_image": "shopify:\/\/shop_images\/FLSV400-1_dac0b33a-535c-40e1-bb5f-e7a518e58524.jpg",
+            "collection": "flsun",
+            "heading": "",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "product_item": [
+
+            ]
+          }
+        },
+        "template--15143329169473__f6bdcedc-a27e-4f88-bfc3-446dd6d90c47-look-3": {
+          "type": "look",
+          "settings": {
+            "collection_image": "shopify:\/\/shop_images\/W3-DPLABLACK1000.jpg",
+            "collection": "filaments-pla-wanhao-premium",
+            "heading": "",
+            "seo_heading": "h2",
+            "heading_size": "h2",
+            "product_item": [
+
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "template--15143329169473__f6bdcedc-a27e-4f88-bfc3-446dd6d90c47-look-1",
+        "template--15143329169473__f6bdcedc-a27e-4f88-bfc3-446dd6d90c47-look-2",
+        "template--15143329169473__f6bdcedc-a27e-4f88-bfc3-446dd6d90c47-look-3"
+      ],
+      "settings": {
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
     "8e052e20-72f0-4cb9-93dd-e19803eab968",
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98",
     "5ca38f99-a19a-4c8d-a326-62e70af92096",
-    "21aac929-bcc9-46c8-8cf7-57d105ce570d"
+    "21aac929-bcc9-46c8-8cf7-57d105ce570d",
+    "f6bdcedc-a27e-4f88-bfc3-446dd6d90c47"
   ]
 }

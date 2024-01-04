@@ -34,7 +34,7 @@
     "buttons_font_family": "--font-family",
     "tab_heading_font_family": "--font-family",
     "filters_heading_font_family": "--font-family",
-    "layout_style": "rounded",
+    "layout_style": "sharp",
     "layout_width": "boxed",
     "enable_animation": true,
     "button_radius": 6,
