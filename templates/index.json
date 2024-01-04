@@ -233,146 +233,60 @@
         "bottom_space_mobile": 15
       }
     },
-    "5ca38f99-a19a-4c8d-a326-62e70af92096": {
-      "type": "collage",
+    "7dc43a7c-1876-402d-af4d-ba2d537b81c2": {
+      "type": "gallery-carousel",
       "blocks": {
-        "template--15143329169473__5ca38f99-a19a-4c8d-a326-62e70af92096-image-1": {
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-1": {
           "type": "image",
           "settings": {
-            "image_width": "col-md-3",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "enable_text_shadow": false,
-            "subheading": "Sub heading",
-            "link": "",
-            "btn_text": "",
-            "outline_button": false,
-            "heading_size": "h2",
-            "button_size": "xsmall",
-            "content_width": "medium",
-            "heading_size_m": "h2",
-            "button_size_m": "xsmall",
-            "content_width_m": "medium",
-            "overlayopacity": 0,
-            "desktop_content_position": "d-top-center",
-            "mobile_content_position": "m-center",
-            "overlaycolor": "#000000",
-            "textcolor": "#000000",
-            "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "#000000",
-            "button_border_color": "#000000"
+            "heading": "",
+            "subheading": "Duplicator 12 \/ 230",
+            "image": "shopify:\/\/shop_images\/Rose.jpg",
+            "link": "shopify:\/\/collections\/impremente-230"
           }
         },
-        "template--15143329169473__5ca38f99-a19a-4c8d-a326-62e70af92096-image-2": {
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-2": {
           "type": "image",
           "settings": {
-            "image_width": "col-md-3",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "enable_text_shadow": false,
-            "subheading": "Sub heading",
-            "link": "",
-            "btn_text": "",
-            "outline_button": false,
-            "heading_size": "h2",
-            "button_size": "xsmall",
-            "content_width": "medium",
-            "heading_size_m": "h2",
-            "button_size_m": "xsmall",
-            "content_width_m": "medium",
-            "overlayopacity": 0,
-            "desktop_content_position": "d-top-center",
-            "mobile_content_position": "m-center",
-            "overlaycolor": "#000000",
-            "textcolor": "#000000",
-            "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "#000000",
-            "button_border_color": "#000000"
+            "heading": "",
+            "subheading": "Duplicator 12 \/ 300",
+            "image": "shopify:\/\/shop_images\/D12_300_Pro_Max_1_2_da1a883d-7244-478e-a2b4-787573fb2e7d.jpg",
+            "link": "shopify:\/\/collections\/wanhao-duplicator-12"
           }
         },
-        "template--15143329169473__5ca38f99-a19a-4c8d-a326-62e70af92096-image-3": {
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3": {
           "type": "image",
           "settings": {
-            "image_width": "col-md-3",
             "heading": "Heading",
-            "seo_heading": "h2",
-            "enable_text_shadow": false,
             "subheading": "Sub heading",
-            "link": "",
-            "btn_text": "",
-            "outline_button": false,
-            "heading_size": "h2",
-            "button_size": "xsmall",
-            "content_width": "medium",
-            "heading_size_m": "h2",
-            "button_size_m": "xsmall",
-            "content_width_m": "medium",
-            "overlayopacity": 0,
-            "desktop_content_position": "d-top-center",
-            "mobile_content_position": "m-center",
-            "overlaycolor": "#000000",
-            "textcolor": "#000000",
-            "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "#000000",
-            "button_border_color": "#000000"
-          }
-        },
-        "87942053-6f0a-43bd-9bcc-5b6bab51c4ec": {
-          "type": "image",
-          "settings": {
-            "image_width": "col-md-3",
-            "heading": "Heading",
-            "seo_heading": "h2",
-            "enable_text_shadow": false,
-            "subheading": "Sub heading",
-            "link": "",
-            "btn_text": "",
-            "outline_button": false,
-            "heading_size": "h2",
-            "button_size": "xsmall",
-            "content_width": "medium",
-            "heading_size_m": "h2",
-            "button_size_m": "xsmall",
-            "content_width_m": "medium",
-            "overlayopacity": 0,
-            "desktop_content_position": "d-top-center",
-            "mobile_content_position": "m-center",
-            "overlaycolor": "#000000",
-            "textcolor": "#000000",
-            "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "#000000",
-            "button_border_color": "#000000"
+            "link": ""
           }
         }
       },
       "block_order": [
-        "template--15143329169473__5ca38f99-a19a-4c8d-a326-62e70af92096-image-1",
-        "template--15143329169473__5ca38f99-a19a-4c8d-a326-62e70af92096-image-2",
-        "template--15143329169473__5ca38f99-a19a-4c8d-a326-62e70af92096-image-3",
-        "87942053-6f0a-43bd-9bcc-5b6bab51c4ec"
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-1",
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-2",
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3"
       ],
       "settings": {
         "enable_fullwidth": true,
-        "image_layout": "sharp",
+        "heading": "",
+        "seo_heading": "h2",
+        "heading_size": "h4",
+        "gallery_style": "stacked",
+        "slide_direction": "right",
+        "image_style": "circle",
+        "image_size": "xsmall",
+        "text_alignment": "center",
         "enable_image_animation": true,
-        "enable_hover_effect": false,
-        "image_radius_desktop": 2,
-        "image_radius_mobile": 2,
-        "heading_size": "h3",
-        "button_size": "xsmall",
-        "space_in_images": true,
-        "image_spacing_desktop": 30,
-        "image_spacing_mobile": 10,
+        "image_crop": false,
+        "image_background": false,
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 50,
-        "top_space_mobile": 20,
-        "bottom_space_mobile": 20
+        "top_space_desktop": 45,
+        "bottom_space_desktop": 45,
+        "top_space_mobile": 35,
+        "bottom_space_mobile": 0
       }
     },
     "21aac929-bcc9-46c8-8cf7-57d105ce570d": {
@@ -423,7 +337,7 @@
   "order": [
     "8e052e20-72f0-4cb9-93dd-e19803eab968",
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98",
-    "5ca38f99-a19a-4c8d-a326-62e70af92096",
+    "7dc43a7c-1876-402d-af4d-ba2d537b81c2",
     "21aac929-bcc9-46c8-8cf7-57d105ce570d"
   ]
 }
