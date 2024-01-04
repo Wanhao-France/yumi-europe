@@ -384,10 +384,18 @@
             "heading": "Imprimantes",
             "collection": "imprimante-vedette"
           }
+        },
+        "d60ab21e-cf1d-4c99-94f3-5329cfaaa435": {
+          "type": "collection",
+          "settings": {
+            "heading": "Filaments",
+            "collection": "filement"
+          }
         }
       },
       "block_order": [
-        "62581394-1121-4b67-bca1-5d5a4cafd9cf"
+        "62581394-1121-4b67-bca1-5d5a4cafd9cf",
+        "d60ab21e-cf1d-4c99-94f3-5329cfaaa435"
       ],
       "settings": {
         "heading": "Top Selling Products",
