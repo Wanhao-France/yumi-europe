@@ -377,6 +377,18 @@
     },
     "21aac929-bcc9-46c8-8cf7-57d105ce570d": {
       "type": "tabbed-collections",
+      "blocks": {
+        "62581394-1121-4b67-bca1-5d5a4cafd9cf": {
+          "type": "collection",
+          "settings": {
+            "heading": "Imprimantes",
+            "collection": "imprimante-vedette"
+          }
+        }
+      },
+      "block_order": [
+        "62581394-1121-4b67-bca1-5d5a4cafd9cf"
+      ],
       "settings": {
         "heading": "Top Selling Products",
         "seo_heading": "h2",
