@@ -257,8 +257,17 @@
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3": {
           "type": "image",
           "settings": {
-            "heading": "Heading",
-            "subheading": "Sub heading",
+            "heading": "",
+            "subheading": "Duplicator 12 \/ 500",
+            "link": ""
+          }
+        },
+        "d3c5f5f3-ad24-4b33-83ce-5928d4be60a1": {
+          "type": "image",
+          "settings": {
+            "heading": "",
+            "subheading": "Flsun",
+            "image": "shopify:\/\/shop_images\/FLSV400-1_dac0b33a-535c-40e1-bb5f-e7a518e58524.jpg",
             "link": ""
           }
         }
@@ -266,7 +275,8 @@
       "block_order": [
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-1",
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-2",
-        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3"
+        "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3",
+        "d3c5f5f3-ad24-4b33-83ce-5928d4be60a1"
       ],
       "settings": {
         "enable_fullwidth": true,
