@@ -9,7 +9,7 @@
         "pagination_type": "paged",
         "products_per_page": 16,
         "enable_filtering": true,
-        "filters_layout": "sidebar",
+        "filters_layout": "drawer",
         "enable_sorting": true,
         "enable_display_options": true,
         "collection_image": false,
