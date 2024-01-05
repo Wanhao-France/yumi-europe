@@ -411,7 +411,7 @@
         "product_grid_spacing_desktop": 10,
         "product_grid_spacing_mobile": 10,
         "hide_tab_name": false,
-        "show_tabs_border": true,
+        "show_tabs_border": false,
         "bgcolor": "primary",
         "section_visibility": "always",
         "top_space_desktop": 40,
