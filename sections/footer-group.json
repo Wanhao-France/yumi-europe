@@ -61,15 +61,6 @@
     "offer-sidebar": {
       "type": "offer-sidebar",
       "blocks": {
-        "3c184a8c-b344-4a00-bcc1-815922498300": {
-          "type": "offer",
-          "settings": {
-            "heading": "Offer Title",
-            "highlight_text": "Offer",
-            "linktext": "Shop now",
-            "link": ""
-          }
-        },
         "eefd02b4-3264-40df-b101-73e51cb795f3": {
           "type": "offer",
           "settings": {
@@ -81,7 +72,6 @@
         }
       },
       "block_order": [
-        "3c184a8c-b344-4a00-bcc1-815922498300",
         "eefd02b4-3264-40df-b101-73e51cb795f3"
       ],
       "settings": {
