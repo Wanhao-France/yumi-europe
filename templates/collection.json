@@ -30,40 +30,10 @@
             "seo_heading": "h2",
             "subtext": "All transactions are securely handled."
           }
-        },
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-1": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
-        },
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-2": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
-        },
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-3": {
-          "type": "column",
-          "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
-            "seo_heading": "h2",
-            "subtext": "Add subtext here"
-          }
         }
       },
       "block_order": [
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0",
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-1",
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-2",
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-3"
+        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0"
       ],
       "settings": {
         "column_background": false,
@@ -74,8 +44,8 @@
         "column_background_color": "",
         "icon_background_color": "",
         "section_visibility": "always",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
       }
