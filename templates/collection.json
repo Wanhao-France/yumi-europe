@@ -1,62 +1,5 @@
 {
   "sections": {
-    "dd32eddb-c1d7-44d1-b3da-aae2d992634c": {
-      "type": "gallery-carousel",
-      "blocks": {
-        "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-0": {
-          "type": "image",
-          "settings": {
-            "heading": "PLA Premium",
-            "subheading": "Blanc Niege",
-            "image": "shopify:\/\/shop_images\/W3-DPLAWHITE1000-1_1884ca3a-af5d-482b-9c9f-6bdbd0521dab.jpg",
-            "link": "shopify:\/\/products\/pla-wanhao-blanc-white-1kg"
-          }
-        },
-        "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-1": {
-          "type": "image",
-          "settings": {
-            "heading": "PLA Premium",
-            "subheading": "Noir Muzo",
-            "image": "shopify:\/\/shop_images\/W3-DPLABLACK1000.jpg",
-            "link": "shopify:\/\/products\/pla-wanhao-noir-1kg"
-          }
-        },
-        "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-2": {
-          "type": "image",
-          "settings": {
-            "heading": "PLA Premium",
-            "subheading": "Gris Argent",
-            "image": "shopify:\/\/shop_images\/W3-DPLASILKSILVER1000_f39df2a4-7a63-40e4-82b1-bfba76820816.jpg",
-            "link": "shopify:\/\/collections\/impremente-230"
-          }
-        }
-      },
-      "block_order": [
-        "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-0",
-        "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-1",
-        "template--16809123774757__dd32eddb-c1d7-44d1-b3da-aae2d992634c-1667812205906f8cf0-2"
-      ],
-      "settings": {
-        "enable_fullwidth": true,
-        "heading": "Add Your Heading Here",
-        "seo_heading": "h2",
-        "heading_size": "h2",
-        "gallery_style": "auto-slide",
-        "slide_direction": "right",
-        "image_style": "circle",
-        "image_size": "small",
-        "text_alignment": "center",
-        "enable_image_animation": true,
-        "image_crop": false,
-        "image_background": true,
-        "bgcolor": "primary",
-        "section_visibility": "always",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
-      }
-    },
     "main-collection": {
       "type": "main-collection",
       "settings": {
@@ -139,7 +82,6 @@
     }
   },
   "order": [
-    "dd32eddb-c1d7-44d1-b3da-aae2d992634c",
     "main-collection",
     "8231b1f4-8107-414d-9432-3a48f23e000d"
   ]
