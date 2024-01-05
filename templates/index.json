@@ -383,10 +383,18 @@
             "heading": "Filament accessories",
             "collection": "accessoires-filament"
           }
+        },
+        "b785489f-f9cb-443d-aea6-d81c577726b8": {
+          "type": "collection",
+          "settings": {
+            "heading": "Resin accessories",
+            "collection": "accessoires-resine"
+          }
         }
       },
       "block_order": [
-        "39e9b60f-6cce-4e55-a39c-1476c6436327"
+        "39e9b60f-6cce-4e55-a39c-1476c6436327",
+        "b785489f-f9cb-443d-aea6-d81c577726b8"
       ],
       "settings": {
         "heading": "You may also like",
