@@ -6,7 +6,7 @@
         "collection_title": false,
         "seo_heading": "h2",
         "collection_description": false,
-        "pagination_type": "paged",
+        "pagination_type": "infinite",
         "products_per_page": 16,
         "enable_filtering": true,
         "filters_layout": "drawer",
