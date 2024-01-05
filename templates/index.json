@@ -374,65 +374,40 @@
         "bottom_space_mobile": 15
       }
     },
-    "10639b0e-562d-4d6b-83af-2bdde519d18d": {
-      "type": "featured-collections-carousel",
+    "65006731-3ed1-4031-8928-c64b4021c978": {
+      "type": "tabbed-collections",
       "blocks": {
-        "template--15143329169473__10639b0e-562d-4d6b-83af-2bdde519d18d-collection-4": {
+        "39e9b60f-6cce-4e55-a39c-1476c6436327": {
           "type": "collection",
           "settings": {
-            "collection": "piece-de-rechange",
-            "heading": "",
-            "subheading": "",
-            "headingcolor": "#000000",
-            "subheadingcolor": "#000000"
-          }
-        },
-        "89213907-2350-45ef-b2ea-b3217f4f68f6": {
-          "type": "collection",
-          "settings": {
-            "collection": "accessoires-filament",
-            "image": "shopify:\/\/shop_images\/Outil_Calibration_accessoire_imprimante_3D_3D-Expert_Wanhao_France.png",
-            "heading": "",
-            "subheading": "",
-            "headingcolor": "#000000",
-            "subheadingcolor": "#000000"
-          }
-        },
-        "3d960b96-c8cd-4ac5-ba08-550c53bc0992": {
-          "type": "collection",
-          "settings": {
-            "collection": "accessoires-resine",
-            "heading": "",
-            "subheading": "",
-            "headingcolor": "#000000",
-            "subheadingcolor": "#000000"
+            "heading": "Filament accessories",
+            "collection": "accessoires-filament"
           }
         }
       },
       "block_order": [
-        "template--15143329169473__10639b0e-562d-4d6b-83af-2bdde519d18d-collection-4",
-        "89213907-2350-45ef-b2ea-b3217f4f68f6",
-        "3d960b96-c8cd-4ac5-ba08-550c53bc0992"
+        "39e9b60f-6cce-4e55-a39c-1476c6436327"
       ],
       "settings": {
-        "style": "style1",
-        "enable_fullwidth": false,
-        "collections_per_row": 3,
-        "emphasize_center_image": true,
         "heading": "You may also like",
-        "seo_heading": "h2",
-        "heading_size": "h2",
-        "subheading": "",
-        "description": "",
-        "btntext": "",
-        "btnlink": "shopify:\/\/collections",
-        "button_size": "default",
+        "seo_heading": "h3",
+        "heading_size": "h4",
+        "tabs_position": "right",
+        "tabs_alignment": "left-start",
+        "products_style": "carousel",
+        "products_per_row": 5,
+        "product_grid_radius_desktop": 10,
+        "product_grid_radius_mobile": 10,
+        "product_grid_spacing_desktop": 10,
+        "product_grid_spacing_mobile": 10,
+        "hide_tab_name": false,
+        "show_tabs_border": true,
         "bgcolor": "primary",
         "section_visibility": "always",
         "top_space_desktop": 40,
-        "bottom_space_desktop": 40,
-        "top_space_mobile": 35,
-        "bottom_space_mobile": 35
+        "bottom_space_desktop": 15,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
       }
     }
   },
@@ -441,6 +416,6 @@
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98",
     "7dc43a7c-1876-402d-af4d-ba2d537b81c2",
     "21aac929-bcc9-46c8-8cf7-57d105ce570d",
-    "10639b0e-562d-4d6b-83af-2bdde519d18d"
+    "65006731-3ed1-4031-8928-c64b4021c978"
   ]
 }
