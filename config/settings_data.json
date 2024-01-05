@@ -38,7 +38,7 @@
     "layout_width": "boxed",
     "enable_animation": true,
     "button_radius": 6,
-    "product_image_style": "aspect",
+    "product_image_style": "square",
     "product_image_size": "contain",
     "pass_through_product_images": true,
     "enable_search_prompts": true,
