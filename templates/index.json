@@ -336,7 +336,7 @@
           "type": "collection",
           "settings": {
             "heading": "Filaments",
-            "collection": "filement"
+            "collection": "all-filaments"
           }
         }
       },
