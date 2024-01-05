@@ -375,14 +375,14 @@
           "type": "collection",
           "settings": {
             "heading": "Filament accessories",
-            "collection": "accessoires-filament"
+            "collection": "filaments"
           }
         },
         "b785489f-f9cb-443d-aea6-d81c577726b8": {
           "type": "collection",
           "settings": {
             "heading": "Resin accessories",
-            "collection": "accessoires-resine"
+            "collection": "resins"
           }
         },
         "14a59ae3-821c-479e-b375-273a9eee9ff2": {
