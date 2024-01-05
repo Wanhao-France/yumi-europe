@@ -44,27 +44,6 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e": {
-          "type": "style-2",
-          "settings": {
-            "title": "Imprimantes 3D & Laser",
-            "collection1": "la-gamme-dimprimante-3d-la-plus-performante-du-marche",
-            "collection2": "flsun",
-            "image1": "shopify:\/\/shop_images\/Yumi-LA4.jpg",
-            "heading1": "",
-            "subheading1": "",
-            "link1": "shopify:\/\/products\/yumi-l-a4-laser-pour-gravure-et-decoupe-pre-commande",
-            "image2": "shopify:\/\/shop_images\/Klipper-Pad-2_9e257584-f47b-4a21-8bbe-980294e7e4d9.jpg",
-            "heading2": "",
-            "subheading2": "",
-            "link2": "shopify:\/\/products\/wanhao-klipper-pad"
-          }
-        }
-      },
-      "block_order": [
-        "883f0cf4-8af8-480b-8ca8-ae2d97ed456e"
-      ],
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
