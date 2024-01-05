@@ -380,7 +380,7 @@
         "template--15143329169473__10639b0e-562d-4d6b-83af-2bdde519d18d-collection-4": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "piece-de-rechange",
             "heading": "",
             "subheading": "",
             "headingcolor": "#000000",
@@ -390,7 +390,8 @@
         "89213907-2350-45ef-b2ea-b3217f4f68f6": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "accessoires-filament",
+            "image": "shopify:\/\/shop_images\/Outil_Calibration_accessoire_imprimante_3D_3D-Expert_Wanhao_France.png",
             "heading": "",
             "subheading": "",
             "headingcolor": "#000000",
