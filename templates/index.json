@@ -389,7 +389,7 @@
           "type": "collection",
           "settings": {
             "heading": "Spare parts",
-            "collection": "piece-de-rechange"
+            "collection": "replacement-part"
           }
         }
       },
