@@ -25,10 +25,10 @@
         "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0": {
           "type": "column",
           "settings": {
-            "icon": "shipping",
-            "heading": "Add Heading here",
+            "icon": "secure",
+            "heading": "100% Secure Checkout",
             "seo_heading": "h2",
-            "subtext": "Add subtext here"
+            "subtext": "All transactions are securely handled."
           }
         },
         "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-1": {
