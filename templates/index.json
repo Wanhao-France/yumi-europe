@@ -236,6 +236,15 @@
     "7dc43a7c-1876-402d-af4d-ba2d537b81c2": {
       "type": "gallery-carousel",
       "blocks": {
+        "88c1a49d-1543-4f2b-99c2-d26343a9b4a0": {
+          "type": "image",
+          "settings": {
+            "heading": "",
+            "subheading": "Yumi L-A4 Laser",
+            "image": "shopify:\/\/shop_images\/Yumi-LA4.jpg",
+            "link": ""
+          }
+        },
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-1": {
           "type": "image",
           "settings": {
@@ -292,6 +301,7 @@
         }
       },
       "block_order": [
+        "88c1a49d-1543-4f2b-99c2-d26343a9b4a0",
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-1",
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-2",
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3",
