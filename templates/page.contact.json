@@ -2,6 +2,7 @@
   "sections": {
     "main-page": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "seo_heading": "h2",
         "banner_height_desktop": "auto",
@@ -30,7 +31,6 @@
         "full_width": true,
         "mapaddress": "https:\/\/maps.app.goo.gl\/c6zjTmUpyoNyZVWr9",
         "map_style": "terrain",
-        "image": "shopify:\/\/shop_images\/Capture_d_ecran_2023-11-29_a_16.38.07.png",
         "content_position": "middle-left",
         "desktop_height": "500px",
         "m_content_position": "overlay",
@@ -47,12 +47,39 @@
         "bgcolor": "primary",
         "custom_color": ""
       }
+    },
+    "f73570a0-8d4d-4d94-9b14-3edc900ef701": {
+      "type": "rich-text",
+      "blocks": {
+        "template--15572366688367__f73570a0-8d4d-4d94-9b14-3edc900ef701-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "heading": "Quelle est votre question ?",
+            "seo_heading": "h2",
+            "content": "<h2><\/h2><p>Vous obtiendrez des résultats à partir de notre base de connaissance.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15572366688367__f73570a0-8d4d-4d94-9b14-3edc900ef701-richtext-1"
+      ],
+      "settings": {
+        "content_width": "container sm-container",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
     "main-page",
     "main",
     "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a",
-    "ffdeadde-5060-4cc0-bf3c-1351ff984a59"
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59",
+    "f73570a0-8d4d-4d94-9b14-3edc900ef701"
   ]
 }
