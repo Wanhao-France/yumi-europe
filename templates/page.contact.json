@@ -11,6 +11,32 @@
         "textcolor": "#181818"
       }
     },
+    "f73570a0-8d4d-4d94-9b14-3edc900ef701": {
+      "type": "rich-text",
+      "blocks": {
+        "template--15572366688367__f73570a0-8d4d-4d94-9b14-3edc900ef701-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "heading": "Quelle est votre question ?",
+            "seo_heading": "h2",
+            "content": "<h2><\/h2><p>Vous obtiendrez des résultats à partir de notre base de connaissance.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15572366688367__f73570a0-8d4d-4d94-9b14-3edc900ef701-richtext-1"
+      ],
+      "settings": {
+        "content_width": "container sm-container",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 50,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
     "main": {
       "type": "contact-page-template",
       "settings": {
@@ -48,28 +74,15 @@
         "custom_color": ""
       }
     },
-    "f73570a0-8d4d-4d94-9b14-3edc900ef701": {
-      "type": "rich-text",
-      "blocks": {
-        "template--15572366688367__f73570a0-8d4d-4d94-9b14-3edc900ef701-richtext-1": {
-          "type": "richtext",
-          "settings": {
-            "heading": "Quelle est votre question ?",
-            "seo_heading": "h2",
-            "content": "<h2><\/h2><p>Vous obtiendrez des résultats à partir de notre base de connaissance.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "template--15572366688367__f73570a0-8d4d-4d94-9b14-3edc900ef701-richtext-1"
-      ],
+    "dd7b069a-e271-4ba7-9c9d-854bdb5b0913": {
+      "type": "custom-liquid",
       "settings": {
-        "content_width": "container sm-container",
+        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div> <!-- Código del símbolo de advertencia -->\n  <div>\n    <p>\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n  <\/div>\n<\/div>",
         "content_alignment": "center",
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 50,
-        "bottom_space_desktop": 0,
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
       }
@@ -77,9 +90,10 @@
   },
   "order": [
     "main-page",
+    "f73570a0-8d4d-4d94-9b14-3edc900ef701",
     "main",
     "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a",
     "ffdeadde-5060-4cc0-bf3c-1351ff984a59",
-    "f73570a0-8d4d-4d94-9b14-3edc900ef701"
+    "dd7b069a-e271-4ba7-9c9d-854bdb5b0913"
   ]
 }
