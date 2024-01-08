@@ -37,6 +37,19 @@
         "bottom_space_mobile": 30
       }
     },
+    "dd7b069a-e271-4ba7-9c9d-854bdb5b0913": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div>\n  <div>\n    <p>\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n  <\/div>\n<\/div>",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
     "main": {
       "type": "contact-page-template",
       "settings": {
@@ -73,27 +86,14 @@
         "bgcolor": "primary",
         "custom_color": ""
       }
-    },
-    "dd7b069a-e271-4ba7-9c9d-854bdb5b0913": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div>\n  <div>\n    <p>\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n  <\/div>\n<\/div>",
-        "content_alignment": "center",
-        "bgcolor": "primary",
-        "section_visibility": "always",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
-      }
     }
   },
   "order": [
     "main-page",
     "f73570a0-8d4d-4d94-9b14-3edc900ef701",
+    "dd7b069a-e271-4ba7-9c9d-854bdb5b0913",
     "main",
     "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a",
-    "ffdeadde-5060-4cc0-bf3c-1351ff984a59",
-    "dd7b069a-e271-4ba7-9c9d-854bdb5b0913"
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59"
   ]
 }
