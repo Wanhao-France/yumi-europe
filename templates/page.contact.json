@@ -40,7 +40,7 @@
     "dd7b069a-e271-4ba7-9c9d-854bdb5b0913": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div>\n    <p style=\"text-align:center;\">\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n<\/div>",
+        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div>\n  <div>\n    <p>\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n  <\/div>\n<\/div>",
         "content_alignment": "center",
         "bgcolor": "primary",
         "section_visibility": "always",
@@ -86,6 +86,64 @@
         "bgcolor": "primary",
         "custom_color": ""
       }
+    },
+    "e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4": {
+      "type": "multi-column",
+      "blocks": {
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-1": {
+          "type": "column",
+          "settings": {
+            "heading": "Knowledge base",
+            "heading_size": "h2",
+            "description": "<p>Expand your knowledge and learn more about 3D printing<\/p>",
+            "link_text": "",
+            "link_url": "https:\/\/3dexpert.odoo.com\/slides",
+            "btn_as_link": false
+          }
+        },
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2": {
+          "type": "column",
+          "settings": {
+            "heading": "Add heading here",
+            "heading_size": "h2",
+            "description": "<p>Description<\/p>",
+            "link_text": "More info",
+            "link_url": "",
+            "btn_as_link": false
+          }
+        },
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3": {
+          "type": "column",
+          "settings": {
+            "heading": "Add heading here",
+            "heading_size": "h2",
+            "description": "<p>Description<\/p>",
+            "link_text": "More info",
+            "link_url": "",
+            "btn_as_link": false
+          }
+        }
+      },
+      "block_order": [
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-1",
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2",
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3"
+      ],
+      "settings": {
+        "heading": "",
+        "seo_heading": "h2",
+        "description": "",
+        "text_alignment": "center",
+        "grid_text_alignment": "left",
+        "media_style": "square",
+        "button_size": "small",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 40,
+        "top_space_mobile": 20,
+        "bottom_space_mobile": 20
+      }
     }
   },
   "order": [
@@ -94,6 +152,7 @@
     "dd7b069a-e271-4ba7-9c9d-854bdb5b0913",
     "main",
     "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a",
-    "ffdeadde-5060-4cc0-bf3c-1351ff984a59"
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59",
+    "e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4"
   ]
 }
