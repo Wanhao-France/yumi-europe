@@ -77,7 +77,7 @@
     "dd7b069a-e271-4ba7-9c9d-854bdb5b0913": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div> <!-- Código del símbolo de advertencia -->\n  <div>\n    <p>\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n  <\/div>\n<\/div>",
+        "custom_liquid": "<div class=\"warning-box\">\n  <div class=\"warning-icon\">&#9888;<\/div>\n  <div>\n    <p>\n      Afin que votre demande soit prise en compte, nous vous invitons à utiliser le formulaire approprié lors de la communication avec notre service client.\n      Tout message qui ne respecte pas le formulaire ne pourra malheureusement être traité.\n    <\/p>\n  <\/div>\n<\/div>",
         "content_alignment": "center",
         "bgcolor": "primary",
         "section_visibility": "always",
