@@ -116,6 +116,7 @@
         "c2d86a28-49b5-4595-a57a-93215a2c1c8c": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/camion-de-livraison.png",
             "heading": "Delivery",
             "heading_size": "h2",
             "description": "<p>For any request concerning the delivery of your order.<\/p>",
@@ -127,6 +128,7 @@
         "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/poignee-de-main.png",
             "heading": "Request for partnership",
             "heading_size": "h2",
             "description": "<p>To request a partnership, join the Rhinos family. No need to have thousands of subscribers!<\/p>",
@@ -138,6 +140,7 @@
         "00afa338-1be3-4fc0-b14f-36e9c804fe5e": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/facture-dachat.png",
             "heading": "Demande de facture",
             "heading_size": "h2",
             "description": "<p>DescriptionTo request an invoice for a past order.<\/p>",
@@ -149,6 +152,7 @@
         "5f94e21a-4d21-447f-9fb3-18583b90dc58": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/euro.png",
             "heading": "Cashback",
             "heading_size": "h2",
             "description": "<p>For any request concerning the use of cashback or to report a bug.<\/p>",
@@ -160,6 +164,7 @@
         "96877818-8a7f-4bd1-b707-be0e9fde0327": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/homme-daffaire.png",
             "heading": "Reseller",
             "heading_size": "h2",
             "description": "<p>Interested in becoming a Wanhao France dealer? Contact us now!<\/p>",
