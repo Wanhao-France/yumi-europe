@@ -50,49 +50,13 @@
         "bottom_space_mobile": 30
       }
     },
-    "main": {
-      "type": "contact-page-template",
-      "settings": {
-        "contact_heading": "Support",
-        "phone_heading": "Phone",
-        "phone_number": "+1234567890",
-        "email_heading": "email",
-        "email": "info@email.com",
-        "address_heading": "Address",
-        "address": "WANHAO FRANCE , 2 AVENUE DU HOGGAR , 91940 LES ULIS",
-        "form_heading": "Prenez contact avec nous",
-        "form_button": "ENVOYER LE MESSAGE"
-      }
-    },
-    "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a": {
-      "type": "map",
-      "settings": {
-        "full_width": true,
-        "mapaddress": "https:\/\/maps.app.goo.gl\/c6zjTmUpyoNyZVWr9",
-        "map_style": "terrain",
-        "content_position": "middle-left",
-        "desktop_height": "500px",
-        "m_content_position": "overlay",
-        "mobile_height": "500px",
-        "bgcolor": "primary",
-        "section_visibility": "always"
-      }
-    },
-    "ffdeadde-5060-4cc0-bf3c-1351ff984a59": {
-      "type": "spacer",
-      "settings": {
-        "height_desktop": 2,
-        "height_mobile": 2,
-        "bgcolor": "primary",
-        "custom_color": ""
-      }
-    },
     "e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4": {
       "type": "multi-column",
       "blocks": {
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-1": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/lobtention-du-diplome_1ec620e7-f920-48ee-a53f-30d7be5369cf.png",
             "heading": "Knowledge base",
             "heading_size": "h2",
             "description": "<p>Expand your knowledge and learn more about 3D printing<\/p>",
@@ -104,6 +68,7 @@
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/service-clients.png",
             "heading": "Technical support",
             "heading_size": "h2",
             "description": "<p>If you can't find the answer to your question in our knowledge base, please don't hesitate to contact us.<\/p>",
@@ -115,6 +80,7 @@
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/tiktok_logo_transparent.webp",
             "heading": "TikTok",
             "heading_size": "h2",
             "description": "<p>Are you a content creator with over 1000 subscribers? We're here to support you with our partnership offer.<\/p>",
@@ -126,6 +92,7 @@
         "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/logistique.png",
             "heading": "Order",
             "heading_size": "h2",
             "description": "<p>For any request to modify an order or for information about an order in progress.<\/p>",
@@ -137,6 +104,7 @@
         "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/liste-de-controle.png",
             "heading": "Request an offer",
             "heading_size": "h2",
             "description": "<p>Companies, administrations, schools, ask for your quote now.<\/p>",
@@ -177,6 +145,28 @@
             "link_url": "",
             "btn_as_link": false
           }
+        },
+        "5f94e21a-4d21-447f-9fb3-18583b90dc58": {
+          "type": "column",
+          "settings": {
+            "heading": "Cashback",
+            "heading_size": "h2",
+            "description": "<p>For any request concerning the use of cashback or to report a bug.<\/p>",
+            "link_text": "",
+            "link_url": "",
+            "btn_as_link": false
+          }
+        },
+        "96877818-8a7f-4bd1-b707-be0e9fde0327": {
+          "type": "column",
+          "settings": {
+            "heading": "Reseller",
+            "heading_size": "h2",
+            "description": "<p>Interested in becoming a Wanhao France dealer? Contact us now!<\/p>",
+            "link_text": "More info",
+            "link_url": "",
+            "btn_as_link": false
+          }
         }
       },
       "block_order": [
@@ -187,7 +177,9 @@
         "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d",
         "c2d86a28-49b5-4595-a57a-93215a2c1c8c",
         "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d",
-        "00afa338-1be3-4fc0-b14f-36e9c804fe5e"
+        "00afa338-1be3-4fc0-b14f-36e9c804fe5e",
+        "5f94e21a-4d21-447f-9fb3-18583b90dc58",
+        "96877818-8a7f-4bd1-b707-be0e9fde0327"
       ],
       "settings": {
         "heading": "",
@@ -204,15 +196,38 @@
         "top_space_mobile": 20,
         "bottom_space_mobile": 20
       }
+    },
+    "main": {
+      "type": "contact-page-template",
+      "disabled": true,
+      "settings": {
+        "contact_heading": "Support",
+        "phone_heading": "Phone",
+        "phone_number": "+1234567890",
+        "email_heading": "email",
+        "email": "info@email.com",
+        "address_heading": "Address",
+        "address": "WANHAO FRANCE , 2 AVENUE DU HOGGAR , 91940 LES ULIS",
+        "form_heading": "Prenez contact avec nous",
+        "form_button": "ENVOYER LE MESSAGE"
+      }
+    },
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59": {
+      "type": "spacer",
+      "settings": {
+        "height_desktop": 2,
+        "height_mobile": 2,
+        "bgcolor": "primary",
+        "custom_color": ""
+      }
     }
   },
   "order": [
     "main-page",
     "f73570a0-8d4d-4d94-9b14-3edc900ef701",
     "dd7b069a-e271-4ba7-9c9d-854bdb5b0913",
+    "e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4",
     "main",
-    "d4990aa8-00b1-4fd3-bf9d-3832c1bd440a",
-    "ffdeadde-5060-4cc0-bf3c-1351ff984a59",
-    "e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4"
+    "ffdeadde-5060-4cc0-bf3c-1351ff984a59"
   ]
 }
