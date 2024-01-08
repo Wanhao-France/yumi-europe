@@ -104,10 +104,10 @@
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2": {
           "type": "column",
           "settings": {
-            "heading": "Add heading here",
+            "heading": "Technical support",
             "heading_size": "h2",
-            "description": "<p>Description<\/p>",
-            "link_text": "More info",
+            "description": "<p>If you can't find the answer to your question in our knowledge base, please don't hesitate to contact us.<\/p>",
+            "link_text": "",
             "link_url": "",
             "btn_as_link": false
           }
