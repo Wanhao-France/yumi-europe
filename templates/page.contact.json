@@ -144,6 +144,17 @@
             "link_url": "",
             "btn_as_link": false
           }
+        },
+        "c2d86a28-49b5-4595-a57a-93215a2c1c8c": {
+          "type": "column",
+          "settings": {
+            "heading": "Delivery",
+            "heading_size": "h2",
+            "description": "<p>To request a partnership, join the Rhinos family. You don't need thousands of subscribers!<\/p>",
+            "link_text": "",
+            "link_url": "",
+            "btn_as_link": false
+          }
         }
       },
       "block_order": [
@@ -151,7 +162,8 @@
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2",
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3",
         "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0",
-        "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d"
+        "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d",
+        "c2d86a28-49b5-4595-a57a-93215a2c1c8c"
       ],
       "settings": {
         "heading": "",
