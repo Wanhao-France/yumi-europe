@@ -60,9 +60,9 @@
             "heading": "Knowledge base",
             "heading_size": "h2",
             "description": "<p>Expand your knowledge and learn more about 3D printing<\/p>",
-            "link_text": "View More",
+            "link_text": "More Info",
             "link_url": "https:\/\/3dexpert.odoo.com\/slides",
-            "btn_as_link": false
+            "btn_as_link": true
           }
         },
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2": {
@@ -72,9 +72,9 @@
             "heading": "Technical support",
             "heading_size": "h2",
             "description": "<p>If you can't find the answer to your question in our knowledge base, please don't hesitate to contact us.<\/p>",
-            "link_text": "",
+            "link_text": "More Info",
             "link_url": "",
-            "btn_as_link": false
+            "btn_as_link": true
           }
         },
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3": {
@@ -84,9 +84,9 @@
             "heading": "TikTok",
             "heading_size": "h2",
             "description": "<p>Are you a content creator with over 1000 subscribers? We're here to support you with our partnership offer.<\/p>",
-            "link_text": "",
+            "link_text": "More Info",
             "link_url": "",
-            "btn_as_link": false
+            "btn_as_link": true
           }
         },
         "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0": {
@@ -96,9 +96,9 @@
             "heading": "Order",
             "heading_size": "h2",
             "description": "<p>For any request to modify an order or for information about an order in progress.<\/p>",
-            "link_text": "",
+            "link_text": "More Info",
             "link_url": "",
-            "btn_as_link": false
+            "btn_as_link": true
           }
         },
         "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d": {
