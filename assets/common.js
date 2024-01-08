@@ -1095,6 +1095,14 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       stickyPriceContainer.innerHTML = priceHtml;
     }
   }
+  return {
+    compareAtPrice: compareAtPrice,
+    price: price,
+    percentage: percentage,
+    savedAmount: savedAmount,
+    priceHtml: priceHtml,
+    savedAmountHtml: savedAmountHtml
+};
 }
 
 function sellingPlans(variant, form) {

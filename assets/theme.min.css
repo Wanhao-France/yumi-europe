@@ -8522,30 +8522,18 @@ body.account-popup-open .yv-login-popup {
     margin: 1rem 0;
     display: flex;
     align-items: center;
-}
-.container__pay-3-fois > img {
+  }
+
+  .container__pay-3-fois > img {
     width: 5rem;
     margin-right: 1rem;
-}
+  }
 
-.container__pay-3-fois > p {
+  .container__pay-3-fois > p {
     font-size: 1.2rem;
     text-wrap: balance;
-}
-.container__pay-3-fois:hover::before {
-    content: "Payez en 4X fois"; 
-    position: absolute;
-    top: 70px; 
-    left: 0;
-    background-color: #000; 
-    color: #fff;
-    padding: 5px;
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    white-space: nowrap;
-    z-index: 1;
-    font-size: 12px; 
   }
+
 
 @media (max-width:767px) {
   .yv-gallery-collage-item.hover-effect:before, .yv-gallery-collage-item.hover-effect:after {

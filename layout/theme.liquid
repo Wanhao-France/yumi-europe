@@ -9,19 +9,22 @@
     <link
       rel="preconnect"
       href="https://cdn.shopify.com"
-      crossorigin>
+      crossorigin
+    >
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
         type="image/png"
-        href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+      >
     {%- endif -%}
 
     {%- unless settings.type_heading_font_family.system? and settings.type_base_font_family.system? -%}
       <link
         rel="preconnect"
         href="https://fonts.shopifycdn.com"
-        crossorigin>
+        crossorigin
+      >
     {%- endunless -%}
     <title>{{ page_title }}</title>
     {%- if page_description -%}
@@ -35,7 +38,10 @@
     {%- render 'theme-style' -%}
     {%- render 'theme-scripts' -%}
   </head>
-  <body class="template_{{ template | handle }} page-loading breadcrumb-{{ settings.enable_breadcrumb }} theme-layout-{{ settings.layout_style }}" style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %};">
+  <body
+    class="template_{{ template | handle }} page-loading breadcrumb-{{ settings.enable_breadcrumb }} theme-layout-{{ settings.layout_style }}"
+    style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %};"
+  >
     <a class="skip-to-content-link button yv-visually-hidden focus-inside" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -71,14 +77,16 @@
       <div
         id="mini_cart_shipping"
         {% if settings.enable_shipping and settings.shipping_rate != blank %}
-        data-shipping="{{ settings.shipping_rate | times: 100 }}"
-        data-shipText="{{ settings.shipping_text }}"
-        {% endif %}>
+          data-shipping="{{ settings.shipping_rate | times: 100 }}"
+          data-shipText="{{ settings.shipping_text }}"
+        {% endif %}
+      >
         {% if settings.enable_shipping and settings.shipping_rate != blank %}
           <select
             id="shippingcountries"
             class="hidden"
-            disabled>
+            disabled
+          >
             {{ country_option_tags }}
           </select>
         {% endif %}
@@ -86,7 +94,7 @@
     {%- endif -%}
     {% if settings.enable_animation %}
       <script>
-        document.addEventListener("DOMContentLoaded",function(){
+        document.addEventListener('DOMContentLoaded', function () {
           AOS.init({
             easing: 'ease',
             once: true,
@@ -104,5 +112,6 @@
         </div>
       </div>
     {% endif %}
+    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
