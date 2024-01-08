@@ -115,10 +115,10 @@
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3": {
           "type": "column",
           "settings": {
-            "heading": "Add heading here",
+            "heading": "TikTok",
             "heading_size": "h2",
-            "description": "<p>Description<\/p>",
-            "link_text": "More info",
+            "description": "<p>Are you a content creator with over 1000 subscribers? We're here to support you with our partnership offer.<\/p>",
+            "link_text": "",
             "link_url": "",
             "btn_as_link": false
           }
