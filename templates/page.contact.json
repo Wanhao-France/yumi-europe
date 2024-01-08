@@ -122,12 +122,24 @@
             "link_url": "",
             "btn_as_link": false
           }
+        },
+        "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0": {
+          "type": "column",
+          "settings": {
+            "heading": "Order",
+            "heading_size": "h2",
+            "description": "<p>For any request to modify an order or for information about an order in progress.<\/p>",
+            "link_text": "",
+            "link_url": "",
+            "btn_as_link": false
+          }
         }
       },
       "block_order": [
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-1",
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2",
-        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3"
+        "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3",
+        "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0"
       ],
       "settings": {
         "heading": "",
