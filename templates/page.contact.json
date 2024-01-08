@@ -133,13 +133,25 @@
             "link_url": "",
             "btn_as_link": false
           }
+        },
+        "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d": {
+          "type": "column",
+          "settings": {
+            "heading": "Request an offer",
+            "heading_size": "h2",
+            "description": "<p>Companies, administrations, schools, ask for your quote now.<\/p>",
+            "link_text": "More info",
+            "link_url": "",
+            "btn_as_link": false
+          }
         }
       },
       "block_order": [
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-1",
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-2",
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3",
-        "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0"
+        "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0",
+        "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d"
       ],
       "settings": {
         "heading": "",
