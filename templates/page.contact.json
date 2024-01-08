@@ -155,6 +155,28 @@
             "link_url": "",
             "btn_as_link": false
           }
+        },
+        "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d": {
+          "type": "column",
+          "settings": {
+            "heading": "Request for partnership",
+            "heading_size": "h2",
+            "description": "<p>To request a partnership, join the Rhinos family. No need to have thousands of subscribers!<\/p>",
+            "link_text": "More info",
+            "link_url": "",
+            "btn_as_link": false
+          }
+        },
+        "00afa338-1be3-4fc0-b14f-36e9c804fe5e": {
+          "type": "column",
+          "settings": {
+            "heading": "Demande de facture",
+            "heading_size": "h2",
+            "description": "<p>DescriptionTo request an invoice for a past order.<\/p>",
+            "link_text": "More info",
+            "link_url": "",
+            "btn_as_link": false
+          }
         }
       },
       "block_order": [
@@ -163,7 +185,9 @@
         "template--15572366688367__e4a8b6fd-c335-4d2d-a98e-62c9f90c77a4-column-3",
         "87a9c0b5-9ce2-489a-a3cb-16cffeafa3f0",
         "9fcf12aa-6a77-4cd4-9dbd-c00a9a768b6d",
-        "c2d86a28-49b5-4595-a57a-93215a2c1c8c"
+        "c2d86a28-49b5-4595-a57a-93215a2c1c8c",
+        "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d",
+        "00afa338-1be3-4fc0-b14f-36e9c804fe5e"
       ],
       "settings": {
         "heading": "",
