@@ -73,7 +73,7 @@
             "heading_size": "h2",
             "description": "<p>If you can't find the answer to your question in our knowledge base, please don't hesitate to contact us.<\/p>",
             "link_text": "More Info",
-            "link_url": "",
+            "link_url": "https:\/\/formation.wanhaofrance.com\/my\/home",
             "btn_as_link": true
           }
         },
@@ -85,7 +85,7 @@
             "heading_size": "h2",
             "description": "<p>Are you a content creator with over 1000 subscribers? We're here to support you with our partnership offer.<\/p>",
             "link_text": "More Info",
-            "link_url": "",
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-tiktok",
             "btn_as_link": true
           }
         },
@@ -97,7 +97,7 @@
             "heading_size": "h2",
             "description": "<p>For any request to modify an order or for information about an order in progress.<\/p>",
             "link_text": "More Info",
-            "link_url": "",
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-commande",
             "btn_as_link": true
           }
         },
@@ -109,8 +109,8 @@
             "heading_size": "h5",
             "description": "<p>Companies, administrations, schools, ask for your quote now.<\/p>",
             "link_text": "More info",
-            "link_url": "",
-            "btn_as_link": false
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-devis",
+            "btn_as_link": true
           }
         },
         "c2d86a28-49b5-4595-a57a-93215a2c1c8c": {
@@ -120,9 +120,9 @@
             "heading": "Delivery",
             "heading_size": "h2",
             "description": "<p>For any request concerning the delivery of your order.<\/p>",
-            "link_text": "",
-            "link_url": "",
-            "btn_as_link": false
+            "link_text": "More Info",
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-livraison",
+            "btn_as_link": true
           }
         },
         "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d": {
