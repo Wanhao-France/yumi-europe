@@ -145,8 +145,8 @@
             "heading_size": "h2",
             "description": "<p>DescriptionTo request an invoice for a past order.<\/p>",
             "link_text": "More info",
-            "link_url": "",
-            "btn_as_link": false
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-facture",
+            "btn_as_link": true
           }
         },
         "5f94e21a-4d21-447f-9fb3-18583b90dc58": {
