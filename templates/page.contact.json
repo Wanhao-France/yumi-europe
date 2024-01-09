@@ -110,7 +110,7 @@
             "description": "<p>Companies, administrations, schools, ask for your quote now.<\/p>",
             "link_text": "More info",
             "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-devis",
-            "btn_as_link": false
+            "btn_as_link": true
           }
         },
         "c2d86a28-49b5-4595-a57a-93215a2c1c8c": {
