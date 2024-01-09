@@ -156,9 +156,9 @@
             "heading": "Cashback",
             "heading_size": "h2",
             "description": "<p>For any request concerning the use of cashback or to report a bug.<\/p>",
-            "link_text": "",
-            "link_url": "",
-            "btn_as_link": false
+            "link_text": "More Info",
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-cashback",
+            "btn_as_link": true
           }
         },
         "96877818-8a7f-4bd1-b707-be0e9fde0327": {
