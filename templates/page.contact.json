@@ -73,7 +73,7 @@
             "heading_size": "h2",
             "description": "<p>If you can't find the answer to your question in our knowledge base, please don't hesitate to contact us.<\/p>",
             "link_text": "More Info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/my\/home",
+            "link_url": "",
             "btn_as_link": true
           }
         },
@@ -85,7 +85,7 @@
             "heading_size": "h2",
             "description": "<p>Are you a content creator with over 1000 subscribers? We're here to support you with our partnership offer.<\/p>",
             "link_text": "More Info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-tiktok",
+            "link_url": "",
             "btn_as_link": true
           }
         },
@@ -97,7 +97,7 @@
             "heading_size": "h2",
             "description": "<p>For any request to modify an order or for information about an order in progress.<\/p>",
             "link_text": "More Info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-commande",
+            "link_url": "",
             "btn_as_link": true
           }
         },
@@ -109,8 +109,8 @@
             "heading_size": "h5",
             "description": "<p>Companies, administrations, schools, ask for your quote now.<\/p>",
             "link_text": "More info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-devis",
-            "btn_as_link": true
+            "link_url": "",
+            "btn_as_link": false
           }
         },
         "c2d86a28-49b5-4595-a57a-93215a2c1c8c": {
@@ -120,9 +120,9 @@
             "heading": "Delivery",
             "heading_size": "h2",
             "description": "<p>For any request concerning the delivery of your order.<\/p>",
-            "link_text": "More Info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-livraison",
-            "btn_as_link": true
+            "link_text": "",
+            "link_url": "",
+            "btn_as_link": false
           }
         },
         "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d": {
@@ -133,8 +133,8 @@
             "heading_size": "h2",
             "description": "<p>To request a partnership, join the Rhinos family. No need to have thousands of subscribers!<\/p>",
             "link_text": "More info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-partenariat",
-            "btn_as_link": true
+            "link_url": "",
+            "btn_as_link": false
           }
         },
         "00afa338-1be3-4fc0-b14f-36e9c804fe5e": {
@@ -145,8 +145,8 @@
             "heading_size": "h2",
             "description": "<p>DescriptionTo request an invoice for a past order.<\/p>",
             "link_text": "More info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-facture",
-            "btn_as_link": true
+            "link_url": "",
+            "btn_as_link": false
           }
         },
         "5f94e21a-4d21-447f-9fb3-18583b90dc58": {
@@ -156,9 +156,9 @@
             "heading": "Cashback",
             "heading_size": "h2",
             "description": "<p>For any request concerning the use of cashback or to report a bug.<\/p>",
-            "link_text": "More Info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-cashback",
-            "btn_as_link": true
+            "link_text": "",
+            "link_url": "",
+            "btn_as_link": false
           }
         },
         "96877818-8a7f-4bd1-b707-be0e9fde0327": {
@@ -169,8 +169,8 @@
             "heading_size": "h2",
             "description": "<p>Interested in becoming a Wanhao France dealer? Contact us now!<\/p>",
             "link_text": "More info",
-            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-revendeur",
-            "btn_as_link": true
+            "link_url": "",
+            "btn_as_link": false
           }
         }
       },
