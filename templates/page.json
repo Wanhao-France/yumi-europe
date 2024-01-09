@@ -217,11 +217,20 @@
             "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/flsun-superracer-34",
             "button_size": "small"
           }
+        },
+        "f1b66fe5-c7c6-435f-9b52-d03f5b8c5d46": {
+          "type": "button",
+          "settings": {
+            "btn_text": "Flsun V400\/V600",
+            "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/flsun-v400-bien-demarrer-35",
+            "button_size": "small"
+          }
         }
       },
       "block_order": [
         "template--15572366131311__22aaea9a-db73-41c4-8af6-33dd16618e62-heading-1",
-        "9b02c8ad-1a01-4e48-a70f-571740c7888c"
+        "9b02c8ad-1a01-4e48-a70f-571740c7888c",
+        "f1b66fe5-c7c6-435f-9b52-d03f5b8c5d46"
       ],
       "settings": {
         "enable_fullwidth": false,
