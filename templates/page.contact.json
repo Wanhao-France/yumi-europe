@@ -120,9 +120,9 @@
             "heading": "Delivery",
             "heading_size": "h2",
             "description": "<p>For any request concerning the delivery of your order.<\/p>",
-            "link_text": "",
-            "link_url": "",
-            "btn_as_link": false
+            "link_text": "More Info",
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-livraison",
+            "btn_as_link": true
           }
         },
         "e72a4e7e-7f26-46fc-ba20-e233cdd2c70d": {
