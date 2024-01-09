@@ -177,7 +177,7 @@
         "template--15572366131311__fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4-heading-1": {
           "type": "heading",
           "settings": {
-            "heading": "Image with text",
+            "heading": "Mega Kit",
             "seo_heading": "h2"
           }
         },
@@ -188,11 +188,20 @@
             "btn_link": "https:\/\/www.dropbox.com\/scl\/fi\/21nazpuz64p4j7f8c7mwb\/D12-230-EVO-FR-V1.7.pdf?rlkey=h911mg1c3tfnpar7wnahjcla5&dl=1",
             "button_size": "small"
           }
+        },
+        "0fda2227-98c2-43d9-9ea9-28ab2cc9e0b5": {
+          "type": "button",
+          "settings": {
+            "btn_text": "Firmware",
+            "btn_link": "https:\/\/www.dropbox.com\/sh\/drf4phxth67dx9x\/AAAbua5YVtsCPFy_kkQQ5Nhma?dl=1",
+            "button_size": "small"
+          }
         }
       },
       "block_order": [
         "template--15572366131311__fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4-heading-1",
-        "39c60a32-3fa5-43f2-bfd6-f89ff2f5b250"
+        "39c60a32-3fa5-43f2-bfd6-f89ff2f5b250",
+        "0fda2227-98c2-43d9-9ea9-28ab2cc9e0b5"
       ],
       "settings": {
         "enable_fullwidth": false,
