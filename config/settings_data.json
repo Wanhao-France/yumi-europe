@@ -62,6 +62,7 @@
     "price_font_family": "--font-family",
     "show_similar": false,
     "show_grid_pickup": false,
+    "show_similar_text": false,
     "similar_condition": "type",
     "show_reviews": true,
     "show_inventory": true,
