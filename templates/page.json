@@ -123,41 +123,12 @@
             "btn_text_m": "#000000",
             "btn_border_m": "#ffffff"
           }
-        },
-        "a0028d5e-154f-4ed3-bf78-9420d4f23b9b": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/FLSV400b.jpg",
-            "banner_subtitle": "",
-            "banner_title": "FLSUN",
-            "seo_heading": "h2",
-            "desktop_title_size": 70,
-            "mobile_title_size": 36,
-            "button_text": "Instruction & Training",
-            "button_link": "shopify:\/\/collections\/all",
-            "button_size": "default",
-            "mobile_content_position": "flex-end",
-            "mobile_content_alignment": "flex-start",
-            "title_color": "#000000",
-            "subtitle_color": "#9D6348",
-            "subtitle_bgcolor": "#F4EAE2",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_border": "#000000",
-            "title_color_m": "#ffffff",
-            "subtitle_color_m": "#9D6348",
-            "subtitle_bgcolor_m": "#FFF9EF",
-            "btn_bg_m": "#ffffff",
-            "btn_text_m": "#000000",
-            "btn_border_m": "#ffffff"
-          }
         }
       },
       "block_order": [
         "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-1",
         "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2",
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3",
-        "a0028d5e-154f-4ed3-bf78-9420d4f23b9b"
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3"
       ],
       "settings": {
         "arrows": false,
@@ -228,12 +199,53 @@
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
       }
+    },
+    "22aaea9a-db73-41c4-8af6-33dd16618e62": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--15572366131311__22aaea9a-db73-41c4-8af6-33dd16618e62-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "FLSUN",
+            "seo_heading": "h2"
+          }
+        },
+        "9b02c8ad-1a01-4e48-a70f-571740c7888c": {
+          "type": "button",
+          "settings": {
+            "btn_text": "Flsun SR",
+            "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/flsun-superracer-34",
+            "button_size": "small"
+          }
+        }
+      },
+      "block_order": [
+        "template--15572366131311__22aaea9a-db73-41c4-8af6-33dd16618e62-heading-1",
+        "9b02c8ad-1a01-4e48-a70f-571740c7888c"
+      ],
+      "settings": {
+        "enable_fullwidth": false,
+        "image": "shopify:\/\/shop_images\/FLSV400b.jpg",
+        "image_shadow": false,
+        "enable_image_animation": true,
+        "image_alignment": "right",
+        "image_height": "aspect",
+        "content_position": "center",
+        "bgcolor": "primary",
+        "image_shadow_color": "#dddddd",
+        "section_visibility": "always",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
     "main-page",
     "273531e5-c4fc-46d4-9c91-bcb31a640852",
     "97fad72d-5efb-4cb9-8561-e39332bd2a56",
-    "fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4"
+    "fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4",
+    "22aaea9a-db73-41c4-8af6-33dd16618e62"
   ]
 }
