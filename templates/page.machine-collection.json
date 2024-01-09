@@ -11,141 +11,38 @@
         "textcolor": "#181818"
       }
     },
-    "273531e5-c4fc-46d4-9c91-bcb31a640852": {
-      "type": "rich-text",
-      "blocks": {
-        "template--15143329038401__273531e5-c4fc-46d4-9c91-bcb31a640852-richtext-1": {
-          "type": "richtext",
-          "settings": {
-            "heading": "BIEN DÉMARRER AVEC VOS PRODUITS WANHAO",
-            "seo_heading": "h2",
-            "content": "<p><strong>Découvrez les ressources essentielles pour le fonctionnement de votre imprimante 3D et apprenez les bases de l'impression 3D. Sur les liens suivants, vous trouverez tous les outils nécessaires pour maximiser votre expérience :<\/strong><\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "template--15143329038401__273531e5-c4fc-46d4-9c91-bcb31a640852-richtext-1"
-      ],
+    "3e30a493-698a-44f6-93bc-5b42a6872bed": {
+      "type": "featured-collection",
       "settings": {
-        "content_width": "container sm-container",
-        "content_alignment": "center",
-        "bgcolor": "primary",
+        "collection": "yumi-laser-l-a4-laser",
+        "products_count": 15,
+        "slider_full_width": true,
+        "product_as_stacked": false,
+        "over_image_product": true,
+        "product_grid_radius_desktop": 0,
+        "product_grid_radius_mobile": 0,
+        "product_grid_spacing_desktop": 0,
+        "product_grid_spacing_mobile": 10,
+        "heading": "All Products",
+        "seo_heading": "h2",
+        "heading_size": "h2",
+        "subheading": "",
+        "collection_heading": "",
+        "hide_description": true,
+        "collection_desc": "",
+        "bgcolor": "gradient",
+        "collection_title_color": "#efb34c",
+        "collection_desc_color": "#000000",
         "section_visibility": "always",
-        "top_space_desktop": 50,
+        "top_space_desktop": 0,
         "bottom_space_desktop": 0,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
-      }
-    },
-    "97fad72d-5efb-4cb9-8561-e39332bd2a56": {
-      "type": "split-slider",
-      "blocks": {
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Rose.jpg",
-            "banner_subtitle": "",
-            "banner_title": "",
-            "seo_heading": "h2",
-            "desktop_title_size": 46,
-            "mobile_title_size": 36,
-            "button_text": "Duplicator 12-230",
-            "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-1",
-            "button_size": "large",
-            "mobile_content_position": "center",
-            "mobile_content_alignment": "center",
-            "title_color": "#000000",
-            "subtitle_color": "#9D6348",
-            "subtitle_bgcolor": "#F4EAE2",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_border": "#000000",
-            "title_color_m": "#ffffff",
-            "subtitle_color_m": "#9D6348",
-            "subtitle_bgcolor_m": "#FFF9EF",
-            "btn_bg_m": "#ffffff",
-            "btn_text_m": "#000000",
-            "btn_border_m": "#ffffff"
-          }
-        },
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/D12_300_Pro_Max_1_2_da1a883d-7244-478e-a2b4-787573fb2e7d.jpg",
-            "banner_subtitle": "",
-            "banner_title": "",
-            "seo_heading": "h2",
-            "desktop_title_size": 70,
-            "mobile_title_size": 36,
-            "button_text": "Duplicator 12-300",
-            "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-300-300-pro-max-31",
-            "button_size": "large",
-            "mobile_content_position": "flex-end",
-            "mobile_content_alignment": "flex-start",
-            "title_color": "#000000",
-            "subtitle_color": "#9D6348",
-            "subtitle_bgcolor": "#F4EAE2",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_border": "#000000",
-            "title_color_m": "#ffffff",
-            "subtitle_color_m": "#9D6348",
-            "subtitle_bgcolor_m": "#FFF9EF",
-            "btn_bg_m": "#ffffff",
-            "btn_text_m": "#000000",
-            "btn_border_m": "#ffffff"
-          }
-        },
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/W3-DD12500-PROMAX-7_b1f4f027-bc60-4c89-b67c-67767963231b.jpg",
-            "banner_subtitle": "",
-            "banner_title": "",
-            "seo_heading": "h2",
-            "desktop_title_size": 70,
-            "mobile_title_size": 36,
-            "button_text": "Duplicator 12-500",
-            "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-500-pro-max-33",
-            "button_size": "large",
-            "mobile_content_position": "flex-end",
-            "mobile_content_alignment": "flex-start",
-            "title_color": "#000000",
-            "subtitle_color": "#9D6348",
-            "subtitle_bgcolor": "#F4EAE2",
-            "btn_bg": "#000000",
-            "btn_text": "#ffffff",
-            "btn_border": "#000000",
-            "title_color_m": "#ffffff",
-            "subtitle_color_m": "#9D6348",
-            "subtitle_bgcolor_m": "#FFF9EF",
-            "btn_bg_m": "#ffffff",
-            "btn_text_m": "#000000",
-            "btn_border_m": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-1",
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2",
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3"
-      ],
-      "settings": {
-        "arrows": false,
-        "thumbnails": true,
-        "rotate": false,
-        "interval": 5,
-        "desktop_height": "750px",
-        "mobile_height": "550px",
-        "bgcolor": "",
-        "enable_overlay": true,
-        "overlaycolor": "#000000"
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
       }
     }
   },
   "order": [
     "main-page",
-    "273531e5-c4fc-46d4-9c91-bcb31a640852",
-    "97fad72d-5efb-4cb9-8561-e39332bd2a56"
+    "3e30a493-698a-44f6-93bc-5b42a6872bed"
   ]
 }
