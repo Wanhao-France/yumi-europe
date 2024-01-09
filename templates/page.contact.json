@@ -106,7 +106,7 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/liste-de-controle.png",
             "heading": "Request an offer",
-            "heading_size": "h2",
+            "heading_size": "h5",
             "description": "<p>Companies, administrations, schools, ask for your quote now.<\/p>",
             "link_text": "More info",
             "link_url": "",
