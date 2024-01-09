@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "seo_heading": "h2",
+        "banner_height_desktop": "auto",
+        "banner_height_mobile": "auto",
+        "bgcolor": "#f5efec",
+        "textcolor": "#181818"
+      }
+    },
+    "3e30a493-698a-44f6-93bc-5b42a6872bed": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "yumi-laser-l-a4-laser",
+        "products_count": 15,
+        "slider_full_width": true,
+        "product_as_stacked": false,
+        "over_image_product": true,
+        "product_grid_radius_desktop": 0,
+        "product_grid_radius_mobile": 0,
+        "product_grid_spacing_desktop": 0,
+        "product_grid_spacing_mobile": 10,
+        "heading": "All Products",
+        "seo_heading": "h2",
+        "heading_size": "h2",
+        "subheading": "",
+        "collection_heading": "",
+        "hide_description": true,
+        "collection_desc": "",
+        "bgcolor": "gradient",
+        "collection_title_color": "#efb34c",
+        "collection_desc_color": "#000000",
+        "section_visibility": "always",
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "main-page",
+    "3e30a493-698a-44f6-93bc-5b42a6872bed"
+  ]
+}
