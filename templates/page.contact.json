@@ -169,8 +169,8 @@
             "heading_size": "h2",
             "description": "<p>Interested in becoming a Wanhao France dealer? Contact us now!<\/p>",
             "link_text": "More info",
-            "link_url": "",
-            "btn_as_link": false
+            "link_url": "https:\/\/formation.wanhaofrance.com\/en_GB\/administratif-revendeur",
+            "btn_as_link": true
           }
         }
       },
