@@ -60,7 +60,7 @@
     "saved_amount_style": "currency",
     "option_title_font_family": "--font-family",
     "price_font_family": "--font-family",
-    "show_similar": true,
+    "show_similar": false,
     "show_grid_pickup": false,
     "similar_condition": "type",
     "show_reviews": true,
