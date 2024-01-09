@@ -170,11 +170,52 @@
         "enable_overlay": true,
         "overlaycolor": "#000000"
       }
+    },
+    "fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--15572366131311__fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image with text",
+            "seo_heading": "h2"
+          }
+        },
+        "39c60a32-3fa5-43f2-bfd6-f89ff2f5b250": {
+          "type": "button",
+          "settings": {
+            "btn_text": "Installation instructions PDF",
+            "btn_link": "https:\/\/www.dropbox.com\/scl\/fi\/21nazpuz64p4j7f8c7mwb\/D12-230-EVO-FR-V1.7.pdf?rlkey=h911mg1c3tfnpar7wnahjcla5&dl=1",
+            "button_size": "small"
+          }
+        }
+      },
+      "block_order": [
+        "template--15572366131311__fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4-heading-1",
+        "39c60a32-3fa5-43f2-bfd6-f89ff2f5b250"
+      ],
+      "settings": {
+        "enable_fullwidth": false,
+        "image": "shopify:\/\/shop_images\/W3-DD12230-EVOMEGAKIT.jpg",
+        "image_shadow": false,
+        "enable_image_animation": true,
+        "image_alignment": "left",
+        "image_height": "aspect",
+        "content_position": "center",
+        "bgcolor": "primary",
+        "image_shadow_color": "#dddddd",
+        "section_visibility": "always",
+        "top_space_desktop": 60,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
     "main-page",
     "273531e5-c4fc-46d4-9c91-bcb31a640852",
-    "97fad72d-5efb-4cb9-8561-e39332bd2a56"
+    "97fad72d-5efb-4cb9-8561-e39332bd2a56",
+    "fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4"
   ]
 }
