@@ -137,7 +137,7 @@
         "interval": 5,
         "desktop_height": "750px",
         "mobile_height": "550px",
-        "bgcolor": "",
+        "bgcolor": "#ffffff",
         "enable_overlay": true,
         "overlaycolor": "#000000"
       }
