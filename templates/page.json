@@ -196,12 +196,21 @@
             "btn_link": "https:\/\/www.dropbox.com\/sh\/drf4phxth67dx9x\/AAAbua5YVtsCPFy_kkQQ5Nhma?dl=1",
             "button_size": "small"
           }
+        },
+        "0e13a387-d411-4b92-a720-c9a24e8086e0": {
+          "type": "button",
+          "settings": {
+            "btn_text": "E-learning EVO MEGAKIT",
+            "btn_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-evo-megakit-44\/'",
+            "button_size": "small"
+          }
         }
       },
       "block_order": [
         "template--15572366131311__fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4-heading-1",
         "39c60a32-3fa5-43f2-bfd6-f89ff2f5b250",
-        "0fda2227-98c2-43d9-9ea9-28ab2cc9e0b5"
+        "0fda2227-98c2-43d9-9ea9-28ab2cc9e0b5",
+        "0e13a387-d411-4b92-a720-c9a24e8086e0"
       ],
       "settings": {
         "enable_fullwidth": false,
