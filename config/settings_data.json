@@ -270,7 +270,7 @@
     "blocks": {
       "5792010825272225357": {
         "type": "shopify:\/\/apps\/dual-price-display-pro\/blocks\/app-block\/fbd96439-f105-44a6-b4c5-51766faddec4",
-        "disabled": true,
+        "disabled": false,
         "settings": {
         }
       }
