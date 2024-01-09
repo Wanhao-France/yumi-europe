@@ -45,11 +45,11 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/Rose.jpg",
             "banner_subtitle": "",
-            "banner_title": "",
+            "banner_title": "Duplicator 12-230",
             "seo_heading": "h2",
             "desktop_title_size": 46,
             "mobile_title_size": 36,
-            "button_text": "Duplicator 12-230",
+            "button_text": "Instruction & Training",
             "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-1",
             "button_size": "large",
             "mobile_content_position": "center",
@@ -73,11 +73,11 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/D12_300_Pro_Max_1_2_a3c958c0-679c-44dd-9c59-ad7aaf23ec3b.jpg",
             "banner_subtitle": "",
-            "banner_title": "",
+            "banner_title": "Duplicator 12-300",
             "seo_heading": "h2",
             "desktop_title_size": 70,
             "mobile_title_size": 36,
-            "button_text": "Duplicator 12-300",
+            "button_text": "Instruction & Training",
             "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-300-300-pro-max-31",
             "button_size": "large",
             "mobile_content_position": "flex-end",
@@ -101,11 +101,11 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/W3-DD12500-PRODUAL-5_ba8d5c8c-5a7e-46d6-ab5f-da696fd077cc.jpg",
             "banner_subtitle": "",
-            "banner_title": "",
+            "banner_title": "Duplicator 12-500",
             "seo_heading": "h2",
             "desktop_title_size": 70,
             "mobile_title_size": 36,
-            "button_text": "Duplicator 12-500",
+            "button_text": "Instruction & Training",
             "button_link": "https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-500-pro-max-33",
             "button_size": "large",
             "mobile_content_position": "flex-end",
@@ -123,12 +123,41 @@
             "btn_text_m": "#000000",
             "btn_border_m": "#ffffff"
           }
+        },
+        "a0028d5e-154f-4ed3-bf78-9420d4f23b9b": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/FLSV400b.jpg",
+            "banner_subtitle": "Banner Sub Heading Here",
+            "banner_title": "Banner Heading Here",
+            "seo_heading": "h2",
+            "desktop_title_size": 70,
+            "mobile_title_size": 36,
+            "button_text": "Shop Now",
+            "button_link": "shopify:\/\/collections\/all",
+            "button_size": "default",
+            "mobile_content_position": "flex-end",
+            "mobile_content_alignment": "flex-start",
+            "title_color": "#000000",
+            "subtitle_color": "#9D6348",
+            "subtitle_bgcolor": "#F4EAE2",
+            "btn_bg": "#000000",
+            "btn_text": "#ffffff",
+            "btn_border": "#000000",
+            "title_color_m": "#ffffff",
+            "subtitle_color_m": "#9D6348",
+            "subtitle_bgcolor_m": "#FFF9EF",
+            "btn_bg_m": "#ffffff",
+            "btn_text_m": "#000000",
+            "btn_border_m": "#ffffff"
+          }
         }
       },
       "block_order": [
         "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-1",
         "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2",
-        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3"
+        "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3",
+        "a0028d5e-154f-4ed3-bf78-9420d4f23b9b"
       ],
       "settings": {
         "arrows": false,
