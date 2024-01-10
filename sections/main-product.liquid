@@ -147,7 +147,7 @@
             "itemOffered" :
             {
                 "@type" : "Product",
-                "inventoryLevel" : "{{ product.inventory_quantity }}", // Intentar acceder al inventario a través del objeto de producto
+                "inventoryLevel" : "{{ product.inventory_quantity }}", 
                 "url": "{{ shop.url }}{{ product.url }}"
             }
           }{% unless forloop.last %},{% endunless %}
