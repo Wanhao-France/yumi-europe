@@ -114,6 +114,7 @@
     {% endif %}
     <script>
       var productData = {{ product | json }};
+      console.log(productData);
     </script>
     <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
   </body>
