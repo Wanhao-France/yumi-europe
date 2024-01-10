@@ -71,7 +71,7 @@
         "e595c261-0c0f-4446-b008-192bd5de4c69": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\" \n<img\/>\n<p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n<\/div>"
+            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\" \n<img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\"\/>\n<p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n<\/div>"
           }
         }
       },
