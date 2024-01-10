@@ -58,7 +58,7 @@
         "aeb6eed0-2b84-46b3-9ad5-57e9668b0cf1": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n   <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" alt=\"Descripción de la imagen\">\n   <p>PAYEZ EN 3X OU 4X SANS FRAIS DE 100€ À 2000€ TTC<\/p>\n<\/div>"
+            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n   <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" alt=\"Descripción de la imagen\">\n   <p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. VAT<\/p>\n<\/div>"
           }
         },
         "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
