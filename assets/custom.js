@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+  console.log({{ product | json }})
+
   var product = {{ product | json }}; // Asegúrate de que Shopify esté proporcionando el objeto 'product' en esta página
 
   // Accede al elemento con id "display-stock"
