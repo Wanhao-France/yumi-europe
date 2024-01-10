@@ -8857,6 +8857,10 @@ body.account-popup-open .yv-login-popup {
     width: 12rem;
 }
 
+.yv-pricebox-outer > .yv-product-tax-shipping {
+  display:none;
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
