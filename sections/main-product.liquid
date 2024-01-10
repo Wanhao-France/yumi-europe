@@ -89,7 +89,7 @@
         </div
           <p>
             {% if product.available %}
-              {{ product.available }}
+              {{ variant.invetory_quatity }}
               In Stock: {{ product.variants.first.inventory_quantity }} units available
             {% else %}
               Out of Stock
