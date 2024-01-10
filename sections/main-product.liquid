@@ -147,11 +147,10 @@
         {% for variant in product.variants %}
           {
             "@type" : "Offer",
-            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
             "price" : "{{ variant.price | divided_by: 100.00 }}",
             "priceCurrency" : "{{ shop.currency }}",
             "url" : "{{ shop.url }}{{ variant.url }}",
-            "inventoryLevel" : "{{ variant.inventory_quantity }}"
             "itemOffered" :
             {
                 "@type" : "Product",
