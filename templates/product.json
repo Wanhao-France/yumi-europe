@@ -17,7 +17,7 @@
         "01a3560f-b3ed-476f-8702-dae03ae2ff30": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>Pocas unidades<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>Agotado<\/div>{% endif %}"
+            "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>❌ Out of stock<\/div>{% endif %}"
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
