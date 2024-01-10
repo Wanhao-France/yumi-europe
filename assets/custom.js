@@ -48,16 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     var displayStockElement = document.getElementById("display-stock");
 
-    if (productData && productData.variants && productData.variants.length > 0) {
-        var inventoryQuantity = productData.variants[0].inventory_quantity;
-        console.log("Inventory Quantity:", inventoryQuantity); // Imprime la cantidad de inventario en la consola
-
-        if (inventoryQuantity !== undefined) {
-            displayStockElement.innerHTML = "In Stock: " + inventoryQuantity + " units available";
-        } else {
-            displayStockElement.innerHTML = "Out of Stock";
-        }
+    if (productData && productData.available) {
+        displayStockElement.innerHTML = "In Stock: " + productData.variants[0].inventory_quantity + " units available";
     } else {
-        displayStockElement.innerHTML = "Product data not available";
+        displayStockElement.innerHTML = "Out of Stock";
     }
 });
