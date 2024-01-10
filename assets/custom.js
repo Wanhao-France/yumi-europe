@@ -45,18 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-  // Supongamos que tienes una variable llamada 'product' con información sobre el producto
-  var product = {
-    available: true,
-    inventory_quantity: 10 // Ajusta esto según el inventario real del producto
-  };
+  var product = {{ product | json }}; // Asegúrate de que Shopify esté proporcionando el objeto 'product' en esta página
 
   // Accede al elemento con id "display-stock"
   var displayStockElement = document.getElementById("display-stock");
 
   // Verifica la disponibilidad de stock y actualiza el contenido del elemento
   if (product.available) {
-    displayStockElement.innerHTML = "In Stock: " + product.inventory_quantity + " units available";
+    displayStockElement.innerHTML = "In Stock: " + product.variants[0].inventory_quantity + " units available"; // Ajusta esto según la estructura del objeto 'product' en Shopify
   } else {
     displayStockElement.innerHTML = "Out of Stock";
   }
