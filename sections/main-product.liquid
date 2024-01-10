@@ -135,13 +135,6 @@
       ],
     {% endif %}
     "description": "{{ product.description | strip_html | escape }}",
-    {% if product.selected_or_first_available_variant.sku != blank %}
-      "sku": "{{ product.selected_or_first_available_variant.sku }}",
-    {% endif %}
-    "brand": {
-      "@type": "Thing",
-      "name": "{{ product.vendor | escape }}"
-    },
     {% if product.variants %}
       "offers": [
         {% for variant in product.variants %}
@@ -151,29 +144,11 @@
             "price" : "{{ variant.price | divided_by: 100.00 }}",
             "priceCurrency" : "{{ shop.currency }}",
             "url" : "{{ shop.url }}{{ variant.url }}",
-            "inventoryLevel" : "{{ variant.inventory_quantity }}"
             "itemOffered" :
             {
                 "@type" : "Product",
-                {% if variant.image %}
-                  "image": "http:{{ variant.image.src | image_url }}",
-                {% endif %}
-                {% if variant.title != blank %}
-                  "name" : "{{ variant.title | strip_html | escape }}",
-                {% endif %}
-                {% if variant.sku != blank %}
-                  "sku": "{{ variant.sku }}",
-                {% endif %}
-                {% if variant.weight != blank %}
-                  "weight": {
-                    "@type": "QuantitativeValue",
-                    {% if variant.weight_unit != blank %}
-                      "unitCode": "{{ variant.weight_unit }}",
-                    {% endif %}
-                    "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
-                  },
-                {% endif %}
-                "url": "{{ shop.url }}{{ variant.url }}"
+                "inventoryLevel" : "{{ product.inventory_quantity }}", // Intentar acceder al inventario a través del objeto de producto
+                "url": "{{ shop.url }}{{ product.url }}"
             }
           }{% unless forloop.last %},{% endunless %}
         {% endfor %}
@@ -181,6 +156,7 @@
     {% endif %}
   }
 </script>
+
 
 <script src="{{ 'fancybox.min.js' | asset_url }}" defer></script>
 <script src="{{ 'product.js' | asset_url }}" defer></script>
