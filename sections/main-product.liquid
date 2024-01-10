@@ -86,7 +86,15 @@
               -%}
             </div>
           {%- endif -%}
-        </div>
+        </div
+          <p>
+            {% if product.available %}
+              In Stock: {{ product.variants.first.inventory_quantity }} units available
+            {% else %}
+              Out of Stock
+            {% endif %}
+          </p>
+
       </div>
     </div>
   </div>
