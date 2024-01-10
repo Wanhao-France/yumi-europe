@@ -14,6 +14,12 @@
           "settings": {
           }
         },
+        "aeb6eed0-2b84-46b3-9ad5-57e9668b0cf1": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n   <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" alt=\"Descripción de la imagen\">\n   <p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. VAT<\/p>\n<\/div>"
+          }
+        },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
           "type": "sku",
           "settings": {
@@ -55,36 +61,23 @@
             "countdown_title": ""
           }
         },
-        "aeb6eed0-2b84-46b3-9ad5-57e9668b0cf1": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n   <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" alt=\"Descripción de la imagen\">\n   <p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. VAT<\/p>\n<\/div>"
-          }
-        },
         "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
           "type": "review-star",
           "settings": {
-          }
-        },
-        "6d8bf95e-5e3f-44b9-9c7e-4d9aac4b47b3": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": ""
           }
         }
       },
       "block_order": [
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
+        "aeb6eed0-2b84-46b3-9ad5-57e9668b0cf1",
         "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
         "16819786-9d1e-449d-966d-08d21e1c91af",
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
-        "aeb6eed0-2b84-46b3-9ad5-57e9668b0cf1",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
-        "6d8bf95e-5e3f-44b9-9c7e-4d9aac4b47b3"
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33"
       ],
       "custom_css": [
 
