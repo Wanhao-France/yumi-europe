@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (productData && productData.variants && productData.variants.length > 0) {
         var inventoryQuantity = productData.variants[0].inventory_quantity;
+        console.log("Inventory Quantity:", inventoryQuantity); // Imprime la cantidad de inventario en la consola
+
         if (inventoryQuantity !== undefined) {
             displayStockElement.innerHTML = "In Stock: " + inventoryQuantity + " units available";
         } else {
