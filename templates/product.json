@@ -65,6 +65,12 @@
           "type": "review-star",
           "settings": {
           }
+        },
+        "d9f7768a-bd99-466f-9731-c11cbc9e6d12": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id=\"pay-credit-element\" \nclass=\"container__pay-3-fois\"\n>\n<img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\"\/>\n<p>\nPAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX\n<\/p>\n<\/div>"
+          }
         }
       },
       "block_order": [
@@ -77,7 +83,8 @@
         "16819786-9d1e-449d-966d-08d21e1c91af",
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33"
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
+        "d9f7768a-bd99-466f-9731-c11cbc9e6d12"
       ],
       "custom_css": [
 
