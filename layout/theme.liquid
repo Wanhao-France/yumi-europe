@@ -112,6 +112,9 @@
         </div>
       </div>
     {% endif %}
+    <script>
+      var productData = {{ product | json }};
+    </script>
     <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
