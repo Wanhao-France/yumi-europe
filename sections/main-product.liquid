@@ -136,6 +136,7 @@
     {% endif %}
     "description": "{{ product.description | strip_html | escape }}",
     {% if product.selected_or_first_available_variant.sku != blank %}
+    
       "sku": "{{ product.selected_or_first_available_variant.sku }}",
     {% endif %}
     "brand": {
@@ -147,31 +148,32 @@
         {% for variant in product.variants %}
           {
             "@type" : "Offer",
-            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",  // Modificado para usar la disponibilidad de la variante
+            "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
             "price" : "{{ variant.price | divided_by: 100.00 }}",
             "priceCurrency" : "{{ shop.currency }}",
             "url" : "{{ shop.url }}{{ variant.url }}",
-            "itemOffered" : {
-              "@type" : "Product",
-              {% if variant.image %}
-                "image": "http:{{ variant.image.src | image_url }}",
-              {% endif %}
-              {% if variant.title != blank %}
-                "name" : "{{ variant.title | strip_html | escape }}",
-              {% endif %}
-              {% if variant.sku != blank %}
-                "sku": "{{ variant.sku }}",
-              {% endif %}
-              {% if variant.weight != blank %}
-                "weight": {
-                  "@type": "QuantitativeValue",
-                  {% if variant.weight_unit != blank %}
-                    "unitCode": "{{ variant.weight_unit }}",
-                  {% endif %}
-                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
-                },
-              {% endif %}
-              "url": "{{ shop.url }}{{ variant.url }}"
+            "itemOffered" :
+            {
+                "@type" : "Product",
+                {% if variant.image %}
+                  "image": "http:{{ variant.image.src | image_url }}",
+                {% endif %}
+                {% if variant.title != blank %}
+                  "name" : "{{ variant.title | strip_html | escape }}",
+                {% endif %}
+                {% if variant.sku != blank %}
+                  "sku": "{{ variant.sku }}",
+                {% endif %}
+                {% if variant.weight != blank %}
+                  "weight": {
+                    "@type": "QuantitativeValue",
+                    {% if variant.weight_unit != blank %}
+                      "unitCode": "{{ variant.weight_unit }}",
+                    {% endif %}
+                    "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
+                  },
+                {% endif %}
+                "url": "{{ shop.url }}{{ variant.url }}"
             }
           }{% unless forloop.last %},{% endunless %}
         {% endfor %}
@@ -179,7 +181,6 @@
     {% endif %}
   }
 </script>
-
 
 <script src="{{ 'fancybox.min.js' | asset_url }}" defer></script>
 <script src="{{ 'product.js' | asset_url }}" defer></script>
