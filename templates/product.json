@@ -18,8 +18,8 @@
           "type": "inventory_status",
           "settings": {
             "minimun_inventory": 20,
-            "inventory_available_status": "{{ product.title }}In Stock",
-            "inventory_less_status": "{{ product.title }}Only a few are left"
+            "inventory_available_status": "In stock!",
+            "inventory_less_status": "Act quickly! Limited stock remaining for {{ product.title }}"
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
