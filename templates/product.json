@@ -18,7 +18,7 @@
           "type": "inventory_status",
           "settings": {
             "minimun_inventory": 20,
-            "inventory_available_status": "In stock!",
+            "inventory_available_status": "In stock!{{ product.metafields[\"shopify--discovery--product_recommendation\"].related_products_display.value }}",
             "inventory_less_status": "Act quickly! Limited stock remaining for {{ product.title }}"
           }
         },
