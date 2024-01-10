@@ -65,6 +65,12 @@
           "type": "review-star",
           "settings": {
           }
+        },
+        "6d8bf95e-5e3f-44b9-9c7e-4d9aac4b47b3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": ""
+          }
         }
       },
       "block_order": [
@@ -77,7 +83,8 @@
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
         "aeb6eed0-2b84-46b3-9ad5-57e9668b0cf1",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33"
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
+        "6d8bf95e-5e3f-44b9-9c7e-4d9aac4b47b3"
       ],
       "custom_css": [
 
