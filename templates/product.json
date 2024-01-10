@@ -74,12 +74,6 @@
           "settings": {
             "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n  <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" alt=\"Credit Card Icon\"\/>\n  <p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n<\/div>"
           }
-        },
-        "20b0bd74-e73c-4f38-ac8e-7bb9b42c567c": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"stock-info\">\n  {% if product.available %}\n    <p>In Stock: {{ product.inventory_quantity }} units available<\/p>\n  {% else %}\n    <p>Out of Stock<\/p>\n  {% endif %}\n<\/div>"
-          }
         }
       },
       "block_order": [
@@ -93,8 +87,7 @@
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
         "c069e4ad-5908-400d-a0ad-e071aa04cf33",
-        "e595c261-0c0f-4446-b008-192bd5de4c69",
-        "20b0bd74-e73c-4f38-ac8e-7bb9b42c567c"
+        "e595c261-0c0f-4446-b008-192bd5de4c69"
       ],
       "custom_css": [
 
