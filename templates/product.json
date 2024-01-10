@@ -17,9 +17,9 @@
         "e4931bd9-b123-485b-8e75-011467bad011": {
           "type": "inventory_status",
           "settings": {
-            "minimun_inventory": 10,
-            "inventory_available_status": "",
-            "inventory_less_status": ""
+            "minimun_inventory": 20,
+            "inventory_available_status": "{{ product.title }}",
+            "inventory_less_status": "{{ product.title }}"
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
