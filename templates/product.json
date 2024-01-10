@@ -14,12 +14,10 @@
           "settings": {
           }
         },
-        "e4931bd9-b123-485b-8e75-011467bad011": {
-          "type": "inventory_status",
+        "01a3560f-b3ed-476f-8702-dae03ae2ff30": {
+          "type": "custom_liquid",
           "settings": {
-            "minimun_inventory": 20,
-            "inventory_available_status": "In stock!{{ product.metafields[\"shopify--discovery--product_recommendation\"].related_products_display.value }}",
-            "inventory_less_status": "Act quickly! Limited stock remaining for {{ product.title }}"
+            "custom_liquid": "{% if product.available %}<div id=\"container-stock\">{{ product.selected_or_first_available_variant.inventory_quantity }} unidades disponibles<\/div>{% else %}<div id=\"container-stock\">Agotado<\/div>{% endif %}"
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
@@ -35,7 +33,6 @@
         },
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9": {
           "type": "quantity",
-          "disabled": true,
           "settings": {
           }
         },
@@ -68,33 +65,19 @@
           "type": "review-star",
           "settings": {
           }
-        },
-        "e595c261-0c0f-4446-b008-192bd5de4c69": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n  <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" alt=\"Credit Card Icon\"\/>\n  <p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n<\/div>"
-          }
-        },
-        "5b64db52-10ef-4674-9b04-599f6b7845f7": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div id=\"display-stock\"> <\/div>"
-          }
         }
       },
       "block_order": [
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
-        "e4931bd9-b123-485b-8e75-011467bad011",
+        "01a3560f-b3ed-476f-8702-dae03ae2ff30",
         "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
         "16819786-9d1e-449d-966d-08d21e1c91af",
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
-        "e595c261-0c0f-4446-b008-192bd5de4c69",
-        "5b64db52-10ef-4674-9b04-599f6b7845f7"
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33"
       ],
       "custom_css": [
 
