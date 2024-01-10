@@ -14,10 +14,12 @@
           "settings": {
           }
         },
-        "01a3560f-b3ed-476f-8702-dae03ae2ff30": {
-          "type": "custom_liquid",
+        "e4931bd9-b123-485b-8e75-011467bad011": {
+          "type": "inventory_status",
           "settings": {
-            "custom_liquid": "<div id=\"container-stock><\/div>"
+            "minimun_inventory": 10,
+            "inventory_available_status": "",
+            "inventory_less_status": ""
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
@@ -70,7 +72,7 @@
       "block_order": [
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
-        "01a3560f-b3ed-476f-8702-dae03ae2ff30",
+        "e4931bd9-b123-485b-8e75-011467bad011",
         "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
