@@ -43,3 +43,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+
+  // Supongamos que tienes una variable llamada 'product' con información sobre el producto
+  var product = {
+    available: true,
+    inventory_quantity: 10 // Ajusta esto según el inventario real del producto
+  };
+
+  // Accede al elemento con id "display-stock"
+  var displayStockElement = document.getElementById("display-stock");
+
+  // Verifica la disponibilidad de stock y actualiza el contenido del elemento
+  if (product.available) {
+    displayStockElement.innerHTML = "In Stock: " + product.inventory_quantity + " units available";
+  } else {
+    displayStockElement.innerHTML = "Out of Stock";
+  }
