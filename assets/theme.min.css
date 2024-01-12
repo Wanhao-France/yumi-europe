@@ -8810,26 +8810,28 @@ body.account-popup-open .yv-login-popup {
   margin-right: 1rem;
 }
 
-.container__pay-3-fois > .card-info {
+.card-info {
   position: absolute;
-  top: -20px;
-  left: 10px;
+  top: 0;
+  left: 0;
   background-color: transparent;
   color: #fff;
-  padding: 5px;
-  border: none;
+  padding: 1rem;
+  border: 1px solid #ccc;
   border-radius: 5px;
   white-space: pre-line;
   z-index: 9999;
   font-size: 16px;
   font-weight: bold;
   line-height: 1;
-  display: block;
-  padding: 1rem;
+  transform: rotateY(180deg);
+  transform-origin: top left;
+  backface-visibility: hidden;
   display: none;
 }
 
-.container__pay-3-fois.hovered > .card-info {
+.container__pay-3-fois.hovered .card-info {
+  transform: rotateY(0deg);
   display: block;
 }
 
