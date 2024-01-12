@@ -8875,7 +8875,7 @@ body.account-popup-open .yv-login-popup {
     position: sticky;
     top: 0;
     background-color: #fff; 
-    z-index: -1; 
+    z-index: 999; 
 }
 
 @media (max-width:767px) {
