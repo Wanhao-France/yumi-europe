@@ -8885,6 +8885,7 @@ body.account-popup-open .yv-login-popup {
     background-color: #fff; /* Cambia el color de fondo según tus preferencias */
     color: #333; /* Cambia el color del texto según tus preferencias */
     border: 1px solid #ccc;
+    min-width: auto !important;
 }
 
 @media (max-width:767px) {
