@@ -8881,6 +8881,12 @@ body.account-popup-open .yv-login-popup {
     display: none;
 }
 
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f {
+    background-color: #fff; /* Cambia el color de fondo según tus preferencias */
+    color: #333; /* Cambia el color del texto según tus preferencias */
+    border: 1px solid #ccc;
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
