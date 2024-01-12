@@ -8814,9 +8814,6 @@ body.account-popup-open .yv-login-popup {
     text-wrap: balance;
 }
 
-.pay-credit-element {
-    z-index: 999;
-}
 
 .warning-box {
     display: flex;
