@@ -8798,51 +8798,23 @@ body.account-popup-open .yv-login-popup {
 
 /* Custom CSS */
 .container__pay-3-fois {
-  position: relative;
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
+    position: relative;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
 }
 
-.card-container {
-  position: relative;
-  width: 200px; /* Ajusta el ancho de la tarjeta */
-  height: 120px; /* Ajusta la altura de la tarjeta */
-  perspective: 1000px; /* Agrega perspectiva para el efecto 3D */
+.container__pay-3-fois>img {
+    width: 5rem;
+    margin-right: 1rem;
 }
 
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  color: #fff;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  white-space: pre-line;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-  backface-visibility: hidden; /* Oculta la parte posterior de la tarjeta durante la rotación */
-  transition: transform 0.3s ease; /* Agrega una transición para suavizar la rotación */
+.container__pay-3-fois>p {
+    font-size: 1.2rem;
+    text-wrap: balance;
 }
 
-.card-back {
-  transform: rotateY(180deg);
-  background-color: #000;
-  display: none; /* Inicialmente oculta el lado posterior */
-}
 
-.container__pay-3-fois:hover .card-front {
-  transform: rotateY(180deg);
-}
-
-.container__pay-3-fois:hover .card-back {
-  transform: rotateY(360deg);
-  display: block; /* Muestra el lado posterior al hacer hover */
-}
 .warning-box {
     display: flex;
     align-items: flex-start;
