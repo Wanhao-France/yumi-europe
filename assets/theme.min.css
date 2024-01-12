@@ -8861,7 +8861,7 @@ body.account-popup-open .yv-login-popup {
   display:none;
 }
 
-.AirReviews-Blocks--PoweredBy span {
+.AirReviews-Blocks--PoweredBy > span {
     display: none !important;
 }
 
