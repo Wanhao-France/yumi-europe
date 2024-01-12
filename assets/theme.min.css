@@ -8827,13 +8827,17 @@ body.account-popup-open .yv-login-popup {
   transform: rotateY(180deg);
   transform-origin: top left;
   backface-visibility: hidden;
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .container__pay-3-fois.hovered .card-info {
   transform: rotateY(0deg);
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
+
 
 
 
