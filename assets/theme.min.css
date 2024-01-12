@@ -8886,6 +8886,29 @@ body.account-popup-open .yv-login-popup {
     color: #333; /* Cambia el color del texto según tus preferencias */
     border: 1px solid #ccc;
     min-width: auto !important;
+    text-decoration: none;
+    padding: 10px 20px;
+    min-width: 160px;
+    text-align: center;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .6s ease-out;
+    font-size: 14px;
+    min-height: 48px;
+    line-height: 1;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--buttonRadius);
+    background-color: var(--colorBtnPrimary);
+    border: 1px solid var(--colorBtnPrimaryBorder);
+    font-family: var(--buttonFontFamily);
+    font-weight: var(--buttonFontWeight);
+    font-style: var(--buttonFontStyle);
+    color: var(--colorBtnPrimaryText);
+    overflow: hidden;
+    z-index: 1;
 }
 
 @media (max-width:767px) {
