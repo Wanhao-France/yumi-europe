@@ -8891,4 +8891,8 @@ body.account-popup-open .yv-login-popup {
     .banner-fullwidth-slides .flickity-button {
         bottom: 20px;
     }
+    .AirReviews-Blocks__LayoutList {
+          display:flex;
+          flex-direction: column;
+    }
 }
