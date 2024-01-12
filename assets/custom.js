@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
         beforeElement.style.border = 'none';
         beforeElement.style.borderRadius = '5px';
         beforeElement.style.whiteSpace = 'pre-line';
-        beforeElement.style.zIndex = '9999'; // Ajusta el zIndex a un valor alto para asegurar que esté sobre todo
+        beforeElement.style.zIndex = '9999';
         beforeElement.style.fontSize = '16px';
         beforeElement.style.fontWeight = 'bold';
         beforeElement.style.lineHeight = '1';
         beforeElement.style.display = 'block';
         beforeElement.style.padding = '1rem';
-        beforeElement.style.transition = 'opacity 0.3s ease'; // Agregada propiedad de transición
+        beforeElement.style.transition = 'opacity 0.3s ease';
 
         const priceText = productPrice.textContent;
         const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 beforeElement.style.opacity = '0'; // Inicialmente oculto
                 container.insertBefore(beforeElement, container.firstChild);
 
-                // Aplicar el cambio de opacidad después de un pequeño retraso
-                setTimeout(function () {
-                    beforeElement.style.opacity = '1';
-                    container.style.opacity = '0'; // Oculta el contenedor original
-                }, 10);
+                // Forzar un nuevo cálculo de estilo antes de aplicar la opacidad
+                window.getComputedStyle(beforeElement).opacity;
+
+                beforeElement.style.opacity = '1'; // Hace visible el nuevo elemento
+                container.style.opacity = '0'; // Oculta el contenedor original
             });
 
             container.addEventListener('mouseleave', function () {
@@ -64,4 +64,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
 
