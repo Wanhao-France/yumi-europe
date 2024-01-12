@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (container && productPrice) {
         const beforeElement = document.createElement('div');
         beforeElement.style.position = 'absolute';
-        beforeElement.style.top = '70px';
+        beforeElement.style.top = '20px';
         beforeElement.style.left = '0';
         beforeElement.style.backgroundColor = 'transparent';
         beforeElement.style.color = '#fff';
