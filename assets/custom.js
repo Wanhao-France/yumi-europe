@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const beforeElement = document.createElement('div');
         beforeElement.style.position = 'absolute';
         beforeElement.style.top = '70px';
-        beforeElement.style.left = '0'; // Inicialmente a la izquierda
+        beforeElement.style.left = '0';
         beforeElement.style.backgroundColor = 'transparent';
         beforeElement.style.color = '#fff';
         beforeElement.style.padding = '5px';
         beforeElement.style.border = 'none';
         beforeElement.style.borderRadius = '5px';
         beforeElement.style.whiteSpace = 'pre-line';
-        beforeElement.style.zIndex = '1';
+        beforeElement.style.zIndex = '0';
         beforeElement.style.fontSize = '16px';
         beforeElement.style.fontWeight = 'bold';
         beforeElement.style.lineHeight = '1';
-        beforeElement.style.display = 'none'; // Oculta inicialmente el elemento
-
+        beforeElement.style.display = 'block';
+        beforeElement.style.padding = '1rem';
         const priceText = productPrice.textContent;
         const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
 
@@ -32,21 +32,15 @@ document.addEventListener('DOMContentLoaded', function () {
           Fourth Payment: €${installmentPrice}`;
                 beforeElement.style.backgroundColor = '#000';
                 beforeElement.style.border = '1px solid #ccc';
-                beforeElement.style.left = '60px'; // Ajusta el valor para desplazar a la derecha
-                beforeElement.style.display = 'block'; // Muestra el elemento cuando se activa
+                container.insertBefore(beforeElement, container.firstChild);
             });
 
             container.addEventListener('mouseleave', function () {
                 beforeElement.textContent = '';
                 beforeElement.style.backgroundColor = 'transparent';
                 beforeElement.style.border = 'none';
-                beforeElement.style.left = '0'; // Vuelve a la posición inicial a la izquierda
-                beforeElement.style.display = 'none'; // Oculta el elemento cuando no se necesita
             });
-
-            document.body.appendChild(beforeElement); // Agrega el elemento al cuerpo del documento
         }
     }
 });
-
 
