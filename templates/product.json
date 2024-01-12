@@ -77,7 +77,7 @@
             "custom_liquid": "<div id=\"pay-credit-element\" \nclass=\"container__pay-3-fois\"\n>\n<img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\"\/>\n<p>\nPAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX\n<\/p>\n<\/div>"
           }
         },
-        "air_product_reviews_app_block_review_list_iFmxdF": {
+        "air_product_reviews_app_block_review_list_zErMaA": {
           "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-block-review-list\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
           "settings": {
             "air_blockreviews_summaryHeading": "Review",
@@ -86,12 +86,6 @@
             "air_blockreviews_primaryColor": "#121212",
             "air_blockreviews_buttonBackgroundColor": "#EDEDED",
             "air_blockreviews_buttonTextColor": "#121212"
-          }
-        },
-        "air_product_reviews_app_carousel_review_list_tk7VzN": {
-          "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-carousel-review-list\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
-          "settings": {
-            "air_carouselreviews_carouselHeading": "See what our customers said"
           }
         }
       },
@@ -108,8 +102,7 @@
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
         "d9f7768a-bd99-466f-9731-c11cbc9e6d12",
-        "air_product_reviews_app_block_review_list_iFmxdF",
-        "air_product_reviews_app_carousel_review_list_tk7VzN"
+        "air_product_reviews_app_block_review_list_zErMaA"
       ],
       "custom_css": [
 
