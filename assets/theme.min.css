@@ -8930,7 +8930,7 @@ body.account-popup-open .yv-login-popup {
     overflow: hidden;
     z-index: 1;
     transition: .4s ease-out;
-    opacity: 1; /* Añadido para establecer la opacidad inicial */
+    opacity: 1;
 }
 
 .shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover {
@@ -8940,18 +8940,6 @@ body.account-popup-open .yv-login-popup {
     color: #fff; 
 }
 
-.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity .3s ease-out; 
-}
-
-.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover::after {
-    opacity: 1; 
-}
 
 @media (max-width:767px) {
 
