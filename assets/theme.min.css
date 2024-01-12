@@ -8805,12 +8805,12 @@ body.account-popup-open .yv-login-popup {
   perspective: 1000px; /* Agrega perspectiva para el efecto 3D */
 }
 
-.container__pay-3-fois>img {
+.container__pay-3-fois > img {
   width: 5rem;
   margin-right: 1rem;
 }
 
-.container__pay-3-fois>p {
+.container__pay-3-fois > p {
   font-size: 1.2rem;
   white-space: pre-line;
 }
@@ -8819,8 +8819,8 @@ body.account-popup-open .yv-login-popup {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 10rem; /* Ajusta el ancho de la tarjeta */
+  height: 7rem; /* Ajusta la altura de la tarjeta */
   transform-style: preserve-3d;
   transition: transform 0.3s ease;
 }
@@ -8840,7 +8840,7 @@ body.account-popup-open .yv-login-popup {
   border: 1px solid #ccc;
   border-radius: 5px;
   white-space: pre-line;
-  font-size: 16px;
+  font-size: 0.8rem; /* Ajusta el tamaño del texto */
   font-weight: bold;
   line-height: 1;
   backface-visibility: hidden; /* Oculta la parte posterior de la tarjeta durante la rotación */
