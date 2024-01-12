@@ -15,14 +15,18 @@ document.addEventListener('DOMContentLoaded', function () {
             container.appendChild(beforeElement);
 
             container.addEventListener('mouseenter', function () {
-                beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
+                container.style.opacity = '0';
+                setTimeout(function () {
+                    beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
           Second Payment: €${installmentPrice}\n
           Third Payment: €${installmentPrice}\n
           Fourth Payment: €${installmentPrice}`;
-                beforeElement.style.opacity = '1';
+                    beforeElement.style.opacity = '1';
+                }, 300); // ajusta el tiempo según la duración de la animación CSS de desvanecimiento
             });
 
             container.addEventListener('mouseleave', function () {
+                container.style.opacity = '1';
                 beforeElement.textContent = '';
                 beforeElement.style.opacity = '0';
             });
