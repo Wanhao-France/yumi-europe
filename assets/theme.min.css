@@ -8798,47 +8798,21 @@ body.account-popup-open .yv-login-popup {
 
 /* Custom CSS */
 .container__pay-3-fois {
-  position: relative;
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  transition: top 0.3s ease;
+    position: relative;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
 }
 
-.container__pay-3-fois > img {
-  width: 5rem;
-  margin-right: 1rem;
+.container__pay-3-fois>img {
+    width: 5rem;
+    margin-right: 1rem;
 }
 
-.card-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  color: #fff;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  white-space: pre-line;
-  z-index: 9999;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-  transform: rotateY(180deg);
-  transform-origin: top left;
-  backface-visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+.container__pay-3-fois>p {
+    font-size: 1.2rem;
+    text-wrap: balance;
 }
-
-.container__pay-3-fois.hovered .card-info {
-  transform: rotateY(0deg);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
 
 
 .warning-box {
