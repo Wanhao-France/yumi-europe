@@ -20,11 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
           Third Payment: €${installmentPrice}\n
           Fourth Payment: €${installmentPrice}`;
                 beforeElement.style.opacity = '1';
+                container.querySelector('.info-text').style.opacity = '0';
             });
 
             container.addEventListener('mouseleave', function () {
                 beforeElement.textContent = '';
                 beforeElement.style.opacity = '0';
+                container.querySelector('.info-text').style.opacity = '1';
             });
         }
     }
