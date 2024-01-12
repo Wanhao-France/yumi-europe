@@ -8798,20 +8798,45 @@ body.account-popup-open .yv-login-popup {
 
 /* Custom CSS */
 .container__pay-3-fois {
-    position: relative;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
+  position: relative;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  perspective: 1000px; /* Agrega perspectiva para el efecto 3D */
 }
 
-.container__pay-3-fois>img {
-    width: 5rem;
-    margin-right: 1rem;
+.container__pay-3-fois > .card-container {
+  position: relative;
+  width: 200px; /* Ajusta el ancho de la tarjeta */
+  height: 120px; /* Ajusta la altura de la tarjeta */
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
 }
 
-.container__pay-3-fois>p {
-    font-size: 1.2rem;
-    text-wrap: balance;
+.container__pay-3-fois:hover > .card-container {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: #fff;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  white-space: pre-line;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  backface-visibility: hidden; /* Oculta la parte posterior de la tarjeta durante la rotación */
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: #000;
 }
 
 
