@@ -8833,6 +8833,7 @@ body.account-popup-open .yv-login-popup {
   line-height: 1;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  display: flex;
 }
 
 .card img {
