@@ -8812,6 +8812,29 @@ body.account-popup-open .yv-login-popup {
 .container__pay-3-fois>p {
     font-size: 1.2rem;
     text-wrap: balance;
+    transition: opacity 0.3s ease;
+}
+
+.container__pay-3-fois:hover > .info-text {
+    opacity: 0;
+}
+
+.info-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    white-space: pre-line;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 
