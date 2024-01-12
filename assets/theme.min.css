@@ -8934,7 +8934,7 @@ body.account-popup-open .yv-login-popup {
 }
 
 .shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover {
-    opacity: 0.7; /* Ajusta la opacidad al hacer hover */
+    opacity: 0.7;
     background-color: var(--colorBtnSecondaryHover); 
     border-color: var(--colorBtnSecondaryBorderHover); 
     color: #000; 
