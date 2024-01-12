@@ -8941,12 +8941,11 @@ body.account-popup-open .yv-login-popup {
 }
 
 .shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f::after {
-    content: '➔ Checkout'; 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.6;
+    opacity: 0;
     transition: opacity .3s ease-out; 
 }
 
