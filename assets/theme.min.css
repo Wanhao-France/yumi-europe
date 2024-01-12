@@ -8902,11 +8902,11 @@ body.account-popup-open .yv-login-popup {
     cursor: pointer;
     border-radius: var(--buttonRadius);
     background-color: var(--colorBtnSecondary);
-    border: 1px solid var(--colorBtnPrimaryBorder);
+    border: 1px solid var(--colorBtnSecondaryBorder);
     font-family: var(--buttonFontFamily);
     font-weight: var(--buttonFontWeight);
     font-style: var(--buttonFontStyle);
-    color: var(--colorBtnPrimaryText);
+    color: var(--colorBtnSecondaryText);
     overflow: hidden;
     z-index: 1;
 }
