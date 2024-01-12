@@ -44,12 +44,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const moreOptionsButton = document.querySelector('.shopify-payment-button__more-options');
-    if (moreOptionsButton) {
-        moreOptionsButton.classList.add('button', 'med-btn');
-    }
-});
-
 
 
