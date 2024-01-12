@@ -44,3 +44,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén el elemento con la clase shopify-payment-button__more-options
+    const moreOptionsButton = document.querySelector('.shopify-payment-button__more-options');
+
+    // Verifica si el elemento existe antes de modificarlo
+    if (moreOptionsButton) {
+        // Agrega las clases adicionales (button y med-btn)
+        moreOptionsButton.classList.add('button', 'med-btn');
+    }
+});
+
+
