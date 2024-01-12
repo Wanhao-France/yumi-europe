@@ -5,9 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (container && productPrice) {
         const beforeElement = document.createElement('div');
         beforeElement.style.position = 'absolute';
-        beforeElement.style.top = '0'; // Ajusta esto según tus necesidades
-        beforeElement.style.left = '100%'; // Ajusta esto según tus necesidades
-        beforeElement.style.transform = 'translate(-100%, 70px)'; // Para corregir el punto de referencia y ajustar verticalmente
+        beforeElement.style.top = '70px';
+        beforeElement.style.left = '0'; // Inicialmente a la izquierda
         beforeElement.style.backgroundColor = 'transparent';
         beforeElement.style.color = '#fff';
         beforeElement.style.padding = '5px';
@@ -33,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
           Fourth Payment: €${installmentPrice}`;
                 beforeElement.style.backgroundColor = '#000';
                 beforeElement.style.border = '1px solid #ccc';
+                beforeElement.style.left = '60px'; // Ajusta el valor para desplazar a la derecha
                 beforeElement.style.display = 'block'; // Muestra el elemento cuando se activa
             });
 
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 beforeElement.textContent = '';
                 beforeElement.style.backgroundColor = 'transparent';
                 beforeElement.style.border = 'none';
+                beforeElement.style.left = '0'; // Vuelve a la posición inicial a la izquierda
                 beforeElement.style.display = 'none'; // Oculta el elemento cuando no se necesita
             });
 
