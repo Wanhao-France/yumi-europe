@@ -8899,4 +8899,7 @@ body.account-popup-open .yv-login-popup {
     .AirReviews-Blocks__LayoutList .AirReviews-Blocks__Summary {
        width: auto !important;
     }
+    .AirReviews-Blocks__LayoutList .AirReviews-Blocks__List {
+      width: auto !important;
+    }
 }
