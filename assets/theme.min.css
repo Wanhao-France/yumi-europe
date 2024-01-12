@@ -8865,6 +8865,11 @@ body.account-popup-open .yv-login-popup {
     display: none !important;
 }
 
+.AirReviews-Blocks__List {
+    max-height: 300px; 
+    overflow-y: auto; 
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
