@@ -20,6 +20,16 @@
             "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>❌ Out of stock<\/div>{% endif %}"
           }
         },
+        "air_product_reviews_app_summary_block_NFG8BJ": {
+          "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-summary-block\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+          }
+        },
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
+          "type": "review-star",
+          "settings": {
+          }
+        },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
           "type": "sku",
           "settings": {
@@ -61,15 +71,27 @@
             "countdown_title": ""
           }
         },
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
-          "type": "review-star",
-          "settings": {
-          }
-        },
         "d9f7768a-bd99-466f-9731-c11cbc9e6d12": {
           "type": "custom_liquid",
           "settings": {
             "custom_liquid": "<div id=\"pay-credit-element\" \nclass=\"container__pay-3-fois\"\n>\n<img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\"\/>\n<p>\nPAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX\n<\/p>\n<\/div>"
+          }
+        },
+        "air_product_reviews_app_block_review_list_iFmxdF": {
+          "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-block-review-list\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_blockreviews_summaryHeading": "Review",
+            "air_blockreviews_layout": "list",
+            "air_blockreviews_singleStarColor": "#16A086",
+            "air_blockreviews_primaryColor": "#121212",
+            "air_blockreviews_buttonBackgroundColor": "#EDEDED",
+            "air_blockreviews_buttonTextColor": "#121212"
+          }
+        },
+        "air_product_reviews_app_carousel_review_list_tk7VzN": {
+          "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-carousel-review-list\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_carouselreviews_carouselHeading": "See what our customers said"
           }
         }
       },
@@ -77,14 +99,17 @@
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "01a3560f-b3ed-476f-8702-dae03ae2ff30",
+        "air_product_reviews_app_summary_block_NFG8BJ",
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
         "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
         "16819786-9d1e-449d-966d-08d21e1c91af",
         "e02bd487-7756-43fc-8ac6-54fa9a16ca85",
         "93052535-2a09-4134-b941-8252cca20fee",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
-        "d9f7768a-bd99-466f-9731-c11cbc9e6d12"
+        "d9f7768a-bd99-466f-9731-c11cbc9e6d12",
+        "air_product_reviews_app_block_review_list_iFmxdF",
+        "air_product_reviews_app_carousel_review_list_tk7VzN"
       ],
       "custom_css": [
 
