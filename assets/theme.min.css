@@ -8937,7 +8937,7 @@ body.account-popup-open .yv-login-popup {
     opacity: 0.7; /* Ajusta la opacidad al hacer hover */
     background-color: var(--colorBtnSecondaryHover); 
     border-color: var(--colorBtnSecondaryBorderHover); 
-    color: #fff; 
+    color: #000; 
 }
 
 
