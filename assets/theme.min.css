@@ -8806,7 +8806,6 @@ body.account-popup-open .yv-login-popup {
 
 .card-container {
   position: relative; /* Cambiado a relativo */
-  width: 10rem;
   height: 7rem;
   perspective: 1000px;
 }
