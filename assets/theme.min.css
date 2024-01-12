@@ -8906,6 +8906,28 @@ body.account-popup-open .yv-login-popup {
     color: #202A5D;
     overflow: hidden;
     z-index: 1;
+    transition: .6s ease-out;
+}
+
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover {
+    transform: scale(1.1); /* Hace que el botón se agrande en un 10% al hacer hover */
+    background-color: var(--colorBtnSecondaryHover); /* Cambia el color de fondo al hacer hover */
+    border-color: var(--colorBtnSecondaryBorderHover); /* Cambia el color del borde al hacer hover */
+    color: #fff; /* Cambia el color del texto al hacer hover */
+}
+
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f::after {
+    content: '➔ Checkout'; /* Agrega una flecha después del texto del botón */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity .3s ease-out; /* Agrega una transición de opacidad */
+}
+
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover::after {
+    opacity: 1; /* Hace visible la flecha al hacer hover */
 }
 
 @media (max-width:767px) {
