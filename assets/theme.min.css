@@ -8901,7 +8901,7 @@ body.account-popup-open .yv-login-popup {
     text-transform: uppercase;
     cursor: pointer;
     border-radius: var(--buttonRadius);
-    background-color: var(--colorBtnPrimary);
+    background-color: var(--colorBtnSecondary);
     border: 1px solid var(--colorBtnPrimaryBorder);
     font-family: var(--buttonFontFamily);
     font-weight: var(--buttonFontWeight);
