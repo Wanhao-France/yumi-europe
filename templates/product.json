@@ -20,8 +20,15 @@
             "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>❌ Out of stock<\/div>{% endif %}"
           }
         },
+        "custom_liquid_r7qF8b": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"AirReviews-Widget AirReviews-Widget--Stars\"><\/div>"
+          }
+        },
         "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
           "type": "review-star",
+          "disabled": true,
           "settings": {
           }
         },
@@ -77,6 +84,7 @@
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "01a3560f-b3ed-476f-8702-dae03ae2ff30",
+        "custom_liquid_r7qF8b",
         "c069e4ad-5908-400d-a0ad-e071aa04cf33",
         "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
