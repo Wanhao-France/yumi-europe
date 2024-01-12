@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
           Second Payment: €${installmentPrice}\n
           Third Payment: €${installmentPrice}\n
           Fourth Payment: €${installmentPrice}`;
+                    container.style.display = 'none';
                     beforeElement.style.opacity = '1';
                 }, 300); // ajusta el tiempo según la duración de la animación CSS de desvanecimiento
             });
 
             container.addEventListener('mouseleave', function () {
+                container.style.display = 'flex';
                 container.style.opacity = '1';
                 beforeElement.textContent = '';
                 beforeElement.style.opacity = '0';
