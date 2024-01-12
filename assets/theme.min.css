@@ -8946,7 +8946,7 @@ body.account-popup-open .yv-login-popup {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0;
+    opacity: 0.6;
     transition: opacity .3s ease-out; 
 }
 
