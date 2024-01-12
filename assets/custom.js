@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const beforeElement = document.createElement('div');
         beforeElement.style.position = 'absolute';
         beforeElement.style.top = '-20px';
-        beforeElement.style.right = '10px';
+        beforeElement.style.left = '10px';
         beforeElement.style.backgroundColor = 'transparent';
         beforeElement.style.color = '#fff';
         beforeElement.style.padding = '5px';
