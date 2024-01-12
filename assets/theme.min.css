@@ -8874,7 +8874,8 @@ body.account-popup-open .yv-login-popup {
 .AirReviews-Blocks__ListSort {
     position: sticky;
     top: 0;
-    z-index: 1;
+    background-color: #fff; 
+    z-index: 1; 
 }
 
 @media (max-width:767px) {
