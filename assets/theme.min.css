@@ -8873,9 +8873,8 @@ body.account-popup-open .yv-login-popup {
 
 .AirReviews-Blocks__ListSort {
     position: sticky;
-    top: 0; /* Ajusta esto según la distancia desde el borde superior al que quieres que se pegue el elemento */
-    background-color: #f1f1f1; /* Puedes agregar un fondo para destacar el elemento pegajoso */
-    z-index: 1; /* Ajusta el índice z según sea necesario para que aparezca sobre otros elementos */
+    top: 0;
+    z-index: 1;
 }
 
 @media (max-width:767px) {
