@@ -15,14 +15,20 @@ document.addEventListener('DOMContentLoaded', function () {
             container.appendChild(beforeElement);
 
             container.addEventListener('mouseenter', function () {
-                beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
+                container.style.transform = 'rotateY(180deg)';
+                setTimeout(function () {
+                    beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
           Second Payment: €${installmentPrice}\n
           Third Payment: €${installmentPrice}\n
           Fourth Payment: €${installmentPrice}`;
-                beforeElement.style.opacity = '1';
+                    container.style.opacity = '0';
+                    beforeElement.style.opacity = '1';
+                }, 300); // ajusta el tiempo según la duración de la animación CSS de rotación y desvanecimiento
             });
 
             container.addEventListener('mouseleave', function () {
+                container.style.transform = 'rotateY(0deg)';
+                container.style.opacity = '1';
                 beforeElement.textContent = '';
                 beforeElement.style.opacity = '0';
             });
