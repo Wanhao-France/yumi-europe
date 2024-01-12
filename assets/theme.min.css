@@ -8894,8 +8894,9 @@ body.account-popup-open .yv-login-popup {
     .AirReviews-Blocks__LayoutList {
           display:flex;
           flex-direction: column;
+      width: auto !important;
     }
     .AirReviews-Blocks__LayoutList .AirReviews-Blocks__Summary {
-      width: auto;
+       width: auto !important;
     }
 }
