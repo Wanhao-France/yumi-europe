@@ -8802,19 +8802,13 @@ body.account-popup-open .yv-login-popup {
   margin: 1rem 0;
   display: flex;
   align-items: center;
-  perspective: 1000px; /* Agrega perspectiva para el efecto 3D */
 }
 
-.container__pay-3-fois > .card-container {
+.card-container {
   position: relative;
   width: 200px; /* Ajusta el ancho de la tarjeta */
   height: 120px; /* Ajusta la altura de la tarjeta */
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.container__pay-3-fois:hover > .card-container {
-  transform: rotateY(180deg);
+  perspective: 1000px; /* Agrega perspectiva para el efecto 3D */
 }
 
 .card-front,
@@ -8832,14 +8826,23 @@ body.account-popup-open .yv-login-popup {
   font-weight: bold;
   line-height: 1;
   backface-visibility: hidden; /* Oculta la parte posterior de la tarjeta durante la rotación */
+  transition: transform 0.3s ease; /* Agrega una transición para suavizar la rotación */
 }
 
 .card-back {
   transform: rotateY(180deg);
   background-color: #000;
+  display: none; /* Inicialmente oculta el lado posterior */
 }
 
+.container__pay-3-fois:hover .card-front {
+  transform: rotateY(180deg);
+}
 
+.container__pay-3-fois:hover .card-back {
+  transform: rotateY(360deg);
+  display: block; /* Muestra el lado posterior al hacer hover */
+}
 .warning-box {
     display: flex;
     align-items: flex-start;
