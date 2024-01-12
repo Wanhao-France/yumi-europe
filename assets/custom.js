@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         beforeElement.style.border = 'none';
         beforeElement.style.borderRadius = '5px';
         beforeElement.style.whiteSpace = 'pre-line';
-        beforeElement.style.zIndex = '999';
+        beforeElement.style.zIndex = '2';
         beforeElement.style.fontSize = '16px';
         beforeElement.style.fontWeight = 'bold';
         beforeElement.style.lineHeight = '1';
