@@ -56,7 +56,7 @@
     "enable_cart_drawer": true,
     "enable_cartdrawer_note": false,
     "enable_shipping": false,
-    "enable_breadcrumb": false,
+    "enable_breadcrumb": true,
     "option_style": "swatch",
     "color_swatch_style": "circle",
     "variant_image": false,
