@@ -76,7 +76,7 @@
         "d9f7768a-bd99-466f-9731-c11cbc9e6d12": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div id=\"pay-credit-element\" \nclass=\"container__pay-3-fois\"\n>\n<img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\"\/>\n<p>\nPAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX\n<\/p>\n<\/div>"
+            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n  <div class=\"card\">\n    <div class=\"card-front\">\n      <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" \/>\n      <p>PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n    <\/div>\n    <div class=\"card-back\"><\/div>\n  <\/div>\n<\/div>"
           }
         }
       },
