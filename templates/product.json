@@ -129,6 +129,19 @@
         "content3": ""
       }
     },
+    "custom_liquid_rKKdRd": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    },
     "6cf7bc97-dd54-475a-9bff-20c3912ab04b": {
       "type": "multi-image-with-text",
       "blocks": {
@@ -297,6 +310,7 @@
   },
   "order": [
     "main-product",
+    "custom_liquid_rKKdRd",
     "6cf7bc97-dd54-475a-9bff-20c3912ab04b",
     "product_recommendations",
     "8c17cb82-109c-4b83-968b-5a4214762d42"
