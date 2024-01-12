@@ -8861,6 +8861,10 @@ body.account-popup-open .yv-login-popup {
   display:none;
 }
 
+.AirReviews-Blocks--PoweredBy span {
+    display: none !important;
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
