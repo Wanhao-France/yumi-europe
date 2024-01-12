@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         beforeElement.style.border = 'none';
         beforeElement.style.borderRadius = '5px';
         beforeElement.style.whiteSpace = 'pre-line';
-        beforeElement.style.zIndex = '0';
+        beforeElement.style.zIndex = '9999'; // Ajusta el zIndex a un valor alto para asegurar que esté sobre todo
         beforeElement.style.fontSize = '16px';
         beforeElement.style.fontWeight = 'bold';
         beforeElement.style.lineHeight = '1';
@@ -40,9 +40,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 beforeElement.style.backgroundColor = 'transparent';
                 beforeElement.style.border = 'none';
             });
+
+            window.addEventListener('scroll', function () {
+                const boundingBox = beforeElement.getBoundingClientRect();
+
+                // Verifica si el elemento está fuera del viewport y se ha hecho hover
+                if (boundingBox.bottom < 0 && boundingBox.top > -boundingBox.height) {
+                    beforeElement.style.top = '20px'; // Muestra hacia arriba si está fuera del viewport
+                } else {
+                    beforeElement.style.top = '-20px';
+                }
+            });
         }
     }
 });
-
 
 
