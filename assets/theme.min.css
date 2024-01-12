@@ -8802,6 +8802,7 @@ body.account-popup-open .yv-login-popup {
     margin: 1rem 0;
     display: flex;
     align-items: center;
+    z-index: 999;
 }
 
 .container__pay-3-fois>img {
