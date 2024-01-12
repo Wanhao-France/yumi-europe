@@ -8903,7 +8903,7 @@ body.account-popup-open .yv-login-popup {
     font-family: var(--buttonFontFamily);
     font-weight: var(--buttonFontWeight);
     font-style: var(--buttonFontStyle);
-    color: var(--colorBtnSecondaryText);
+    color: #202A5D;
     overflow: hidden;
     z-index: 1;
 }
