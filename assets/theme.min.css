@@ -8877,6 +8877,10 @@ body.account-popup-open .yv-login-popup {
     z-index: 999; 
 }
 
+.social-icons {
+    display: none;
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
