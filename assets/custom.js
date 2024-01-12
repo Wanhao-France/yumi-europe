@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (container && productPrice) {
         const beforeElement = document.createElement('div');
         beforeElement.className = 'info-card';
-        beforeElement.style.transform = 'rotateY(180deg)';
+        beforeElement.style.opacity = '0';
         const priceText = productPrice.textContent;
         const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
 
@@ -19,16 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
           Second Payment: €${installmentPrice}\n
           Third Payment: €${installmentPrice}\n
           Fourth Payment: €${installmentPrice}`;
-                beforeElement.style.transform = 'rotateY(0)';
+                beforeElement.style.opacity = '1';
             });
 
             container.addEventListener('mouseleave', function () {
                 beforeElement.textContent = '';
-                beforeElement.style.transform = 'rotateY(180deg)';
+                beforeElement.style.opacity = '0';
             });
         }
     }
 });
-
-
-
