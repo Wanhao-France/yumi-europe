@@ -8940,6 +8940,9 @@ body.account-popup-open .yv-login-popup {
     color: #000; 
 }
 
+.ratingbox {
+    display: none;
+}
 
 @media (max-width:767px) {
 
