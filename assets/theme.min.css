@@ -8944,7 +8944,7 @@ body.account-popup-open .yv-login-popup {
     display: none;
 }
 
-.container {
+#notification-container {
   position: relative;
 }
 
@@ -8964,6 +8964,7 @@ body.account-popup-open .yv-login-popup {
   font-size: 16px;
   margin-top: 10px;
 }
+
 
 
 @media (max-width:767px) {
