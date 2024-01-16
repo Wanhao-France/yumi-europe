@@ -8965,6 +8965,10 @@ body.account-popup-open .yv-login-popup {
   margin-top: 10px;
 }
 
+#countdown-container > div {
+  color: #fff;
+}
+
 
 
 @media (max-width:767px) {
