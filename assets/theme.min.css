@@ -9001,6 +9001,17 @@ body.account-popup-open .yv-login-popup {
   margin-top: 10px;
 }
 
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
 
 @media (max-width:767px) {
 
