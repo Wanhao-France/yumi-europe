@@ -8948,7 +8948,7 @@ body.account-popup-open .yv-login-popup {
   position: relative;
 }
 
-.notification {
+#custom-notification {
   position: sticky;
   top: 0;
   background-color: #000;
