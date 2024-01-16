@@ -8963,6 +8963,7 @@ body.account-popup-open .yv-login-popup {
 }
 #custom-notification > div {
     color: #fff;
+    margin-left: 0.6%;
 }
 
 #countdown-container {
