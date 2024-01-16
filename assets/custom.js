@@ -32,25 +32,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// assets/notification.js
-
-document.addEventListener('DOMContentLoaded', function () {
-  const container = document.getElementById('notification-container');
-
-  function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.innerHTML = message;
-
-    container.appendChild(notification);
-    container.style.display = 'block';
-
-    setTimeout(() => {
-      container.style.display = 'none';
-      notification.remove();
-    }, 5000);
-  }
-
-  window.showNotification = showNotification; // Hacer la función accesible globalmente
-});
 
