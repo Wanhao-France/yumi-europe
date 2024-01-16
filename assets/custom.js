@@ -48,12 +48,20 @@ document.addEventListener('DOMContentLoaded', function () {
     notification.className = `notification ${type}`;
 
     const messageContainer = document.createElement('div');
-    messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`; // Agregamos el icono aquí
+    messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`;
+
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '&times;'; // El símbolo X para cerrar
+    closeButton.className = 'close-button';
+    closeButton.addEventListener('click', function () {
+      container.style.display = 'none';
+    });
 
     const countdownContainer = document.createElement('div');
     countdownContainer.id = 'countdown-container';
 
     notification.appendChild(messageContainer);
+    notification.appendChild(closeButton);
     notification.appendChild(countdownContainer);
 
     container.appendChild(notification);
@@ -90,4 +98,5 @@ document.addEventListener('DOMContentLoaded', function () {
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
+
 
