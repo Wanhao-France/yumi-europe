@@ -8951,7 +8951,7 @@ body.account-popup-open .yv-login-popup {
 .notification {
   position: sticky;
   top: 0;
-  background-color: #333;
+  background-color: #000;
   color: #fff;
   padding: 10px;
   z-index: 100;
