@@ -8978,15 +8978,6 @@ body.account-popup-open .yv-login-popup {
   color: #fff;
 }
 
-@keyframes hourglass {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-}
-
 .notification {
   position: sticky;
   top: 0;
@@ -9000,7 +8991,6 @@ body.account-popup-open .yv-login-popup {
 
 .notification i {
   margin-right: 10px;
-  animation: hourglass 2s linear infinite; /* Ajusta la duración según sea necesario */
 }
 
 #countdown-container {
