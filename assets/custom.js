@@ -33,3 +33,31 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.getElementById('notification-container');
+  
+  function showCustomNotification(message, type = 'info') {
+    const existingNotification = document.getElementById('custom-notification');
+  
+    if (existingNotification) {
+      existingNotification.remove();
+    }
+  
+    const notification = document.createElement('div');
+    notification.id = 'custom-notification';
+    notification.className = `notification ${type}`;
+    notification.innerHTML = message;
+  
+    container.appendChild(notification);
+    container.style.display = 'block';
+  }
+  
+  // Obtén la hora actual en el formato HH:MM
+  const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+  
+  if (currentTime < '13:00') {
+    const notificationMessage = "Si haces tu compra antes de las 13:00, tu comanda puede ser liberada el mismo día.";
+    showCustomNotification(notificationMessage, 'info');
+  }
+});
+
