@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
+  const notificationClosedCookie = 'notificationClosedTime';
 
   function showCustomNotification(message, type = 'info', expirationTime) {
     const existingNotification = document.getElementById('custom-notification');
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
     closeButton.className = 'close-button';
     closeButton.addEventListener('click', function () {
       container.style.display = 'none';
+      setNotificationClosedCookie();
     });
 
     const countdownContainer = document.createElement('div');
@@ -88,15 +90,36 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCountdown();
   }
 
+  function setNotificationClosedCookie() {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + 45);
+    document.cookie = `${notificationClosedCookie}=${now.toUTCString()}; expires=${now.toUTCString()}; path=/`;
+  }
+
+  function getNotificationClosedTime() {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === notificationClosedCookie) {
+        return new Date(value);
+      }
+    }
+    return null;
+  }
+
   const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
 
   // Ajusta el tiempo de expiración según la diferencia horaria de Francia (UTC+1)
   const expirationTime = new Date().setHours(18, 0, 0, 0) + 1 * 60 * 60 * 1000;
 
-  if (currentTime < '20:00') {
+  const notificationClosedTime = getNotificationClosedTime();
+  const showNotification = !notificationClosedTime || new Date() > notificationClosedTime;
+
+  if (currentTime < '20:00' && showNotification) {
     const notificationMessage = "For purchases made before 8:00 PM, your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
+
 
 
