@@ -46,18 +46,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const notification = document.createElement('div');
     notification.id = 'custom-notification';
     notification.className = `notification ${type}`;
-    notification.innerHTML = message;
+    notification.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
   
     container.appendChild(notification);
-    container.style.display = 'block';
+    container.style.display = 'flex';
   }
   
-  // Obtén la hora actual en el formato HH:MM
   const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
   
-  if (currentTime < '18:00') {
+  if (currentTime < '20:00') {
     const notificationMessage = "Si haces tu compra antes de las 13:00, tu comanda puede ser liberada el mismo día.";
     showCustomNotification(notificationMessage, 'info');
   }
 });
-
