@@ -419,6 +419,19 @@
         "top_space_mobile": 15,
         "bottom_space_mobile": 15
       }
+    },
+    "custom_liquid_JGKbGw": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<!-- sections\/notification.liquid -->\n<div id=\"notification-container\">\n  {% if show_message %}\n    <div id=\"custom-notification\" class=\"notification info\">\n      {{ notification_message }}\n    <\/div>\n  {% endif %}\n<\/div>",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
@@ -426,6 +439,7 @@
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98",
     "7dc43a7c-1876-402d-af4d-ba2d537b81c2",
     "21aac929-bcc9-46c8-8cf7-57d105ce570d",
-    "65006731-3ed1-4031-8928-c64b4021c978"
+    "65006731-3ed1-4031-8928-c64b4021c978",
+    "custom_liquid_JGKbGw"
   ]
 }
