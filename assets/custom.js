@@ -80,12 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCountdown();
   }
 
-  const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
-  
-  const expirationTime = new Date().getTime() + 30 * 60 * 1000;
+  const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+
+  // Ajusta el tiempo de expiración según la diferencia horaria de Francia (UTC+1)
+  const expirationTime = new Date().setHours(18, 0, 0, 0) + 1 * 60 * 60 * 1000;
 
   if (currentTime < '20:00') {
     const notificationMessage = "For purchases made before 8:00 PM, your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
+
