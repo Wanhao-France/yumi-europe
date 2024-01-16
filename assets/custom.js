@@ -35,28 +35,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
-  
-  function showCustomNotification(message, type = 'info') {
+
+  function showCustomNotification(message, type = 'info', expirationTime) {
     const existingNotification = document.getElementById('custom-notification');
-  
+
     if (existingNotification) {
       existingNotification.remove();
     }
-  
+
     const notification = document.createElement('div');
     notification.id = 'custom-notification';
     notification.className = `notification ${type}`;
-    notification.innerHTML = message;
-  
+
+    const messageContainer = document.createElement('div');
+    messageContainer.innerHTML = message;
+
+    const countdownContainer = document.createElement('div');
+    countdownContainer.id = 'countdown-container';
+
+    notification.appendChild(messageContainer);
+    notification.appendChild(countdownContainer);
+
     container.appendChild(notification);
     container.style.display = 'block';
+
+    const countdownElement = document.createElement('span');
+    countdownContainer.appendChild(countdownElement);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = expirationTime - now;
+
+      if (distance <= 0) {
+        clearInterval(countdownInterval);
+        container.style.display = 'none';
+      } else {
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        countdownElement.innerHTML = `${minutes}m ${seconds}s`;
+      }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
   }
-  
-  // Obtén la hora actual en el formato HH:MM
+
   const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
   
+  const expirationTime = new Date().getTime() + 30 * 60 * 1000;
+
   if (currentTime < '20:00') {
-    const notificationMessage = "For purchases made before 1pm, your parcel will be dispatched the same day!";
-    showCustomNotification(notificationMessage, 'info');
+    const notificationMessage = "For purchases made before 8:00 PM, your parcel will be dispatched the same day! Offer ends in:";
+    showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
