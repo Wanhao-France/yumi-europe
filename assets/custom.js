@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     notification.className = `notification ${type}`;
 
     const messageContainer = document.createElement('div');
-    messageContainer.innerHTML = `<i class="fas fa-hourglass-start"></i> ${message}`; // Agregamos el icono aquí
+    messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`; // Agregamos el icono aquí
 
     const countdownContainer = document.createElement('div');
     countdownContainer.id = 'countdown-container';
