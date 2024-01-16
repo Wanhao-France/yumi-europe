@@ -8952,9 +8952,11 @@ body.account-popup-open .yv-login-popup {
   position: sticky;
   top: 0;
   background-color: #000;
-  color: #fff;
   padding: 10px;
   z-index: 100;
+}
+#custom-notification > div {
+    color: #fff;
 }
 
 #countdown-container {
