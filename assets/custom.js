@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Ajusta el tiempo de expiración según la diferencia horaria de Francia (UTC+1)
   const expirationTime = new Date().setHours(18, 0, 0, 0) + 1 * 60 * 60 * 1000;
 
-  if (currentTime < '23:00') {
+  if (currentTime < '20:00') {
     const notificationMessage = "For purchases made before 8:00 PM, your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
