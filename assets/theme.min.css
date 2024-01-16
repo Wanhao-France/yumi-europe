@@ -8944,35 +8944,6 @@ body.account-popup-open .yv-login-popup {
     display: none;
 }
 
-/* tu_estilo.css */
-#notification-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 300px;
-  padding: 15px;
-  background-color: #4CAF50;
-  color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: none;
-}
-
-.notification {
-  display: flex;
-  align-items: center;
-}
-
-.notification i {
-  margin-right: 10px;
-}
-
-.info {
-  background-color: #3498db;
-}
-
-/* Agrega más estilos según sea necesario */
-
 
 
 @media (max-width:767px) {
