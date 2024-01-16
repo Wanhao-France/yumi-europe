@@ -423,7 +423,7 @@
     "custom_liquid_JGKbGw": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div id=\"notification-container\"><\/div>",
+        "custom_liquid": "<!-- sections\/notification.liquid -->\n<div id=\"notification-container\">\n  {% if show_message %}\n    <div id=\"custom-notification\" class=\"notification info\">\n      <i class=\"fas fa-info-circle\"><\/i>\n      {{ notification_message }}\n    <\/div>\n  {% endif %}\n<\/div>",
         "content_alignment": "center",
         "bgcolor": "primary",
         "section_visibility": "always",
