@@ -249,6 +249,19 @@
       },
       "store-locator": {
         "type": "store-locator",
+        "blocks": {
+          "store_locator_NjFnDB": {
+            "type": "store_locator",
+            "settings": {
+              "store_name": "Store name",
+              "store_detail": "",
+              "location": "USA"
+            }
+          }
+        },
+        "block_order": [
+          "store_locator_NjFnDB"
+        ],
         "settings": {
           "heading": "Store pickup address",
           "seo_heading": "h2",
