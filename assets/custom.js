@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
   
   if (currentTime < '20:00') {
-    const notificationMessage = "Si haces tu compra antes de las 13:00, tu comanda puede ser liberada el mismo día.";
+    const notificationMessage = "For purchases made before 1pm, your parcel will be dispatched the same day!";
     showCustomNotification(notificationMessage, 'info');
   }
 });
