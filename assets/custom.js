@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     notification.className = `notification ${type}`;
 
     const messageContainer = document.createElement('div');
-    messageContainer.innerHTML = message;
+    messageContainer.innerHTML = `<i class="fas fa-hourglass-start"></i> ${message}`; // Agregamos el icono aquí
 
     const countdownContainer = document.createElement('div');
     countdownContainer.id = 'countdown-container';
@@ -90,4 +90,5 @@ document.addEventListener('DOMContentLoaded', function () {
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
+
 
