@@ -8945,30 +8945,7 @@ body.account-popup-open .yv-login-popup {
 }
 
 
-/* assets/notification.css */
-#notification-container {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 300px;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-  border-radius: 5px;
-  display: none;
-}
 
-.notification {
-  /* Estilos comunes para todas las notificaciones */
-}
-
-.success {
-  background-color: #4CAF50; /* Color verde para notificaciones de éxito */
-}
-
-.error {
-  background-color: #FF5252; /* Color rojo para notificaciones de error */
-}
 
 @media (max-width:767px) {
 

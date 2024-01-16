@@ -116,9 +116,6 @@
     <script>      
       var productData = {{ product | json | escape }};
     </script>
-    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
-  <script>
-  showNotification('¡Notificación de prueba!', 'success');
-</script>
+    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>    
   </body>
 </html>
