@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Obtén la hora actual en el formato HH:MM
   const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
   
-  if (currentTime < '13:00') {
+  if (currentTime < '20:00') {
     const notificationMessage = "Si haces tu compra antes de las 13:00, tu comanda puede ser liberada el mismo día.";
     showCustomNotification(notificationMessage, 'info');
   }
