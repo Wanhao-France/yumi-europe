@@ -59,7 +59,7 @@
     "search_prompts_3": "Search for collections",
     "enable_cart_drawer": true,
     "enable_cartdrawer_note": false,
-    "enable_shipping": false,
+    "enable_shipping": true,
     "enable_breadcrumb": true,
     "option_style": "swatch",
     "color_swatch_style": "circle",
