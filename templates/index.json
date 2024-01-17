@@ -7,12 +7,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
-            "heading": "Heading",
+            "image": "shopify:\/\/shop_images\/soldes.webp",
+            "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/impremente-230",
-            "btn_text": "Shop Now",
+            "link": "shopify:\/\/collections\/all-printers",
+            "btn_text": "More Info",
             "outline_button": false,
             "heading_size": "h2",
             "button_size": "xsmall",
@@ -64,6 +65,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_2.jpg",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -92,6 +94,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_3.jpg",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -120,6 +123,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_2.jpg",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -148,6 +152,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_3.jpg",
             "heading": "Heading",
             "seo_heading": "h2",
             "enable_text_shadow": false,
