@@ -1,25 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Encuentra el elemento con la clase 'yv-prizebox'
-  const prizeBox = document.querySelector('.yv-prizebox');
+  const cambiarPreciosBtn = document.getElementById('cambiarPreciosBtn');
 
-  if (prizeBox) {
-    // Encuentra el elemento con la clase 'dualPrice' dentro del elemento 'yv-prizebox'
-    const dualPrice = prizeBox.querySelector('.dualPrice');
+  if (cambiarPreciosBtn) {
+    cambiarPreciosBtn.addEventListener('click', function () {
+      cambiarPrecios();
+    });
+  }
 
-    if (dualPrice) {
-      // Obtén el contenido actual del elemento 'dualPrice'
-      const currentPrice = dualPrice.textContent.trim();
+  function cambiarPrecios() {
+    const precios = document.querySelectorAll('.dualPrice');
 
-      // Realiza el cambio de TTC a HT (por ejemplo, eliminando el símbolo del euro)
-      const newPrice = currentPrice.replace('€', '');
+    precios.forEach((precio) => {
+      const precioActual = parseFloat(precio.textContent.replace('€', '').replace(',', '.'));
 
-      // Actualiza el contenido del elemento 'dualPrice'
-      dualPrice.textContent = newPrice;
+      // Supongamos que quieres agregar un 20% al precio actual para obtener el nuevo precio
+      const nuevoPrecio = precioActual * 1.2;
 
-      // Puedes agregar más lógica aquí según tus necesidades
-    }
+      // Actualiza el contenido del elemento 'dualPrice' con el nuevo precio
+      precio.textContent = nuevoPrecio.toFixed(2) + '€';
+    });
   }
 });
+
 
 
 
