@@ -358,7 +358,10 @@
       }
     </script>
   {%- endif -%}
-<button id="togglePreciosBtn">Mostrar HT</button>
+<div class="toggle-container">
+  <button id="togglePreciosBtn" class="toggle-btn"></button>
+</div>
+
 </header>
 {% unless request.page_type contains 'customers' or customer %}
   {% if section.settings.account_type == 'popup' %}
