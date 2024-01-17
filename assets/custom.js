@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
 
   if (togglePreciosBtn) {
+    let precioOriginals = []; // Almacena los precios originales
+
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+
+    dualPriceElements.forEach((dualPriceElement) => {
+      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      precioOriginals.push(precioOriginal);
+    });
+
     let mostrarTTC = false;
 
     togglePreciosBtn.addEventListener('click', function () {
@@ -10,10 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function togglePrecios() {
-      const dualPriceElements = document.querySelectorAll('.dualPrice');
-
-      dualPriceElements.forEach((dualPriceElement) => {
-        const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      dualPriceElements.forEach((dualPriceElement, index) => {
+        const precioOriginal = precioOriginals[index];
 
         const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
 
