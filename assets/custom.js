@@ -36,9 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('pay-credit-element');
     const productPrice = document.querySelector('.yv-product-price .dualPrice');
