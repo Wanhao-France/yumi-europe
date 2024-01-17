@@ -9012,6 +9012,31 @@ body.account-popup-open .yv-login-popup {
   right: 5px;
 }
 
+/* Estilos del botón toggle */
+.toggle-container {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.mostrar-ttc .toggle-btn {
+  transform: translateX(100%);
+}
+
 
 @media (max-width:767px) {
 
