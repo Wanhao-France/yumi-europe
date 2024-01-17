@@ -9044,6 +9044,10 @@ body.account-popup-open .yv-login-popup {
   color: #130f32; /* Texto azul */
 }
 
+.icons-header-custom {
+  width: 100%;
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
