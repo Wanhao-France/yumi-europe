@@ -41,6 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Aplicar estilos iniciales
   updateStyles();
+
+  // Manejar eventos de desplazamiento (scroll)
+  let scrollTimer;
+  window.addEventListener('scroll', function () {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateStyles, 100);
+  });
 });
 
 
