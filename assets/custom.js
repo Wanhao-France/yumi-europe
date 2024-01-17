@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let mostrarTTC = false;
 
@@ -26,13 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
     updatePrices();
   });
 
-  // Manejar eventos de desplazamiento (scroll)
-  let scrollTimer;
   window.addEventListener('scroll', function () {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function () {
-      updatePrices();
-    }, 100);
+    updatePrices();
   });
 
   // Aplicar estilos iniciales
