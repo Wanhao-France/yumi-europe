@@ -10,11 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
   function togglePrecios() {
     const precios = document.querySelectorAll('.dualPrice');
 
+    let mostrarTTC; // Declara la variable fuera del forEach
+
     precios.forEach((precio) => {
       const precioActual = parseFloat(precio.textContent.replace('€', '').replace(',', '.'));
 
       // Verifica si el botón está en el estado "Mostrar HT" o "Mostrar TTC"
-      const mostrarTTC = togglePreciosBtn.innerText === 'Mostrar TTC';
+      mostrarTTC = togglePreciosBtn.innerText === 'Mostrar TTC';
 
       // Calcula el nuevo precio según el estado del botón
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioActual) : precioActual;
@@ -32,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     return precioHT * 1.2;
   }
 });
-
 
 
 
