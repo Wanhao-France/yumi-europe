@@ -26,14 +26,34 @@
           "type": "column",
           "settings": {
             "icon": "secure",
-            "heading": "100% Secure Checkout",
+            "heading": "100% Secure payment",
             "seo_heading": "h2",
-            "subtext": "All transactions are securely handled."
+            "subtext": ""
+          }
+        },
+        "column_7X8YMT": {
+          "type": "column",
+          "settings": {
+            "icon": "global",
+            "heading": "Stock France",
+            "seo_heading": "h2",
+            "subtext": ""
+          }
+        },
+        "column_PhQigW": {
+          "type": "column",
+          "settings": {
+            "icon": "heart",
+            "heading": "Products designed in France",
+            "seo_heading": "h2",
+            "subtext": ""
           }
         }
       },
       "block_order": [
-        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0"
+        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0",
+        "column_7X8YMT",
+        "column_PhQigW"
       ],
       "settings": {
         "column_background": false,
