@@ -172,9 +172,9 @@
             "overlaycolor": "#000000",
             "textcolor": "#ffffff",
             "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "rgba(0,0,0,0)",
-            "button_border_color": "#ffffff"
+            "button_text_color": "#000000",
+            "button_bg_color": "#ffffff",
+            "button_border_color": "#000000"
           }
         }
       },
