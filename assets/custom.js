@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let precioOriginals = [];
   let mostrarTTC = false;
 
-  // Función para actualizar los estilos
   function updateStyles() {
     dualPriceElements.forEach((dualPriceElement, index) => {
       const precioOriginal = precioOriginals[index];
@@ -27,9 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
     updateStyles();
   });
 
-  // Eventos adicionales para manejar el lazy loading
-  window.addEventListener('scroll', updateStyles);
-  window.addEventListener('resize', updateStyles);
+  // Utilizando IntersectionObserver para manejar lazy loading
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        updateStyles();
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  dualPriceElements.forEach((dualPriceElement) => {
+    observer.observe(dualPriceElement);
+  });
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
