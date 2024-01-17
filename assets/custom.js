@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  const dualPriceElements = document.querySelectorAll('.dualPrice');
-  let precioOriginals = [];
   let mostrarTTC = false;
 
   function updateStyles() {
-    dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = precioOriginals[index];
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+    dualPriceElements.forEach((dualPriceElement) => {
+      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
       dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
@@ -15,11 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
     togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
   }
-
-  dualPriceElements.forEach((dualPriceElement) => {
-    const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-    precioOriginals.push(precioOriginal);
-  });
 
   togglePreciosBtn.addEventListener('click', function () {
     mostrarTTC = !mostrarTTC;
@@ -36,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  const dualPriceElements = document.querySelectorAll('.dualPrice');
   dualPriceElements.forEach((dualPriceElement) => {
     observer.observe(dualPriceElement);
   });
