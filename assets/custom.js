@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
 
   if (togglePreciosBtn) {
+    // Inicializamos el estado en true para mostrar inicialmente en TTC
+    let mostrarTTC = true;
+
     togglePreciosBtn.addEventListener('click', function () {
       togglePrecios();
     });
@@ -9,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function togglePrecios() {
     const precios = document.querySelectorAll('.dualPrice');
-
-    let mostrarTTC = togglePreciosBtn.dataset.estadoMostrarTTC === 'true'; // Obtén el estado actual desde el atributo data
 
     precios.forEach((precio) => {
       const precioActual = parseFloat(precio.textContent.replace('€', '').replace(',', '.'));
@@ -25,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cambia el texto del botón y actualiza el estado del botón de alternancia
     togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
 
-    // Actualiza el atributo data con el nuevo estado
-    togglePreciosBtn.dataset.estadoMostrarTTC = mostrarTTC ? 'false' : 'true';
+    // Invierte el estado para el próximo clic
+    mostrarTTC = !mostrarTTC;
   }
 
   function calcularTTC(precioHT) {
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     return precioHT * 1.2;
   }
 });
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
