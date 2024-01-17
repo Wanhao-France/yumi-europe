@@ -41,6 +41,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Aplicar estilos iniciales
   updateStyles();
+
+  // Manejar eventos de desplazamiento (scroll)
+  window.addEventListener('scroll', function () {
+    // Aquí puedes ajustar el comportamiento de actualización si es necesario
+    updateStyles();
+  });
 });
 
 
