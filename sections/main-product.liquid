@@ -87,7 +87,70 @@
             </div>
           {%- endif -%}
         </div>
-      </div>
+      </div
+                  <div class="yv-shipping-estimations-box no-js-hidden">
+            <div id="shipping_estimations_template" class="yv-shipping-estimations">
+              <div class="section-heading">
+                <h6>{{ 'sections.cart.shipping_estimates.heading' | t }}</h6>
+              </div>
+              <div class="row align-items-end">
+                <div class="col-12 form-group" id="ShippingWrapperResponse" style="display:none;"></div>
+                <div class="col-12 col-sm-4 col-md-4 col-lg-3 form-group">
+                  <label for="shippingCountry">
+                    {{ 'sections.cart.shipping_estimates.country' | t }}
+                  </label>
+                  <div class="select">
+                    <select
+                      id="shippingCountry"
+                      name="shipping_address[country]"
+                      data-address-country-select
+                      data-default="{{ shop.address.country }}"
+                      autocomplete="country"
+                      class="form-control"
+                    >
+                      {{ country_option_tags }}
+                    </select>
+                  </div>
+                </div>
+                <div
+                  id="shippingProvinceContainer"
+                  class="col-12 col-sm-4 col-md-4 col-lg-3 form-group"
+                  style="display:none;"
+                >
+                  <label for="shippingProvince">
+                    {{ 'sections.cart.shipping_estimates.province' | t }}
+                  </label>
+                  <div class="select">
+                    <select
+                      id="shippingProvince"
+                      name="shipping_address[province]"
+                      autocomplete="address-level1"
+                      class="form-control"
+                    ></select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4 col-lg-3 form-group">
+                  <label for="shippingZip">
+                    {{ 'sections.cart.shipping_estimates.zip' | t }}
+                  </label>
+                  <div class="select">
+                    <input
+                      type="text"
+                      id="shippingZip"
+                      name="shipping_address[zip]"
+                      class="form-control"
+                      placeholder="Pin Code"
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-sm-5 col-md-4 col-lg-3 form-group">
+                  <button type="button" id="getShippingEstimates" class="button btn-block">
+                    {{ 'sections.cart.shipping_estimates.button' | t }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
   </div>
 </div>
