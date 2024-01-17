@@ -285,17 +285,17 @@
         "settings": {
         }
       },
-      "9670189827046205946": {
-        "type": "shopify:\/\/apps\/hextom-translate-my-store\/blocks\/app-block\/b927a799-be04-4b97-9efb-5c8f0290a68e",
-        "disabled": true,
-        "settings": {
-        }
-      },
       "14710238943034738919": {
         "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-embed\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
         "disabled": false,
         "settings": {
           "air_reviews_json_ld": "{\n    \"@context\": \"http:\/\/schema.org\",\n    \"@type\": \"Product\",\n    \"name\": {{ product.title | json }},\n    \"aggregateRating\": {\n      \"@type\": \"AggregateRating\",\n      \"ratingValue\": {{  product.metafields.reviews.rating.value.rating |  json }},\n      \"reviewCount\": {{ product.metafields.reviews.rating_count |  json }}\n    }\n}"
+        }
+      },
+      "9670189827046205946": {
+        "type": "shopify:\/\/apps\/hextom-translate-my-store\/blocks\/app-block\/b927a799-be04-4b97-9efb-5c8f0290a68e",
+        "disabled": false,
+        "settings": {
         }
       }
     }
