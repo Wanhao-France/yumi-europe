@@ -1,1 +1,78 @@
-{"sections":{"main-cart":{"type":"main-cart","settings":{"show_cart_note":true,"payment_enable":false,"shipping_estimate_enable":true}},"16467232233a9d5e13":{"type":"text-with-icons","blocks":{"8ffa567b-47d5-406e-aeb0-e090a4df66cb":{"type":"column","settings":{"icon":"secure","heading":"Fast & secure Delivery"}},"f1e9e791-92d3-45ce-a62c-907c287d64a0":{"type":"column","settings":{"icon":"smile","heading":"Cruelty free"}},"e474c2c9-2cc6-4369-93d1-dc5e15b3c0a3":{"type":"column","settings":{"icon":"global","heading":"Vegan Friendly Formula"}},"6a856cd8-722c-45ea-92ee-5e40487dbace":{"type":"column","settings":{"icon":"thumb","heading":"Free Delivery"}}},"block_order":["8ffa567b-47d5-406e-aeb0-e090a4df66cb","f1e9e791-92d3-45ce-a62c-907c287d64a0","e474c2c9-2cc6-4369-93d1-dc5e15b3c0a3","6a856cd8-722c-45ea-92ee-5e40487dbace"],"settings":{"bgcolor":"secondary","top_space_desktop":30,"bottom_space_desktop":30,"top_space_mobile":30,"bottom_space_mobile":30}}},"order":["main-cart","16467232233a9d5e13"]}
+{
+  "sections": {
+    "main-cart": {
+      "type": "main-cart",
+      "settings": {
+        "show_cart_note": true,
+        "payment_enable": true,
+        "shipping_estimate_enable": true,
+        "seo_heading": "h2"
+      }
+    },
+    "16467232233a9d5e13": {
+      "type": "text-with-icons",
+      "blocks": {
+        "8ffa567b-47d5-406e-aeb0-e090a4df66cb": {
+          "type": "column",
+          "settings": {
+            "icon": "secure",
+            "heading": "Fast & secure Delivery",
+            "seo_heading": "h2",
+            "subtext": "Add subtext here"
+          }
+        },
+        "f1e9e791-92d3-45ce-a62c-907c287d64a0": {
+          "type": "column",
+          "settings": {
+            "icon": "smile",
+            "heading": "Cruelty free",
+            "seo_heading": "h2",
+            "subtext": "Add subtext here"
+          }
+        },
+        "e474c2c9-2cc6-4369-93d1-dc5e15b3c0a3": {
+          "type": "column",
+          "settings": {
+            "icon": "global",
+            "heading": "Vegan Friendly Formula",
+            "seo_heading": "h2",
+            "subtext": "Add subtext here"
+          }
+        },
+        "6a856cd8-722c-45ea-92ee-5e40487dbace": {
+          "type": "column",
+          "settings": {
+            "icon": "thumb",
+            "heading": "Free Delivery",
+            "seo_heading": "h2",
+            "subtext": "Add subtext here"
+          }
+        }
+      },
+      "block_order": [
+        "8ffa567b-47d5-406e-aeb0-e090a4df66cb",
+        "f1e9e791-92d3-45ce-a62c-907c287d64a0",
+        "e474c2c9-2cc6-4369-93d1-dc5e15b3c0a3",
+        "6a856cd8-722c-45ea-92ee-5e40487dbace"
+      ],
+      "settings": {
+        "column_background": false,
+        "mobile_column_count": "1",
+        "icon_background": false,
+        "icon_position": "top",
+        "bgcolor": "secondary",
+        "column_background_color": "",
+        "icon_background_color": "",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    }
+  },
+  "order": [
+    "main-cart",
+    "16467232233a9d5e13"
+  ]
+}

@@ -37,7 +37,7 @@
     "tab_heading_font_family": "--font-family",
     "filters_heading_font_family": "--font-family",
     "layout_style": "rounded",
-    "layout_width": "fullwidth",
+    "layout_width": "boxed",
     "enable_animation": true,
     "button_radius": 6,
     "product_image_style": "square",
