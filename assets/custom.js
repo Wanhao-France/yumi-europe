@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updatePrices() {
-    const dualPriceElements = document.querySelectorAll('.dualPrice:not(.processed)');
-    
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+
     dualPriceElements.forEach((dualPriceElement) => {
       const precioOriginalAttr = dualPriceElement.getAttribute('data-original-price');
       const precioOriginal = parseFloat(precioOriginalAttr);
@@ -17,26 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!isNaN(precioOriginal)) {
         const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
         dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-        dualPriceElement.classList.add('processed');
       }
     });
   }
-
-  function handleIntersection(entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        updatePrices();
-      }
-    });
-  }
-
-  // Utilizando IntersectionObserver para manejar lazy loading
-  const observer = new IntersectionObserver(handleIntersection);
-
-  const dualPriceElements = document.querySelectorAll('.dualPrice:not(.processed)');
-  dualPriceElements.forEach((dualPriceElement) => {
-    observer.observe(dualPriceElement);
-  });
 
   togglePreciosBtn.addEventListener('click', function () {
     mostrarTTC = !mostrarTTC;
@@ -48,14 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', function () {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function () {
-      observer.disconnect();
-
-      // Obtener nuevos elementos cargados debido al lazy loading (por ejemplo, con clase .lazy-load)
-      const newLazyLoadElements = document.querySelectorAll('.lazy-load:not(.processed)');
-      newLazyLoadElements.forEach((lazyLoadElement) => {
-        observer.observe(lazyLoadElement);
-      });
-
       updatePrices();
     }, 100);
   });
