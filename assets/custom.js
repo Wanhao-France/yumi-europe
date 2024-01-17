@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
 
     // Cambia el texto del botón
-    togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
+    togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
   }
 
   function calcularTTC(precioHT) {
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return precioHT * 1.2;
   }
 });
+
 
 
 
