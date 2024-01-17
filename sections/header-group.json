@@ -50,7 +50,7 @@
         "sticky_header_style": "on_scroll_up",
         "enable_transparent_header": true,
         "logo": "shopify:\/\/shop_images\/Wanhao_LOGO-Black.webp",
-        "logo_width": 140,
+        "logo_width": 180,
         "logo_position": "center",
         "menu_navigations": "hover",
         "menu": "main-menu",
