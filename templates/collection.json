@@ -58,7 +58,7 @@
       "settings": {
         "column_background": false,
         "mobile_column_count": "1",
-        "icon_background": false,
+        "icon_background": true,
         "icon_position": "top",
         "bgcolor": "secondary",
         "column_background_color": "#130f32",
