@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  const dualPriceElement = document.querySelector('.dualPrice');
 
-  if (togglePreciosBtn && dualPriceElement) {
+  if (togglePreciosBtn) {
     let mostrarTTC = false;
 
     togglePreciosBtn.addEventListener('click', function () {
@@ -11,12 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function togglePrecios() {
-      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      const dualPriceElements = document.querySelectorAll('.dualPrice');
 
-      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+      dualPriceElements.forEach((dualPriceElement) => {
+        const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
 
-      // Actualiza el contenido del elemento 'dualPrice' con el nuevo precio
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+        const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+
+        // Actualiza el contenido del elemento 'dualPrice' con el nuevo precio
+        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      });
 
       // Cambia el texto del botón
       togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
