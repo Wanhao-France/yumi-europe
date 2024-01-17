@@ -33,10 +33,10 @@
       assign accountPageType = 'dropdown'
     endif
   %}
+                         <a href="https://wanhao-europe.com/pages/contact" class="acc-links text-hover"><i class="fa-solid fa-headset"></i></a>
+                      <a href="https://wanhao-europe.com/pages/getting-started-with-your-wanhao-products" class="acc-links text-hover"><i class="fa-solid fa-blog"></i></a>                   
                       
   <div class="customer-links">
-                          <a href="https://wanhao-europe.com/pages/contact" class="acc-links text-hover"><i class="fa-solid fa-headset"></i></a>
-                      <a href="https://wanhao-europe.com/pages/getting-started-with-your-wanhao-products" class="acc-links text-hover"><i class="fa-solid fa-blog"></i></a>
     <a class="acc-links text-hover acc-sign-in" 
        id="customer_login_link" href="{%- if customer -%}{{- routes.account_url -}}{%-else-%}{{ routes.account_login_url }}{%- endif -%}"
        {% unless section.settings.account_type == 'page' or request.page_type contains 'customers' %} onClick=toggleAccountPopup(event,'{{- accountPageType -}}'){% endunless %}
