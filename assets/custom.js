@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Encuentra el elemento con la clase 'yv-prizebox'
+  const prizeBox = document.querySelector('.yv-prizebox');
+
+  if (prizeBox) {
+    // Encuentra el elemento con la clase 'dualPrice' dentro del elemento 'yv-prizebox'
+    const dualPrice = prizeBox.querySelector('.dualPrice');
+
+    if (dualPrice) {
+      // Obtén el contenido actual del elemento 'dualPrice'
+      const currentPrice = dualPrice.textContent.trim();
+
+      // Realiza el cambio de TTC a HT (por ejemplo, eliminando el símbolo del euro)
+      const newPrice = currentPrice.replace('€', '');
+
+      // Actualiza el contenido del elemento 'dualPrice'
+      dualPrice.textContent = newPrice;
+
+      // Puedes agregar más lógica aquí según tus necesidades
+    }
+  }
+});
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('pay-credit-element');
     const productPrice = document.querySelector('.yv-product-price .dualPrice');
 
