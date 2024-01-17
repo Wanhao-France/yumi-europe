@@ -9017,7 +9017,7 @@ body.account-popup-open .yv-login-popup {
   position: relative;
   width: 60px;
   height: 30px;
-  background-color: #130f32;
+  background-color: #ccc; /* Fondo gris claro cuando está inactivo */
   border-radius: 15px;
   overflow: hidden;
   transition: background-color 0.3s; /* Transición para el color de fondo */
@@ -9029,10 +9029,10 @@ body.account-popup-open .yv-login-popup {
   left: 0;
   width: 50%;
   height: 100%;
-  background-color: #fff;
+  background-color: #130f32;
   border-radius: 15px;
-  transition: transform 0.3s, color 0.3s; /* Transiciones para la posición y el color de texto */
-  color: #130f32; /* Texto azul */
+  transition: transform 0.3s, background-color 0.3s; /* Transiciones para la posición y el color de fondo */
+  color: #fff; /* Texto blanco */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9040,12 +9040,9 @@ body.account-popup-open .yv-login-popup {
 
 .mostrar-ttc .toggle-btn {
   transform: translateX(100%);
-  background-color: #130f32;
-  color: #fff; /* Texto blanco */
+  background-color: #fff;
+  color: #130f32; /* Texto azul */
 }
-
-
-
 
 @media (max-width:767px) {
 
