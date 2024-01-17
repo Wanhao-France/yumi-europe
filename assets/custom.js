@@ -1,36 +1,46 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let mostrarTTC = false;
+
+  function updateStyles() {
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+    dualPriceElements.forEach((dualPriceElement) => {
+      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+    });
+
+    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
+    togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
+  }
+
+  togglePreciosBtn.addEventListener('click', function () {
+    mostrarTTC = !mostrarTTC;
+    updateStyles();
+  });
+
+  // Utilizando IntersectionObserver para manejar lazy loading
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        updateStyles();
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  const dualPriceElements = document.querySelectorAll('.dualPrice');
+  dualPriceElements.forEach((dualPriceElement) => {
+    observer.observe(dualPriceElement);
+  });
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
 
-  function updatePrices() {
-    const dualPriceElements = document.querySelectorAll('.dualPrice');
-
-    dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginalAttr = dualPriceElement.getAttribute('data-original-price');
-      const precioOriginal = parseFloat(precioOriginalAttr);
-
-      if (!isNaN(precioOriginal)) {
-        const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-      }
-    });
-  }
-
-  togglePreciosBtn.addEventListener('click', function () {
-    mostrarTTC = !mostrarTTC;
-    updatePrices();
-  });
-
-  window.addEventListener('scroll', function () {
-    updatePrices();
-  });
-
   // Aplicar estilos iniciales
-  updatePrices();
+  updateStyles();
 });
 
 
