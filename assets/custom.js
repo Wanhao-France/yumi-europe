@@ -26,8 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
     updatePrices();
   });
 
-  // Manejar eventos de desplazamiento (scroll)
-  window.addEventListener('scroll', updatePrices);
+  // Manejar eventos de desplazamiento (scroll) con debounce para mejorar el rendimiento
+  let debounceTimer;
+  window.addEventListener('scroll', function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(updatePrices, 100);
+  });
 
   // Aplicar estilos iniciales
   updatePrices();
