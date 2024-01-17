@@ -107,19 +107,19 @@ document.addEventListener('DOMContentLoaded', function () {
     return null;
   }
 
-  const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
-
-  // Ajusta el tiempo de expiración según la diferencia horaria de Francia (UTC+1)
-  const expirationTime = new Date().setHours(18, 0, 0, 0) + 1 * 60 * 60 * 1000;
+  const currentTime = new Date();
+  const expirationTime = new Date(currentTime);
+  expirationTime.setHours(13, 0, 0, 0); // Establecer la hora de expiración en las 13:00
 
   const notificationClosedTime = getNotificationClosedTime();
-  const showNotification = !notificationClosedTime || new Date() > notificationClosedTime;
+  const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
 
-  if (currentTime < '20:00' && showNotification) {
-    const notificationMessage = "For purchases made before 8:00 PM, your parcel will be dispatched the same day! Offer ends in:";
+  if (currentTime.getHours() < 13 && showNotification) {
+    const notificationMessage = "For purchases made before 1:00 PM, your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
+
 
 
 
