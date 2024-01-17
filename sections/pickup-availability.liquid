@@ -74,8 +74,25 @@
         </address>
       </li>
       {%- endfor -%}
+  {%- for day in (0..6) -%}
+    {%- assign currentSchedule = schedules[day] -%}
+    {%- if currentSchedule -%}
+      <li class="pickup-availability-list__item">
+        <h6 class="pickup-loaction-title">Current Location</h6>
+        <p class="pickup-availability-preview">
+          <svg focusable="false" aria-hidden="true" viewBox="0 0 512 512">
+            <path fill="green" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+          </svg>
+          <span>{{ 'products.product.pickup_availability.pick_up_available' | t }}, {{ currentSchedule.startTime | downcase }} - {{ currentSchedule.endTime | downcase }}</span>
+        </p>
+        <address class="pickup-availability-address">
+          Current Address
+          <p>123-456-7890</p>
+        </address>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
     </ul>
   </div>
-  qsdqsdqsdq
 </div>
 {%- endif -%}
