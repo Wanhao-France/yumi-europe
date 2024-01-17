@@ -43,11 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
   updateStyles();
 
   // Manejar eventos de desplazamiento (scroll)
+  let scrollTimer;
   window.addEventListener('scroll', function () {
-    // Aquí puedes ajustar el comportamiento de actualización si es necesario
-    updateStyles();
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateStyles, 100);
   });
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
