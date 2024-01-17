@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', function () {
   let precioOriginals = [];
   let mostrarTTC = false;
 
+  // Función para actualizar los estilos
+  function updateStyles() {
+    dualPriceElements.forEach((dualPriceElement, index) => {
+      const precioOriginal = precioOriginals[index];
+      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+    });
+
+    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
+    togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
+  }
+
   dualPriceElements.forEach((dualPriceElement) => {
     const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
     precioOriginals.push(precioOriginal);
@@ -12,29 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   togglePreciosBtn.addEventListener('click', function () {
     mostrarTTC = !mostrarTTC;
-    togglePrecios();
+    updateStyles();
   });
 
-  function togglePrecios() {
-    dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = precioOriginals[index];
-      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-
-      // Actualiza el contenido del elemento 'dualPrice' con el nuevo precio
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-    });
-
-    // Cambia la clase para alternar el estado del botón
-    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
-
-    // Cambia el texto del botón
-    togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
-  }
+  // Eventos adicionales para manejar el lazy loading
+  window.addEventListener('scroll', updateStyles);
+  window.addEventListener('resize', updateStyles);
 
   function calcularTTC(precioHT) {
-    // Calcula el precio TTC sumando un 20% al precio HT
     return precioHT * 1.2;
   }
+
+  // Aplicar estilos iniciales
+  updateStyles();
 });
 
 
