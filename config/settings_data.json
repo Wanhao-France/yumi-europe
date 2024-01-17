@@ -72,7 +72,7 @@
     "show_grid_pickup": false,
     "show_similar_text": false,
     "similar_condition": "type",
-    "show_reviews": false,
+    "show_reviews": true,
     "show_inventory": true,
     "inventory_threshold": 30,
     "product_hover_auto_slide": false,
