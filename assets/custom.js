@@ -20,19 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
       const precioOriginal = precioOriginals[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
 
-      // Actualiza el contenido del elemento 'dualPrice' con el nuevo precio
+
       dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
 
-    // Cambia la clase para alternar el estado del botón
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
 
-    // Cambia el texto del botón
     togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
   }
 
   function calcularTTC(precioHT) {
-    // Calcula el precio TTC sumando un 20% al precio HT
     return precioHT * 1.2;
   }
 });
