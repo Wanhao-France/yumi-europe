@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
 
   if (currentTime.getHours() < 13 && showNotification) {
-    const notificationMessage = "For purchases made before 1:00 PM, your parcel will be dispatched the same day! Offer ends in:";
+    const notificationMessage = "For purchases made before 13:00 , your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
