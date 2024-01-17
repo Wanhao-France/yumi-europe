@@ -9017,9 +9017,10 @@ body.account-popup-open .yv-login-popup {
   position: relative;
   width: 60px;
   height: 30px;
-  background-color: #ccc;
+  background-color: #130f32;
   border-radius: 15px;
   overflow: hidden;
+  transition: background-color 0.3s; /* Transición para el color de fondo */
 }
 
 .toggle-btn {
@@ -9030,12 +9031,19 @@ body.account-popup-open .yv-login-popup {
   height: 100%;
   background-color: #fff;
   border-radius: 15px;
-  transition: transform 0.3s;
+  transition: transform 0.3s, background-color 0.3s; /* Transiciones para la posición y el color de fondo */
+  color: #130f32; /* Texto blanco */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mostrar-ttc .toggle-btn {
   transform: translateX(100%);
+  background-color: #130f32;
+  color: #fff; /* Texto blanco */
 }
+
 
 
 @media (max-width:767px) {
