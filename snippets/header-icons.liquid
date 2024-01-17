@@ -33,6 +33,10 @@
       assign accountPageType = 'dropdown'
     endif
   %}
+
+                      <a></a>
+                      <a></a>
+                      
   <div class="customer-links">
     <a class="acc-links text-hover acc-sign-in" 
        id="customer_login_link" href="{%- if customer -%}{{- routes.account_url -}}{%-else-%}{{ routes.account_login_url }}{%- endif -%}"
