@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const currentTime = new Date();
   const expirationTime = new Date(currentTime);
-  expirationTime.setHours(13, 0, 0, 0); // Establecer la hora de expiración en las 13:00
+  expirationTime.setHours(13, 0, 0, 0);
 
   const notificationClosedTime = getNotificationClosedTime();
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
