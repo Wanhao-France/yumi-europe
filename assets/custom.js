@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const notificationClosedTime = getNotificationClosedTime();
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
 
-  if (currentTime.getHours() < 13 && showNotification) {
+  if (currentTime.getHours() < 19 && showNotification) {
     const notificationMessage = "For purchases made before 13:00 , your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
