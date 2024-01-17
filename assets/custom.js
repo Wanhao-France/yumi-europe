@@ -8,11 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updatePrices() {
-    const dualPriceElements = document.querySelectorAll('.dualPrice');
+    const dualPriceElements = document.querySelectorAll('.dualPrice:not(.processed)');
+    
     dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginal = parseFloat(dualPriceElement.dataset.originalPrice);
-      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      const precioOriginalAttr = dualPriceElement.getAttribute('data-original-price');
+      const precioOriginal = parseFloat(precioOriginalAttr);
+
+      if (!isNaN(precioOriginal)) {
+        const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+        dualPriceElement.classList.add('processed');
+      }
     });
   }
 
@@ -27,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Utilizando IntersectionObserver para manejar lazy loading
   const observer = new IntersectionObserver(handleIntersection);
 
-  const dualPriceElements = document.querySelectorAll('.dualPrice');
+  const dualPriceElements = document.querySelectorAll('.dualPrice:not(.processed)');
   dualPriceElements.forEach((dualPriceElement) => {
     observer.observe(dualPriceElement);
   });
@@ -43,9 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function () {
       observer.disconnect();
-      dualPriceElements.forEach((dualPriceElement) => {
-        observer.observe(dualPriceElement);
+
+      // Obtener nuevos elementos cargados debido al lazy loading (por ejemplo, con clase .lazy-load)
+      const newLazyLoadElements = document.querySelectorAll('.lazy-load:not(.processed)');
+      newLazyLoadElements.forEach((lazyLoadElement) => {
+        observer.observe(lazyLoadElement);
       });
+
+      updatePrices();
     }, 100);
   });
 
