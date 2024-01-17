@@ -1,24 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const cambiarPreciosBtn = document.getElementById('cambiarPreciosBtn');
+  const togglePreciosBtn = document.getElementById('togglePreciosBtn');
 
-  if (cambiarPreciosBtn) {
-    cambiarPreciosBtn.addEventListener('click', function () {
-      cambiarPrecios();
+  if (togglePreciosBtn) {
+    togglePreciosBtn.addEventListener('click', function () {
+      togglePrecios();
     });
   }
 
-  function cambiarPrecios() {
+  function togglePrecios() {
     const precios = document.querySelectorAll('.dualPrice');
 
     precios.forEach((precio) => {
       const precioActual = parseFloat(precio.textContent.replace('€', '').replace(',', '.'));
 
-      // Supongamos que quieres agregar un 20% al precio actual para obtener el nuevo precio
-      const nuevoPrecio = precioActual * 1.2;
+      // Verifica si el botón está en el estado "Mostrar HT" o "Mostrar TTC"
+      const mostrarTTC = togglePreciosBtn.innerText === 'Mostrar TTC';
+
+      // Calcula el nuevo precio según el estado del botón
+      const nuevoPrecio = mostrarTTC ? calcularTTC(precioActual) : precioActual;
 
       // Actualiza el contenido del elemento 'dualPrice' con el nuevo precio
       precio.textContent = nuevoPrecio.toFixed(2) + '€';
     });
+
+    // Cambia el texto del botón y actualiza el estado del botón de alternancia
+    togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
+  }
+
+  function calcularTTC(precioHT) {
+    // Calcula el precio TTC sumando un 20% al precio HT
+    return precioHT * 1.2;
   }
 });
 
