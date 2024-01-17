@@ -9048,8 +9048,7 @@ body.account-popup-open .yv-login-popup {
   width: 100%;
 }
 .icons-header-custom > i {
-    width: 22px;
-  height: 22px;
+  font-size: 2rem;
 }
 
 @media (max-width:767px) {
