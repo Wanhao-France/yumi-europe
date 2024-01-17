@@ -200,10 +200,10 @@
         "image_spacing_mobile": 5,
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 10,
-        "bottom_space_desktop": 10,
-        "top_space_mobile": 5,
-        "bottom_space_mobile": 5
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
       }
     },
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98": {
