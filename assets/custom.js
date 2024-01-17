@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const currentTime = new Date();
   const expirationTime = new Date(currentTime);
-  expirationTime.setHours(19, 0, 0, 0);
+  expirationTime.setHours(13, 0, 0, 0);
 
   const notificationClosedTime = getNotificationClosedTime();
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
