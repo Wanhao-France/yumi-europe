@@ -40,6 +40,7 @@
     "layout_width": "boxed",
     "enable_animation": true,
     "button_radius": 6,
+    "enable_lazyload": false,
     "product_image_style": "square",
     "product_image_size": "contain",
     "collection_image_style": "square",
