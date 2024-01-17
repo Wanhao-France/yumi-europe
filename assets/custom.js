@@ -23,9 +23,9 @@ var newLi = document.createElement("li");
 // Create the content of the new li with the schedule information for the current day
 newLi.textContent = currentSchedule.day + ': ' + currentSchedule.startTime + ' - ' + currentSchedule.endTime;
 
-// Add the new li to the existing element (e.g., a ul element with id "scheduleList")
-var scheduleList = document.getElementById("scheduleList");
-scheduleList.appendChild(newLi);
+// Add the new li to the pickUpAvailabilityContent element
+var pickUpAvailabilityContent = document.getElementById(".pickUpAvailabilityContent");
+pickUpAvailabilityContent.appendChild(newLi);
 
 
 document.addEventListener('DOMContentLoaded', function () {
