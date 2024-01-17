@@ -148,12 +148,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const currentTime = new Date();
   const expirationTime = new Date(currentTime);
-  expirationTime.setHours(13, 0, 0, 0);
+  expirationTime.setHours(19, 0, 0, 0);
 
   const notificationClosedTime = getNotificationClosedTime();
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
 
-  if (currentTime.getHours() < 19 && showNotification) {
+  if (currentTime.getHours() < 13 && showNotification) {
     const notificationMessage = "For purchases made before 13:00 , your parcel will be dispatched the same day! Offer ends in:";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
