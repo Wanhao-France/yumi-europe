@@ -9046,7 +9046,9 @@ body.account-popup-open .yv-login-popup {
 
 .icons-header-custom {
   width: 100%;
-  width: 22px;
+}
+.icons-header-custom > i {
+    width: 22px;
   height: 22px;
 }
 
