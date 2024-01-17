@@ -1,3 +1,33 @@
+// Get the current date
+var currentDate = new Date();
+// Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+var currentDay = currentDate.getDay();
+
+// Define an object with schedule information for each day
+var schedules = {
+    0: { day: "Sunday", startTime: "10:00 AM", endTime: "6:00 PM" },
+    1: { day: "Monday", startTime: "9:00 AM", endTime: "5:00 PM" },
+    2: { day: "Tuesday", startTime: "9:30 AM", endTime: "4:30 PM" },
+    3: { day: "Wednesday", startTime: "8:00 AM", endTime: "4:00 PM" },
+    4: { day: "Thursday", startTime: "10:30 AM", endTime: "6:30 PM" },
+    5: { day: "Friday", startTime: "8:30 AM", endTime: "5:30 PM" },
+    6: { day: "Saturday", startTime: "11:00 AM", endTime: "7:00 PM" }
+};
+
+// Get the schedule information for the current day
+var currentSchedule = schedules[currentDay];
+
+// Create a new li element
+var newLi = document.createElement("li");
+
+// Create the content of the new li with the schedule information for the current day
+newLi.textContent = currentSchedule.day + ': ' + currentSchedule.startTime + ' - ' + currentSchedule.endTime;
+
+// Add the new li to the existing element (e.g., a ul element with id "scheduleList")
+var scheduleList = document.getElementById("scheduleList");
+scheduleList.appendChild(newLi);
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
