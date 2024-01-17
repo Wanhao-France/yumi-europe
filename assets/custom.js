@@ -3,52 +3,56 @@ document.addEventListener('DOMContentLoaded', function () {
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let mostrarTTC = false;
 
-  function updateStyles() {
+  function calcularTTC(precioHT) {
+    return precioHT * 1.2;
+  }
+
+  function updatePrices() {
     const dualPriceElements = document.querySelectorAll('.dualPrice');
     dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      const precioOriginal = parseFloat(dualPriceElement.dataset.originalPrice);
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
       dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
-
-    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
-    togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
   }
 
-  togglePreciosBtn.addEventListener('click', function () {
-    mostrarTTC = !mostrarTTC;
-    updateStyles();
-  });
-
-  // Utilizando IntersectionObserver para manejar lazy loading
-  const observer = new IntersectionObserver((entries) => {
+  function handleIntersection(entries) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        updateStyles();
-        observer.unobserve(entry.target);
+        updatePrices();
       }
     });
-  });
+  }
+
+  // Utilizando IntersectionObserver para manejar lazy loading
+  const observer = new IntersectionObserver(handleIntersection);
 
   const dualPriceElements = document.querySelectorAll('.dualPrice');
   dualPriceElements.forEach((dualPriceElement) => {
     observer.observe(dualPriceElement);
   });
 
-  function calcularTTC(precioHT) {
-    return precioHT * 1.2;
-  }
-
-  // Aplicar estilos iniciales
-  updateStyles();
+  togglePreciosBtn.addEventListener('click', function () {
+    mostrarTTC = !mostrarTTC;
+    updatePrices();
+  });
 
   // Manejar eventos de desplazamiento (scroll)
   let scrollTimer;
   window.addEventListener('scroll', function () {
     clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateStyles, 100);
+    scrollTimer = setTimeout(function () {
+      observer.disconnect();
+      dualPriceElements.forEach((dualPriceElement) => {
+        observer.observe(dualPriceElement);
+      });
+    }, 100);
   });
+
+  // Aplicar estilos iniciales
+  updatePrices();
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
