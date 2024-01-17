@@ -41,8 +41,8 @@
 
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/Wanhao_LOGO_Normal.png",
-        "image_width": 180,
+        "image": "shopify:\/\/shop_images\/Wanhao_LOGO-Blanc.webp",
+        "image_width": 105,
         "subtext": "",
         "enable_language_selector": true,
         "show_language_background": true,
