@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Cambia la clase para alternar el estado del botón
-    toggleContainer.classList.toggle('ttc', mostrarTTC);
+    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
 
     // Cambia el texto del botón
     togglePreciosBtn.innerText = mostrarTTC ? 'Mostrar HT' : 'Mostrar TTC';
