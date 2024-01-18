@@ -33,47 +33,103 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Obtén todos los elementos de entrada de tipo radio dentro del contenedor
+  const opcionesDeTamanio = document.querySelectorAll('.select-taille input[type="radio"]');
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  let precioOriginals = [];
-  let mostrarTTC = false;
+  let preciosOriginales = [];
+  let mostrarTTC = obtenerEstadoToggle();
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
 
-  function actualizarPrecios() {
+  async function actualizarPrecios() {
+    await esperarProductosCargados();
+
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
     dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = precioOriginals[index];
+      const precioOriginal = preciosOriginales[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+
+      if (!isNaN(nuevoPrecio)) {
+        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      }
     });
 
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
     togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
+
+    // Guardar el estado del toggle en localStorage
+    guardarEstadoToggle(mostrarTTC);
   }
 
-  togglePreciosBtn.addEventListener('click', function () {
-    mostrarTTC = !mostrarTTC;
-    actualizarPrecios();
-  });
+  async function esperarProductosCargados() {
+    return new Promise((resolve) => {
+      const observer = new MutationObserver(() => {
+        const dualPriceElements = document.querySelectorAll('.dualPrice');
 
-  // Capturar el evento scroll para manejar cambios dinámicos
-  window.addEventListener('scroll', actualizarPrecios);
+        if (dualPriceElements.length > 0) {
+          observer.disconnect();
+          dualPriceElements.forEach((dualPriceElement) => {
+            const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+            preciosOriginales.push(precioOriginal);
+          });
+          resolve();
+        }
+      });
 
-  // Capturar el evento load para manejar elementos cargados después de la carga inicial
-  window.addEventListener('load', function () {
-    const dualPriceElements = document.querySelectorAll('.dualPrice');
-    dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-      precioOriginals.push(precioOriginal);
+      observer.observe(document.body, { childList: true, subtree: true });
     });
-    actualizarPrecios();
-  });
-});
+  }
 
+  function handleOptionChange(opcion) {
+    if (opcion.checked) {
+      const textoOpcion = opcion.nextElementSibling.textContent.trim();
+      alert('Opción seleccionada:', textoOpcion);
+      const resultadoElemento = document.getElementById('resultado');
+      if (resultadoElemento) {
+        resultadoElemento.textContent = 'Opción seleccionada: ' + textoOpcion;
+      }
+
+      // Llama a la función para actualizar precios cuando cambia la opción
+      actualizarPrecios();
+    }
+  }
+
+  opcionesDeTamanio.forEach(function (opcion) {
+    opcion.addEventListener('change', function () {
+      handleOptionChange(opcion);
+    });
+  });
+
+  togglePreciosBtn.addEventListener('click', async function () {
+    mostrarTTC = !mostrarTTC;
+    await actualizarPrecios();
+  });
+
+  document.addEventListener('lazybeforeunveil', async function () {
+    await actualizarPrecios();
+  });
+
+  window.addEventListener('scroll', async function () {
+    await actualizarPrecios();
+  });
+
+  window.addEventListener('load', async function () {
+    await actualizarPrecios();
+  });
+
+  function guardarEstadoToggle(estado) {
+    localStorage.setItem('mostrarTTC', JSON.stringify(estado));
+  }
+
+  function obtenerEstadoToggle() {
+    const estadoGuardado = localStorage.getItem('mostrarTTC');
+    return estadoGuardado ? JSON.parse(estadoGuardado) : false;
+  }
+});
 
 
 
