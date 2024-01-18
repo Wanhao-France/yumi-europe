@@ -512,3 +512,20 @@ $(document).ready(function(){
     });
   }
 })
+
+
+
+const noscriptContent = document.querySelector('noscript').innerText;
+
+const regex = /- €([\d,]+)/g;
+const precios = [];
+let match;
+
+while ((match = regex.exec(noscriptContent)) !== null) {
+  precios.push(match[1]);
+}
+
+console.log(precios);
+console.log('Precios capturados:', precios);
+
+
