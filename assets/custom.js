@@ -36,36 +36,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //
 document.addEventListener('DOMContentLoaded', function () {
-  const toggleContainer = document.querySelector('.toggle-container');
-  const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle(); 
+  // Obtén los elementos que contienen la información del precio
+  const priceElements = document.querySelectorAll('.dualPrice');
+  let mostrarTTC = obtenerEstadoToggle();
 
+  // Función para calcular el precio TTC
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
 
-  async function actualizarPrecios() {
-    await esperarProductosCargados();
-
-    const dualPriceElements = document.querySelectorAll('.dualPrice');
-
-    dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = preciosOriginales[index];
+  // Función para actualizar los precios en la página
+  function actualizarPrecios() {
+    priceElements.forEach((priceElement) => {
+      const precioOriginal = parseFloat(priceElement.textContent.replace('€', '').replace(',', '.'));
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
 
       if (!isNaN(nuevoPrecio)) {
-        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+        priceElement.textContent = nuevoPrecio.toFixed(2) + '€';
       }
     });
 
+    // Actualiza el estado del toggle en el contenedor
+    const toggleContainer = document.querySelector('.toggle-container');
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
+
+    // Actualiza el texto del botón
+    const togglePreciosBtn = document.getElementById('togglePreciosBtn');
     togglePreciosBtn.innerText = mostrarTTC ? 'TTC' : 'HT';
 
     // Guardar el estado del toggle en localStorage
     guardarEstadoToggle(mostrarTTC);
   }
 
+  // Función para esperar a que los productos estén cargados
   async function esperarProductosCargados() {
     return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
@@ -73,10 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (dualPriceElements.length > 0) {
           observer.disconnect();
-          dualPriceElements.forEach((dualPriceElement) => {
-            const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-            preciosOriginales.push(precioOriginal);
-          });
           resolve();
         }
       });
@@ -85,12 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Evento de clic en el botón de alternancia
+  const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   togglePreciosBtn.addEventListener('click', async function () {
     mostrarTTC = !mostrarTTC;
-    await actualizarPrecios();
-  });
-
-  document.addEventListener('lazybeforeunveil', async function () {
     await actualizarPrecios();
   });
 
@@ -99,7 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 
+  // Evento de carga completa de la página
   window.addEventListener('load', async function () {
+    await esperarProductosCargados();
     await actualizarPrecios();
   });
 
@@ -113,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
 });
-
 
 //
 
