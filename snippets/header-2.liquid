@@ -38,11 +38,11 @@
       <div class="navbar navbar-expand-md">
           <ul class="list-unstyled navbar-nav list-menu--inline" {% if section.settings.menu_position == 'center' %}style="justify-content:center;"{% endif %} role="list">								
             {% render 'nav-item' section : section %}
-          </ul>
-      </div>
-      <div class="toggle-container">
+            <div class="toggle-container">
   <button id="togglePreciosBtn" class="toggle-btn"></button>
 </div>
+          </ul>
+      </div>      
     </div>
   </div>
   {%- endif -%}
