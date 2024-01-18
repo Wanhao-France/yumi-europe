@@ -109,7 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const estadoGuardado = localStorage.getItem('mostrarTTC');
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
+});
 
+document.addEventListener('DOMContentLoaded', function () {
   // Obtén el contenedor
   const contenedor = document.getElementById('ProductData-template--15572366753903__main-product');
 
@@ -119,12 +121,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const elementoHijo = event.target;
     if (contenedor.contains(elementoHijo)) {
       // Acciones a realizar cuando se detecta un mouseup en el contenedor
-      // Puedes agregar aquí la lógica específica para manejar la selección en el contenedor
-      // Luego, llamas a la función actualizarPrecios para actualizar los precios según sea necesario
-      actualizarPrecios();
+      alert('Mouseup en el contenedor:', elementoHijo);
     }
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
