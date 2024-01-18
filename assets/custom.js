@@ -38,24 +38,20 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
+  let precioOriginals = [];
   let mostrarTTC = false;
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
 
-  function actualizarPrecios() {
+  async function actualizarPrecios() {
+    await esperarProductosCargados(); // Espera a que los productos se carguen
+
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
-    dualPriceElements.forEach((dualPriceElement) => {
-      const contenido = dualPriceElement.textContent;
-      const precioOriginal = parseFloat(contenido.replace('€', '').replace(',', '.'));
-
-      if (isNaN(precioOriginal)) {
-        console.error('Error: No se pudo extraer un número de:', contenido);
-        return;
-      }
-
+    dualPriceElements.forEach((dualPriceElement, index) => {
+      const precioOriginal = precioOriginals[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
       dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
@@ -64,22 +60,33 @@ document.addEventListener('DOMContentLoaded', function () {
     togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
   }
 
-  togglePreciosBtn.addEventListener('click', function () {
+  async function esperarProductosCargados() {
+    return new Promise((resolve) => {
+      const observer = new MutationObserver(() => {
+        if (document.querySelector('.dualPrice')) {
+          observer.disconnect();
+          resolve();
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  }
+
+  togglePreciosBtn.addEventListener('click', async function () {
     mostrarTTC = !mostrarTTC;
-    actualizarPrecios();
+    await actualizarPrecios();
   });
 
   // Capturar el evento scroll para manejar cambios dinámicos
-  window.addEventListener('scroll', actualizarPrecios);
+  window.addEventListener('scroll', async function () {
+    await actualizarPrecios();
+  });
 
   // Capturar el evento load para manejar elementos cargados después de la carga inicial
-  window.addEventListener('load', actualizarPrecios);
-  
-  // Capturar el evento MutationObserver para manejar cambios en el DOM
-  const observer = new MutationObserver(actualizarPrecios);
-  const targetNode = document.body;
-  const config = { childList: true, subtree: true };
-  observer.observe(targetNode, config);
+  window.addEventListener('load', async function () {
+    await actualizarPrecios();
+  });
 });
 
 //
