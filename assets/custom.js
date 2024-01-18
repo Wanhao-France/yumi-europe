@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     opcion.addEventListener('change', function () {
       if (opcion.checked) {
         const textoOpcion = opcion.nextElementSibling.textContent.trim();
-        alert('Opción seleccionada:', textoOpcion);
+        console.log('Opción seleccionada:', textoOpcion);
         const resultadoElemento = document.getElementById('resultado');
         if (resultadoElemento) {
           resultadoElemento.textContent = 'Opción seleccionada: ' + textoOpcion;
