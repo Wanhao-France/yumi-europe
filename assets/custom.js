@@ -38,69 +38,48 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  let preciosOriginales = [];
   let mostrarTTC = false;
 
-
-  
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
 
-  async function actualizarPrecios() {
-    await esperarProductosCargados();
-
+  function actualizarPrecios() {
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
-    dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = preciosOriginales[index];
-      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-      
-      if (!isNaN(nuevoPrecio)) {
-        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+    dualPriceElements.forEach((dualPriceElement) => {
+      const contenido = dualPriceElement.textContent;
+      const precioOriginal = parseFloat(contenido.replace('€', '').replace(',', '.'));
+
+      if (isNaN(precioOriginal)) {
+        console.error('Error: No se pudo extraer un número de:', contenido);
+        return;
       }
+
+      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
 
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
     togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
   }
 
-  async function esperarProductosCargados() {
-    return new Promise((resolve) => {
-      const observer = new MutationObserver(() => {
-        const dualPriceElements = document.querySelectorAll('.dualPrice');
-
-        if (dualPriceElements.length > 0) {
-          observer.disconnect();
-          dualPriceElements.forEach((dualPriceElement) => {
-            const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-            preciosOriginales.push(precioOriginal);
-          });
-          resolve();
-        }
-      });
-
-      observer.observe(document.body, { childList: true, subtree: true });
-    });
-  }
-
-  togglePreciosBtn.addEventListener('click', async function () {
+  togglePreciosBtn.addEventListener('click', function () {
     mostrarTTC = !mostrarTTC;
-    await actualizarPrecios();
+    actualizarPrecios();
   });
 
-  document.addEventListener('lazybeforeunveil', async function () {
-    await actualizarPrecios();
-  });
+  // Capturar el evento scroll para manejar cambios dinámicos
+  window.addEventListener('scroll', actualizarPrecios);
 
-  // Capturar eventos específicos de lazy loading de imágenes
-  window.addEventListener('scroll', async function () {
-    await actualizarPrecios();
-  });
-
-  window.addEventListener('load', async function () {
-    await actualizarPrecios();
-  });
+  // Capturar el evento load para manejar elementos cargados después de la carga inicial
+  window.addEventListener('load', actualizarPrecios);
+  
+  // Capturar el evento MutationObserver para manejar cambios en el DOM
+  const observer = new MutationObserver(actualizarPrecios);
+  const targetNode = document.body;
+  const config = { childList: true, subtree: true };
+  observer.observe(targetNode, config);
 });
 
 //
