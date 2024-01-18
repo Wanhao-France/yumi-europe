@@ -112,18 +112,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Obtén todas las opciones (input de tipo radio)
-  const opciones = document.querySelectorAll('.version__option .productOption');
+  // Obtén el contenedor
+  const contenedor = document.getElementById('ProductData-template--15572366753903__main-product');
 
-  // Agrega un EventListener a cada opción
-  opciones.forEach(function (opcion) {
-    opcion.addEventListener('change', function () {
-      // Acciones a realizar cuando cambia la opción seleccionada
-      alert('Opción seleccionada:', opcion.value);
-      // Puedes agregar más lógica aquí según tus necesidades
-    });
+  // Agrega un EventListener para el evento mouseup en el contenedor
+  contenedor.addEventListener('mouseup', function (event) {
+    // Verifica si el evento proviene de un elemento hijo del contenedor
+    const elementoHijo = event.target;
+    if (contenedor.contains(elementoHijo)) {
+      // Acciones a realizar cuando se detecta un mouseup en el contenedor
+      alert('Mouseup en el contenedor:', elementoHijo);
+    }
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
