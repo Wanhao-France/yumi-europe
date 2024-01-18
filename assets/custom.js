@@ -160,6 +160,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// Funcionality TTC/HT
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggleButton = document.getElementById("priceToggle");
+    var priceBox = document.querySelector(".yv-prizebox");
+
+    toggleButton.addEventListener("click", function () {
+      // Cambia la lógica para determinar si el precio debe ser TTC o HT
+      var isTTC = !priceBox.classList.contains("ht-mode");
+
+      // Aplica la clase correspondiente para cambiar el estilo según TTC o HT
+      if (isTTC) {
+        priceBox.classList.remove("ht-mode");
+      } else {
+        priceBox.classList.add("ht-mode");
+      }
+    });
+  });
 
 
 
