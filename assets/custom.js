@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
-    togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
+    togglePreciosBtn.innerText = mostrarTTC ? 'TTC' : 'HT';
 
     // Guardar el estado del toggle en localStorage
     guardarEstadoToggle(mostrarTTC);
@@ -114,13 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-const toggleContainer = document.querySelector('.toggle-container');
-toggleContainer.addEventListener('click', function (event) {
-  if (event.target === togglePreciosBtn) {
-    mostrarTTC = !mostrarTTC;
-    actualizarPrecios();
-  }
-});
 
 //
 
