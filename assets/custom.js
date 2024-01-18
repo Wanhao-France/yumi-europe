@@ -160,24 +160,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// Funcionality TTC/HT
-document.addEventListener('DOMContentLoaded', function () {
-  var taxToggle = document.getElementById('taxToggle');
-  var priceContainers = document.querySelectorAll('.yv-prizebox .yv-product-price');
-
-  taxToggle.addEventListener('change', function () {
-    priceContainers.forEach(function (priceContainer) {
-      // Obtén el precio actual del contenedor
-      var currentPrice = parseFloat(priceContainer.innerText.replace(/[^\d.-]/g, ''));
-
-      // Aplica la lógica para cambiar entre TTC y HT (por ejemplo, dividir por 100)
-      var newPrice = taxToggle.checked ? currentPrice * 1.2 : currentPrice / 1.2 / 100;
-
-      // Formatea el nuevo precio y actualiza el contenido del contenedor
-      priceContainer.innerText = newPrice.toFixed(2) + ' €';
-    });
-  });
-});
-
 
 
