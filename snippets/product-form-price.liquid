@@ -4,7 +4,6 @@
   <div class="yv-compare-price-box">
     {%- if current_variant.compare_at_price > current_variant.price -%}
     <span class="yv-visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
-      fsdfsdfsdfsd
     <span class="yv-product-compare-price"> {{ current_variant.compare_at_price | money }}</span>
       {%- if settings.show_saved_amount -%}
         <span class="yv-visually-hidden">{{ 'products.product.price.saved' | t }}</span>
