@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let preciosOriginales = [];
-  let mostrarTTC = false;
+  let mostrarTTC = obtenerEstadoToggle(); // Obtener el estado del toggle almacenado en localStorage
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dualPriceElements.forEach((dualPriceElement, index) => {
       const precioOriginal = preciosOriginales[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-      
+
       if (!isNaN(nuevoPrecio)) {
         dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
       }
@@ -61,6 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
     togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
+
+    // Guardar el estado del toggle en localStorage
+    guardarEstadoToggle(mostrarTTC);
   }
 
   async function esperarProductosCargados() {
@@ -99,6 +102,16 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('load', async function () {
     await actualizarPrecios();
   });
+
+  // Funciones para almacenar y recuperar el estado del toggle en localStorage
+  function guardarEstadoToggle(estado) {
+    localStorage.setItem('mostrarTTC', JSON.stringify(estado));
+  }
+
+  function obtenerEstadoToggle() {
+    const estadoGuardado = localStorage.getItem('mostrarTTC');
+    return estadoGuardado ? JSON.parse(estadoGuardado) : false;
+  }
 });
 
 
