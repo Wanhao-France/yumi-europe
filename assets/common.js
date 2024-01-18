@@ -1007,7 +1007,7 @@ function updateInventroyStatusBar(variantQty, variantPolicy) {
   }
 }
 
-function priceUpdate(productSection, priceContainer, getVariant, showSaved, ttcToggleActive) {
+function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var showSavedAmount = "";
   var savedAmountStyle = "";
   var priceHtml = "";
@@ -1016,16 +1016,57 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved, ttcT
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-
-    // Obtener el precio base
-    var basePrice = parseInt(getVariant.price);
-
-    // Aplicar TTC (si está activo)
-    var price = ttcToggleActive ? applyTTC(basePrice) : basePrice;
-
-    // Resto del código permanece sin cambios...
-    // ...
-
+    var compareAtPrice = parseInt(getVariant.compare_at_price);
+    var price = parseInt(getVariant.price);
+    var percentage =
+      roundToTwo(((compareAtPrice - price) / compareAtPrice) * 100) +
+      "% " +
+      saleOffText;
+    var savedAmount =
+      Shopify.formatMoney(compareAtPrice - price, moneyFormat) +
+      " " +
+      saleOffText;
+    priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2">${Shopify.formatMoney(
+      price,
+      moneyFormat
+    )}</span>`;
+    var savedAmountHtml =
+      '<span class="yv-visually-hidden">' + savedPriceText + "</span>";
+    if (showSaved) {
+      if (showSavedAmount == "true") {
+        if (savedAmountStyle == "percentage") {
+          savedAmountHtml += `<span class="yv-product-percent-off">${percentage}</span>`;
+        } else {
+          savedAmountHtml += `<span class="yv-product-percent-off">${savedAmount}</span>`;
+        }
+      }
+    } else {
+      if (getVariant.allocation_type == "") {
+        if (savedAmountStyle == "percentage") {
+          savedAmountHtml += `<span class="yv-product-percent-off">${percentage}</span>`;
+        } else {
+          savedAmountHtml += `<span class="yv-product-percent-off">${savedAmount}</span>`;
+        }
+      } else if (getVariant.allocation_type == "percentage") {
+        savedAmountHtml += `<span class="yv-product-percent-off">${getVariant.allocation_value}% ${saleOffText}</span>`;
+      } else {
+        savedAmountHtml += `<span class="yv-product-percent-off">${Shopify.formatMoney(
+          getVariant.allocation_value,
+          moneyFormat
+        )} ${saleOffText}</span>`;
+      }
+    }
+    if (compareAtPrice > price) {
+      priceHtml = `<span class="yv-visually-hidden">${comparePriceText}</span><span class="yv-product-price h2">${Shopify.formatMoney(
+        price,
+        moneyFormat
+      )}</span>
+      <div class="yv-compare-price-box"><span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-compare-price"> ${Shopify.formatMoney(
+        compareAtPrice,
+        moneyFormat
+      )}</span>
+      ${savedAmountHtml}</div>`;
+    }
     if (getVariant.unit_price_measurement) {
       priceHtml +=
         '<span class="yv-visually-hidden">' +
@@ -1061,19 +1102,8 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved, ttcT
     savedAmount: savedAmount,
     priceHtml: priceHtml,
     savedAmountHtml: savedAmountHtml
-  };
+};
 }
-
-// Función auxiliar para aplicar TTC
-function applyTTC(price) {
-  return price + (price * 0.20); // Sumar un 20%
-}
-
-// Lógica para determinar si el toggle TTC está activo (reemplaza con tu propia lógica)
-var tu_toggle_ttc = true; // Reemplaza con tu propia lógica para determinar si el toggle TTC está activo
-// Llamada a la función priceUpdate
-priceUpdate(tu_product_section, tu_price_container, tu_variant, tu_show_saved, tu_toggle_ttc);
-
 
 function sellingPlans(variant, form) {
   let sellingPlanVariable = form.querySelector('[name="selling_plan"]');
