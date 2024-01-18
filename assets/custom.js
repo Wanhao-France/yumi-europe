@@ -210,13 +210,15 @@ document.addEventListener('DOMContentLoaded', function () {
 // 
 document.addEventListener('DOMContentLoaded', function () {
   const optionSelectors = document.querySelectorAll('.product-option-selector');
+  const prizeBoxElement = document.querySelector('.yv-prizebox');
 
-  if (optionSelectors.length > 0) {
+  if (optionSelectors.length > 0 && prizeBoxElement) {
     optionSelectors.forEach(function (selector) {
       selector.addEventListener('change', function () {
-        location.reload();
+        // Lógica para actualizar solo el elemento necesario.
+        // En este ejemplo, se actualiza el contenido de prizeBoxElement con el valor seleccionado.
+        prizeBoxElement.textContent = 'Opción seleccionada: ' + selector.value;
       });
     });
   }
 });
-
