@@ -33,12 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Obtén todos los elementos de entrada de tipo radio dentro del contenedor
-  const opcionesDeTamanio = document.querySelectorAll('.select-taille input[type="radio"]');
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle();
+  let mostrarTTC = obtenerEstadoToggle(); 
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
@@ -84,26 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function handleOptionChange(opcion) {
-    if (opcion.checked) {
-      const textoOpcion = opcion.nextElementSibling.textContent.trim();
-      alert('Opción seleccionada:', textoOpcion);
-      const resultadoElemento = document.getElementById('resultado');
-      if (resultadoElemento) {
-        resultadoElemento.textContent = 'Opción seleccionada: ' + textoOpcion;
-      }
-
-      // Llama a la función para actualizar precios cuando cambia la opción
-      actualizarPrecios();
-    }
-  }
-
-  opcionesDeTamanio.forEach(function (opcion) {
-    opcion.addEventListener('change', function () {
-      handleOptionChange(opcion);
-    });
-  });
-
   togglePreciosBtn.addEventListener('click', async function () {
     mostrarTTC = !mostrarTTC;
     await actualizarPrecios();
@@ -113,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 
+  // Capturar eventos específicos de lazy loading de imágenes
   window.addEventListener('scroll', async function () {
     await actualizarPrecios();
   });
@@ -121,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 
+  // Funciones para almacenar y recuperar el estado del toggle en localStorage
   function guardarEstadoToggle(estado) {
     localStorage.setItem('mostrarTTC', JSON.stringify(estado));
   }
@@ -129,6 +109,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const estadoGuardado = localStorage.getItem('mostrarTTC');
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Obtén todos los elementos de entrada de tipo radio dentro del contenedor
+  const opcionesDeTamanio = document.querySelectorAll('.select-taille input[type="radio"]');
+
+  // Agrega un evento de cambio a cada elemento de entrada de tipo radio
+  opcionesDeTamanio.forEach(function (opcion) {
+    opcion.addEventListener('change', function () {
+      // Verifica si la opción ha sido seleccionada
+      if (opcion.checked) {
+        // Obtiene el elemento span que contiene el texto de la opción
+        const textoOpcion = opcion.nextElementSibling.textContent.trim();
+
+        // Muestra el texto de la opción en la consola
+        alert('Opción seleccionada:', textoOpcion);
+
+        // Muestra el texto de la opción en un elemento en la pantalla (por ejemplo, un div con el id "resultado")
+        const resultadoElemento = document.getElementById('resultado');
+        if (resultadoElemento) {
+          resultadoElemento.textContent = 'Opción seleccionada: ' + textoOpcion;
+        }
+      }
+    });
+  });
 });
 
 
