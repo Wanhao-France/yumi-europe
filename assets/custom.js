@@ -207,4 +207,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// 
+document.addEventListener('DOMContentLoaded', function () {
+  const optionSelectors = document.querySelectorAll('.product-option-selector');
+
+  if (optionSelectors.length > 0) {
+    optionSelectors.forEach(function (selector) {
+      selector.addEventListener('change', function () {
+        location.reload();
+      });
+    });
+  }
+});
 
