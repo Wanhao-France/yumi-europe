@@ -45,7 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
     dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      const contenido = dualPriceElement.textContent;
+      const precioOriginal = parseFloat(contenido.replace('€', '').replace(',', '.'));
+
+      if (isNaN(precioOriginal)) {
+        console.error('Error: No se pudo extraer un número de:', contenido);
+        return;
+      }
+
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
       dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
@@ -71,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const config = { childList: true, subtree: true };
   observer.observe(targetNode, config);
 });
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
