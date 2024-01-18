@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  let precioOriginals = [];
+  let preciosOriginales = [];
   let mostrarTTC = false;
 
   function calcularTTC(precioHT) {
@@ -46,14 +46,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function actualizarPrecios() {
-    await esperarProductosCargados(); // Espera a que los productos se carguen
+    await esperarProductosCargados();
 
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
     dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = precioOriginals[index];
+      const precioOriginal = preciosOriginales[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      
+      if (!isNaN(nuevoPrecio)) {
+        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      }
     });
 
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
@@ -63,8 +66,14 @@ document.addEventListener('DOMContentLoaded', function () {
   async function esperarProductosCargados() {
     return new Promise((resolve) => {
       const observer = new MutationObserver(() => {
-        if (document.querySelector('.dualPrice')) {
+        const dualPriceElements = document.querySelectorAll('.dualPrice');
+
+        if (dualPriceElements.length > 0) {
           observer.disconnect();
+          dualPriceElements.forEach((dualPriceElement) => {
+            const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+            preciosOriginales.push(precioOriginal);
+          });
           resolve();
         }
       });
@@ -78,16 +87,20 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 
-  // Capturar el evento scroll para manejar cambios dinámicos
+  document.addEventListener('lazybeforeunveil', async function () {
+    await actualizarPrecios();
+  });
+
+  // Capturar eventos específicos de lazy loading de imágenes
   window.addEventListener('scroll', async function () {
     await actualizarPrecios();
   });
 
-  // Capturar el evento load para manejar elementos cargados después de la carga inicial
   window.addEventListener('load', async function () {
     await actualizarPrecios();
   });
 });
+
 
 //
 
