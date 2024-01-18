@@ -43,12 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   
-togglePreciosBtn.addEventListener('click', async function () {
-  console.log('Botón clickeado');
-  mostrarTTC = !mostrarTTC;
-  await actualizarPrecios();
-});
-  
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
