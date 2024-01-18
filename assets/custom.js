@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle(); 
+  let mostrarTTC = obtenerEstadoToggle();
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
@@ -112,6 +112,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const estadoGuardado = localStorage.getItem('mostrarTTC');
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
+
+  // Agregar un escuchador de eventos al botón
+  togglePreciosBtn.addEventListener('click', function () {
+    inicializarTogglePrecios(); // Llamar a la función cuando el botón se haga clic
+  });
 });
 //
 
