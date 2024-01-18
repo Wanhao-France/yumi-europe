@@ -525,7 +525,7 @@ while ((match = regex.exec(noscriptContent)) !== null) {
   precios.push(match[1]);
 }
 
-console.log(precios);
-console.log('Precios capturados:', precios);
+alert(precios);
+alert('Precios capturados:', precios);
 
 
