@@ -32,13 +32,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+//
 document.addEventListener('DOMContentLoaded', function () {
-  // Obtén todos los elementos de entrada de tipo radio dentro del contenedor
-  const opcionesDeTamanio = document.querySelectorAll('.select-taille input[type="radio"]');
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle();
+  let mostrarTTC = false;
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dualPriceElements.forEach((dualPriceElement, index) => {
       const precioOriginal = preciosOriginales[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-
+      
       if (!isNaN(nuevoPrecio)) {
         dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
       }
@@ -60,9 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
     togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
-
-    // Guardar el estado del toggle en localStorage
-    guardarEstadoToggle(mostrarTTC);
   }
 
   async function esperarProductosCargados() {
@@ -84,26 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function handleOptionChange(opcion) {
-    if (opcion.checked) {
-      const textoOpcion = opcion.nextElementSibling.textContent.trim();
-      alert('Opción seleccionada:', textoOpcion);
-      const resultadoElemento = document.getElementById('resultado');
-      if (resultadoElemento) {
-        resultadoElemento.textContent = 'Opción seleccionada: ' + textoOpcion;
-      }
-
-      // Llama a la función para actualizar precios cuando cambia la opción
-      actualizarPrecios();
-    }
-  }
-
-  opcionesDeTamanio.forEach(function (opcion) {
-    opcion.addEventListener('change', function () {
-      handleOptionChange(opcion);
-    });
-  });
-
   togglePreciosBtn.addEventListener('click', async function () {
     mostrarTTC = !mostrarTTC;
     await actualizarPrecios();
@@ -113,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 
+  // Capturar eventos específicos de lazy loading de imágenes
   window.addEventListener('scroll', async function () {
     await actualizarPrecios();
   });
@@ -120,18 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('load', async function () {
     await actualizarPrecios();
   });
-
-  function guardarEstadoToggle(estado) {
-    localStorage.setItem('mostrarTTC', JSON.stringify(estado));
-  }
-
-  function obtenerEstadoToggle() {
-    const estadoGuardado = localStorage.getItem('mostrarTTC');
-    return estadoGuardado ? JSON.parse(estadoGuardado) : false;
-  }
 });
-
-
+//
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
