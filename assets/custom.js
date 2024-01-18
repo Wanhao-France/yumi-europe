@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
   opciones.forEach(function (opcion) {
     opcion.addEventListener('change', function () {
       // Acciones a realizar cuando cambia la opción seleccionada
-      console.log('Opción seleccionada:', opcion.value);
+      alert('Opción seleccionada:', opcion.value);
       // Puedes agregar más lógica aquí según tus necesidades
     });
   });
