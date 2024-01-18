@@ -111,20 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Obtén el contenedor
-  const contenedor = document.getElementById('ProductData-template--15572366753903__main-product');
-
-  // Agrega un EventListener para el evento mouseup en el contenedor
-  contenedor.addEventListener('mouseup', function (event) {
-    // Verifica si el evento proviene de un elemento hijo del contenedor
-    const elementoHijo = event.target;
-    if (contenedor.contains(elementoHijo)) {
-      // Acciones a realizar cuando se detecta un mouseup en el contenedor
-      alert('Mouseup en el contenedor:', elementoHijo);
-    }
-  });
-});
 
 
 document.addEventListener('DOMContentLoaded', function () {
