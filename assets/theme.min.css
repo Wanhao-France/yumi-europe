@@ -9052,6 +9052,15 @@ body.account-popup-open .yv-login-popup {
   font-weight: 600;
 }
 
+
+.yv-prizebox {
+    color: blue;
+}
+
+.yv-prizebox.ht-mode {
+  color:red;
+}
+
 @media (max-width:767px) {
 
     .yv-gallery-collage-item.hover-effect:before,
