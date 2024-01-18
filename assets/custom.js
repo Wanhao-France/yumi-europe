@@ -90,14 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 
-  // Agregar event listener para cambios en las opciones
-  const optionSelectors = document.querySelectorAll('.productOption');
-  optionSelectors.forEach((selector) => {
-    selector.addEventListener('change', async function () {
-      await actualizarPrecios();
-    });
-  });
-
   document.addEventListener('lazybeforeunveil', async function () {
     await actualizarPrecios();
   });
@@ -121,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
 });
+
 
 //
 
