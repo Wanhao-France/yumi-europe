@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     await actualizarPrecios();
   });
 });
+
 //
 
 document.addEventListener('DOMContentLoaded', function () {
