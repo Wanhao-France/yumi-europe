@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
+  let precioOriginals = [];
   let mostrarTTC = false;
 
   function calcularTTC(precioHT) {
@@ -44,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function actualizarPrecios() {
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
-    dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+    dualPriceElements.forEach((dualPriceElement, index) => {
+      const precioOriginal = precioOriginals[index];
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
       dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
     });
@@ -63,14 +64,16 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', actualizarPrecios);
 
   // Capturar el evento load para manejar elementos cargados después de la carga inicial
-  window.addEventListener('load', actualizarPrecios);
-  
-  // Capturar el evento MutationObserver para manejar cambios en el DOM
-  const observer = new MutationObserver(actualizarPrecios);
-  const targetNode = document.body;
-  const config = { childList: true, subtree: true };
-  observer.observe(targetNode, config);
+  window.addEventListener('load', function () {
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+    dualPriceElements.forEach((dualPriceElement) => {
+      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      precioOriginals.push(precioOriginal);
+    });
+    actualizarPrecios();
+  });
 });
+
 
 
 
