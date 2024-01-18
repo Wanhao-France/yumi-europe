@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle(); // Obtener el estado del toggle almacenado en localStorage
+  let mostrarTTC = obtenerEstadoToggle(); 
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
