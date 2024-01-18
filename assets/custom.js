@@ -66,13 +66,27 @@ document.addEventListener('DOMContentLoaded', function () {
   // Capturar el evento load para manejar elementos cargados después de la carga inicial
   window.addEventListener('load', function () {
     const dualPriceElements = document.querySelectorAll('.dualPrice');
+    
     dualPriceElements.forEach((dualPriceElement) => {
       const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-      precioOriginals.push(precioOriginal);
+      
+      if (!isNaN(precioOriginal)) {
+        precioOriginals.push(precioOriginal);
+      } else {
+        console.error('Error al calcular precio original:', dualPriceElement.textContent);
+      }
     });
+
     actualizarPrecios();
+
+    // Observar cambios dinámicos en el DOM
+    const observer = new MutationObserver(actualizarPrecios);
+    const targetNode = document.body;
+    const config = { childList: true, subtree: true };
+    observer.observe(targetNode, config);
   });
 });
+
 
 
 
