@@ -32,6 +32,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+togglePreciosBtn.addEventListener('click', async function () {
+  console.log('Botón clickeado');
+  mostrarTTC = !mostrarTTC;
+  await actualizarPrecios();
+});
+
 //
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
