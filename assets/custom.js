@@ -33,11 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-togglePreciosBtn.addEventListener('click', async function () {
-  console.log('Botón clickeado');
-  mostrarTTC = !mostrarTTC;
-  await actualizarPrecios();
-});
 
 //
 document.addEventListener('DOMContentLoaded', function () {
@@ -46,6 +41,14 @@ document.addEventListener('DOMContentLoaded', function () {
   let preciosOriginales = [];
   let mostrarTTC = false;
 
+
+  
+togglePreciosBtn.addEventListener('click', async function () {
+  console.log('Botón clickeado');
+  mostrarTTC = !mostrarTTC;
+  await actualizarPrecios();
+});
+  
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
