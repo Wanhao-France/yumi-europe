@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
     dualPriceElements.forEach((dualPriceElement) => {
-      const precioOriginal = parseFloat(dualPriceElement.dataset.precioOriginal);
+      const precioOriginal = parseFloat(dualPriceElement.getAttribute('data-precio-original'));
       const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
 
       if (!isNaN(nuevoPrecio)) {
