@@ -57,7 +57,6 @@
 "option2": {{- variant.option2 | json -}},
 "option3": {{- variant.option3 | json -}},
 "options": {{ variant.options | json }},
-"price-ttc": {{- variant.price | times: 1.2 | round: 2 }},
 "price": {{- variant.price -}},
 "sku": "{{- variant.sku -}}",
 {% if variant.unit_price_measurement %}
