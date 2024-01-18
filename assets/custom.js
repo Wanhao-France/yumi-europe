@@ -111,6 +111,26 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Selecciona el elemento que quieres observar
+const versionSelector = document.querySelector('.select-version');
+
+// Crea una instancia de MutationObserver y especifica la función de devolución de llamada
+const observer = new MutationObserver((mutations) => {
+  // Se ejecutará cuando se detecte un cambio en el elemento observado
+  alert('Se detectó un cambio en las opciones de versión');
+});
+
+// Configura las opciones del observador
+const observerOptions = {
+  childList: true,   // Observa cambios en la lista de hijos (nodos secundarios)
+  subtree: true,     // Observa cambios en todos los nodos secundarios, no solo los hijos directos
+  characterData: true // Observa cambios en el contenido del nodo
+};
+
+// Inicia la observación del elemento
+observer.observe(versionSelector, observerOptions);
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
   const notificationClosedCookie = 'notificationClosedTime';
