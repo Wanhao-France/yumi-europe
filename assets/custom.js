@@ -113,6 +113,15 @@ document.addEventListener('DOMContentLoaded', function () {
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
 });
+
+const toggleContainer = document.querySelector('.toggle-container');
+toggleContainer.addEventListener('click', function (event) {
+  if (event.target === togglePreciosBtn) {
+    mostrarTTC = !mostrarTTC;
+    actualizarPrecios();
+  }
+});
+
 //
 
 document.addEventListener('DOMContentLoaded', function () {
