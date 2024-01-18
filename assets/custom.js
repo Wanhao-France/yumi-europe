@@ -39,13 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
   let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle();
+  let mostrarTTC = obtenerEstadoToggle(); 
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
 
   async function actualizarPrecios() {
+    await esperarProductosCargados();
+
     const dualPriceElements = document.querySelectorAll('.dualPrice');
 
     dualPriceElements.forEach((dualPriceElement, index) => {
@@ -66,20 +68,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function esperarProductosCargados() {
     return new Promise((resolve) => {
-      const dualPriceElements = document.querySelectorAll('.dualPrice');
+      const observer = new MutationObserver(() => {
+        const dualPriceElements = document.querySelectorAll('.dualPrice');
 
-      if (dualPriceElements.length > 0) {
-        dualPriceElements.forEach((dualPriceElement) => {
-          const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-          preciosOriginales.push(precioOriginal);
-        });
-        resolve();
-      }
+        if (dualPriceElements.length > 0) {
+          observer.disconnect();
+          dualPriceElements.forEach((dualPriceElement) => {
+            const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+            preciosOriginales.push(precioOriginal);
+          });
+          resolve();
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
     });
   }
 
   togglePreciosBtn.addEventListener('click', async function () {
     mostrarTTC = !mostrarTTC;
+    await actualizarPrecios();
+  });
+
+  document.addEventListener('lazybeforeunveil', async function () {
     await actualizarPrecios();
   });
 
@@ -89,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   window.addEventListener('load', async function () {
-    await esperarProductosCargados();
     await actualizarPrecios();
   });
 
@@ -103,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return estadoGuardado ? JSON.parse(estadoGuardado) : false;
   }
 });
+
 
 //
 
