@@ -161,22 +161,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Funcionality TTC/HT
-  document.addEventListener("DOMContentLoaded", function () {
-    var toggleButton = document.getElementById("priceToggle");
-    var priceBox = document.querySelector(".yv-prizebox");
+document.addEventListener('DOMContentLoaded', function () {
+  var taxToggle = document.getElementById('taxToggle');
+  var priceContainer = document.querySelector('.yv-prizebox .yv-product-price');
 
-    toggleButton.addEventListener("click", function () {
-      // Cambia la lógica para determinar si el precio debe ser TTC o HT
-      var isTTC = !priceBox.classList.contains("ht-mode");
+  taxToggle.addEventListener('change', function () {
+    // Obtén el precio actual del contenedor
+    var currentPrice = parseFloat(priceContainer.innerText.replace(/[^\d.-]/g, ''));
 
-      // Aplica la clase correspondiente para cambiar el estilo según TTC o HT
-      if (isTTC) {
-        priceBox.classList.remove("ht-mode");
-      } else {
-        priceBox.classList.add("ht-mode");
-      }
-    });
+    // Aplica la lógica para cambiar entre TTC y HT (por ejemplo, agregar o eliminar el 20%)
+    var newPrice = taxToggle.checked ? currentPrice * 1.2 : currentPrice / 1.2;
+
+    // Formatea el nuevo precio y actualiza el contenido del contenedor
+    priceContainer.innerText = newPrice.toFixed(2) + ' €';
   });
+});
 
 
 
