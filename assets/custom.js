@@ -35,37 +35,43 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const toggleContainer = document.querySelector('.toggle-container');
   const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  const dualPriceElements = document.querySelectorAll('.dualPrice');
   let precioOriginals = [];
   let mostrarTTC = false;
-
-  dualPriceElements.forEach((dualPriceElement) => {
-    const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-    precioOriginals.push(precioOriginal);
-  });
-
-  togglePreciosBtn.addEventListener('click', function () {
-    mostrarTTC = !mostrarTTC;
-    togglePrecios();
-  });
-
-  function togglePrecios() {
-    dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = precioOriginals[index];
-      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-
-
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-    });
-
-    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
-
-    togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
-  }
 
   function calcularTTC(precioHT) {
     return precioHT * 1.2;
   }
+
+  function actualizarPrecios() {
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+
+    dualPriceElements.forEach((dualPriceElement, index) => {
+      const precioOriginal = precioOriginals[index];
+      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
+      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+    });
+
+    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
+    togglePreciosBtn.innerText = mostrarTTC ? 'HT' : 'TTC';
+  }
+
+  togglePreciosBtn.addEventListener('click', function () {
+    mostrarTTC = !mostrarTTC;
+    actualizarPrecios();
+  });
+
+  // Capturar el evento scroll para manejar cambios dinámicos
+  window.addEventListener('scroll', actualizarPrecios);
+
+  // Capturar el evento load para manejar elementos cargados después de la carga inicial
+  window.addEventListener('load', function () {
+    const dualPriceElements = document.querySelectorAll('.dualPrice');
+    dualPriceElements.forEach((dualPriceElement) => {
+      const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+      precioOriginals.push(precioOriginal);
+    });
+    actualizarPrecios();
+  });
 });
 
 
