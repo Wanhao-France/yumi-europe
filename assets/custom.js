@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
   const notificationClosedCookie = 'notificationClosedTime';
