@@ -514,18 +514,32 @@ $(document).ready(function(){
 })
 
 
+// Selecciona el elemento que quieres observar
+const versionSelector = document.querySelector('.select-version');
 
-const noscriptContent = document.querySelector('noscript').innerText;
+// Crea una instancia de MutationObserver y especifica la función de devolución de llamada
+const observer = new MutationObserver((mutations) => {
+  // Se ejecutará cuando se detecte un cambio en el elemento observado
+  alert('Se detectó un cambio en las opciones de versión:', mutations);
 
-const regex = /- €([\d,]+)/g;
-const precios = [];
-let match;
+  // Aquí puedes realizar acciones adicionales según el cambio detectado
+  // Por ejemplo, puedes verificar qué opción está seleccionada y hacer algo en consecuencia
+  const selectedOption = versionSelector.querySelector('.version__option input:checked');
+  if (selectedOption) {
+    alert('La opción seleccionada es:', selectedOption.value);
+  }
+});
 
-while ((match = regex.exec(noscriptContent)) !== null) {
-  precios.push(match[1]);
-}
+// Configura las opciones del observador (qué cambios observar)
+const observerOptions = {
+  childList: true, // Observa los cambios en la lista de hijos (nodos secundarios)
+  subtree: true,   // Observa los cambios en todos los nodos secundarios, no solo los hijos directos
+  attributes: true // Observa cambios en los atributos del elemento
+};
 
-alert(precios);
-alert('Precios capturados:', precios);
+// Inicia la observación del elemento
+observer.observe(versionSelector, observerOptions);
 
+// Detén la observación cuando ya no sea necesaria (puede ser en el momento de destruir el componente, cambiar de página, etc.)
+// observer.disconnect();
 
