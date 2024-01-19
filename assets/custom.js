@@ -75,11 +75,10 @@ function modificarElemento(elemento, showTTC) {
   const rect = elemento.getBoundingClientRect();
   const ttcProperty = elemento.getAttribute('ttc');
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && !elemento.dataset.modificado && showTTC) {
+  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
     let nuevoPrecio = precioActual * 1.2;
     dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-    elemento.dataset.modificado = true;
   }
 }
 
