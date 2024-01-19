@@ -75,15 +75,10 @@ function modificarElemento(elemento, showTTC) {
   const rect = elemento.getBoundingClientRect();
   const ttcProperty = elemento.getAttribute('ttc');
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && !elemento.dataset.modificado && showTTC) {
+  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
     let nuevoPrecio = precioActual * 1.2;
-
     dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-
-    elemento.dataset.modificado = true;
-
-    console.log('Modificación realizada con éxito.');
   }
 }
 
@@ -131,23 +126,17 @@ function init() {
     const showTTC = !getToggleState();
     saveToggleState(showTTC);
     togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
-
-    // Aplicar cambios al hacer scroll
     handleScroll(showTTC);
   }
 
-  // Add event listener to the toggle button
   togglePricesBtn.addEventListener('click', updateStateAndToggleText);
 
-  // Update the button text on page load
   const showTTCOnLoad = getToggleState();
   togglePricesBtn.innerText = showTTCOnLoad ? 'TTC' : 'HT';
 
-  // Aplicar cambios al hacer scroll en la carga inicial
   handleScroll(showTTCOnLoad);
 }
 
-// Inicializar el toggle y los cambios
 init();
 
 
