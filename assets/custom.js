@@ -73,21 +73,19 @@ function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.dualPrice');
 
   const rect = elemento.getBoundingClientRect();
-  const ttcProperty = elemento.getAttribute('ttc');
+  let ttcProperty = elemento.getAttribute('ttc');
 
   if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-    let nuevoPrecio = precioActual * 1.2;
-    dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+
+    // Actualizar el precio solo si no se ha actualizado antes
+    if (!ttcProperty) {
+      let nuevoPrecio = precioActual * 1.2;
+      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      ttcProperty = 'true';
+      elemento.setAttribute('ttc', ttcProperty);
+    }
   }
-}
-
-function handleScroll(showTTC) {
-  const elementos = document.querySelectorAll('.yv-product-price');
-
-  elementos.forEach(elemento => {
-    modificarElemento(elemento, showTTC);
-  });
 }
 
 const observerConfig = {
@@ -109,6 +107,14 @@ const elementosObservados = document.querySelectorAll('.yv-product-price');
 elementosObservados.forEach(elemento => {
   observer.observe(elemento);
 });
+
+function handleScroll(showTTC) {
+  const elementos = document.querySelectorAll('.yv-product-price');
+
+  elementos.forEach(elemento => {
+    modificarElemento(elemento, showTTC);
+  });
+}
 
 function init() {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
@@ -135,9 +141,16 @@ function init() {
   togglePricesBtn.innerText = showTTCOnLoad ? 'TTC' : 'HT';
 
   handleScroll(showTTCOnLoad);
+
+  // Agregar listener para el evento scroll
+  window.addEventListener('scroll', () => {
+    const showTTC = getToggleState();
+    handleScroll(showTTC);
+  });
 }
 
 init();
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
