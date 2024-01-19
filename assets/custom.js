@@ -32,79 +32,124 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Toggle Button
 
-
-//
-document.addEventListener('DOMContentLoaded', function () {
+function manageToggle() {
+  const togglePricesBtn = document.getElementById('togglePreciosBtn');
   const toggleContainer = document.querySelector('.toggle-container');
-  const togglePreciosBtn = document.getElementById('togglePreciosBtn');
-  let preciosOriginales = [];
-  let mostrarTTC = obtenerEstadoToggle();
-
-  function calcularTTC(precioHT) {
-    return precioHT * 1.2;
+  let showTTC = getToggleState();
+  
+  function saveToggleState(state) {
+    localStorage.setItem('showTTC', JSON.stringify(state));
   }
 
-  async function actualizarPrecios() {
-    const dualPriceElements = document.querySelectorAll('.dualPrice');
-
-    dualPriceElements.forEach((dualPriceElement, index) => {
-      const precioOriginal = preciosOriginales[index];
-      const nuevoPrecio = mostrarTTC ? calcularTTC(precioOriginal) : precioOriginal;
-
-      if (!isNaN(nuevoPrecio)) {
-        dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
-      }
-    });
-
-    toggleContainer.classList.toggle('mostrar-ttc', mostrarTTC);
-    togglePreciosBtn.innerText = mostrarTTC ? 'TTC' : 'HT';
-
-    // Guardar el estado del toggle en localStorage
-    guardarEstadoToggle(mostrarTTC);
+  function getToggleState() {
+    const savedState = localStorage.getItem('showTTC');
+    return savedState ? JSON.parse(savedState) : false;
   }
 
-  async function esperarProductosCargados() {
-    return new Promise((resolve) => {
-      const dualPriceElements = document.querySelectorAll('.dualPrice');
-
-      if (dualPriceElements.length > 0) {
-        dualPriceElements.forEach((dualPriceElement) => {
-          const precioOriginal = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-          preciosOriginales.push(precioOriginal);
-        });
-        resolve();
-      }
-    });
+  function updateStateAndToggleText() {
+    showTTC = !showTTC;
+    saveToggleState(showTTC);
+    toggleContainer.classList.toggle('active', showTTC);
+    togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
   }
 
-  togglePreciosBtn.addEventListener('click', async function () {
-    mostrarTTC = !mostrarTTC;
-    await actualizarPrecios();
+  // Add event listener to the toggle button
+  togglePricesBtn.addEventListener('click', updateStateAndToggleText);
+
+  // Update the button text on page load
+  togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+}
+
+// Call the function to initialize the toggle
+manageToggle();
+
+
+// TTC Functionality
+
+// Función para aplicar modificaciones a un elemento
+function modificarElemento(elemento, showTTC) {
+  const dualPriceElement = elemento.querySelector('.dualPrice');
+
+  const rect = elemento.getBoundingClientRect();
+  const ttcProperty = elemento.getAttribute('ttc');
+
+  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && !elemento.dataset.modificado && showTTC) {
+    let precioActual = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+    let nuevoPrecio = precioActual * 1.2;
+
+    dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+
+    elemento.dataset.modificado = true;
+
+    console.log('Modificación realizada con éxito.');
+  }
+}
+
+function handleScroll(showTTC) {
+  const elementos = document.querySelectorAll('.yv-product-price');
+
+  elementos.forEach(elemento => {
+    modificarElemento(elemento, showTTC);
   });
+}
 
-  // Capturar eventos específicos de lazy loading de imágenes
-  window.addEventListener('scroll', async function () {
-    await actualizarPrecios();
+const observerConfig = {
+  threshold: 0.5,
+};
+
+function handleIntersection(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      modificarElemento(entry.target);
+    }
   });
+}
 
-  window.addEventListener('load', async function () {
-    await esperarProductosCargados();
-    await actualizarPrecios();
-  });
+const observer = new IntersectionObserver(handleIntersection, observerConfig);
 
-  // Funciones para almacenar y recuperar el estado del toggle en localStorage
-  function guardarEstadoToggle(estado) {
-    localStorage.setItem('mostrarTTC', JSON.stringify(estado));
-  }
+const elementosObservados = document.querySelectorAll('.yv-product-price');
 
-  function obtenerEstadoToggle() {
-    const estadoGuardado = localStorage.getItem('mostrarTTC');
-    return estadoGuardado ? JSON.parse(estadoGuardado) : false;
-  }
+elementosObservados.forEach(elemento => {
+  observer.observe(elemento);
 });
 
-//
+function init() {
+  const togglePricesBtn = document.getElementById('togglePreciosBtn');
+
+  function saveToggleState(state) {
+    localStorage.setItem('showTTC', JSON.stringify(state));
+  }
+
+  function getToggleState() {
+    const savedState = localStorage.getItem('showTTC');
+    return savedState ? JSON.parse(savedState) : false;
+  }
+
+  function updateStateAndToggleText() {
+    const showTTC = !getToggleState();
+    saveToggleState(showTTC);
+    togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+
+    // Aplicar cambios al hacer scroll
+    handleScroll(showTTC);
+  }
+
+  // Add event listener to the toggle button
+  togglePricesBtn.addEventListener('click', updateStateAndToggleText);
+
+  // Update the button text on page load
+  const showTTCOnLoad = getToggleState();
+  togglePricesBtn.innerText = showTTCOnLoad ? 'TTC' : 'HT';
+
+  // Aplicar cambios al hacer scroll en la carga inicial
+  handleScroll(showTTCOnLoad);
+}
+
+// Inicializar el toggle y los cambios
+init();
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
@@ -125,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
     messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`;
 
     const closeButton = document.createElement('button');
-    closeButton.innerHTML = '&times;'; // El símbolo X para cerrar
+    closeButton.innerHTML = '&times;'; 
     closeButton.className = 'close-button';
     closeButton.addEventListener('click', function () {
       container.style.display = 'none';
@@ -194,7 +239,4 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-
 // 
-

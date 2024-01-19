@@ -1,30 +1,60 @@
-<div class="yv-prizebox no-js-hidden {% if sticky %} sticky-price{% endif %}" data-saved="{{ settings.show_saved_amount }}"  data-saved-style="{{ settings.saved_amount_style }}" {% if sticky %}data-sticky-price-wrapper {% else %} data-price-wrapper {% endif %} {{ block.shopify_attributes }} role="status">
-  <span class="yv-visually-hidden">{%- if current_variant.compare_at_price > current_variant.price -%}{{ 'products.product.price.sale_price' | t }}{%- else -%}{{ 'products.product.price.regular_price' | t }}{% endif %}</span>
+<div
+  class="yv-prizebox no-js-hidden {% if sticky %} sticky-price{% endif %}"
+  data-saved="{{ settings.show_saved_amount }}"
+  data-saved-style="{{ settings.saved_amount_style }}"
+  {% if sticky %}
+    data-sticky-price-wrapper
+  {% else %}
+    data-price-wrapper
+  {% endif %}
+  {{ block.shopify_attributes }}
+  role="status"
+>
+  <span class="yv-visually-hidden">
+    {%- if current_variant.compare_at_price > current_variant.price -%}
+      {{ 'products.product.price.sale_price' | t }}
+    {%- else -%}
+      {{ 'products.product.price.regular_price' | t -}}
+    {%- endif -%}
+  </span>
   <span class="yv-product-price {% if sticky %}h4{% else %}h2{% endif %}">{{ current_variant.price | money }}</span>
   <div class="yv-compare-price-box">
     {%- if current_variant.compare_at_price > current_variant.price -%}
-    <span class="yv-visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
-    <span class="yv-product-compare-price"> {{ current_variant.compare_at_price | money }}</span>
+      <span class="yv-visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+      <span class="yv-product-compare-price"> {{ current_variant.compare_at_price | money }}</span>
       {%- if settings.show_saved_amount -%}
         <span class="yv-visually-hidden">{{ 'products.product.price.saved' | t }}</span>
-        {%- if settings.saved_amount_style == 'percentage' -%}        
-        {% assign offText = 'products.product.off' | t %}
-        <span class="yv-product-percent-off">  
-            {{- current_variant.compare_at_price | minus: current_variant.price|  times: 100 | divided_by: current_variant.compare_at_price | append: '% ' | append: offText -}}
-        </span>
+        {%- if settings.saved_amount_style == 'percentage' -%}
+          {% assign offText = 'products.product.off' | t %}
+          <span class="yv-product-percent-off">
+            {{-
+              current_variant.compare_at_price
+              | minus: current_variant.price
+              | times: 100
+              | divided_by: current_variant.compare_at_price
+              | append: '% '
+              | append: offText
+            -}}
+          </span>
         {%- else -%}
-        <span class="yv-product-percent-off">{{ current_variant.compare_at_price | minus: current_variant.price | money | append: " OFF" }}</span>
+          <span class="yv-product-percent-off">
+            {{- current_variant.compare_at_price | minus: current_variant.price | money | append: ' OFF' -}}
+          </span>
         {%- endif -%}
       {%- endif -%}
     {%- endif -%}
   </div>
   {%- if current_variant.unit_price_measurement -%}
-  <span class="yv-visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-  <p class="yv-product-unit-price">
-    {{ current_variant.unit_price | money }} / {% if current_variant.unit_price_measurement.reference_value != 1 %}{{ current_variant.unit_price_measurement.reference_value }}{% endif %} {{ current_variant.unit_price_measurement.reference_unit }}
-  </p>
+    <span class="yv-visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+    <p class="yv-product-unit-price">
+      {{ current_variant.unit_price | money }} /
+      {% if current_variant.unit_price_measurement.reference_value != 1 -%}
+        {{- current_variant.unit_price_measurement.reference_value -}}
+      {%- endif %}
+      {{ current_variant.unit_price_measurement.reference_unit }}
+    </p>
   {%- endif -%}
   {%- unless current_variant.available -%}
-  <span class="yv-visually-hidden">{{ 'products.product.sold_out' | t }}</span>
+    <span class="yv-visually-hidden">{{ 'products.product.sold_out' | t }}</span>
   {%- endunless -%}
 </div>

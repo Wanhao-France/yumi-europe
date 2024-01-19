@@ -1016,8 +1016,15 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
+    //TTC Functionality
+    const showTTC = localStorage.getItem('showTTC');
+
+    const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
+
+    const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
+
     var compareAtPrice = parseInt(getVariant.compare_at_price);
-    var price = parseInt(getVariant.price);
+    var price = parseInt(adjustedPrice);
     var percentage =
       roundToTwo(((compareAtPrice - price) / compareAtPrice) * 100) +
       "% " +
@@ -1026,7 +1033,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       Shopify.formatMoney(compareAtPrice - price, moneyFormat) +
       " " +
       saleOffText;
-    priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2">${Shopify.formatMoney(
+    priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       price,
       moneyFormat
     )}</span>`;
@@ -1057,7 +1064,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       }
     }
     if (compareAtPrice > price) {
-      priceHtml = `<span class="yv-visually-hidden">${comparePriceText}</span><span class="yv-product-price h2">${Shopify.formatMoney(
+      priceHtml = `<span class="yv-visually-hidden">${comparePriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
         price,
         moneyFormat
       )}</span>
@@ -1083,18 +1090,20 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       priceHtml += `<span class="yv-visually-hidden">${soldOutText}</span>`;
     }
   }
+
   if (priceContainer) {
     priceContainer.innerHTML = priceHtml;
   }
+
   if (productSection) {
     let stickyPriceContainer = productSection.querySelector(
       "[data-sticky-price-wrapper]"
     );
     if (stickyPriceContainer) {
-      priceHtml = priceHtml.replace('h2','h4')
       stickyPriceContainer.innerHTML = priceHtml;
     }
   }
+
   return {
     compareAtPrice: compareAtPrice,
     price: price,
@@ -1102,8 +1111,12 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     savedAmount: savedAmount,
     priceHtml: priceHtml,
     savedAmountHtml: savedAmountHtml
-};
+  };
 }
+
+
+
+
 
 function sellingPlans(variant, form) {
   let sellingPlanVariable = form.querySelector('[name="selling_plan"]');

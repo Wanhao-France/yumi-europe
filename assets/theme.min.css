@@ -8815,7 +8815,7 @@ body.account-popup-open .yv-login-popup {
     transition: opacity 0.3s ease;
 }
 
-.container__pay-3-fois:hover > .info-text {
+.container__pay-3-fois:hover>.info-text {
     opacity: 0;
 }
 
@@ -8850,7 +8850,7 @@ body.account-popup-open .yv-login-popup {
     flex-direction: row;
 }
 
-.warning-box > div > p {
+.warning-box>div>p {
     margin-bottom: 0;
 }
 
@@ -8862,42 +8862,42 @@ body.account-popup-open .yv-login-popup {
     align-items: center;
 }
 
-.yv-footer-middle-box > .footer-menu-list > .row.justify-content-around {
+.yv-footer-middle-box>.footer-menu-list>.row.justify-content-around {
     justify-content: space-evenly;
 }
 
-.shopify-section.section.multi-column-section > .container > .multi-column-section-wrapper {
+.shopify-section.section.multi-column-section>.container>.multi-column-section-wrapper {
     width: 80%;
-    margin: 0  auto;
+    margin: 0 auto;
 }
 
-.shopify-section.section.multi-column-section > .container > .multi-column-section-wrapper > .yv-multicolumn-items {
+.shopify-section.section.multi-column-section>.container>.multi-column-section-wrapper>.yv-multicolumn-items {
     gap: 15px;
 }
 
-.shopify-section.section.multi-column-section > .container > .multi-column-section-wrapper > .yv-multicolumn-items > .yv-multicolumn-item {
+.shopify-section.section.multi-column-section>.container>.multi-column-section-wrapper>.yv-multicolumn-items>.yv-multicolumn-item {
     width: 12rem;
 }
 
-.yv-pricebox-outer > .yv-product-tax-shipping {
-  display:none;
+.yv-pricebox-outer>.yv-product-tax-shipping {
+    display: none;
 }
 
-.AirReviews-Blocks__SummaryRight.desktop > .AirReviews-Blocks--PoweredBy > span {
+.AirReviews-Blocks__SummaryRight.desktop>.AirReviews-Blocks--PoweredBy>span {
     display: none !important;
 }
 
 .AirReviews-Blocks__List {
-    max-height: 600px; 
-    overflow-y: auto; 
-    position: relative; 
+    max-height: 600px;
+    overflow-y: auto;
+    position: relative;
 }
 
 .AirReviews-Blocks__ListSort {
     position: sticky;
     top: 0;
-    background-color: #fff; 
-    z-index: 999; 
+    background-color: #fff;
+    z-index: 999;
 }
 
 .social-icons {
@@ -8935,9 +8935,9 @@ body.account-popup-open .yv-login-popup {
 
 .shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover {
     opacity: 0.7;
-    background-color: var(--colorBtnSecondaryHover); 
-    border-color: var(--colorBtnSecondaryBorderHover); 
-    color: #000; 
+    background-color: var(--colorBtnSecondaryHover);
+    border-color: var(--colorBtnSecondaryBorderHover);
+    color: #000;
 }
 
 .ratingbox {
@@ -8945,7 +8945,7 @@ body.account-popup-open .yv-login-popup {
 }
 
 #notification-container {
-  position: relative;
+    position: relative;
 }
 
 #custom-notification {
@@ -8961,94 +8961,97 @@ body.account-popup-open .yv-login-popup {
     justify-content: center;
     align-items: baseline;
 }
-#custom-notification > div {
+
+#custom-notification>div {
     color: #fff;
     margin-left: 0.6%;
 }
 
 #countdown-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
-#countdown-container > span {
-  color: #fff;
+#countdown-container>span {
+    color: #fff;
 }
 
 .notification {
-  position: sticky;
-  top: 0;
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
 }
 
 .notification i {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 #countdown-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 .close-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #fff;
-  cursor: pointer;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
-/* Estilos del botón toggle */
 .toggle-container {
-  position: relative;
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: background-color 0.3s;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: background-color 0.3s;
 }
 
 .toggle-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: #130f32;
-  border-radius: 15px;
-  transition: transform 0.3s, background-color 0.3s; 
-  color: #fff; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #130f32;
+    border-radius: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.mostrar-ttc .toggle-btn {
-  transform: translateX(100%);
-  background-color: #fff;
-  color: #130f32; 
+.toggle-container.active .toggle-btn {
+    transform: translateX(100%);
+    background-color: #fff;
+    color: #130f32;
+}
+
 
 .icons-header-custom {
-  width: 100%;
+    width: 100%;
 }
-.icons-header-custom > i {
-  font-size: 1.4rem;
-  font-weight: 600;
+
+.icons-header-custom>i {
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 @media (max-width:767px) {
@@ -9064,15 +9067,18 @@ body.account-popup-open .yv-login-popup {
     .banner-fullwidth-slides .flickity-button {
         bottom: 20px;
     }
+
     .AirReviews-Blocks__LayoutList {
-          display:flex;
-          flex-direction: column;
-          width: auto !important;
+        display: flex;
+        flex-direction: column;
+        width: auto !important;
     }
+
     .AirReviews-Blocks__LayoutList .AirReviews-Blocks__Summary {
-       width: auto !important;
+        width: auto !important;
     }
+
     .AirReviews-Blocks__LayoutList .AirReviews-Blocks__List {
-      width: auto !important;
+        width: auto !important;
     }
 }

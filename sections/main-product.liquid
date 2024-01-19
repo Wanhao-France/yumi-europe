@@ -68,7 +68,10 @@
         -%}
       </div>
       <div class="col-12 col-sm-12 col-md-6{% if section.settings.gallery_style == 'slider' %} col-lg-4{% else %} col-lg-5{% endif %}">
-        <div id="ProductData-{{ section.id }}" class="sticky-item content-divider-mobile-{{ section.settings.content_divider_mobile}}">
+        <div
+          id="ProductData-{{ section.id }}"
+          class="sticky-item content-divider-mobile-{{ section.settings.content_divider_mobile}}"
+        >
           {%- render 'product-form',
             product: product,
             section: section,
@@ -76,10 +79,10 @@
             sliderClass: 'slider-product-detail'
           -%}
           {%- if section.settings.gallery_style == 'slider' -%}
-            <div class="d-block d-md-none">              
+            <div class="d-block d-md-none">
               {%- liquid
                 if section.settings.style == 'accordion'
-                  render 'product-accordion-content',product: product,section: section,position: 'belowProductGalllery'
+                  render 'product-accordion-content', product: product, section: section, position: 'belowProductGalllery'
                 else
                   render 'product-tabs-content', product: product, section: section, contentWidth: 'belowProductGalllery'
                 endif
@@ -87,7 +90,7 @@
             </div>
           {%- endif -%}
         </div>
-      </div>        
+      </div>
     </div>
   </div>
 </div>
@@ -113,12 +116,12 @@
   endfor
   render 'product-form', product: product, section: section, sizeChartContent: true
 -%}
-{% liquid 
+{% liquid
   for block in section.blocks
-  if block.type == 'query-form' and block.settings.heading != blank
-    render 'product-query-form', block: block
-  endif
-  endfor 
+    if block.type == 'query-form' and block.settings.heading != blank
+      render 'product-query-form', block: block
+    endif
+  endfor
 %}
 <script type="application/json" id="product3DModel-{{ product.id }}">
   {{ product.media | where: 'media_type', 'model' | json }}
@@ -136,7 +139,7 @@
     {% endif %}
     "description": "{{ product.description | strip_html | escape }}",
     {% if product.selected_or_first_available_variant.sku != blank %}
-    
+
       "sku": "{{ product.selected_or_first_available_variant.sku }}",
     {% endif %}
     "brand": {
@@ -450,7 +453,7 @@
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
       "limit": 1,
-      "settings":[
+      "settings": [
         {
           "type": "select",
           "id": "seo_heading",
@@ -483,8 +486,8 @@
               "label": "t:common.header.heading_tag.options.h6.label"
             }
           ]
-      }
-    ]
+        }
+      ]
     },
     {
       "type": "sku",
@@ -560,7 +563,7 @@
         }
       ]
     },
-     {
+    {
       "type": "productsignup",
       "name": "t:sections.main-product.blocks.productsignup.name",
       "limit": 1,
@@ -581,25 +584,25 @@
         }
       ]
     },
-     {
+    {
       "type": "product-meta",
       "name": "t:sections.main-product.blocks.product-meta.name",
       "limit": 1,
-       "settings":[
-         {
+      "settings": [
+        {
           "type": "checkbox",
           "id": "show_as_tab",
           "label": "t:sections.main-product.blocks.product-meta.settings.show_as_tab.label",
-           "default":false
+          "default": false
         },
-         {
+        {
           "type": "text",
           "id": "heading",
           "label": "t:sections.main-product.blocks.product-meta.settings.heading.label",
           "info": "t:sections.main-product.blocks.product-meta.settings.heading.info",
-           "default":"Specifications"
+          "default": "Specifications"
         },
-         {
+        {
           "type": "checkbox",
           "id": "show_availability",
           "label": "t:sections.main-product.blocks.product-meta.settings.show_availability.label"
@@ -640,8 +643,8 @@
       "type": "product-countdown",
       "name": "t:sections.main-product.blocks.product-countdown.name",
       "limit": 1,
-      "settings":[
-         {
+      "settings": [
+        {
           "type": "text",
           "id": "countdown_time",
           "label": "t:sections.main-product.blocks.product-countdown.settings.countdown_time.label",
@@ -748,7 +751,7 @@
           "label": "t:sections.main-product.blocks.button.settings.show_subscriptions_plan.label",
           "info": "t:sections.main-product.blocks.button.settings.show_subscriptions_plan.info"
         },
-        {  
+        {
           "type": "checkbox",
           "id": "show_recipient_form",
           "default": false,
@@ -777,16 +780,16 @@
             }
           ]
         },
-        {  
+        {
           "type": "checkbox",
           "id": "enable_terms_checkbox",
           "default": false,
           "label": "t:sections.main-product.blocks.button.settings.enable_terms_checkbox.label"
         },
-        {  
+        {
           "type": "inline_richtext",
           "id": "terms_conditions_text",
-          "default":"I agree with the terms and conditions",
+          "default": "I agree with the terms and conditions",
           "label": "t:sections.main-product.blocks.button.settings.terms_conditions_text.label"
         }
       ]
@@ -796,8 +799,8 @@
       "name": "t:sections.main-product.blocks.icons.name",
       "settings": [
         {
-          "type":"header",
-          "content":"t:sections.main-product.blocks.icons.settings.header1.content"
+          "type": "header",
+          "content": "t:sections.main-product.blocks.icons.settings.header1.content"
         },
         {
           "type": "select",
@@ -899,8 +902,8 @@
           "label": "t:sections.main-product.blocks.icons.settings.heading.label"
         },
         {
-          "type":"header",
-          "content":"t:sections.main-product.blocks.icons.settings.header2.content"
+          "type": "header",
+          "content": "t:sections.main-product.blocks.icons.settings.header2.content"
         },
         {
           "type": "select",
@@ -1002,8 +1005,8 @@
           "label": "t:sections.main-product.blocks.icons.settings.heading.label"
         },
         {
-          "type":"header",
-          "content":"t:sections.main-product.blocks.icons.settings.header3.content"
+          "type": "header",
+          "content": "t:sections.main-product.blocks.icons.settings.header3.content"
         },
         {
           "type": "select",
