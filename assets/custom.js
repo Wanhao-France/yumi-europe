@@ -102,9 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
-  const discountElement = elemento.querySelector('.discounts .dualPrice');
-
-  console.log('Descuento:', discountElement.textContent);
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -114,22 +111,21 @@ function modificarElemento(elemento, showTTC) {
 
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
-      let descuento = obtenerPrecio(discountElement.textContent);
+      let descuento = precioActual - nuevoPrecio;
       let precioTachadoTTC = precioActual + descuento;
 
-      console.log('Precio Actual:', precioActual);
-      console.log('Nuevo Precio:', nuevoPrecio);
-      console.log('Precio Tachado TTC:', precioTachadoTTC);
-
+      // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-      comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
+
+      if (elemento.classList.contains('hasComparePrice')) {
+        comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
+      }
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
     }
   }
 }
-
 
 
 
