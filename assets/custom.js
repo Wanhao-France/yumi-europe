@@ -101,21 +101,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.dualPrice');
+  const comparePriceElement = elemento.nextElementSibling; // Supongo que es el siguiente hermano
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
 
   if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = obtenerPrecio(dualPriceElement.textContent);
-
+    
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
+      
+      // Obtener el descuento aplicado al precio HT
+      let descuento = precioActual - nuevoPrecio;
+      
+      // Calcular el precio tachado en TTC aplicando el mismo descuento
+      let precioTachadoTTC = precioActual + descuento;
+      
+      // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+      comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
+      
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
     }
   }
 }
+
 
 function obtenerPrecio(textoPrecio) {
   return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
