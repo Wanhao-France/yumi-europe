@@ -1016,32 +1016,29 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-    // TTC Functionality
+    //TTC Functionality
     const showTTC = localStorage.getItem('showTTC');
+
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
+
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
 
     var compareAtPrice = parseInt(getVariant.compare_at_price);
     var price = parseInt(adjustedPrice);
-
     var percentage =
       roundToTwo(((compareAtPrice - price) / compareAtPrice) * 100) +
       "% " +
       saleOffText;
-    
     var savedAmount =
       Shopify.formatMoney(compareAtPrice - price, moneyFormat) +
       " " +
       saleOffText;
-
     priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       price,
       moneyFormat
     )}</span>`;
-    
     var savedAmountHtml =
       '<span class="yv-visually-hidden">' + savedPriceText + "</span>";
-
     if (showSaved) {
       if (showSavedAmount == "true") {
         if (savedAmountStyle == "percentage") {
@@ -1066,9 +1063,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
         )} ${saleOffText}</span>`;
       }
     }
-
-    if (compareAtPrice > price && !shouldShowTTC) {
-      // Solo mostrar el precio tachado original si no es TTC
+    if (compareAtPrice > price) {
       priceHtml = `<span class="yv-visually-hidden">${comparePriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
         price,
         moneyFormat
@@ -1114,7 +1109,10 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     price: price,
     percentage: percentage,
     savedAmount: savedAmount,
-    priceHtml: priceH
+    priceHtml: priceHtml,
+    savedAmountHtml: savedAmountHtml
+  };
+}
 
 
 
