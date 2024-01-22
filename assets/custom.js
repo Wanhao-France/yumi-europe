@@ -34,37 +34,50 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Toggle Button
-function manageToggle() {
+document.addEventListener('DOMContentLoaded', function () {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
   const toggleContainer = document.querySelector('.toggle-container');
+
   let showTTC = getToggleState();
-  
+
   function saveToggleState(state) {
     localStorage.setItem('showTTC', JSON.stringify(state));
   }
 
   function getToggleState() {
     const savedState = localStorage.getItem('showTTC');
-    // Devuelve true si el estado almacenado es null (por defecto)
     return savedState !== null ? JSON.parse(savedState) : true;
   }
 
-  function updateStateAndToggleText() {
-    showTTC = !showTTC;
-    saveToggleState(showTTC);
-    toggleContainer.classList.toggle('active', showTTC);
-    togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+  function updateStyles() {
+    if (showTTC) {
+      toggleContainer.classList.remove('active');
+      togglePricesBtn.innerText = 'TTC';
+    } else {
+      toggleContainer.classList.add('active');
+      togglePricesBtn.innerText = 'HT';
+    }
   }
 
-  // Add event listener to the toggle button
-  togglePricesBtn.addEventListener('click', updateStateAndToggleText);
+  function handleToggleClick() {
+    showTTC = !showTTC;
+    saveToggleState(showTTC);
+    updateStyles();
 
-  // Update the button text on page load
-  togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
-}
+    // Disparar un evento personalizado para indicar que el estado ha cambiado
+    const toggleChangeEvent = new CustomEvent('toggleStateChanged', { detail: { showTTC } });
+    document.dispatchEvent(toggleChangeEvent);
 
-// Call the function to initialize the toggle
-manageToggle();
+    // Recargar la página (puedes cambiar esto a solo actualizar el contenido si es necesario)
+    location.reload();
+  }
+
+  togglePricesBtn.addEventListener('click', handleToggleClick);
+
+  // Inicializar el toggle con los estilos correctos
+  updateStyles();
+});
+
 
 
 // TTC Functionality
