@@ -134,15 +134,25 @@ function modificarElemento(elemento, showTTC) {
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
+
+          console.log('Actualización realizada con éxito');
         } else {
           // Si no hay precio tachado original, simplemente actualizar el precio principal
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+
+          console.log('No hay elemento de precio tachado original');
         }
 
         ttcProperty = 'true';
         elemento.setAttribute('ttc', ttcProperty);
+      } else {
+        console.log('El atributo ttc ya está configurado en true');
       }
+    } else {
+      console.log('No se cumplieron las condiciones para modificar el elemento');
     }
+  } else {
+    console.log('No se encontró el elemento dualPrice');
   }
 }
 
