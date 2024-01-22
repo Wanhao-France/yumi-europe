@@ -110,11 +110,11 @@ if (discountElements.length > 0) {
     const discountContent = element.textContent.trim();
 
     // Mostrar el contenido en un alert
-    alert(`Descuento ${index + 1}: ${discountContent}`);
+    console.log(`Descuento ${index + 1}: ${discountContent}`);
   });
 } else {
   // En caso de que no se encuentren elementos
-  alert('No se encontraron elementos con la clase .discounts');
+  console.log('No se encontraron elementos con la clase .discounts');
 }
 
 // TTC Functionality
