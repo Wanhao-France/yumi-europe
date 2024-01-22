@@ -9186,8 +9186,8 @@ body.account-popup-open .yv-login-popup {
 
 .toggle-container.active .toggle-btn {
     transform: translateX(100%);
-    background-color: #fff;
-    color: #130f32;
+    background-color: #130f32;
+    color: #fff;
 }
 
 .icons-header-custom {
