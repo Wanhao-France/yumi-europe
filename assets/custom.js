@@ -133,6 +133,8 @@ function modificarElemento(elemento, showTTC) {
 
 // Función para obtener el precio tachado en TTC
 function obtenerPrecioTachadoTTC(precio) {
+  // Aquí puedes implementar la lógica específica para calcular el precio tachado en TTC
+  // Por ejemplo, puedes restar un porcentaje específico del precio original
   return precio - (precio * 15 / 100);
 }
 
