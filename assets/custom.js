@@ -115,10 +115,12 @@ function modificarElemento(elemento, showTTC) {
 
         // Buscar el elemento .discounts en toda la jerarquía ascendente
         const discountElement = buscarDescuento(elemento);
+console.log(discountElement);
 
         if (discountElement) {
           // Obtener el porcentaje de descuento del elemento .discounts
           const porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
+document.querySelector('.discounts')
 
           // Calcular el precio tachado en TTC
           let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
@@ -144,7 +146,7 @@ function modificarElemento(elemento, showTTC) {
 
 
 function buscarDescuento(elemento) {
-  return elemento.querySelector('.discounts') || (elemento.parentNode && buscarDescuento(elemento.parentNode));
+  return elemento.querySelector('.discounts');
 }
 
 function obtenerPorcentajeDescuento(textoDescuento) {
