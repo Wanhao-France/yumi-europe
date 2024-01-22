@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function handleToggleClick() {
+
+    showSpinner();
+    
     showTTC = !showTTC;
     saveToggleState(showTTC);
     updateStyles();
@@ -83,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Disparar un evento personalizado para indicar que el estado ha cambiado
     const toggleChangeEvent = new CustomEvent('toggleStateChanged', { detail: { showTTC } });
     document.dispatchEvent(toggleChangeEvent);
-
+hideSpinner();
     // Recargar la página (puedes cambiar esto a solo actualizar el contenido si es necesario)
-    location.reload();
+    //location.reload();
   }
 
   togglePricesBtn.addEventListener('click', handleToggleClick);
