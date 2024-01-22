@@ -103,25 +103,33 @@ function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
 
+  console.log('Dual Price Element:', dualPriceElement);
+  console.log('Compare Price Element:', comparePriceElement);
+
   if (dualPriceElement) {
     const rect = elemento.getBoundingClientRect();
     let ttcProperty = elemento.getAttribute('ttc');
 
+    console.log('Rect:', rect);
+    console.log('TTC Property:', ttcProperty);
+
     if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
       let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
+      console.log('Precio Actual:', precioActual);
+
       if (!ttcProperty) {
         let nuevoPrecio = precioActual * 1.2;
+
+        console.log('Nuevo Precio:', nuevoPrecio);
 
         // Verificar si el elemento del precio tachado existe
         if (comparePriceElement) {
           let porcentajeDescuento = obtenerPorcentajeDescuento(comparePriceElement.textContent);
           let nuevoPrecioTachado = calcularNuevoPrecioTachado(precioActual, porcentajeDescuento);
 
-          // Salida de consola para depuración
-          console.log('Precio actual:', precioActual);
-          console.log('Porcentaje descuento:', porcentajeDescuento);
-          console.log('Nuevo precio tachado:', nuevoPrecioTachado);
+          console.log('Porcentaje Descuento:', porcentajeDescuento);
+          console.log('Nuevo Precio Tachado:', nuevoPrecioTachado);
 
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
@@ -137,6 +145,7 @@ function modificarElemento(elemento, showTTC) {
     }
   }
 }
+
 
 
 function calcularNuevoPrecioTachado(precio, porcentajeDescuento) {
