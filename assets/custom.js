@@ -97,7 +97,23 @@ document.addEventListener('DOMContentLoaded', function () {
   updateStyles();
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const productPrices = document.querySelectorAll('.yv-product-price');
 
+  function hideComparePriceIfTTC(productPrice) {
+    const ttcAttribute = productPrice.getAttribute('ttc');
+    const comparePrice = productPrice.nextElementSibling; // Suponiendo que el comparePrice es el siguiente hermano
+
+    if (ttcAttribute === 'true' && comparePrice && comparePrice.classList.contains('yv-product-compare-price')) {
+      comparePrice.style.display = 'none';
+    } else if (comparePrice) {
+      comparePrice.style.display = 'block';
+    }
+  }
+
+  // Llamamos a la función para cada elemento con la clase yv-product-price
+  productPrices.forEach(hideComparePriceIfTTC);
+});
 
 // TTC Functionality
 
