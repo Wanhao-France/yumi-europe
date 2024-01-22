@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Toggle Button
 document.addEventListener('DOMContentLoaded', function () {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
   const toggleContainer = document.querySelector('.toggle-container');
@@ -46,16 +45,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function getToggleState() {
     const savedState = localStorage.getItem('showTTC');
-    return savedState !== null ? JSON.parse(savedState) : true;
+    return savedState !== null ? JSON.parse(savedState) : false;
   }
 
   function updateStyles() {
     if (showTTC) {
-      toggleContainer.classList.remove('active');
-      togglePricesBtn.innerText = 'TTC';
-    } else {
       toggleContainer.classList.add('active');
       togglePricesBtn.innerText = 'HT';
+    } else {
+      toggleContainer.classList.remove('active');
+      togglePricesBtn.innerText = 'TTC';
     }
   }
 
@@ -77,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Inicializar el toggle con los estilos correctos
   updateStyles();
 });
+
 
 
 
