@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
+  const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
 
   if (dualPriceElement) {
     const rect = elemento.getBoundingClientRect();
@@ -111,6 +112,16 @@ function modificarElemento(elemento, showTTC) {
 
       if (!ttcProperty) {
         let nuevoPrecio = precioActual * 1.2;
+
+
+
+          // Actualizar el contenido de los elementos
+          comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
+        } else {
+          // Si no hay precio tachado original, simplemente actualizar el precio principal
+          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+        }
+
         ttcProperty = 'true';
         elemento.setAttribute('ttc', ttcProperty);
       }
