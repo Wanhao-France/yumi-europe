@@ -101,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -116,10 +115,6 @@ function modificarElemento(elemento, showTTC) {
 
       // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-
-      if (elemento.classList.contains('hasComparePrice')) {
-        comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
-      }
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
