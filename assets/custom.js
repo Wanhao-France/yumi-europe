@@ -100,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // TTC Functionality
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const comparePriceElement = elemento.querySelector('.yv-product-compare-price > span');
+  const comparePriceElement = document.querySelector('.yv-prizebox .yv-product-compare-price > span');
+
 
   if (!dualPriceElement) {
     console.error('No se encontró el elemento dualPrice');
