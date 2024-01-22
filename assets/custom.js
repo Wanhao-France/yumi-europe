@@ -1,3 +1,19 @@
+// Spinner
+
+function showSpinner() {
+  const spinnerContainer = document.getElementById('spinner-container');
+  if (spinnerContainer) {
+    spinnerContainer.style.display = 'flex';
+  }
+}
+
+function hideSpinner() {
+  const spinnerContainer = document.getElementById('spinner-container');
+  if (spinnerContainer) {
+    spinnerContainer.style.display = 'none';
+  }
+}
+
 // Box pay in 4X/3X Animation
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('pay-credit-element');
