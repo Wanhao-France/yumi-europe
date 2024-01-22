@@ -103,11 +103,15 @@ function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const prizeboxElement = elemento.closest('.yv-prizebox');
 
+  console.log('Precio Actual:', dualPriceElement.textContent);
+
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
 
   if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = obtenerPrecio(dualPriceElement.textContent);
+
+    console.log('Precio Actual Numérico:', precioActual);
 
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
@@ -116,11 +120,17 @@ function modificarElemento(elemento, showTTC) {
       const discountElement = buscarDescuento(prizeboxElement);
 
       if (discountElement) {
+        console.log('Descuento Elemento:', discountElement.textContent);
+
         // Obtener el porcentaje de descuento del elemento .discounts
         const porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
 
+        console.log('Porcentaje Descuento:', porcentajeDescuento);
+
         // Calcular el precio tachado en TTC
         let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
+
+        console.log('Precio Tachado TTC:', precioTachadoTTC);
 
         // Actualizar el contenido de los elementos
         dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
@@ -156,6 +166,17 @@ function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
   return precio - (precio * porcentajeDescuento / 100);
 }
 
+function obtenerPrecio(textoPrecio) {
+  return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
+}
+
+function formatearPrecio(precio) {
+  return precio.toFixed(2).replace('.', ',');
+}
+
+// Llamada de prueba
+const elementoPrueba = document.querySelector('.yv-product-price .dualPrice');
+modificarElemento(elementoPrueba, true);
 
 
 
