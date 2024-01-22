@@ -37,9 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function manageToggle() {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
-  const toggleContainer = document.querySelector('.toggle-container');
   let showTTC = getToggleState();
-  
+
   function saveToggleState(state) {
     localStorage.setItem('showTTC', JSON.stringify(state));
   }
@@ -52,8 +51,10 @@ function manageToggle() {
   function updateStateAndToggleText() {
     showTTC = !showTTC;
     saveToggleState(showTTC);
-    toggleContainer.classList.toggle('active', showTTC);
     togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+
+    // Dispara el evento personalizado cuando cambia el estado del toggle
+    document.dispatchEvent(new CustomEvent('toggleStateChanged', { detail: { showTTC } }));
   }
 
   // Add event listener to the toggle button
@@ -135,13 +136,11 @@ function init() {
     return savedState ? JSON.parse(savedState) : false;
   }
 
-  function updateStateAndToggleText() {
-    const showTTC = !getToggleState();
-    saveToggleState(showTTC);
-    togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+  document.addEventListener('toggleStateChanged', (event) => {
+    const showTTC = event.detail.showTTC;
     handleScroll(showTTC);
-  }
-
+  });
+    
   togglePricesBtn.addEventListener('click', updateStateAndToggleText);
 
   const showTTCOnLoad = getToggleState();
