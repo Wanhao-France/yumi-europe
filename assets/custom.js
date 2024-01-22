@@ -100,8 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // TTC Functionality
 
 function modificarElemento(elemento, showTTC) {
-  const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
+  const dualPriceElement = elemento.querySelector('.dualPrice');
+const comparePriceContainer = elemento.querySelector('.yv-product-compare-price');
+const comparePriceElement = comparePriceContainer ? comparePriceContainer.querySelector('.dualPrice') : null;
+
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -116,7 +118,11 @@ function modificarElemento(elemento, showTTC) {
 
       // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-      comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
+      
+      // Asegurarse de que el contenedor del precio compare y el span existan antes de actualizar el contenido
+      if (comparePriceContainer && comparePriceElement) {
+        comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
+      }
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
