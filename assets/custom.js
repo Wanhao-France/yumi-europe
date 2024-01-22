@@ -130,7 +130,7 @@ function modificarElemento(elemento, showTTC) {
           // Crear un nuevo elemento para el precio tachado en TTC
           let nuevoElemento = document.createElement('span');
           nuevoElemento.className = 'compare-price';  // Ajusta la clase según tus necesidades
-          nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
+          nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€qsdqsdqsdsdqsd</span>';
 
           // Insertar el nuevo elemento después de dualPriceElement
           elemento.appendChild(nuevoElemento);
