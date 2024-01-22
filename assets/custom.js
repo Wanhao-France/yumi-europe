@@ -76,16 +76,27 @@ function modificarElemento(elemento, showTTC) {
   let ttcProperty = elemento.getAttribute('ttc');
 
   if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
-    let precioActual = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+    let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
     // Actualizar el precio solo si no se ha actualizado antes
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
-      dualPriceElement.textContent = nuevoPrecio.toFixed(2) + '€';
+      dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
     }
   }
+}
+
+// Función para obtener el precio desde el texto con formato
+function obtenerPrecio(textoPrecio) {
+  // Eliminar caracteres no numéricos y convertir coma a punto
+  return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
+}
+
+// Función para formatear el precio antes de mostrarlo
+function formatearPrecio(precio) {
+  return precio.toFixed(2).replace('.', ',');
 }
 
 const observerConfig = {
