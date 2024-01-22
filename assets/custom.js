@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
+  const prizeboxElement = elemento.closest('.yv-prizebox');
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -112,7 +113,7 @@ function modificarElemento(elemento, showTTC) {
       let nuevoPrecio = precioActual * 1.2;
 
       // Buscar el elemento .discounts en toda la jerarquía ascendente
-      const discountElement = buscarDescuento(elemento);
+      const discountElement = buscarDescuento(prizeboxElement);
 
       if (discountElement) {
         // Obtener el porcentaje de descuento del elemento .discounts
@@ -130,7 +131,7 @@ function modificarElemento(elemento, showTTC) {
         nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
 
         // Insertar el nuevo elemento después de dualPriceElement
-        elemento.appendChild(nuevoElemento);
+        dualPriceElement.parentNode.insertBefore(nuevoElemento, dualPriceElement.nextSibling);
 
         ttcProperty = 'true';
         elemento.setAttribute('ttc', ttcProperty);
@@ -140,8 +141,7 @@ function modificarElemento(elemento, showTTC) {
 }
 
 function buscarDescuento(elemento) {
-  // Función para buscar el elemento .discounts en la jerarquía descendente desde el elemento dado
-  return elemento.querySelector('.discounts');
+  return elemento.querySelector('.discounts') || (elemento.parentNode && buscarDescuento(elemento.parentNode));
 }
 
 function obtenerPorcentajeDescuento(textoDescuento) {
@@ -155,17 +155,7 @@ function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
   return precio - (precio * porcentajeDescuento / 100);
 }
 
-function obtenerPrecio(textoPrecio) {
-  return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
-}
 
-function formatearPrecio(precio) {
-  return precio.toFixed(2).replace('.', ',');
-}
-
-// Llamada de prueba
-const elementoPrueba = document.querySelector('.yv-product-price .dualPrice');
-modificarElemento(elementoPrueba, true);
 
 
 function obtenerPrecio(textoPrecio) {
