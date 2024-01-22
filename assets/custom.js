@@ -97,6 +97,23 @@ document.addEventListener('DOMContentLoaded', function () {
   updateStyles();
 });
 
+
+// Seleccionar el elemento por su clase
+const discountElement = document.querySelector('.discounts');
+
+// Verificar si el elemento fue encontrado
+if (discountElement) {
+  // Obtener el contenido del elemento
+  const discountContent = discountElement.textContent.trim();
+
+  // Mostrar el contenido en un alert
+  alert(discountContent);
+} else {
+  // En caso de que el elemento no sea encontrado
+  alert('No se encontró el elemento con la clase .discounts');
+}
+
+
 // TTC Functionality
 
 function modificarElemento(elemento, showTTC) {
