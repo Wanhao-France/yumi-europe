@@ -101,8 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.dualPrice');
-  const comparePriceContainer = elemento.querySelector('.yv-product-compare-price');
-  const comparePriceElement = comparePriceContainer ? comparePriceContainer.querySelector('span') : null;
+const comparePriceContainer = elemento.querySelector('.yv-product-compare-price');
+const comparePriceElement = comparePriceContainer ? comparePriceContainer.querySelector('.dualPrice') : null;
+
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
