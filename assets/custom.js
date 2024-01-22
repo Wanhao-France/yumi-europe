@@ -141,6 +141,7 @@ function modificarElemento(elemento, showTTC) {
 }
 
 function buscarDescuento(elemento) {
+  console.log(elemento)
   // Función para buscar el elemento .discounts en la jerarquía ascendente
   return elemento.querySelector('.discounts') || (elemento.parentNode && buscarDescuento(elemento.parentNode));
 }
