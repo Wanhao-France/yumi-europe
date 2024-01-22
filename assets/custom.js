@@ -113,9 +113,15 @@ function modificarElemento(elemento, showTTC) {
       if (!ttcProperty) {
         let nuevoPrecio = precioActual * 1.2;
 
+        // Verificar si el elemento del precio tachado existe
+        if (comparePriceElement) {
+          let precioTachadoOriginal = obtenerPrecio(comparePriceElement.textContent);
 
+          // Calcular el nuevo precio tachado
+          let nuevoPrecioTachado = precioTachadoOriginal + (precioTachadoOriginal * 0.2);
 
           // Actualizar el contenido de los elementos
+          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
         } else {
           // Si no hay precio tachado original, simplemente actualizar el precio principal
@@ -129,10 +135,6 @@ function modificarElemento(elemento, showTTC) {
   }
 }
 
-// Función para obtener el porcentaje de descuento
-function obtenerPorcentajeDescuento(textoDescuento) {
-  return parseInt(textoDescuento.replace(/[^\d]/g, ''));
-}
 
 
 function obtenerPrecio(textoPrecio) {
