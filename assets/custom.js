@@ -136,11 +136,13 @@ function init() {
     return savedState ? JSON.parse(savedState) : false;
   }
 
-  document.addEventListener('toggleStateChanged', (event) => {
-    const showTTC = event.detail.showTTC;
+  function updateStateAndToggleText() {
+    const showTTC = !getToggleState();
+    saveToggleState(showTTC);
+    togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
     handleScroll(showTTC);
-  });
-    
+  }
+
   togglePricesBtn.addEventListener('click', updateStateAndToggleText);
 
   const showTTCOnLoad = getToggleState();
