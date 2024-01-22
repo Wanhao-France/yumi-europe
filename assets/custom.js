@@ -46,16 +46,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function getToggleState() {
     const savedState = localStorage.getItem('showTTC');
-    return savedState !== null ? JSON.parse(savedState) : false;
+    return savedState !== null ? JSON.parse(savedState) : true;
   }
 
   function updateStyles() {
     if (showTTC) {
-      toggleContainer.classList.add('active');
-      togglePricesBtn.innerText = 'HT';
-    } else {
       toggleContainer.classList.remove('active');
       togglePricesBtn.innerText = 'TTC';
+    } else {
+      toggleContainer.classList.add('active');
+      togglePricesBtn.innerText = 'HT';
     }
   }
 
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Inicializar el toggle con los estilos correctos
   updateStyles();
 });
-
 
 
 
