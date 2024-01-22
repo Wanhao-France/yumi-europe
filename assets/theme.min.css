@@ -9224,7 +9224,7 @@ body.account-popup-open .yv-login-popup {
 }
 
 .yv-product-compare-price > span {
-  /*display:none;*/
+  display:none;
 }
 
 @keyframes spin {
