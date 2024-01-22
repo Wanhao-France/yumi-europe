@@ -1026,7 +1026,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     var compareAtPrice = parseInt(getVariant.compare_at_price);
     var price = parseInt(adjustedPrice);
     var percentage =
-      roundToTwo(((compareAtPrice - price) / compareAtPrice) * 100) +
+      roundToTwo(((compareAtPrice - priceBeforeAdjusted) / compareAtPrice) * 100) +
       "% " +
       saleOffText;
     var savedAmount =
