@@ -101,44 +101,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const prizeboxElement = elemento.closest('.yv-prizebox');
 
-  const rect = elemento.getBoundingClientRect();
-  let ttcProperty = elemento.getAttribute('ttc');
+  // Verificar que dualPriceElement no sea null antes de continuar
+  if (dualPriceElement) {
+    const rect = elemento.getBoundingClientRect();
+    let ttcProperty = elemento.getAttribute('ttc');
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
-    let precioActual = obtenerPrecio(dualPriceElement.textContent);
+    if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
+      let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
-    if (!ttcProperty) {
-      let nuevoPrecio = precioActual * 1.2;
+      if (!ttcProperty) {
+        let nuevoPrecio = precioActual * 1.2;
 
-      // Buscar el elemento .discounts en toda la jerarquía ascendente
-      const discountElement = buscarDescuento(prizeboxElement);
+        // Buscar el elemento .discounts en toda la jerarquía ascendente
+        const discountElement = buscarDescuento(elemento);
 
-      if (discountElement) {
-        // Obtener el porcentaje de descuento del elemento .discounts
-        const porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
+        if (discountElement) {
+          // Obtener el porcentaje de descuento del elemento .discounts
+          const porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
 
-        // Calcular el precio tachado en TTC
-        let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
+          // Calcular el precio tachado en TTC
+          let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
 
-        // Actualizar el contenido de los elementos
-        dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+          // Actualizar el contenido de los elementos
+          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
-        // Crear un nuevo elemento para el precio tachado en TTC
-        let nuevoElemento = document.createElement('span');
-        nuevoElemento.className = 'yv-product-compare-price';  // Ajusta la clase según tus necesidades
-        nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
+          // Crear un nuevo elemento para el precio tachado en TTC
+          let nuevoElemento = document.createElement('span');
+          nuevoElemento.className = 'yv-product-compare-price';  // Ajusta la clase según tus necesidades
+          nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
 
-        // Insertar el nuevo elemento después de dualPriceElement
-        dualPriceElement.parentNode.insertBefore(nuevoElemento, dualPriceElement.nextSibling);
+          // Insertar el nuevo elemento después de dualPriceElement
+          elemento.appendChild(nuevoElemento);
 
-        ttcProperty = 'true';
-        elemento.setAttribute('ttc', ttcProperty);
+          ttcProperty = 'true';
+          elemento.setAttribute('ttc', ttcProperty);
+        }
       }
     }
   }
 }
+
 
 function buscarDescuento(elemento) {
   return elemento.querySelector('.discounts') || (elemento.parentNode && buscarDescuento(elemento.parentNode));
