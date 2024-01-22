@@ -102,7 +102,13 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const prizeboxElement = elemento.closest('.yv-prizebox');
-  const discountElement = prizeboxElement.querySelector('.discounts');
+const discountElement = prizeboxElement.querySelector('.discounts');
+if (discountElement) {
+  // Resto del código aquí
+} else {
+  console.error('No se encontró el elemento con la clase .discounts');
+}
+
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
