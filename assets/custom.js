@@ -118,6 +118,11 @@ function modificarElemento(elemento, showTTC) {
           let porcentajeDescuento = obtenerPorcentajeDescuento(comparePriceElement.textContent);
           let nuevoPrecioTachado = calcularNuevoPrecioTachado(precioActual, porcentajeDescuento);
 
+          // Salida de consola para depuración
+          console.log('Precio actual:', precioActual);
+          console.log('Porcentaje descuento:', porcentajeDescuento);
+          console.log('Nuevo precio tachado:', nuevoPrecioTachado);
+
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
@@ -132,6 +137,7 @@ function modificarElemento(elemento, showTTC) {
     }
   }
 }
+
 
 function calcularNuevoPrecioTachado(precio, porcentajeDescuento) {
   return precio - (precio * porcentajeDescuento / 100);
