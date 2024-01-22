@@ -1016,33 +1016,29 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-    // TTC Functionality
+    //TTC Functionality
     const showTTC = localStorage.getItem('showTTC');
+
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
+
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
 
     var compareAtPrice = parseInt(getVariant.compare_at_price);
     var price = parseInt(adjustedPrice);
-
-    // Calcular el porcentaje de descuento original
-    var originalPercentage =
-      roundToTwo(((compareAtPrice - price) / compareAtPrice) * 100);
-
-    var percentage = originalPercentage + "% " + saleOffText;
-    
+    var percentage =
+      roundToTwo(((compareAtPrice - price) / compareAtPrice) * 100) +
+      "% " +
+      saleOffText;
     var savedAmount =
       Shopify.formatMoney(compareAtPrice - price, moneyFormat) +
       " " +
       saleOffText;
-
     priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       price,
       moneyFormat
     )}</span>`;
-    
     var savedAmountHtml =
       '<span class="yv-visually-hidden">' + savedPriceText + "</span>";
-
     if (showSaved) {
       if (showSavedAmount == "true") {
         if (savedAmountStyle == "percentage") {
@@ -1059,7 +1055,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
           savedAmountHtml += `<span class="yv-product-percent-off">${savedAmount}</span>`;
         }
       } else if (getVariant.allocation_type == "percentage") {
-        savedAmountHtml += `<span class="yv-product-percent-off">${originalPercentage}% ${saleOffText}</span>`;
+        savedAmountHtml += `<span class="yv-product-percent-off">${getVariant.allocation_value}% ${saleOffText}</span>`;
       } else {
         savedAmountHtml += `<span class="yv-product-percent-off">${Shopify.formatMoney(
           getVariant.allocation_value,
@@ -1067,7 +1063,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
         )} ${saleOffText}</span>`;
       }
     }
-
     if (compareAtPrice > price) {
       priceHtml = `<span class="yv-visually-hidden">${comparePriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
         price,
