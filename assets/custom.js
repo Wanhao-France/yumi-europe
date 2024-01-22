@@ -102,30 +102,31 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
+  const discountElement = elemento.querySelector('.discounts .dualPrice');
 
-  const rect = elemento.getBoundingClientRect();
-  let ttcProperty = elemento.getAttribute('ttc');
+  // Verifica si los elementos existen antes de acceder a sus propiedades
+  if (dualPriceElement && comparePriceElement && discountElement) {
+    const rect = elemento.getBoundingClientRect();
+    let ttcProperty = elemento.getAttribute('ttc');
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
-    let precioActual = obtenerPrecio(dualPriceElement.textContent);
+    if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
+      let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
-    if (!ttcProperty) {
-      let nuevoPrecio = precioActual * 1.2;
-      let descuento = precioActual - nuevoPrecio;
-      let precioTachadoTTC = precioActual + descuento;
+      if (!ttcProperty) {
+        let nuevoPrecio = precioActual * 1.2;
+        let descuento = obtenerPrecio(discountElement.textContent);
+        let precioTachadoTTC = precioActual + descuento;
 
-      // Actualizar el contenido de los elementos
-      dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-
-      if (elemento.classList.contains('hasComparePrice')) {
+        dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
         comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
-      }
 
-      ttcProperty = 'true';
-      elemento.setAttribute('ttc', ttcProperty);
+        ttcProperty = 'true';
+        elemento.setAttribute('ttc', ttcProperty);
+      }
     }
   }
 }
+
 
 
 
