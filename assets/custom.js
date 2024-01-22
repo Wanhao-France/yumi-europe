@@ -163,9 +163,7 @@ function formatearPrecio(precio) {
   return precio.toFixed(2).replace('.', ',');
 }
 
-// Llamada de prueba
-const elementoPrueba = document.querySelector('.yv-product-price .dualPrice');
-modificarElemento(elementoPrueba, true);
+
 
 
 
