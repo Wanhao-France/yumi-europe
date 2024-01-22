@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
 
-  // Verificar que dualPriceElement no sea null antes de continuar
   if (dualPriceElement) {
     const rect = elemento.getBoundingClientRect();
     let ttcProperty = elemento.getAttribute('ttc');
@@ -113,51 +112,14 @@ function modificarElemento(elemento, showTTC) {
       if (!ttcProperty) {
         let nuevoPrecio = precioActual * 1.2;
 
-        // Buscar el elemento .discounts en toda la jerarquía ascendente
-        const discountElement = buscarDescuento(elemento);
-        console.log(discountElement);
-
-        if (discountElement) {
-          // Obtener el porcentaje de descuento del elemento .discounts
-          const porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
-
-          // Calcular el precio tachado en TTC
-          let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
-
-
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
-          // Crear un nuevo elemento para el precio tachado en TTC
-          let nuevoElemento = document.createElement('span');
-          nuevoElemento.className = 'compare-price';  // Ajusta la clase según tus necesidades
-          nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
-
-          // Insertar el nuevo elemento después de dualPriceElement
-          elemento.appendChild(nuevoElemento);
-
           ttcProperty = 'true';
           elemento.setAttribute('ttc', ttcProperty);
-        }
       }
     }
   }
-}
-
-
-function buscarDescuento(elemento) {
-  return elemento.querySelector('.discounts') || (elemento.parentNode && buscarDescuento(elemento.parentNode));
-}
-
-function obtenerPorcentajeDescuento(textoDescuento) {
-  // Función para extraer el porcentaje del texto del descuento
-  const match = textoDescuento.match(/\d+/); // Buscar dígitos en el texto
-  return match ? parseFloat(match[0]) : 0; // Convertir los dígitos a número, si se encuentran
-}
-
-function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
-  // Función para calcular el precio tachado en TTC restando el porcentaje de descuento
-  return precio - (precio * porcentajeDescuento / 100);
 }
 
 
