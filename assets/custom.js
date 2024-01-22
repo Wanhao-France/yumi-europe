@@ -125,11 +125,9 @@ function modificarElemento(elemento, showTTC) {
 
       console.log('Nuevo Precio:', nuevoPrecio);
 
-      // Verificar si hay elementos de precio tachado originales
       if (comparePriceElements.length > 0) {
         console.log('Número de elementos de precio tachado originales:', comparePriceElements.length);
 
-        // Iterar sobre los elementos y realizar las actualizaciones
         comparePriceElements.forEach((comparePriceElement, index) => {
           console.log(`Iterando sobre el elemento de precio tachado #${index + 1}`);
 
@@ -139,15 +137,13 @@ function modificarElemento(elemento, showTTC) {
           console.log('Porcentaje Descuento:', porcentajeDescuento);
           console.log('Nuevo Precio Tachado:', nuevoPrecioTachado);
 
-          // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
-          comparePriceElement.style.display = 'none'; // Ocultar el elemento
+          comparePriceElement.style.display = 'none';
 
           console.log('Actualización realizada con éxito');
         });
       } else {
-        // Si no hay precios tachados originales, simplemente actualizar el precio principal
         dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
         console.log('No hay elementos de precio tachado original');
