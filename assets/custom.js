@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
+  const discountElement = elemento.querySelector('.discounts .dualPrice');
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -109,27 +110,33 @@ function modificarElemento(elemento, showTTC) {
   if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
-    if (!ttcProperty) {
-      let nuevoPrecio = precioActual * 1.2;
+    if (!ttcProperty && discountElement) {
+      // Obtener el porcentaje de descuento del elemento discounts
+      let porcentajeDescuento = obtenerPorcentaje(descuentoElement.textContent);
 
-      // Obtener el descuento en euros del elemento discounts
-      let descuentoElement = elemento.querySelector('.discounts .dualPrice');
-      let descuento = descuentoElement ? obtenerPrecio(descuentoElement.textContent) : 0;
+      // Calcular el descuento en euros
+      let descuento = (precioActual * porcentajeDescuento) / 100;
 
-      // Restar el descuento al precio tachado en TTC
+      // Calcular el precio tachado en TTC
       let precioTachadoTTC = precioActual + descuento;
 
       // Actualizar el contenido de los elementos
-      dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-      if (comparePriceElement) {
-        comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
-      }
+      dualPriceElement.textContent = formatearPrecio(precioActual) + '€';
+      comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
     }
   }
 }
+
+// Función para obtener el porcentaje de un texto
+function obtenerPorcentaje(texto) {
+  // Extrayendo solo los dígitos del texto
+  let digitos = texto.replace(/[^\d]/g, '');
+  return parseFloat(digitos);
+}
+
 
 
 
