@@ -99,20 +99,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Seleccionar el elemento por su clase
-const discountElement = document.querySelector('.discounts');
+// Seleccionar todos los elementos por su clase
+const discountElements = document.querySelectorAll('.discounts');
 
-// Verificar si el elemento fue encontrado
-if (discountElement) {
-  // Obtener el contenido del elemento
-  const discountContent = discountElement.textContent.trim();
+// Verificar si se encontraron elementos
+if (discountElements.length > 0) {
+  // Iterar sobre la NodeList
+  discountElements.forEach((element, index) => {
+    // Obtener el contenido de cada elemento
+    const discountContent = element.textContent.trim();
 
-  // Mostrar el contenido en un alert
-  alert(discountContent);
+    // Mostrar el contenido en un alert
+    alert(`Descuento ${index + 1}: ${discountContent}`);
+  });
 } else {
-  // En caso de que el elemento no sea encontrado
-  alert('No se encontró el elemento con la clase .discounts');
+  // En caso de que no se encuentren elementos
+  alert('No se encontraron elementos con la clase .discounts');
 }
-
 
 // TTC Functionality
 
