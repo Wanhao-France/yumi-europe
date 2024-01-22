@@ -25,11 +25,11 @@
             "desktop_content_position": "d-center-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
-            "textcolor": "#000000",
+            "textcolor": "#ffffff",
             "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "#000000",
-            "button_border_color": "#000000"
+            "button_text_color": "#000000",
+            "button_bg_color": "#ffffff",
+            "button_border_color": "#ffffff"
           }
         },
         "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-2": {
@@ -56,9 +56,9 @@
             "overlaycolor": "#000000",
             "textcolor": "#000000",
             "text_shadow_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_bg_color": "#000000",
-            "button_border_color": "#000000"
+            "button_text_color": "#000000",
+            "button_bg_color": "#ffffff",
+            "button_border_color": "#ffffff"
           }
         },
         "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-3": {
