@@ -127,8 +127,12 @@ function modificarElemento(elemento, showTTC) {
 
       // Verificar si hay elementos de precio tachado originales
       if (comparePriceElements.length > 0) {
+        console.log('Número de elementos de precio tachado originales:', comparePriceElements.length);
+
         // Iterar sobre los elementos y realizar las actualizaciones
-        comparePriceElements.forEach(comparePriceElement => {
+        comparePriceElements.forEach((comparePriceElement, index) => {
+          console.log(`Iterando sobre el elemento de precio tachado #${index + 1}`);
+
           let porcentajeDescuento = obtenerPorcentajeDescuento(comparePriceElement.textContent);
           let nuevoPrecioTachado = calcularNuevoPrecioTachado(precioActual, porcentajeDescuento);
 
@@ -158,6 +162,7 @@ function modificarElemento(elemento, showTTC) {
     console.log('No se cumplieron las condiciones para modificar el elemento');
   }
 }
+
 
 
 function calcularNuevoPrecioTachado(precio, porcentajeDescuento) {
