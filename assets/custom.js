@@ -133,7 +133,7 @@ function modificarElemento(elemento, showTTC) {
 
 // Función para obtener el precio tachado en TTC
 function obtenerPrecioTachadoTTC(precio) {
-  return precio - (precio * 15% / 100);
+  return precio - (precio * 15 / 100);
 }
 
 
