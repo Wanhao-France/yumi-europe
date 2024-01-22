@@ -98,64 +98,61 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // TTC Functionality
+
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const comparePriceElements = elemento.querySelectorAll('.yv-prizebox .yv-product-compare-price > span');
-
-  if (!dualPriceElement) {
-    console.error('No se encontró el elemento dualPrice');
-    return;
-  }
+  const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
 
   console.log('Dual Price Element:', dualPriceElement);
+  console.log('Compare Price Element:', comparePriceElement);
 
-  const rect = elemento.getBoundingClientRect();
-  let ttcProperty = elemento.getAttribute('ttc');
+  if (dualPriceElement) {
+    const rect = elemento.getBoundingClientRect();
+    let ttcProperty = elemento.getAttribute('ttc');
 
-  console.log('Rect:', rect);
-  console.log('TTC Property:', ttcProperty);
+    console.log('Rect:', rect);
+    console.log('TTC Property:', ttcProperty);
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
-    let precioActual = obtenerPrecio(dualPriceElement.textContent);
+    if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
+      let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
-    console.log('Precio Actual:', precioActual);
+      console.log('Precio Actual:', precioActual);
 
-    if (!ttcProperty) {
-      let nuevoPrecio = precioActual * 1.2;
+      if (!ttcProperty) {
+        let nuevoPrecio = precioActual * 1.2;
 
-      console.log('Nuevo Precio:', nuevoPrecio);
+        console.log('Nuevo Precio:', nuevoPrecio);
 
-      if (comparePriceElements.length > 0) {
-        console.log('Número de elementos de precio tachado originales:', comparePriceElements.length);
-
-        comparePriceElements.forEach((comparePriceElement, index) => {
-          console.log(`Iterando sobre el elemento de precio tachado #${index + 1}`);
-
+        // Verificar si el elemento del precio tachado existe
+        if (comparePriceElement) {
           let porcentajeDescuento = obtenerPorcentajeDescuento(comparePriceElement.textContent);
           let nuevoPrecioTachado = calcularNuevoPrecioTachado(precioActual, porcentajeDescuento);
 
           console.log('Porcentaje Descuento:', porcentajeDescuento);
           console.log('Nuevo Precio Tachado:', nuevoPrecioTachado);
 
+          // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
-          comparePriceElement.style.display = 'none';
 
           console.log('Actualización realizada con éxito');
-        });
+        } else {
+          // Si no hay precio tachado original, simplemente actualizar el precio principal
+          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+
+          console.log('No hay elemento de precio tachado original');
+        }
+
+        ttcProperty = 'true';
+        elemento.setAttribute('ttc', ttcProperty);
       } else {
-        dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-
-        console.log('No hay elementos de precio tachado original');
+        console.log('El atributo ttc ya está configurado en true');
       }
-
-      ttcProperty = 'true';
-      elemento.setAttribute('ttc', ttcProperty);
     } else {
-      console.log('El atributo ttc ya está configurado en true');
+      console.log('No se cumplieron las condiciones para modificar el elemento');
     }
   } else {
-    console.log('No se cumplieron las condiciones para modificar el elemento');
+    console.log('No se encontró el elemento dualPrice');
   }
 }
 
