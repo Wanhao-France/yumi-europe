@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const prizeboxElement = elemento.closest('.yv-prizebox');
-alert(prizeboxElement.innerHTML);
+
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
