@@ -9160,35 +9160,34 @@ body.account-popup-open .yv-login-popup {
 }
 
 .toggle-container {
-  position: relative;
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: background-color 0.3s;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .toggle-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: #130f32;
-  border-radius: 15px;
-  transition: transform 0.5s, background-color 0.5s;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #130f32;
+    border-radius: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .toggle-container.active .toggle-btn {
-  transform: translateX(100%);
-  background-color: #fff;
-  color: #130f32;
+    transform: translateX(100%);
+    background-color: #fff;
+    color: #130f32;
 }
 
 .icons-header-custom {
