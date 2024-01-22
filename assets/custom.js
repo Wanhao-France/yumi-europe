@@ -115,8 +115,10 @@ function modificarElemento(elemento, showTTC) {
 
         // Verificar si el elemento del precio tachado existe
         if (comparePriceElement) {
-          let porcentajeDescuento = obtenerPorcentajeDescuento(comparePriceElement.textContent);
-          let nuevoPrecioTachado = calcularNuevoPrecioTachado(precioActual, porcentajeDescuento);
+          let precioTachadoOriginal = obtenerPrecio(comparePriceElement.textContent);
+
+          // Calcular el nuevo precio tachado
+          let nuevoPrecioTachado = precioTachadoOriginal + (precioTachadoOriginal * 0.2);
 
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
@@ -134,15 +136,6 @@ function modificarElemento(elemento, showTTC) {
 }
 
 
-function calcularNuevoPrecioTachado(precio, porcentajeDescuento) {
-  return precio - (precio * porcentajeDescuento / 100);
-}
-
-function obtenerPorcentajeDescuento(textoDescuento) {
-  const match = textoDescuento.match(/\d+/); // Buscar dígitos en el texto
-  return match ? parseFloat(match[0]) : 0;
-}
-
 function obtenerPrecio(textoPrecio) {
   return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
 }
@@ -150,7 +143,6 @@ function obtenerPrecio(textoPrecio) {
 function formatearPrecio(precio) {
   return precio.toFixed(2).replace('.', ',');
 }
-
 
 const observerConfig = {
   threshold: 0.5,
