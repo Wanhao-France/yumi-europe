@@ -120,7 +120,6 @@ console.log(discountElement);
         if (discountElement) {
           // Obtener el porcentaje de descuento del elemento .discounts
           const porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
-document.querySelector('.discounts')
 
           // Calcular el precio tachado en TTC
           let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
@@ -146,7 +145,7 @@ document.querySelector('.discounts')
 
 
 function buscarDescuento(elemento) {
-  return elemento.querySelector('.discounts');
+  return elemento.querySelector('.discounts') || (elemento.parentNode && buscarDescuento(elemento.parentNode));
 }
 
 function obtenerPorcentajeDescuento(textoDescuento) {
