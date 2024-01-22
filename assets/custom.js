@@ -101,34 +101,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const discountElement = elemento.querySelector('.discounts');
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC && discountElement) {
+  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
     let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
     if (!ttcProperty) {
-      // Obtener el porcentaje de descuento del elemento discounts
-      let porcentajeDescuento = obtenerPorcentaje(discountElement.textContent);
-
-      // Calcular el descuento en euros
-      let descuento = (precioActual * porcentajeDescuento) / 100;
-
-      // Calcular el precio tachado en TTC
-      let precioTachadoTTC = precioActual + descuento;
+      let nuevoPrecio = precioActual * 1.2;
 
       // Actualizar el contenido de los elementos
-      dualPriceElement.textContent = formatearPrecio(precioActual * 1.2) + '€';
-
-      // Crear un nuevo elemento span para el precio tachado en TTC
-      let nuevoElemento = document.createElement('span');
-      nuevoElemento.className = 'yv-product-ttc-price';  // Ajusta la clase según tus necesidades
-      nuevoElemento.innerHTML = formatearPrecio(precioTachadoTTC) + '€';
-
-      // Insertar el nuevo elemento después de dualPriceElement
-      dualPriceElement.parentNode.insertBefore(nuevoElemento, dualPriceElement.nextSibling);
+      dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
@@ -136,12 +120,6 @@ function modificarElemento(elemento, showTTC) {
   }
 }
 
-// Función para obtener el porcentaje de un texto
-function obtenerPorcentaje(texto) {
-  // Extrayendo solo los dígitos del texto
-  let digitos = texto.replace(/[^\d]/g, '');
-  return parseFloat(digitos);
-}
 
 
 function obtenerPrecio(textoPrecio) {
