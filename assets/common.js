@@ -1101,6 +1101,10 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     }
   }
 
+  console.log('Compare At Price:', compareAtPrice);
+  console.log('Adjusted Price:', adjustedPrice);
+  console.log('Final Price:', price);
+
   if (priceContainer) {
     priceContainer.innerHTML = priceHtml;
   }
@@ -1123,7 +1127,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     savedAmountHtml: savedAmountHtml
   };
 }
-
 
 
 
