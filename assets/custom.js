@@ -127,11 +127,11 @@ function modificarElemento(elemento, showTTC) {
 
         // Crear un nuevo elemento para el precio tachado en TTC
         let nuevoElemento = document.createElement('span');
-        nuevoElemento.className = 'compare-price';  // Ajusta la clase según tus necesidades
+        nuevoElemento.className = 'yv-product-compare-price';  // Ajusta la clase según tus necesidades
         nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
 
-        // Insertar el nuevo elemento como hijo de prizeboxElement
-        prizeboxElement.appendChild(nuevoElemento);
+        // Insertar el nuevo elemento después de dualPriceElement
+        dualPriceElement.parentNode.insertBefore(nuevoElemento, dualPriceElement.nextSibling);
 
         ttcProperty = 'true';
         elemento.setAttribute('ttc', ttcProperty);
@@ -147,13 +147,15 @@ function buscarDescuento(elemento) {
 
 function obtenerPorcentajeDescuento(textoDescuento) {
   // Función para extraer el porcentaje del texto del descuento
-  return parseFloat(textoDescuento) || 0;
+  const match = textoDescuento.match(/\d+/); // Buscar dígitos en el texto
+  return match ? parseFloat(match[0]) : 0; // Convertir los dígitos a número, si se encuentran
 }
 
 function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
   // Función para calcular el precio tachado en TTC restando el porcentaje de descuento
   return precio - (precio * porcentajeDescuento / 100);
 }
+
 
 
 
