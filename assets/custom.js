@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // TTC Functionality
-
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
@@ -148,6 +147,12 @@ function modificarElemento(elemento, showTTC) {
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
+
+      // Ocultar el elemento de precio tachado
+      if (comparePriceElement) {
+        comparePriceElement.style.display = 'none';
+      }
+
     } else {
       console.log('El atributo ttc ya está configurado en true');
     }
@@ -155,8 +160,6 @@ function modificarElemento(elemento, showTTC) {
     console.log('No se cumplieron las condiciones para modificar el elemento');
   }
 }
-
-
 
 function calcularNuevoPrecioTachado(precio, porcentajeDescuento) {
   return precio - (precio * porcentajeDescuento / 100);
