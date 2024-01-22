@@ -1011,14 +1011,14 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var showSavedAmount = "";
   var savedAmountStyle = "";
   var priceHtml = "";
-
-  if (getVariant != undefined) {
+  if (getVariant != undefined) { 
     if (priceContainer) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-    // TTC Functionality
+    //TTC Functionality
     const showTTC = localStorage.getItem('showTTC');
+
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
 
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
@@ -1039,7 +1039,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     )}</span>`;
     var savedAmountHtml =
       '<span class="yv-visually-hidden">' + savedPriceText + "</span>";
-
     if (showSaved) {
       if (showSavedAmount == "true") {
         if (savedAmountStyle == "percentage") {
@@ -1064,7 +1063,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
         )} ${saleOffText}</span>`;
       }
     }
-
     if (compareAtPrice > price) {
       priceHtml = `<span class="yv-visually-hidden">${comparePriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
         price,
@@ -1076,7 +1074,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       )}</span>
       ${savedAmountHtml}</div>`;
     }
-
     if (getVariant.unit_price_measurement) {
       priceHtml +=
         '<span class="yv-visually-hidden">' +
@@ -1116,7 +1113,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     savedAmountHtml: savedAmountHtml
   };
 }
-
 
 
 
