@@ -103,7 +103,6 @@ function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const prizeboxElement = elemento.closest('.yv-prizebox');
   const discountElement = prizeboxElement.querySelector('.discounts');
-  alert(discountElement)
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
