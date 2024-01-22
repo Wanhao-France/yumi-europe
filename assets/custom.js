@@ -97,85 +97,41 @@ document.addEventListener('DOMContentLoaded', function () {
   updateStyles();
 });
 
-
-// Seleccionar el elemento por su clase
-// Seleccionar todos los elementos por su clase
-const discountElements = document.querySelectorAll('.discounts');
-
-// Verificar si se encontraron elementos
-if (discountElements.length > 0) {
-  // Iterar sobre la NodeList
-  discountElements.forEach((element, index) => {
-    // Obtener el contenido de cada elemento
-    const discountContent = element.textContent.trim();
-
-    // Mostrar el contenido en un alert
-    console.log(`Descuento ${index + 1}: ${discountContent}`);
-  });
-} else {
-  // En caso de que no se encuentren elementos
-  console.log('No se encontraron elementos con la clase .discounts');
-}
-
 // TTC Functionality
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
 
-  console.log('Dual Price Element:', dualPriceElement);
-  console.log('Compare Price Element:', comparePriceElement);
-
   if (dualPriceElement) {
     const rect = elemento.getBoundingClientRect();
     let ttcProperty = elemento.getAttribute('ttc');
 
-    console.log('Rect:', rect);
-    console.log('TTC Property:', ttcProperty);
-
     if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
       let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
-      console.log('Precio Actual:', precioActual);
-
       if (!ttcProperty) {
         let nuevoPrecio = precioActual * 1.2;
-
-        console.log('Nuevo Precio:', nuevoPrecio);
 
         // Verificar si el elemento del precio tachado existe
         if (comparePriceElement) {
           let porcentajeDescuento = obtenerPorcentajeDescuento(comparePriceElement.textContent);
           let nuevoPrecioTachado = calcularNuevoPrecioTachado(precioActual, porcentajeDescuento);
 
-          console.log('Porcentaje Descuento:', porcentajeDescuento);
-          console.log('Nuevo Precio Tachado:', nuevoPrecioTachado);
-
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
-
-          console.log('Actualización realizada con éxito');
         } else {
           // Si no hay precio tachado original, simplemente actualizar el precio principal
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-
-          console.log('No hay elemento de precio tachado original');
         }
 
         ttcProperty = 'true';
         elemento.setAttribute('ttc', ttcProperty);
-      } else {
-        console.log('El atributo ttc ya está configurado en true');
       }
-    } else {
-      console.log('No se cumplieron las condiciones para modificar el elemento');
     }
-  } else {
-    console.log('No se encontró el elemento dualPrice');
   }
 }
-
 
 
 function calcularNuevoPrecioTachado(precio, porcentajeDescuento) {
