@@ -35,12 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Toggle Button
 
-// Toggle Button
-
 function manageToggle() {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
+  const toggleContainer = document.querySelector('.toggle-container');
   let showTTC = getToggleState();
-
+  
   function saveToggleState(state) {
     localStorage.setItem('showTTC', JSON.stringify(state));
   }
@@ -55,23 +54,17 @@ function manageToggle() {
     saveToggleState(showTTC);
     toggleContainer.classList.toggle('active', showTTC);
     togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
-    
-    // Dispara el evento personalizado cuando cambia el estado del toggle
-    document.dispatchEvent(new CustomEvent('toggleStateChanged', { detail: { showTTC } }));
   }
 
   // Add event listener to the toggle button
   togglePricesBtn.addEventListener('click', updateStateAndToggleText);
 
-  // Update the button text and class on page load
+  // Update the button text on page load
   togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
-  toggleContainer.classList.toggle('active', showTTC);
 }
 
 // Call the function to initialize the toggle
 manageToggle();
-
-
 
 
 // TTC Functionality
@@ -163,6 +156,7 @@ function init() {
 }
 
 init();
+
 
 // Notification dispatched same day
 
