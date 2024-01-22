@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Toggle Button
 document.addEventListener('DOMContentLoaded', function () {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
   const toggleContainer = document.querySelector('.toggle-container');
