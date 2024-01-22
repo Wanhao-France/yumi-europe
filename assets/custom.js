@@ -115,7 +115,7 @@ function modificarElemento(elemento, showTTC) {
 
         // Buscar el elemento .discounts en toda la jerarquía ascendente
         const discountElement = buscarDescuento(elemento);
-console.log(discountElement);
+        console.log(discountElement);
 
         if (discountElement) {
           // Obtener el porcentaje de descuento del elemento .discounts
