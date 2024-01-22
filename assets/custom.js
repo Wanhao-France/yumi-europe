@@ -51,10 +51,17 @@ function manageToggle() {
   }
 
   function updateStateAndToggleText() {
-    showTTC = !showTTC;
-    saveToggleState(showTTC);
-    toggleContainer.classList.toggle('active', showTTC);
-    togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+      showTTC = !showTTC;
+      saveToggleState(showTTC);
+      
+      // Cambia la clase de manera suave
+      toggleContainer.style.transition = 'background-color 0.3s';
+      setTimeout(() => {
+          toggleContainer.style.transition = 'none';
+      }, 300);
+  
+      toggleContainer.classList.toggle('active', showTTC);
+      togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
   }
 
   // Add event listener to the toggle button
