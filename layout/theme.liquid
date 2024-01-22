@@ -49,6 +49,9 @@
     class="template_{{ template | handle }} page-loading breadcrumb-{{ settings.enable_breadcrumb }} theme-layout-{{ settings.layout_style }}"
     style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %};"
   >
+    <div id="spinner-container" class="spinner-container">
+  <div class="spinner"></div>
+</div>
     <div id="notification-container"></div>
     <a class="skip-to-content-link button yv-visually-hidden focus-inside" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
