@@ -120,17 +120,19 @@ function modificarElemento(elemento, showTTC) {
       // Calcular el precio tachado en TTC
       let precioTachadoTTC = precioActual + descuento;
 
+      // Crear un nuevo elemento span para el precio tachado en TTC
+      let nuevoElemento = document.createElement('span');
+      nuevoElemento.className = 'yv-product-ttc-price';  // Ajusta la clase según tus necesidades
+      nuevoElemento.innerHTML = formatearPrecio(precioTachadoTTC) + '€';
+
+      // Agregar el nuevo elemento como hijo de .yv-prizebox
+      elemento.appendChild(nuevoElemento);
+
       // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(precioActual) + '€';
 
       if (elemento.classList.contains('hasComparePrice')) {
-        // Crear un nuevo elemento span para el precio tachado en TTC
-        let nuevoElemento = document.createElement('span');
-        nuevoElemento.className = 'yv-product-ttc-price';  // Ajusta la clase según tus necesidades
-        nuevoElemento.innerHTML = formatearPrecio(precioTachadoTTC) + '€';
-
-        // Agregar el nuevo elemento como hijo de .yv-prizebox
-        elemento.appendChild(nuevoElemento);
+        comparePriceElement.textContent = '';  // Limpiar el contenido actual
       }
 
       ttcProperty = 'true';
