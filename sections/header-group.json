@@ -65,7 +65,7 @@
         "account_type": "popup",
         "cart_icon": "cart",
         "enable_sticky_cart": true,
-        "icon_weight": "thin",
+        "icon_weight": "bold",
         "enable_language_selector": true,
         "enable_currency_selector": false,
         "header_bgcolor": "#ffffff",
