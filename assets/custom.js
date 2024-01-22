@@ -35,8 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Toggle Button
 
-// Toggle Button
-
 function manageToggle() {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
   const toggleContainer = document.querySelector('.toggle-container');
@@ -55,20 +53,35 @@ function manageToggle() {
   function updateStateAndToggleText() {
     showTTC = !showTTC;
     saveToggleState(showTTC);
-    toggleContainer.classList.toggle('active', showTTC);
+    updateStyles();  // Nueva función para actualizar los estilos
     togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
+  }
+
+  function updateStyles() {
+    if (showTTC) {
+      toggleContainer.style.backgroundColor = '#ccc';
+      toggleContainer.style.transition = 'background-color 0.3s';
+      toggleContainer.classList.add('active');
+      toggleContainer.classList.remove('inactive');
+    } else {
+      toggleContainer.style.backgroundColor = '#130f32';
+      toggleContainer.style.transition = 'background-color 0.3s';
+      toggleContainer.classList.add('inactive');
+      toggleContainer.classList.remove('active');
+    }
   }
 
   // Add event listener to the toggle button
   togglePricesBtn.addEventListener('click', updateStateAndToggleText);
 
   // Update the button text and class on page load
-  toggleContainer.classList.toggle('active', showTTC);
+  updateStyles();
   togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
 }
 
 // Call the function to initialize the toggle
 manageToggle();
+
 
 
 
