@@ -111,13 +111,29 @@ function modificarElemento(elemento, showTTC) {
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
 
+      // Agregar el precio tachado en TTC
+      let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual);
+
       // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+
+      // Crear un nuevo elemento para el precio tachado en TTC
+      let nuevoElemento = document.createElement('span');
+      nuevoElemento.className = 'yv-product-compare-price';  // Ajusta la clase según tus necesidades
+      nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
+
+      // Insertar el nuevo elemento después de dualPriceElement
+      elemento.appendChild(nuevoElemento);
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
     }
   }
+}
+
+// Función para obtener el precio tachado en TTC
+function obtenerPrecioTachadoTTC(precio) {
+  return precio - (precio * 15% / 100);
 }
 
 
