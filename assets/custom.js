@@ -106,7 +106,7 @@ function modificarElemento(elemento, showTTC) {
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
 
-  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC && discountElement) {
+  if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC ) {
     let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
     if (!ttcProperty) {
