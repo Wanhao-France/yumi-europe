@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
+  const discountElement = elemento.querySelector('.discounts');
 
   if (dualPriceElement) {
     const rect = elemento.getBoundingClientRect();
@@ -123,6 +124,15 @@ function modificarElemento(elemento, showTTC) {
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
           comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
+
+          // Crear un nuevo elemento hermano para el porcentaje de descuento
+          if (discountElement) {
+            let porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
+            let nuevoElementoDescuento = document.createElement('span');
+            nuevoElementoDescuento.textContent = `${porcentajeDescuento}% OFF`;
+            nuevoElementoDescuento.className = 'yv-product-discount';
+            dualPriceElement.parentElement.appendChild(nuevoElementoDescuento);
+          }
         } else {
           // Si no hay precio tachado original, simplemente actualizar el precio principal
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
@@ -134,7 +144,10 @@ function modificarElemento(elemento, showTTC) {
     }
   }
 }
-
+// Función para obtener el porcentaje de descuento
+function obtenerPorcentajeDescuento(textoDescuento) {
+  return parseInt(textoDescuento.replace(/[^\d]/g, ''));
+}
 
 
 function obtenerPrecio(textoPrecio) {
