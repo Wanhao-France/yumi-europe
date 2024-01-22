@@ -112,7 +112,7 @@ function modificarElemento(elemento, showTTC) {
 
     if (!ttcProperty && discountElement) {
       // Obtener el porcentaje de descuento del elemento discounts
-      let porcentajeDescuento = obtenerPorcentaje(discountElement.textContent);
+      let porcentajeDescuento = obtenerPorcentaje(descuentoElement.textContent);
 
       // Calcular el descuento en euros
       let descuento = (precioActual * porcentajeDescuento) / 100;
@@ -120,16 +120,9 @@ function modificarElemento(elemento, showTTC) {
       // Calcular el precio tachado en TTC
       let precioTachadoTTC = precioActual + descuento;
 
-      // Crear un nuevo elemento span para el precio tachado en TTC
-      let nuevoElemento = document.createElement('span');
-      nuevoElemento.className = 'yv-product-ttc-price';  // Ajusta la clase según tus necesidades
-      nuevoElemento.innerHTML = formatearPrecio(precioTachadoTTC) + '€';
-
-      // Agregar el nuevo elemento como hijo de .yv-prizebox
-      elemento.appendChild(nuevoElemento);
-
-      // También puedes mantener la lógica anterior para actualizar el precio actual
+      // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(precioActual) + '€';
+      comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
@@ -143,7 +136,6 @@ function obtenerPorcentaje(texto) {
   let digitos = texto.replace(/[^\d]/g, '');
   return parseFloat(digitos);
 }
-
 
 
 
