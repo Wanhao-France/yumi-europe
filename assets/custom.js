@@ -157,10 +157,9 @@ function obtenerPorcentajeDescuento(textoDescuento) {
 
 function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
   // Función para calcular el precio tachado en TTC restando el porcentaje de descuento
-  let precioTachadoHT = precio - (precio * porcentajeDescuento / 100);
-  let impuestos = precio * 0.2; // Suponiendo un impuesto del 20%
-  return precioTachadoHT + impuestos;
+  return precio - (precio * porcentajeDescuento / 100);
 }
+
 
 
 
