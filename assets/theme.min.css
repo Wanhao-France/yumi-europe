@@ -9165,6 +9165,7 @@ body.account-popup-open .yv-login-popup {
     height: 30px;
     background-color: #ccc;
     border-radius: 15px;
+      border
     overflow: hidden;
     cursor: pointer;
 }
