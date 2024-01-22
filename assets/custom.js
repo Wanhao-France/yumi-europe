@@ -111,13 +111,17 @@ function modificarElemento(elemento, showTTC) {
 
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
-      let descuento = precioActual - nuevoPrecio;
+
+      // Obtener el descuento en euros del elemento discounts
+      let descuentoElement = elemento.querySelector('.discounts .dualPrice');
+      let descuento = descuentoElement ? obtenerPrecio(descuentoElement.textContent) : 0;
+
+      // Restar el descuento al precio tachado en TTC
       let precioTachadoTTC = precioActual + descuento;
 
       // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-
-      if (elemento.classList.contains('hasComparePrice')) {
+      if (comparePriceElement) {
         comparePriceElement.textContent = formatearPrecio(precioTachadoTTC) + '€';
       }
 
@@ -126,6 +130,7 @@ function modificarElemento(elemento, showTTC) {
     }
   }
 }
+
 
 
 
