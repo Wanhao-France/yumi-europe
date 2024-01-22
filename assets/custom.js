@@ -102,8 +102,16 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
- const discountElement = document.querySelector('.discounts');
-  alert(discountElement.innerText)
+
+  // Seleccionar todos los elementos .discounts dentro del ámbito del elemento proporcionado
+  const discountElements = elemento.querySelectorAll('.discounts');
+
+  // Iterar sobre la NodeList de elementos .discounts
+  discountElements.forEach(discountElement => {
+    // Alertar el contenido de cada elemento .discounts
+    alert(discountElement.innerText);
+  });
+
   if (dualPriceElement) {
     const rect = elemento.getBoundingClientRect();
     let ttcProperty = elemento.getAttribute('ttc');
@@ -135,6 +143,7 @@ function modificarElemento(elemento, showTTC) {
     }
   }
 }
+
 
 
 function obtenerPrecio(textoPrecio) {
