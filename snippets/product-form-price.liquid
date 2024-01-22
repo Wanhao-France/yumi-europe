@@ -21,15 +21,7 @@
   <div class="yv-compare-price-box">
     {%- if current_variant.compare_at_price > current_variant.price -%}
       <span class="yv-visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
-      <span class="yv-product-compare-price"> {% if current_variant.compare_at_price > current_variant.price %}
-  {% if request.cookies.showTTC == "true" %}
-    {# Lógica para calcular el precio tachado cuando la cookie está presente #}
-    {{ 'products.product.price.ttc_price' | t }}
-  {% else %}
-    {# Lógica para calcular el precio tachado cuando la cookie no está presente #}
-    {{ 'products.product.price.regular_price' | t }}
-  {% endif %}
-{% endif %}</span>
+      <span class="yv-product-compare-price"> {{ current_variant.compare_at_price | money }}</span>
       {%- if settings.show_saved_amount -%}
         <span class="yv-visually-hidden">{{ 'products.product.price.saved' | t }}</span>
         {%- if settings.saved_amount_style == 'percentage' -%}
