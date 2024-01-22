@@ -1,3 +1,4 @@
+// Box pay in 4X/3X Animation
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('pay-credit-element');
     const productPrice = document.querySelector('.yv-product-price .dualPrice');
@@ -148,7 +149,6 @@ function init() {
 
   handleScroll(showTTCOnLoad);
 
-  // Agregar listener para el evento scroll
   window.addEventListener('scroll', () => {
     const showTTC = getToggleState();
     handleScroll(showTTC);
@@ -157,7 +157,7 @@ function init() {
 
 init();
 
-
+// Notification dispatched same day
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
