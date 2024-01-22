@@ -124,6 +124,7 @@ function modificarElemento(elemento, showTTC) {
           // Calcular el precio tachado en TTC
           let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
 
+
           // Actualizar el contenido de los elementos
           dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
@@ -156,9 +157,10 @@ function obtenerPorcentajeDescuento(textoDescuento) {
 
 function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
   // Función para calcular el precio tachado en TTC restando el porcentaje de descuento
-  return precio - (precio * porcentajeDescuento / 100);
+  let precioTachadoHT = precio - (precio * porcentajeDescuento / 100);
+  let impuestos = precio * 0.2; // Suponiendo un impuesto del 20%
+  return precioTachadoHT + impuestos;
 }
-
 
 
 
