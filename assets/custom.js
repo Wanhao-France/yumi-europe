@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
+  const prizeboxElement = elemento.closest('.yv-prizebox');
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -122,8 +123,8 @@ function modificarElemento(elemento, showTTC) {
       nuevoElemento.className = 'yv-product-compare-price';  // Ajusta la clase según tus necesidades
       nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
 
-      // Insertar el nuevo elemento después de dualPriceElement
-      elemento.appendChild(nuevoElemento);
+      // Insertar el nuevo elemento como hijo de prizeboxElement
+      prizeboxElement.appendChild(nuevoElemento);
 
       ttcProperty = 'true';
       elemento.setAttribute('ttc', ttcProperty);
@@ -137,7 +138,6 @@ function obtenerPrecioTachadoTTC(precio) {
   // Por ejemplo, puedes restar un porcentaje específico del precio original
   return precio - (precio * 15 / 100);
 }
-
 
 
 function obtenerPrecio(textoPrecio) {
