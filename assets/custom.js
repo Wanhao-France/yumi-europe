@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
   const prizeboxElement = elemento.closest('.yv-prizebox');
+  const discountElement = prizeboxElement.querySelector('.discounts');
 
   const rect = elemento.getBoundingClientRect();
   let ttcProperty = elemento.getAttribute('ttc');
@@ -112,15 +113,18 @@ function modificarElemento(elemento, showTTC) {
     if (!ttcProperty) {
       let nuevoPrecio = precioActual * 1.2;
 
-      // Agregar el precio tachado en TTC
-      let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual);
+      // Obtener el porcentaje de descuento del elemento discounts
+      let porcentajeDescuento = obtenerPorcentajeDescuento(discountElement.textContent);
+
+      // Agregar el precio tachado en TTC utilizando el porcentaje de descuento
+      let precioTachadoTTC = obtenerPrecioTachadoTTC(precioActual, porcentajeDescuento);
 
       // Actualizar el contenido de los elementos
       dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
       // Crear un nuevo elemento para el precio tachado en TTC
       let nuevoElemento = document.createElement('span');
-      nuevoElemento.className = 'compare__price';  // Ajusta la clase según tus necesidades
+      nuevoElemento.className = 'yv-product-compare-price';  // Ajusta la clase según tus necesidades
       nuevoElemento.innerHTML = '<span class="dualPrice">' + formatearPrecio(precioTachadoTTC) + '€</span>';
 
       // Insertar el nuevo elemento como hijo de prizeboxElement
@@ -132,11 +136,16 @@ function modificarElemento(elemento, showTTC) {
   }
 }
 
+// Función para obtener el porcentaje de descuento
+function obtenerPorcentajeDescuento(textoDescuento) {
+  // Extraer el porcentaje del texto y convertirlo a un número
+  return parseFloat(textoDescuento.replace(/[^\d.]/g, ''));
+}
+
 // Función para obtener el precio tachado en TTC
-function obtenerPrecioTachadoTTC(precio) {
-  // Aquí puedes implementar la lógica específica para calcular el precio tachado en TTC
-  // Por ejemplo, puedes restar un porcentaje específico del precio original
-  return precio - (precio * 15 / 100);
+function obtenerPrecioTachadoTTC(precio, porcentajeDescuento) {
+  // Calcular el precio tachado restando el porcentaje de descuento del precio original
+  return precio - (precio * porcentajeDescuento / 100);
 }
 
 
