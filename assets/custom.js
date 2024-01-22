@@ -46,7 +46,8 @@ function manageToggle() {
 
   function getToggleState() {
     const savedState = localStorage.getItem('showTTC');
-    return savedState ? JSON.parse(savedState) : false;
+    // Devuelve true si el estado almacenado es null (por defecto)
+    return savedState !== null ? JSON.parse(savedState) : true;
   }
 
   function updateStateAndToggleText() {
@@ -65,6 +66,7 @@ function manageToggle() {
 
 // Call the function to initialize the toggle
 manageToggle();
+
 
 
 // TTC Functionality
