@@ -1,3 +1,16 @@
+function getLocalStorageValue(key) {
+  // Obtener el valor del localStorage y parsearlo a JSON
+  var localStorageValue = localStorage.getItem(key);
+  
+  // Convertir la cadena JSON a un objeto JavaScript
+  var parsedValue = JSON.parse(localStorageValue);
+
+  return parsedValue;
+}
+
+// Obtener el valor de showTTC del localStorage
+var showTTCValue = getLocalStorageValue('showTTC');
+
 // Spinner
 
 function showSpinner() {
@@ -101,32 +114,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function modificarElemento(elemento, showTTC) {
   const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
-  const comparePriceElement = elemento.querySelector('.yv-product-compare-price .dualPrice');
 
   if (dualPriceElement) {
-    const rect = elemento.getBoundingClientRect();
     let ttcProperty = elemento.getAttribute('ttc');
 
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight && ttcProperty !== 'true' && showTTC) {
+    if (ttcProperty !== 'true' && showTTC) {
       let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
       if (!ttcProperty) {
-        let nuevoPrecio = precioActual * 1.2;
+        let nuevoPrecio = precioActual + (precioActual * 0.2);
 
-        // Verificar si el elemento del precio tachado existe
-        if (comparePriceElement) {
-          let precioTachadoOriginal = obtenerPrecio(comparePriceElement.textContent);
+        dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
-          // Calcular el nuevo precio tachado
-          let nuevoPrecioTachado = precioTachadoOriginal + (precioTachadoOriginal * 0.2);
-
-          // Actualizar el contenido de los elementos
-          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-          comparePriceElement.textContent = formatearPrecio(nuevoPrecioTachado) + '€';
-        } else {
-          // Si no hay precio tachado original, simplemente actualizar el precio principal
-          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
-        }
 
         ttcProperty = 'true';
         elemento.setAttribute('ttc', ttcProperty);
@@ -134,8 +133,6 @@ function modificarElemento(elemento, showTTC) {
     }
   }
 }
-
-
 
 function obtenerPrecio(textoPrecio) {
   return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
@@ -206,6 +203,57 @@ function init() {
 }
 
 init();
+
+
+
+function actualizarPrecios() {
+  // Obtener el valor de showTTC del localStorage
+  var showTTCValue = getLocalStorageValue('showTTC');
+
+  // Aplicar la lógica solo si el modo "ttc" está activo
+  if (showTTCValue === true) {
+      var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
+
+      elementosPadre.forEach(function (elementoPadre) {
+          var elementoHijo = elementoPadre.querySelector('.dualPrice');
+
+          // Verificar si el elemento ya ha sido actualizado
+          if (!elementoPadre.classList.contains('actualizado')) {
+              var textoActual = elementoHijo.textContent;
+
+              // Extraer el valor numérico del texto con cifras de millar y comas
+              var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
+
+              // Calcular el nuevo valor con un incremento del 20%
+              var nuevoValor = valorNumerico + (valorNumerico * 0.2);
+              var valorFinal = nuevoValor / 100;
+
+              // Formatear el nuevo valor con comas para cifras de millar y puntos para decimales
+              var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+              // Aplicar el nuevo texto al elemento hijo
+              elementoHijo.textContent = nuevoTexto;
+
+              // Agregar la clase 'actualizado' para marcar el elemento como actualizado
+              elementoPadre.classList.add('actualizado');
+          }
+      });
+  }
+}
+
+// Asociar la función de actualización al evento de scroll
+window.addEventListener('scroll', actualizarPrecios);
+
+// Llamar a la función por primera vez para que los precios se actualicen al cargar la página
+actualizarPrecios();
+
+// Escuchar cambios en showTTCValue
+window.addEventListener('storage', function (event) {
+  if (event.key === 'showTTC') {
+      actualizarPrecios();
+  }
+});
+
 
 
 // Notification dispatched same day
