@@ -117,7 +117,6 @@ function modificarElemento(elemento, showTTC) {
 
   if (dualPriceElement) {
     let ttcProperty = elemento.getAttribute('ttc');
-
     if (ttcProperty !== 'true' && showTTC) {
       let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
@@ -210,31 +209,24 @@ function actualizarPrecios() {
   // Obtener el valor de showTTC del localStorage
   var showTTCValue = getLocalStorageValue('showTTC');
 
-  // Aplicar la lógica solo si el modo "ttc" está activo
   if (showTTCValue === true) {
       var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
 
       elementosPadre.forEach(function (elementoPadre) {
           var elementoHijo = elementoPadre.querySelector('.dualPrice');
 
-          // Verificar si el elemento ya ha sido actualizado
           if (!elementoPadre.classList.contains('actualizado')) {
               var textoActual = elementoHijo.textContent;
 
-              // Extraer el valor numérico del texto con cifras de millar y comas
               var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
 
-              // Calcular el nuevo valor con un incremento del 20%
               var nuevoValor = valorNumerico + (valorNumerico * 0.2);
               var valorFinal = nuevoValor / 100;
 
-              // Formatear el nuevo valor con comas para cifras de millar y puntos para decimales
               var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-              // Aplicar el nuevo texto al elemento hijo
               elementoHijo.textContent = nuevoTexto;
 
-              // Agregar la clase 'actualizado' para marcar el elemento como actualizado
               elementoPadre.classList.add('actualizado');
           }
       });
@@ -347,3 +339,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 
+
+//TTC Cart/Controller
+
+document.addEventListener("DOMContentLoaded", function() {
+  var showTTC = localStorage.getItem("showTTC");
+
+  var dualPriceElement = document.querySelector('.list-unstyled.cart-total-list .cart-total-item.text-large .h2 .dualPrice');
+
+  if (dualPriceElement) {
+      var totalAmount = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
+
+      if (showTTC === 'true') {
+          totalAmount *= 1.2;
+      }
+      dualPriceElement.textContent = '€' + totalAmount.toFixed(2);
+
+      var totalElement = document.querySelector('.cart-total-item p');
+
+      if (totalElement) {
+          totalElement.textContent = 'Total ' + (showTTC === 'true' ? 'TTC' : 'HT');
+      }
+  }
+});

@@ -1,36 +1,41 @@
 {%- layout none -%}
-{% assign uniqueProductIdsString= cart.items | map: 'product_id'| uniq | join: ', ' %}
+{% assign uniqueProductIdsString = cart.items | map: 'product_id' | uniq | join: ', ' %}
 {%- if cart.item_count > 0 -%}
-{% if settings.upsell_products %}
-  <div class="yv-upsell-drawer hidden">
-   {% if settings.upsell_heading != blank %}
-          <div class="yv-drawer-sidebar" data-drawer-side-header>
-              <div class="yv-drawer-text-box marquee-inner-vertical ">
-                {% for i in (1..15) %}
-                  <h6 class="yv-drawer-text">{{ settings.upsell_heading }}</h6>
-                {% endfor %}
-              </div>
-               <div class="slide-arrow"> 
-                  <svg  width="10" height="15" viewBox="0 0 10 15" fill="none">
-                    <path d="M0 7.5L8.33333 15L10 13.5L3.33333 7.5L10 1.5L8.33333 0L0 7.5Z" fill="currentColor"/>
-                  </svg>
-               </div>
+  {% if settings.upsell_products %}
+    <div class="yv-upsell-drawer hidden">
+      {% if settings.upsell_heading != blank %}
+        <div class="yv-drawer-sidebar" data-drawer-side-header>
+          <div class="yv-drawer-text-box marquee-inner-vertical ">
+            {% for i in (1..15) %}
+              <h6 class="yv-drawer-text">{{ settings.upsell_heading }}</h6>
+            {% endfor %}
           </div>
+          <div class="slide-arrow">
+            <svg width="10" height="15" viewBox="0 0 10 15" fill="none">
+              <path d="M0 7.5L8.33333 15L10 13.5L3.33333 7.5L10 1.5L8.33333 0L0 7.5Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+      <div
+        class="yv-suggest-sidebar-content yv-drawer-width"
+        data-drawer-side-content
+        data-related-products="{{ settings.upsell_type }}"
+        data-limit="{{ settings.product_range }}"
+      >
+        {%- liquid
+          if settings.product_list != blank and settings.upsell_type == 'product-list'
+            for product in settings.product_list limit: settings.product_range
+              unless uniqueProductIdsString contains product.id
+                assign mainClass = 'small-product-card'
+                render 'product-grid', product: product, productClasses: mainClass, hideHoverImage: true, hide_options: true, hideRelated: true, hideQuickView: true, hidestockcount: true, hidebadges: true, hideCustomLabel: true, hidePickup: true
+              endunless
+            endfor
+          endif
+        -%}
+      </div>
+    </div>
   {% endif %}
-   <div class="yv-suggest-sidebar-content yv-drawer-width" data-drawer-side-content data-related-products="{{ settings.upsell_type }}" data-limit="{{ settings.product_range }}">
-    {%- liquid 
-      if settings.product_list != blank and settings.upsell_type == 'product-list' 
-       for product in settings.product_list, limit:settings.product_range 
-        unless uniqueProductIdsString contains product.id
-            assign mainClass = 'small-product-card'
-            render 'product-grid', product: product, productClasses: mainClass,hideHoverImage: true, hide_options: true, hideRelated: true, hideQuickView: true, hidestockcount:true, hidebadges:true, hideCustomLabel:true, hidePickup:true
-        endunless
-        endfor 
-      endif 
-    -%}
-   </div>
-  </div>
-{% endif %}
   <div class="cart-item-container cart-drawer-note-{{ settings.enable_cartdrawer_note }}">
     {%- if settings.enable_shipping and settings.shipping_rate != blank -%}
       <div class="free_shipping hidden" data-free-shipping-container>
@@ -88,8 +93,8 @@
             {%- for property in item.properties -%}
               {%- assign property_first_char = property.first | slice: 0 -%}
               {%- if property.last != blank and property_first_char != '_' -%}
-                <p
-                  ><strong>{{ property.first }}</strong>:
+                <p>
+                  <strong>{{ property.first }}</strong>:
                   {%- if property.last contains '/uploads/' -%}
                     <a href="{{ property.last }}" target="_blank" aria-label="{{ property.first }}">
                       {{ property.last | split: '/' | last }}
@@ -101,11 +106,11 @@
               {%- endif -%}
             {%- endfor -%}
             <div class="cart-item-price yv-product-information">
-                {% unless isGiftWrapProduct %}
-              <label class="visually-hidden" for="line-item-quantity-{{ forloop.index }}">
-                {{- 'sections.cart.headings.quantity' | t -}}
-              </label>
-              <div class="quantity cart-item-quantity">
+              {% unless isGiftWrapProduct %}
+                <label class="visually-hidden" for="line-item-quantity-{{ forloop.index }}">
+                  {{- 'sections.cart.headings.quantity' | t -}}
+                </label>
+                <div class="quantity cart-item-quantity">
                   <button
                     type="button"
                     class="quantity-button quantity-down ajaxcart__qty--minus"
@@ -157,8 +162,8 @@
                       <polygon points="14,6 8,6 8,0 6,0 6,6 0,6 0,8 6,8 6,14 8,14 8,8 14,8 "/>
                     </svg>
                   </button>
-              </div>
-                {% endunless %}
+                </div>
+              {% endunless %}
 
               <div class="cart-item-price-unit">
                 <div class="yv-prizebox">

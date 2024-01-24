@@ -784,21 +784,24 @@ if (window.location.pathname.indexOf("/cart") > -1) {
       }
     });
 
-    function openCartDrawer(element) {
-      $("[data-drawer-body]").html(preLoadLoadGif);
-      $("body").find("[data-drawer-title]").html(cartTitleLabel);
-      $("body")
-        .find("[data-side-drawer]")
-        .attr("class", "yv_side_drawer_wrapper");
-      $("body")
-        .find("[data-side-drawer]")
-        .attr("id", "mini__cart")
-        .addClass("mini_cart");
-      $("body").addClass("side_Drawer_open");
-      jQuery.getJSON(cartUrl, function (cart, textStatus) {
-        buildCart(cart, true, element);
-      });
-    }
+// Dentro de la función openCartDrawer
+function openCartDrawer(element) {
+  $("[data-drawer-body]").html(preLoadLoadGif);
+  $("body").find("[data-drawer-title]").html(cartTitleLabel);
+  $("body")
+    .find("[data-side-drawer]")
+    .attr("class", "yv_side_drawer_wrapper");
+  $("body")
+    .find("[data-side-drawer]")
+    .attr("id", "mini__cart")
+    .addClass("mini_cart");
+  $("body").addClass("side_Drawer_open");
+  jQuery.getJSON(cartUrl, function (cart, textStatus) {
+    buildCart(cart, true, element);
+
+    document.dispatchEvent(new Event('cartDrawerOpened'));
+  });
+}
     $("body").on("click", ".openCartDrawer", function (e) {
       e.preventDefault();
       openCartDrawer($(this));

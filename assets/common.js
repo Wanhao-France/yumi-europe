@@ -1016,8 +1016,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-
-    // Calcular el porcentaje de descuento una vez
     var compareAtPrice = parseInt(getVariant.compare_at_price);
     var price = parseInt(getVariant.price);
     var percentage =
@@ -1025,19 +1023,18 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       "% " +
       saleOffText;
     
-    //TTC Functionality
     const showTTC = localStorage.getItem('showTTC');
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
 
-    // Utilizar el compareAtPrice original si no estamos en modo TTC
     var originalCompareAtPrice = compareAtPrice;
 
-    // Obtener el precio ajustado según el modo TTC
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
     var price = parseInt(adjustedPrice);
 
-    // Utilizar el compareAtPrice original si no estamos en modo TTC
-    compareAtPrice = shouldShowTTC ? originalCompareAtPrice : price;
+    if(shouldShowTTC) {
+      compareAtPrice = shouldShowTTC ? originalCompareAtPrice : price;
+    }
+    
 
     var priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       parseInt(adjustedPrice),
@@ -1068,7 +1065,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
         savedAmountHtml += `<span class="yv-product-percent-off">${Shopify.formatMoney(getVariant.allocation_value, moneyFormat)} ${saleOffText}</span>`;
       }
     }
-
+    
     if (compareAtPrice > price) {
       priceHtml += `<div class="yv-compare-price-box"><span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-compare-price"> ${Shopify.formatMoney(
         originalCompareAtPrice,
@@ -1107,9 +1104,9 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     }
   }
 
-  // Agregar la clase 'actualizado' después de actualizar el contenido
   priceContainer.classList.add('actualizado');
   actualizarPrecios();
+  
   return {
     compareAtPrice: originalCompareAtPrice,
     price: price,
