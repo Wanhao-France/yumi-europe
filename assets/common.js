@@ -1011,7 +1011,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var showSavedAmount = "";
   var savedAmountStyle = "";
   var priceHtml = "";
-debugger
   if (getVariant != undefined) {
     if (priceContainer) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
