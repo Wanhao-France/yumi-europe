@@ -1012,17 +1012,12 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var savedAmountStyle = "";
   var priceHtml = "";
   if (getVariant != undefined) {
-    if (priceContainer) {
-       var isUpdated = localStorage.getItem('priceUpdated_' + priceContainer.id);
-       if (!isUpdated) {
+    if (priceContainer && !priceContainer.classList.contains('actualizado')) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
-     localStorage.setItem('priceUpdated_' + priceContainer.id, true);
-
-      // Llamar a la función actualizarPrecios() solo si el contenedor no ha sido actualizado antes
+      priceContainer.classList.add('actualizado');
       actualizarPrecios();
     }
-  }
     var price = parseInt(getVariant.price);
     
     const showTTC = localStorage.getItem('showTTC');
