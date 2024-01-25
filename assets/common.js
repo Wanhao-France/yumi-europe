@@ -1026,13 +1026,15 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     const showTTC = localStorage.getItem('showTTC');
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
 
-    var originalCompareAtPrice = compareAtPrice;
+    var originalCompareAtPrice = getVariant.compare_at_price ? parseInt(getVariant.compare_at_price) : 0;
 
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
     var price = parseInt(adjustedPrice);
-
-    if(shouldShowTTC) {
-      compareAtPrice = shouldShowTTC ? originalCompareAtPrice : price;
+    
+    if (shouldShowTTC) {
+      compareAtPrice = originalCompareAtPrice;
+    } else {
+      compareAtPrice = compareAtPrice * 1.2;
     }
     
 
