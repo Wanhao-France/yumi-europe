@@ -209,7 +209,7 @@ function actualizarPrecios() {
   var showTTCValue = getLocalStorageValue('showTTC');
 
   if (showTTCValue === true) {
-    var elementosPadre = document.querySelectorAll('.yv-product-compare-price[data-sticky-price-wrapper]');
+    var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
 
     elementosPadre.forEach(function (elementoPadre) {
       var elementoHijo = elementoPadre.querySelector('.dualPrice');
@@ -248,6 +248,7 @@ window.addEventListener('storage', function (event) {
     actualizarPrecios();
   }
 });
+
 
 // Notification dispatched same day
 
