@@ -205,6 +205,7 @@ init();
 
 
 function actualizarPrecios() {
+  debugger
   // Obtener el valor de showTTC del localStorage
   var showTTCValue = getLocalStorageValue('showTTC');
 
