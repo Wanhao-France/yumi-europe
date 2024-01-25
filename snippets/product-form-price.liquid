@@ -19,7 +19,7 @@
   </span>
   <span class="yv-product-price {% if sticky %}h4{% else %}h2{% endif %}">{{ current_variant.price | money }}</span>
   <div class="yv-compare-price-box">
-
+    {%- if current_variant.compare_at_price > current_variant.price -%}
       <span class="yv-visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
       <span class="yv-product-compare-price"> {{ current_variant.compare_at_price | money }}</span>
       {%- if settings.show_saved_amount -%}
@@ -27,6 +27,14 @@
         {%- if settings.saved_amount_style == 'percentage' -%}
           {% assign offText = 'products.product.off' | t %}
           <span class="yv-product-percent-off">
+            {{-
+              current_variant.compare_at_price
+              | minus: current_variant.price
+              | times: 100
+              | divided_by: current_variant.compare_at_price
+              | append: '% '
+              | append: offText
+            -}}
           </span>
         {%- else -%}
           <span class="yv-product-percent-off">
@@ -34,7 +42,7 @@
           </span>
         {%- endif -%}
       {%- endif -%}
-
+    {%- endif -%}
   </div>
   {%- if current_variant.unit_price_measurement -%}
     <span class="yv-visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
