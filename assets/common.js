@@ -1015,8 +1015,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     if (priceContainer) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
-      priceContainer.classList.add('actualizado');
-      actualizarPrecios();
     }
     var price = parseInt(getVariant.price);
     
