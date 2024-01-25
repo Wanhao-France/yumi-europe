@@ -1011,22 +1011,33 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var showSavedAmount = "";
   var savedAmountStyle = "";
   var priceHtml = "";
-  var originalCompareAtPrice = parseInt(getVariant.compare_at_price);
-
   if (getVariant != undefined) {
     if (priceContainer) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-
+    var compareAtPrice = parseInt(getVariant.compare_at_price);
+    var price = parseInt(getVariant.price);
+    var percentage =
+      Math.floor(((compareAtPrice - price) / compareAtPrice) * 100) +
+      "% " +
+      saleOffText;
+    
     const showTTC = localStorage.getItem('showTTC');
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
+
+    var originalCompareAtPrice = compareAtPrice;
 
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
     var price = parseInt(adjustedPrice);
 
+    if(shouldShowTTC) {
+      compareAtPrice = shouldShowTTC ? originalCompareAtPrice : price;
+    }
+    
+
     var priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
-      price,
+      parseInt(adjustedPrice),
       moneyFormat
     )}</span>`;
 
@@ -1036,7 +1047,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     if (showSaved) {
       if (showSavedAmount == "true") {
         if (savedAmountStyle == "percentage") {
-          savedAmountHtml += `<span class="yv-product-percent-off">${calculatePercentage(originalCompareAtPrice, price)}%</span>`;
+          savedAmountHtml += `<span class="yv-product-percent-off">${percentage}</span>`;
         } else {
           savedAmountHtml += `<span class="yv-product-percent-off">${Shopify.formatMoney(originalCompareAtPrice - price, moneyFormat)} ${saleOffText}</span>`;
         }
@@ -1044,7 +1055,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     } else {
       if (getVariant.allocation_type == "") {
         if (savedAmountStyle == "percentage") {
-          savedAmountHtml += `<span class="yv-product-percent-off">${calculatePercentage(originalCompareAtPrice, price)}%</span>`;
+          savedAmountHtml += `<span class="yv-product-percent-off">${percentage}</span>`;
         } else {
           savedAmountHtml += `<span class="yv-product-percent-off">${Shopify.formatMoney(originalCompareAtPrice - price, moneyFormat)} ${saleOffText}</span>`;
         }
@@ -1054,8 +1065,8 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
         savedAmountHtml += `<span class="yv-product-percent-off">${Shopify.formatMoney(getVariant.allocation_value, moneyFormat)} ${saleOffText}</span>`;
       }
     }
-
-    if (originalCompareAtPrice > price) {
+    
+    if (compareAtPrice > price) {
       priceHtml += `<div class="yv-compare-price-box"><span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-compare-price"> ${Shopify.formatMoney(
         originalCompareAtPrice,
         moneyFormat
@@ -1099,14 +1110,13 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   return {
     compareAtPrice: originalCompareAtPrice,
     price: price,
-    percentage: calculatePercentage(originalCompareAtPrice, price),
+    percentage: percentage,
     savedAmountHtml: savedAmountHtml
   };
 }
 
-function calculatePercentage(originalPrice, discountedPrice) {
-  return Math.floor(((originalPrice - discountedPrice) / originalPrice) * 100);
-}
+
+
 
 
 
