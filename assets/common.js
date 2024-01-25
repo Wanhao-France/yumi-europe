@@ -1106,12 +1106,9 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
 
   priceContainer.classList.add('actualizado');
   actualizarPrecios();
-  console.log('originalCompareAtPrice:', originalCompareAtPrice);
-console.log('price:', price);
-alert('compareAtPrice > price:', originalCompareAtPrice > price);
 
   return {
-    compareAtPrice: originalCompareAtPrice,
+    compareAtPrice: compareAtPrice,
     price: price,
     percentage: percentage,
     savedAmountHtml: savedAmountHtml
