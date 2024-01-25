@@ -6,7 +6,7 @@
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f": {
           "type": "title",
           "settings": {
-            "seo_heading": "h2"
+            "seo_heading": "h5"
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
@@ -23,11 +23,6 @@
           "type": "custom_liquid",
           "settings": {
             "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>❌ Out of stock<\/div>{% endif %}"
-          }
-        },
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
-          "type": "review-star",
-          "settings": {
           }
         },
         "custom_liquid_r7qF8b": {
@@ -72,6 +67,11 @@
           "settings": {
             "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n  <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" \/>\n      <p class=\"info-text\">PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n  \n<\/div>"
           }
+        },
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33": {
+          "type": "review-star",
+          "settings": {
+          }
         }
       },
       "block_order": [
@@ -79,13 +79,13 @@
         "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "01a3560f-b3ed-476f-8702-dae03ae2ff30",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
         "custom_liquid_r7qF8b",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
         "16819786-9d1e-449d-966d-08d21e1c91af",
         "93052535-2a09-4134-b941-8252cca20fee",
-        "d9f7768a-bd99-466f-9731-c11cbc9e6d12"
+        "d9f7768a-bd99-466f-9731-c11cbc9e6d12",
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33"
       ],
       "custom_css": [
 
