@@ -204,7 +204,6 @@ function init() {
 init();
 
 
-/*
 function actualizarPrecios() {
   // Obtener el valor de showTTC del localStorage
   var showTTCValue = getLocalStorageValue('showTTC');
@@ -245,7 +244,7 @@ window.addEventListener('storage', function (event) {
       actualizarPrecios();
   }
 });
-*/
+
 
 
 // Notification dispatched same day
