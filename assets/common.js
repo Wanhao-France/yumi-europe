@@ -1024,7 +1024,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     var originalCompareAtPrice = parseInt(getVariant.compare_at_price);
     var compareAtPrice = originalCompareAtPrice;
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
-        var percentage =
+    var percentage =
       Math.floor(((compareAtPrice - price) / compareAtPrice) * 100) +
       "% " +
       saleOffText;
@@ -1033,12 +1033,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     if (shouldShowTTC) {
       compareAtPrice = compareAtPrice * 1.2; 
     }
-
-
-    if(shouldShowTTC) {
-      compareAtPrice = shouldShowTTC ? originalCompareAtPrice : price;
-    }
-    
 
     var priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       parseInt(adjustedPrice),
@@ -1111,13 +1105,15 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   priceContainer.classList.add('actualizado');
   actualizarPrecios();
 
+  // Lógica condicional para el compareAtPrice en el return
   return {
-    compareAtPrice: compareAtPrice,
+    compareAtPrice: shouldShowTTC ? compareAtPrice * 1.2 : compareAtPrice,
     price: price,
     percentage: percentage,
     savedAmountHtml: savedAmountHtml
   };
 }
+
 
 
 
