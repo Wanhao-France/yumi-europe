@@ -269,7 +269,10 @@
                         </td>
                     {% endif %}
                     {%- comment -%} Reorder html end here {%- endcomment -%}
-                   <td><button id="downloadInvoiceButton">Download</button></td>
+                  <td>
+  <button class="download-invoice-button" data-order-number="{{ order.name }}">Descargar</button>
+</td>
+
                   </tr>
                 {%- endfor -%}
               </tbody>
@@ -291,3 +294,37 @@
 </section>
 
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.download-invoice-button').on('click', function() {
+      var orderNumber = $(this).data('order-number');
+      downloadInvoice(orderNumber);
+    });
+
+    function downloadInvoice(orderNumber) {
+      // Agrega la lógica para obtener la información de la factura del pedido con orderNumber
+      // Reemplaza el siguiente código con la lógica adecuada para obtener la información de la factura
+      var invoiceData = {
+        // Datos de la factura, reemplázalos con la información correcta
+        "order_number": orderNumber,
+        // ...
+      };
+
+      // Crea un Blob con la información de la factura
+      var invoiceBlob = new Blob([JSON.stringify(invoiceData, null, 2)], { type: 'application/json' });
+
+      // Crea un enlace de descarga
+      var downloadLink = document.createElement('a');
+      downloadLink.href = window.URL.createObjectURL(invoiceBlob);
+      downloadLink.download = 'invoice_' + orderNumber + '.json';
+
+      // Simula un clic en el enlace para iniciar la descarga
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+
+      // Elimina el enlace del documento
+      document.body.removeChild(downloadLink);
+    }
+  });
+</script>
