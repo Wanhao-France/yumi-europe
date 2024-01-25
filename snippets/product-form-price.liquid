@@ -27,14 +27,7 @@
         {%- if settings.saved_amount_style == 'percentage' -%}
           {% assign offText = 'products.product.off' | t %}
           <span class="yv-product-percent-off">
-            {{-
-              current_variant.compare_at_price
-              | minus: current_variant.price
-              | times: 100
-              | divided_by: current_variant.compare_at_price
-              | append: '% '
-              | append: offText
-            -}}
+
           </span>
         {%- else -%}
           <span class="yv-product-percent-off">
