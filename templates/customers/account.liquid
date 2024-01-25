@@ -10,25 +10,24 @@
     {% render 'account-header' %}
     <div class="account-pages-content">
       <h5>{{ 'customer.orders.page_title' | t }}</h5>
-      {% for transaction in order.transactions %}
-  Transaction Amount: {{ transaction.amount | money }}
-  Buyer Pending Payment Instructions: {{ transaction.buyer_pending_payment_instructions | json }}
-  Buyer Pending Payment Notice: {{ transaction.buyer_pending_payment_notice }}
-  Created At: {{ transaction.created_at }}
-  Gateway: {{ transaction.gateway }}
-  Gateway Display Name: {{ transaction.gateway_display_name }}
-  Transaction ID: {{ transaction.id }}
-  Kind: {{ transaction.kind }}
-  Name: {{ transaction.name }}
-  Payment Details: {{ transaction.payment_details | json }}
-  Receipt: {{ transaction.receipt }}
-  Show Buyer Pending Payment Instructions: {{ transaction.show_buyer_pending_payment_instructions }}
-  Status: {{ transaction.status }}
-  Status Label: {{ transaction.status_label }}
-{% endfor %}
-
       {% paginate customer.orders by 20 %}
-        {%- if customer.orders.size > 0 -%}         
+        {%- if customer.orders.size > 0 -%}  
+                {% for transaction in order.transactions %}
+                Transaction Amount: {{ transaction.amount | money }}
+                Buyer Pending Payment Instructions: {{ transaction.buyer_pending_payment_instructions | json }}
+                Buyer Pending Payment Notice: {{ transaction.buyer_pending_payment_notice }}
+                Created At: {{ transaction.created_at }}
+                Gateway: {{ transaction.gateway }}
+                Gateway Display Name: {{ transaction.gateway_display_name }}
+                Transaction ID: {{ transaction.id }}
+                Kind: {{ transaction.kind }}
+                Name: {{ transaction.name }}
+                Payment Details: {{ transaction.payment_details | json }}
+                Receipt: {{ transaction.receipt }}
+                Show Buyer Pending Payment Instructions: {{ transaction.show_buyer_pending_payment_instructions }}
+                Status: {{ transaction.status }}
+                Status Label: {{ transaction.status_label }}
+                {% endfor %}
           <div class="table-responsive">
             <table class="order-history">
               <caption class="visually-hidden">
