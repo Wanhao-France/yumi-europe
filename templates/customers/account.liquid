@@ -1,5 +1,76 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
+
+{% comment %}
+   Add your Liquid logic here to retrieve the order details.
+   For example, use the provided 'order' variable:
+   {{ order.name }} - Order Number
+   {{ order.created_at }} - Order Created At
+   {{ order.financial_status_label }} - Financial Status
+   ... and so on.
+{% endcomment %}
+
+{% capture pdfContent %}
+  Part 1 of Invoice with images{{ 'now' | date: '%Y%m%d' }}.pdf:
+
+  Wanhao Europe
+  2 avenue du hoggar, LES ULIS, 91940 France
+  admin@3d-expert.fr
+  0642536328
+
+  Bill To
+  Andrew Alfaro, France
+
+  Ship To
+  Andrew Alfaro, France
+
+  Invoice No. {{ order.order_number }}
+  Order Date #{{ order.name }}
+  Confirmation Number: {{ order.confirmation_number }}
+  Order Status: {{ order.financial_status_label }} ({{ order.fulfillment_status_label }})
+
+  +-------------------+-----+-------+------------+
+  | Item Description  | Qty | Price | Item Total |
+  +-------------------+-----+-------+------------+
+  {% for line_item in order.line_items %}
+    | {{ line_item.title | escape }} | {{ line_item.quantity }} | {{ line_item.price | money }} | {{ line_item.total_price | money }} |
+  {% endfor %}
+  +-----------------------------------+------------+
+
+  | Subtotal                          | {{ order.subtotal_price | money }} |
+  | Shipping                          | {{ order.shipping_price | money }} |
+  | Total Tax                         | {{ order.tax_price | money }} |
+  | Discount                          | {{ order.total_discounts | money }} |
+  | Total                             | {{ order.total_price | money }} |
+  +-----------------------------------+------------+
+
+  If you have any questions, please do get in contact.
+  Thank you for your business!
+
+  {{ 'one euro' | escape }}
+
+  Customer Email: {{ order.email }}
+  Order URL: {{ order.customer_order_url }}
+  Order Status URL: {{ order.order_status_url }}
+
+  Order created on {{ order.created_at | date: '%Y-%m-%d %H:%M:%S %z' }}
+  Powered by TCPDF (www.tcpdf.org)
+{% endcapture %}
+
+<script>
+  // JavaScript code to generate and trigger the download
+  function downloadPDF() {
+    const pdfContent = `{% raw %}${pdfContent}{% endraw %}`;
+    const blob = new Blob([pdfContent], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `Invoice_${order.order_number}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
+
 <div class="yv-page-banner yv-account-page-banner">
   <div class="page-banner-content">
     <h2 class="page-banner-title">{{ 'customer.account.title' | t }}</h2>
@@ -33,6 +104,8 @@
               </thead>
               <tbody>
                 {%- for order in customer.orders -%}
+                  <button onclick="downloadPDF()">Download Invoice as PDF</button>
+
                   <tr>
                     <td
                       id="RowOrder-{{ forloop.index }}"
