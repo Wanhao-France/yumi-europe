@@ -292,6 +292,9 @@
 
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
 <script>
+  {{ order.name }} - Order Number
+   {{ order.created_at }} - Order Created At
+   {{ order.financial_status_label }} - Financial Status
   document.getElementById('downloadPDFButton').addEventListener('click', function () {
     const pdf = new jsPDF();
     const orderDetails = `
