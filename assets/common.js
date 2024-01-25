@@ -1027,7 +1027,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
 
     var originalCompareAtPrice = compareAtPrice;
-
+    debugger
     const adjustedPrice = shouldShowTTC ? getVariant.price * 1.2 : getVariant.price;
     var price = parseInt(adjustedPrice);
 
