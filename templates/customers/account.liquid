@@ -34,8 +34,8 @@
               <tbody>
                 {%- for order in customer.orders -%}
                   {{ order.transactions }}
-                  {%- for transaction in order.transactions -%}
-                    Receipt: {{ transaction.receipt }}
+                  {%- for transaction in order.transactions.receipt -%}
+                    Receipt: {{ transaction }}
                                     {%- endfor -%}
                   <tr>
                     <td
