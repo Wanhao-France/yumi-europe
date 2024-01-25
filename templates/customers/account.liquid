@@ -12,7 +12,7 @@
       <h5>{{ 'customer.orders.page_title' | t }}</h5>
       {% paginate customer.orders by 20 %}
         {%- if customer.orders.size > 0 -%}
-          Receipt: {{ transaction.receipt }}
+          Receipt: {{ order.transactions.receipt }}
           <div class="table-responsive">
             <table class="order-history">
               <caption class="visually-hidden">
