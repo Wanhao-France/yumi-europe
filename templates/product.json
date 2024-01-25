@@ -88,7 +88,7 @@
         "c069e4ad-5908-400d-a0ad-e071aa04cf33"
       ],
       "custom_css": [
-
+        ".product__pickup-availabilities.no-js-hidden {display:none}"
       ],
       "settings": {
         "gallery_style": "slider",
