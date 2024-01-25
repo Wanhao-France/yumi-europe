@@ -205,7 +205,6 @@ init();
 
 
 function actualizarPrecios() {
-  debugger
   // Obtener el valor de showTTC del localStorage
   var showTTCValue = getLocalStorageValue('showTTC');
 
@@ -215,9 +214,9 @@ function actualizarPrecios() {
     elementosPadre.forEach(function (elementoPadre) {
       var elementoHijo = elementoPadre.querySelector('.dualPrice');
 
-      // Verificar si el atributo ttc ya está presente y es igual a "true"
-      var ttcAtributo = elementoPadre.getAttribute('ttc');
-      if (!elementoPadre.classList.contains('actualizado') && (!ttcAtributo || ttcAtributo.toLowerCase() !== 'true')) {
+      // Verificar si el atributo data-actualizado ya está presente y es igual a "true"
+      var actualizadoAtributo = elementoPadre.getAttribute('data-actualizado');
+      if (!actualizadoAtributo || actualizadoAtributo.toLowerCase() !== 'true') {
         var textoActual = elementoHijo.textContent;
         var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
 
@@ -228,10 +227,8 @@ function actualizarPrecios() {
 
         elementoHijo.textContent = nuevoTexto;
 
-        // Agregar el atributo ttc="true" al elemento padre
-        elementoPadre.setAttribute('ttc', 'true');
-
-        elementoPadre.classList.add('actualizado');
+        // Agregar el atributo data-actualizado="true" al elemento padre
+        elementoPadre.setAttribute('data-actualizado', 'true');
       }
     });
   }
