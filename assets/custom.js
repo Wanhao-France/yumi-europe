@@ -214,9 +214,8 @@ function actualizarPrecios() {
     elementosPadre.forEach(function (elementoPadre) {
       var elementoHijo = elementoPadre.querySelector('.dualPrice');
 
-      // Verificar si el atributo data-actualizado ya está presente y es igual a "true"
-      var actualizadoAtributo = elementoPadre.getAttribute('data-actualizado');
-      if (!actualizadoAtributo || actualizadoAtributo.toLowerCase() !== 'true') {
+      // Verificar si el elemento ya ha sido actualizado
+      if (!elementoPadre.classList.contains('actualizado')) {
         var textoActual = elementoHijo.textContent;
         var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
 
@@ -227,8 +226,8 @@ function actualizarPrecios() {
 
         elementoHijo.textContent = nuevoTexto;
 
-        // Agregar el atributo data-actualizado="true" al elemento padre
-        elementoPadre.setAttribute('data-actualizado', 'true');
+        // Agregar la clase 'actualizado' al elemento padre
+        elementoPadre.classList.add('actualizado');
       }
     });
   }
