@@ -1107,7 +1107,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
 
   // Lógica condicional para el compareAtPrice en el return
   return {
-    compareAtPrice: compareAtPrice,
+    compareAtPrice: shouldShowTTC ? compareAtPrice * 1.2 : compareAtPrice,
     price: price,
     percentage: percentage,
     savedAmountHtml: savedAmountHtml
