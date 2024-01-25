@@ -61,10 +61,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-// Módulo para el botón de alternar
-const ToggleModule = (function () {
+
+// Toggle Button
+document.addEventListener('DOMContentLoaded', function () {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
   const toggleContainer = document.querySelector('.toggle-container');
+
+  let showTTC = getToggleState();
 
   function saveToggleState(state) {
     localStorage.setItem('showTTC', JSON.stringify(state));
@@ -75,7 +78,7 @@ const ToggleModule = (function () {
     return savedState !== null ? JSON.parse(savedState) : true;
   }
 
-  function updateStyles(showTTC) {
+  function updateStyles() {
     if (showTTC) {
       toggleContainer.classList.remove('active');
       togglePricesBtn.innerText = 'TTC';
@@ -86,11 +89,12 @@ const ToggleModule = (function () {
   }
 
   function handleToggleClick() {
-    showSpinner();
 
-    const showTTC = !getToggleState();
+    showSpinner();
+    
+    showTTC = !showTTC;
     saveToggleState(showTTC);
-    updateStyles(showTTC);
+    updateStyles();
 
     // Disparar un evento personalizado para indicar que el estado ha cambiado
     const toggleChangeEvent = new CustomEvent('toggleStateChanged', { detail: { showTTC } });
@@ -103,137 +107,145 @@ const ToggleModule = (function () {
   togglePricesBtn.addEventListener('click', handleToggleClick);
 
   // Inicializar el toggle con los estilos correctos
-  const showTTCOnLoad = getToggleState();
-  updateStyles(showTTCOnLoad);
+  updateStyles();
+});
 
-  return {
-    getToggleState,
-    updateStyles,
-  };
-})();
+// TTC Functionality
 
-// Módulo para la funcionalidad TTC
-const TTCModule = (function () {
-  function modificarElemento(elemento, showTTC) {
-    const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
+function modificarElemento(elemento, showTTC) {
+  const dualPriceElement = elemento.querySelector('.yv-product-price .dualPrice');
 
-    if (dualPriceElement) {
-      let ttcProperty = elemento.getAttribute('ttc');
-      if (ttcProperty !== 'true' && showTTC) {
-        let precioActual = obtenerPrecio(dualPriceElement.textContent);
+  if (dualPriceElement) {
+    let ttcProperty = elemento.getAttribute('ttc');
+    if (ttcProperty !== 'true' && showTTC) {
+      let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
-        if (!ttcProperty) {
-          let nuevoPrecio = precioActual + (precioActual * 0.2);
-          dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+      if (!ttcProperty) {
+        let nuevoPrecio = precioActual + (precioActual * 0.2);
 
-          ttcProperty = 'true';
-          elemento.setAttribute('ttc', ttcProperty);
-        }
+        dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
+
+
+        ttcProperty = 'true';
+        elemento.setAttribute('ttc', ttcProperty);
       }
     }
   }
+}
 
-  function handleIntersection(entries) {
-    const showTTC = ToggleModule.getToggleState();
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        modificarElemento(entry.target, showTTC);
-      }
-    });
-  }
+function obtenerPrecio(textoPrecio) {
+  return parseFloat(textoPrecio.replace(/[^\d,]/g, '').replace(',', '.'));
+}
 
-  const observerConfig = { threshold: 0.5 };
-  const observer = new IntersectionObserver(handleIntersection, observerConfig);
+function formatearPrecio(precio) {
+  return precio.toFixed(2).replace('.', ',');
+}
 
-  const elementosObservados = document.querySelectorAll('.yv-product-price');
+const observerConfig = {
+  threshold: 0.5,
+};
 
-  elementosObservados.forEach(elemento => {
-    observer.observe(elemento);
-  });
-
-  function handleScroll() {
-    const showTTC = ToggleModule.getToggleState();
-    const elementos = document.querySelectorAll('.yv-product-price');
-
-    elementos.forEach(elemento => {
-      modificarElemento(elemento, showTTC);
-    });
-  }
-
-  return {
-    handleScroll,
-  };
-})();
-
-// Módulo para la funcionalidad de precios actualizados
-const ActualizarPreciosModule = (function () {
-  function actualizarPrecios() {
-    // Obtener el valor de showTTC del localStorage
-    var showTTCValue = getLocalStorageValue('showTTC');
-
-    if (showTTCValue === true) {
-      var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
-
-      elementosPadre.forEach(function (elementoPadre) {
-        var elementoHijo = elementoPadre.querySelector('.dualPrice');
-
-        // Verificar si el atributo data-actualizado ya está presente y es igual a "true"
-        var actualizadoAtributo = elementoPadre.getAttribute('data-actualizado');
-        if (!actualizadoAtributo || actualizadoAtributo.toLowerCase() !== 'true') {
-          var textoActual = elementoHijo.textContent;
-          var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
-
-          var nuevoValor = valorNumerico + (valorNumerico * 0.2);
-          var valorFinal = nuevoValor / 100;
-
-          var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-          elementoHijo.textContent = nuevoTexto;
-
-          // Agregar el atributo data-actualizado="true" al elemento padre
-          elementoPadre.setAttribute('data-actualizado', 'true');
-        }
-      });
-    }
-  }
-
-  // Asociar la función de actualización al evento de scroll
-  window.addEventListener('scroll', actualizarPrecios);
-
-  // Llamar a la función por primera vez para que los precios se actualicen al cargar la página
-  actualizarPrecios();
-
-  // Escuchar cambios en showTTCValue
-  window.addEventListener('storage', function (event) {
-    if (event.key === 'showTTC') {
-      actualizarPrecios();
+function handleIntersection(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      modificarElemento(entry.target);
     }
   });
-})();
+}
 
-// Lógica principal de inicialización
+const observer = new IntersectionObserver(handleIntersection, observerConfig);
+
+const elementosObservados = document.querySelectorAll('.yv-product-price');
+
+elementosObservados.forEach(elemento => {
+  observer.observe(elemento);
+});
+
+function handleScroll(showTTC) {
+  const elementos = document.querySelectorAll('.yv-product-price');
+
+  elementos.forEach(elemento => {
+    modificarElemento(elemento, showTTC);
+  });
+}
+
 function init() {
-  ToggleModule.updateStyles(ToggleModule.getToggleState());
-  TTCModule.handleScroll();
-
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
 
+  function saveToggleState(state) {
+    localStorage.setItem('showTTC', JSON.stringify(state));
+  }
+
+  function getToggleState() {
+    const savedState = localStorage.getItem('showTTC');
+    return savedState ? JSON.parse(savedState) : false;
+  }
+
   function updateStateAndToggleText() {
-    const showTTC = !ToggleModule.getToggleState();
-    ToggleModule.saveToggleState(showTTC);
+    const showTTC = !getToggleState();
+    saveToggleState(showTTC);
     togglePricesBtn.innerText = showTTC ? 'TTC' : 'HT';
-    TTCModule.handleScroll();
+    handleScroll(showTTC);
   }
 
   togglePricesBtn.addEventListener('click', updateStateAndToggleText);
 
+  const showTTCOnLoad = getToggleState();
+  togglePricesBtn.innerText = showTTCOnLoad ? 'TTC' : 'HT';
+
+  handleScroll(showTTCOnLoad);
+
   window.addEventListener('scroll', () => {
-    TTCModule.handleScroll();
+    const showTTC = getToggleState();
+    handleScroll(showTTC);
   });
 }
 
 init();
 
+
+function actualizarPrecios() {
+  // Obtener el valor de showTTC del localStorage
+  var showTTCValue = getLocalStorageValue('showTTC');
+
+  if (showTTCValue === true) {
+    var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
+
+    elementosPadre.forEach(function (elementoPadre) {
+      var elementoHijo = elementoPadre.querySelector('.dualPrice');
+
+      // Verificar si el atributo data-actualizado ya está presente y es igual a "true"
+      var actualizadoAtributo = elementoPadre.getAttribute('data-actualizado');
+      if (!actualizadoAtributo || actualizadoAtributo.toLowerCase() !== 'true') {
+        var textoActual = elementoHijo.textContent;
+        var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
+
+        var nuevoValor = valorNumerico + (valorNumerico * 0.2);
+        var valorFinal = nuevoValor / 100;
+
+        var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+        elementoHijo.textContent = nuevoTexto;
+
+        // Agregar el atributo data-actualizado="true" al elemento padre
+        elementoPadre.setAttribute('data-actualizado', 'true');
+      }
+    });
+  }
+}
+
+// Asociar la función de actualización al evento de scroll
+window.addEventListener('scroll', actualizarPrecios);
+
+// Llamar a la función por primera vez para que los precios se actualicen al cargar la página
+actualizarPrecios();
+
+// Escuchar cambios en showTTCValue
+window.addEventListener('storage', function (event) {
+  if (event.key === 'showTTC') {
+    actualizarPrecios();
+  }
+});
 
 
 // Notification dispatched same day
