@@ -6,13 +6,13 @@
   </div>
 </div>
 <section class="shopify-section customer account">
-  {{ order.transactions }}
   <div class="container">
     {% render 'account-header' %}
     <div class="account-pages-content">
       <h5>{{ 'customer.orders.page_title' | t }}</h5>
       {% paginate customer.orders by 20 %}
         {%- if customer.orders.size > 0 -%}
+          Receipt: {{ transaction.receipt }}
           <div class="table-responsive">
             <table class="order-history">
               <caption class="visually-hidden">
