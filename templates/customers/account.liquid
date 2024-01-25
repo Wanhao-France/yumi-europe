@@ -34,20 +34,31 @@
               </thead>
               <tbody>
                 {%- for order in customer.orders -%}
-                  <script>
-                    document.getElementById('downloadPDFButton').addEventListener('click', function () {
-                      const pdf = new jsPDF();
-                      const orderDetails = `
-                        Order Number: ${order.order_number}
-                        Order Date: ${order.created_at}
-                        Financial Status: ${order.financial_status_label}
-                      `;
-                      
-                      pdf.text(orderDetails, 10, 10);
-                  
-                      pdf.save(`Invoice_${order.order_number}.pdf`);
-                    });
-                  </script>
+<script>
+  function downloadPDF(order) {
+    const pdf = new jsPDF();
+    const orderDetails = `
+      Order Number: ${order.order_number}
+      Order Date: ${order.created_at}
+      Financial Status: ${order.financial_status_label}
+    `;
+    
+    pdf.text(orderDetails, 10, 10);
+
+    pdf.save(`Invoice_${order.order_number}.pdf`);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const downloadButtons = document.querySelectorAll('.downloadPDFButton');
+    
+    downloadButtons.forEach(function (button, index) {
+      button.addEventListener('click', function () {
+        const order = {{ customer.orders[index] | json }};
+        downloadPDF(order);
+      });
+    });
+  });
+</script>
                   <tr>
                     <td
                       id="RowOrder-{{ forloop.index }}"
