@@ -252,3 +252,37 @@ $(document).on('change', '#variantQty', function() {
         $(this).val(1);
     }
 });
+
+
+//
+
+const order = {
+  "amount": "380.25",
+  "created_at": "2022-06-15 19:13:14 -0400",
+  // ... (otros datos de la factura)
+};
+
+// Función para descargar la factura
+function downloadInvoice() {
+  // Crea un objeto Blob con la información de la factura
+  const invoiceBlob = new Blob([JSON.stringify(order, null, 2)], { type: 'application/json' });
+
+  // Crea un enlace (link) en el documento
+  const downloadLink = document.createElement('a');
+
+  // Establece la URL del enlace como un objeto de datos
+  downloadLink.href = window.URL.createObjectURL(invoiceBlob);
+
+  // Establece el nombre del archivo para la descarga
+  downloadLink.download = 'factura.json';
+
+  // Simula un clic en el enlace para iniciar la descarga
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+
+  // Elimina el enlace del documento
+  document.body.removeChild(downloadLink);
+}
+
+// Agrega un event listener al botón para llamar a la función downloadInvoice
+document.getElementById('downloadInvoiceButton').addEventListener('click', downloadInvoice);
