@@ -92,28 +92,10 @@
         "searchbar_icon_bg": "#ededed",
         "searchbar_icon_color": "#000000"
       }
-    },
-    "recently_viewed_product_X396WH": {
-      "type": "recently-viewed-product",
-      "settings": {
-        "heading": "Recently Viewed",
-        "seo_heading": "h2",
-        "product_grid_radius_desktop": 10,
-        "product_grid_radius_mobile": 10,
-        "product_grid_spacing_desktop": 10,
-        "product_grid_spacing_mobile": 10,
-        "bgcolor": "primary",
-        "section_visibility": "always",
-        "top_space_desktop": 60,
-        "bottom_space_desktop": 60,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
-      }
     }
   },
   "order": [
     "announcement-bar",
-    "header",
-    "recently_viewed_product_X396WH"
+    "header"
   ]
 }
