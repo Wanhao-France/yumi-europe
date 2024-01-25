@@ -256,6 +256,7 @@ window.addEventListener('storage', function (event) {
 });
 
 
+
 // Notification dispatched same day
 
 document.addEventListener('DOMContentLoaded', function () {
