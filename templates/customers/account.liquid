@@ -12,7 +12,44 @@
       <h5>{{ 'customer.orders.page_title' | t }}</h5>
       {% paginate customer.orders by 20 %}
         {%- if customer.orders.size > 0 -%}  
+{% assign transaction = order.transactions.first %}
 
+Transaction Amount: {{ transaction.amount | money }}
+Created At: {{ transaction.created_at }}
+Gateway: {{ transaction.gateway }}
+Gateway Display Name: {{ transaction.gateway_display_name }}
+Transaction ID: {{ transaction.id }}
+Kind: {{ transaction.kind }}
+Name: {{ transaction.name }}
+Receipt: {{ transaction.receipt }}
+Show Buyer Pending Payment Instructions: {{ transaction.show_buyer_pending_payment_instructions }}
+Status: {{ transaction.status }}
+Status Label: {{ transaction.status_label }}
+
+Payment Details:
+- Credit Card Number: {{ transaction.payment_details.credit_card_number }}
+- Credit Card Company: {{ transaction.payment_details.credit_card_company }}
+- Credit Card Last Four Digits: {{ transaction.payment_details.credit_card_last_four_digits }}
+
+{% if transaction.payment_details.receiver_info %}
+  - Receiver Info: {{ transaction.payment_details.receiver_info }}
+{% endif %}
+
+{% if transaction.payment_details.network_transaction_id %}
+  - Network Transaction ID: {{ transaction.payment_details.network_transaction_id }}
+{% endif %}
+
+{% if transaction.payment_details.card %}
+  Payment Method Details:
+  - Card Brand: {{ transaction.payment_details.card.brand }}
+  - Card Last Four Digits: {{ transaction.payment_details.card.last4 }}
+  - Card Type: {{ transaction.payment_details.card.type }}
+  - Funding: {{ transaction.payment_details.card.funding }}
+  - Exp Month: {{ transaction.payment_details.card.exp_month }}
+  - Exp Year: {{ transaction.payment_details.card.exp_year }}
+  - Country: {{ transaction.payment_details.card.country }}
+  - Description: {{ transaction.payment_details.card.description }}
+{% endif %}
           <div class="table-responsive">
             <table class="order-history">
               <caption class="visually-hidden">
