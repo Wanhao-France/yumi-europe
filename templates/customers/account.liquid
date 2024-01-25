@@ -34,6 +34,9 @@
               <tbody>
                 {%- for order in customer.orders -%}
                   {{ order.transactions }}
+                  {%- for transaction in order.transactions -%}
+                    Receipt: {{ transaction.receipt }}
+                                    {%- endfor -%}
                   <tr>
                     <td
                       id="RowOrder-{{ forloop.index }}"
