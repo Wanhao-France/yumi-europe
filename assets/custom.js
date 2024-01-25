@@ -209,26 +209,30 @@ function actualizarPrecios() {
   var showTTCValue = getLocalStorageValue('showTTC');
 
   if (showTTCValue === true) {
-      var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
+    var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
 
-      elementosPadre.forEach(function (elementoPadre) {
-          var elementoHijo = elementoPadre.querySelector('.dualPrice');
+    elementosPadre.forEach(function (elementoPadre) {
+      var elementoHijo = elementoPadre.querySelector('.dualPrice');
 
-          if (!elementoPadre.classList.contains('actualizado')) {
-              var textoActual = elementoHijo.textContent;
+      // Verificar si el atributo ttc ya está presente y es igual a "true"
+      var ttcAtributo = elementoPadre.getAttribute('ttc');
+      if (!elementoPadre.classList.contains('actualizado') && (!ttcAtributo || ttcAtributo.toLowerCase() !== 'true')) {
+        var textoActual = elementoHijo.textContent;
+        var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
 
-              var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
+        var nuevoValor = valorNumerico + (valorNumerico * 0.2);
+        var valorFinal = nuevoValor / 100;
 
-              var nuevoValor = valorNumerico + (valorNumerico * 0.2);
-              var valorFinal = nuevoValor / 100;
+        var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-              var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        elementoHijo.textContent = nuevoTexto;
 
-              elementoHijo.textContent = nuevoTexto;
+        // Agregar el atributo ttc="true" al elemento padre
+        elementoPadre.setAttribute('ttc', 'true');
 
-              elementoPadre.classList.add('actualizado');
-          }
-      });
+        elementoPadre.classList.add('actualizado');
+      }
+    });
   }
 }
 
@@ -241,10 +245,9 @@ actualizarPrecios();
 // Escuchar cambios en showTTCValue
 window.addEventListener('storage', function (event) {
   if (event.key === 'showTTC') {
-      actualizarPrecios();
+    actualizarPrecios();
   }
 });
-
 
 
 // Notification dispatched same day
