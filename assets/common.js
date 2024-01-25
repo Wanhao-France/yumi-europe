@@ -1065,7 +1065,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     }
     
     if (compareAtPrice > price) {
-      priceHtml += `<div class="yv-compare-price-box"><span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-compare-price"> ${Shopify.formatMoney(
+      priceHtml += `<div class="yv-compare-price-box" ttc="${shouldShowTTC}"><span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-compare-price"> ${Shopify.formatMoney(
         compareAtPrice,
         moneyFormat
       )}</span>
