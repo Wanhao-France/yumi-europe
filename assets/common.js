@@ -1102,8 +1102,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     }
   }
 
-  priceContainer.classList.add('actualizado');
-  actualizarPrecios();
+
 
   // Lógica condicional para el compareAtPrice en el return
   return {
