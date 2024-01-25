@@ -34,6 +34,20 @@
               </thead>
               <tbody>
                 {%- for order in customer.orders -%}
+                  <script>
+                    document.getElementById('downloadPDFButton').addEventListener('click', function () {
+                      const pdf = new jsPDF();
+                      const orderDetails = `
+                        Order Number: ${order.order_number}
+                        Order Date: ${order.created_at}
+                        Financial Status: ${order.financial_status_label}
+                      `;
+                      
+                      pdf.text(orderDetails, 10, 10);
+                  
+                      pdf.save(`Invoice_${order.order_number}.pdf`);
+                    });
+                  </script>
                   <tr>
                     <td
                       id="RowOrder-{{ forloop.index }}"
@@ -289,21 +303,4 @@
     </div>
   </div>
 </section>
-  {{ order.name }} - Order Number
-   {{ order.created_at }} - Order Created At
-   {{ order.financial_status_label }} - Financial Status
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
-<script>
-  document.getElementById('downloadPDFButton').addEventListener('click', function () {
-    const pdf = new jsPDF();
-    const orderDetails = `
-      Order Number: ${order.order_number}
-      Order Date: ${order.created_at}
-      Financial Status: ${order.financial_status_label}
-    `;
-    
-    pdf.text(orderDetails, 10, 10);
-
-    pdf.save(`Invoice_${order.order_number}.pdf`);
-  });
-</script>
