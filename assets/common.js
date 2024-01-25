@@ -1012,12 +1012,17 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var savedAmountStyle = "";
   var priceHtml = "";
   if (getVariant != undefined) {
-    if (priceContainer && !priceContainer.classList.contains('actualizado')) {
+    if (priceContainer) {
+       var isUpdated = localStorage.getItem('priceUpdated_' + priceContainer.id);
+       if (!isUpdated) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
-      priceContainer.classList.add('actualizado');
+     localStorage.setItem('priceUpdated_' + priceContainer.id, true);
+
+      // Llamar a la función actualizarPrecios() solo si el contenedor no ha sido actualizado antes
       actualizarPrecios();
     }
+  }
     var price = parseInt(getVariant.price);
     
     const showTTC = localStorage.getItem('showTTC');
