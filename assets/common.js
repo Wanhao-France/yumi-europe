@@ -1114,13 +1114,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   };
 }
 
-
-
-
-
-
-
-
 function sellingPlans(variant, form) {
   let sellingPlanVariable = form.querySelector('[name="selling_plan"]');
   let sellingHtmlContainer = form.querySelector(
