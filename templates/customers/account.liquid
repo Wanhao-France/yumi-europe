@@ -29,6 +29,7 @@
                   <th id="ColumnTotal" scope="col">Action</th>
                   {% endif %}
                   {%- comment -%} Reorder column end here {%- endcomment -%}
+                  <th scope="col">Download Receipt</th>
                 </tr>
               </thead>
               <tbody>
@@ -268,6 +269,7 @@
                         </td>
                     {% endif %}
                     {%- comment -%} Reorder html end here {%- endcomment -%}
+                  <td><button id="downloadPDFButton">Download Invoice as PDF</button></td>
                   </tr>
                 {%- endfor -%}
               </tbody>
@@ -289,3 +291,17 @@
 </section>
 
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
+<script>
+  document.getElementById('downloadPDFButton').addEventListener('click', function () {
+    const pdf = new jsPDF();
+    const orderDetails = `
+      Order Number: ${order.order_number}
+      Order Date: ${order.created_at}
+      Financial Status: ${order.financial_status_label}
+    `;
+    
+    pdf.text(orderDetails, 10, 10);
+
+    pdf.save(`Invoice_${order.order_number}.pdf`);
+  });
+</script>
