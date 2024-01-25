@@ -214,6 +214,46 @@ function actualizarPrecios() {
     elementosPadre.forEach(function (elementoPadre) {
       // Verificar si el elemento padre ya ha sido actualizado
       if (!elementoPadre.classList.contains('actualizado')) {
+        // Obtener todos los elementos hijos dentro del elemento padre
+        var elementosHijos = elementoPadre.querySelectorAll('.dualPrice');
+
+        elementosHijos.forEach(function (elementoHijo) {
+          // Verificar si el elemento hijo ya ha sido actualizado
+          if (!elementoHijo.classList.contains('actualizado')) {
+            // Verificar si el elemento padre tiene la clase "no-actualizar"
+            if (!elementoPadre.classList.contains('no-actualizar')) {
+              var textoActual = elementoHijo.textContent;
+              var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
+
+              var nuevoValor = valorNumerico + (valorNumerico * 0.2);
+              var valorFinal = nuevoValor / 100;
+
+              var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+              elementoHijo.textContent = nuevoTexto;
+
+              // Agregar la clase 'actualizado' al elemento hijo
+              elementoHijo.classList.add('actualizado');
+            }
+          }
+        });
+
+        // Agregar la clase 'actualizado' al elemento padre
+        elementoPadre.classList.add('actualizado');
+      }
+    });
+  }
+}
+function actualizarPrecios() {
+  // Obtener el valor de showTTC del localStorage
+  var showTTCValue = getLocalStorageValue('showTTC');
+
+  if (showTTCValue === true) {
+    var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
+
+    elementosPadre.forEach(function (elementoPadre) {
+      // Verificar si el elemento padre ya ha sido actualizado
+      if (!elementoPadre.classList.contains('actualizado')) {
         // Verificar si el elemento padre no tiene la clase "no-actualizar"
         if (!elementoPadre.classList.contains('no-actualizar')) {
           // Obtener todos los elementos hijos dentro del elemento padre
