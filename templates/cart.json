@@ -12,10 +12,10 @@
     "recently_viewed_product_mCDa4T": {
       "type": "recently-viewed-product",
       "settings": {
-        "heading": "Recently Viewed",
-        "seo_heading": "h2",
-        "product_grid_radius_desktop": 10,
-        "product_grid_radius_mobile": 10,
+        "heading": "Treasures Await! Don't Miss Out on Your Favorites.",
+        "seo_heading": "h5",
+        "product_grid_radius_desktop": 0,
+        "product_grid_radius_mobile": 0,
         "product_grid_spacing_desktop": 10,
         "product_grid_spacing_mobile": 10,
         "bgcolor": "primary",
