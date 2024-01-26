@@ -34,7 +34,7 @@
         "custom_liquid_r7qF8b": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"AirReviews-Widget AirReviews-Widget--Stars\" data-review-avg=\"{{ product.metafields.air_reviews_product.review_avg }}\" data-review-count=\"{{ product.metafields.air_reviews_product.review_count }}\"><\/div>"
+            "custom_liquid": "<div class=\"AirReviews-Widget AirReviews-Widget--Stars\"><\/div>"
           }
         },
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68": {
