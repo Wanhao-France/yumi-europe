@@ -72,6 +72,12 @@
           "type": "review-star",
           "settings": {
           }
+        },
+        "custom_liquid_pg9dR8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div\n  class=\"AirReviews-Widget AirReviews-Widget--Stars\"\n  style=\"margin-top:0.7rem\"\n  data-review-avg=\"{{ card_product.metafields.air_reviews_product.review_avg }}\"\n  data-review-count=\"{{ card_product.metafields.air_reviews_product.review_count }}\"\n><\/div>"
+          }
         }
       },
       "block_order": [
@@ -85,10 +91,11 @@
         "16819786-9d1e-449d-966d-08d21e1c91af",
         "93052535-2a09-4134-b941-8252cca20fee",
         "d9f7768a-bd99-466f-9731-c11cbc9e6d12",
-        "c069e4ad-5908-400d-a0ad-e071aa04cf33"
+        "c069e4ad-5908-400d-a0ad-e071aa04cf33",
+        "custom_liquid_pg9dR8"
       ],
       "custom_css": [
-        ".product__pickup-availabilities.no-js-hidden {display:none}"
+        ".product__pickup-availabilities.no-js-hidden {display: none;}"
       ],
       "settings": {
         "gallery_style": "slider",
