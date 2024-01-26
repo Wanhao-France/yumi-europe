@@ -9227,6 +9227,24 @@ body.account-popup-open .yv-login-popup {
 /*  display:none; */
 }
 
+#yv-product-feature-description > h5 {
+  display: none;
+}
+
+#yv-product-feature-description > .yv-product-feature-tab-content.rich-editor-text-content > h1 > span {
+  font-size: 1.8rem;
+}
+
+#yv-product-feature-description > .yv-product-feature-tab-content.rich-editor-text-content > h4 > strong {
+  font-size: 1.5rem;
+}
+
+#yv-product-feature-description > .yv-product-feature-tab-content.rich-editor-text-content > ul > li > h4 > span {
+  font-size: 1rem;
+}
+.table-responsive table tr td:nth-child(2) {
+  text-align: center !important;
+}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

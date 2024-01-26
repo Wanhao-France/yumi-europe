@@ -445,15 +445,16 @@ if (window.location.pathname.indexOf("/cart") > -1) {
     };
     var _render = function (response) {
       if (response && response.length > 0) {
+        // Ordenar las tarifas de envío de la más barata a la más cara
+        response.sort((a, b) => a.price - b.price);
+    
         var html = '<p class="success-text">';
+    
         response.forEach(function (shipping) {
-          html += `<span><strong>${
-            shipping.name
-          }:</strong>${Shopify.formatMoney(
-            shipping.price * 100,
-            moneyFormat
-          )}</span>`;
+          // Utilizar <br> para agregar un salto de línea después de cada elemento
+          html += `<span style="max-width:200px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;"><strong>${shipping.name}: </strong> ${Shopify.formatMoney(shipping.price * 100, moneyFormat)}</span><br>`;
         });
+    
         html += "</p>";
         $("#ShippingWrapperResponse").html(html).addClass("success").show();
       } else {
@@ -784,7 +785,6 @@ if (window.location.pathname.indexOf("/cart") > -1) {
       }
     });
 
-// Dentro de la función openCartDrawer
 function openCartDrawer(element) {
   $("[data-drawer-body]").html(preLoadLoadGif);
   $("body").find("[data-drawer-title]").html(cartTitleLabel);

@@ -62,6 +62,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Función para ocultar elementos con un solo hijo ul
+function ocultarSiUnSoloHijo(selector) {
+  document.querySelectorAll(selector).forEach(function(elemento) {
+    // Verificar si tiene solo un hijo ul
+    var hijosUl = elemento.querySelectorAll('ul');
+    if (hijosUl.length === 1 && hijosUl[0].parentNode === elemento) {
+      // Ocultar el elemento
+      elemento.style.display = 'none';
+    }
+  });
+}
+
+// Llamar a la función para ocultar .select-color y .select-material
+ocultarSiUnSoloHijo('.select-color');
+ocultarSiUnSoloHijo('.select-material');
+
+
 // Toggle Button
 document.addEventListener('DOMContentLoaded', function () {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
