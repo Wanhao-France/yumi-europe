@@ -430,3 +430,17 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   }
 });
+
+
+try {
+  const elementsToClick = document.querySelectorAll('.AirReviews-Widget--Stars');
+
+  elementsToClick.forEach((element) => {
+      element.addEventListener('click', () => {
+          const elementToScroll = document.getElementById('AirReviews-BlockWrapper');
+          elementToScroll.scrollIntoView({ behavior: 'smooth' });
+      });
+  });
+} catch (error) {
+  console.error('An error occurred:', error);
+}
