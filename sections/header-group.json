@@ -4,21 +4,6 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "blocks": {
-        "fec792eb-1815-4f3f-a124-64bc23d77ae3": {
-          "type": "announcement",
-          "settings": {
-            "icon": "none",
-            "first_text": "",
-            "date": "",
-            "btn": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "fec792eb-1815-4f3f-a124-64bc23d77ae3"
-      ],
       "settings": {
         "show_bar": true,
         "desktop_height": "adapt_image",
@@ -29,7 +14,7 @@
         "carousel_interval": 5,
         "marquee_direction": "left",
         "marquee_speed": 5,
-        "enable_language_selector": true,
+        "enable_language_selector": false,
         "enable_currency_selector": false,
         "fontcolor": "#ffffff",
         "bg_style": "solid",
