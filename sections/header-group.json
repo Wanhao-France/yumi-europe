@@ -4,6 +4,21 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
+      "blocks": {
+        "announcement_3xLc3i": {
+          "type": "announcement",
+          "settings": {
+            "icon": "none",
+            "first_text": "",
+            "date": "",
+            "btn": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_3xLc3i"
+      ],
       "settings": {
         "show_bar": true,
         "desktop_height": "adapt_image",
