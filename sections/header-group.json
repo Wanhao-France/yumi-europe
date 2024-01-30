@@ -8,8 +8,8 @@
         "fec792eb-1815-4f3f-a124-64bc23d77ae3": {
           "type": "announcement",
           "settings": {
-            "icon": "tag",
-            "first_text": "-30% sur les PLA LUMINOUS BLEU avec le code PROMO : LUMI",
+            "icon": "none",
+            "first_text": "",
             "date": "",
             "btn": "",
             "link": ""
