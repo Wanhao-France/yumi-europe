@@ -374,6 +374,42 @@
         "bottom_space_mobile": 15
       }
     },
+    "tabbed_collections_gYMEPX": {
+      "type": "tabbed-collections",
+      "blocks": {
+        "collection_JcPbDi": {
+          "type": "collection",
+          "settings": {
+            "heading": "",
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_JcPbDi"
+      ],
+      "settings": {
+        "heading": "Top 10 Filament",
+        "seo_heading": "h2",
+        "heading_size": "h2",
+        "tabs_position": "bottom",
+        "tabs_alignment": "left-start",
+        "products_style": "carousel",
+        "products_per_row": 5,
+        "product_grid_radius_desktop": 10,
+        "product_grid_radius_mobile": 10,
+        "product_grid_spacing_desktop": 10,
+        "product_grid_spacing_mobile": 10,
+        "hide_tab_name": false,
+        "show_tabs_border": true,
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 40,
+        "bottom_space_desktop": 15,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
+    },
     "65006731-3ed1-4031-8928-c64b4021c978": {
       "type": "tabbed-collections",
       "blocks": {
@@ -445,6 +481,7 @@
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98",
     "7dc43a7c-1876-402d-af4d-ba2d537b81c2",
     "21aac929-bcc9-46c8-8cf7-57d105ce570d",
+    "tabbed_collections_gYMEPX",
     "65006731-3ed1-4031-8928-c64b4021c978",
     "custom_liquid_JGKbGw"
   ]
