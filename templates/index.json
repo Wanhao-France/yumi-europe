@@ -383,25 +383,33 @@
             "heading": "",
             "collection": "our-latest-filament-creations"
           }
+        },
+        "collection_BJgDrN": {
+          "type": "collection",
+          "settings": {
+            "heading": "",
+            "collection": ""
+          }
         }
       },
       "block_order": [
-        "collection_JcPbDi"
+        "collection_JcPbDi",
+        "collection_BJgDrN"
       ],
       "settings": {
         "heading": "Lastest Filament",
         "seo_heading": "h2",
-        "heading_size": "h2",
-        "tabs_position": "bottom",
+        "heading_size": "h5",
+        "tabs_position": "right",
         "tabs_alignment": "left-start",
-        "products_style": "carousel",
+        "products_style": "stacked",
         "products_per_row": 5,
-        "product_grid_radius_desktop": 10,
-        "product_grid_radius_mobile": 10,
+        "product_grid_radius_desktop": 0,
+        "product_grid_radius_mobile": 0,
         "product_grid_spacing_desktop": 10,
         "product_grid_spacing_mobile": 10,
         "hide_tab_name": false,
-        "show_tabs_border": true,
+        "show_tabs_border": false,
         "bgcolor": "primary",
         "section_visibility": "always",
         "top_space_desktop": 40,
