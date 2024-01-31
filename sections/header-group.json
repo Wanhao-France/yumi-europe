@@ -4,6 +4,21 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
+      "blocks": {
+        "announcement_bCtgwH": {
+          "type": "announcement",
+          "settings": {
+            "icon": "gift",
+            "first_text": "Announcement Here",
+            "date": "",
+            "btn": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_bCtgwH"
+      ],
       "settings": {
         "show_bar": true,
         "desktop_height": "adapt_image",
