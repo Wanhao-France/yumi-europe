@@ -381,7 +381,7 @@
           "type": "collection",
           "settings": {
             "heading": "",
-            "collection": ""
+            "collection": "all-filaments"
           }
         }
       },
@@ -389,7 +389,7 @@
         "collection_JcPbDi"
       ],
       "settings": {
-        "heading": "Top 10 Filament",
+        "heading": "Top 5 Filament",
         "seo_heading": "h2",
         "heading_size": "h2",
         "tabs_position": "bottom",
