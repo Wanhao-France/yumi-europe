@@ -298,6 +298,25 @@
         "disabled": true,
         "settings": {
         }
+      },
+      "3842503713604335150": {
+        "type": "shopify:\/\/apps\/vify-order-printer\/blocks\/invoice_download_embed\/8e413796-b0ed-4419-ae4e-893123b931a9",
+        "disabled": false,
+        "settings": {
+          "icon": true,
+          "label": "Download PDF Invoice",
+          "fontSize": 16,
+          "align": "center",
+          "singleLine": false,
+          "autoDetectLanguage": false,
+          "language": "en",
+          "color": "#ffffff",
+          "bgColor": "#1A7BFF",
+          "marginTop": 10,
+          "marginBottom": 10,
+          "marginLeft": 10,
+          "marginRight": 10
+        }
       }
     }
   },
