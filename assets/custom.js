@@ -78,6 +78,7 @@ function ocultarSiUnSoloHijo(selector) {
 ocultarSiUnSoloHijo('.select-color');
 ocultarSiUnSoloHijo('.select-material');
 ocultarSiUnSoloHijo('.select-poids');
+ocultarSiUnSoloHijo('.select-style')
 
 
 // Toggle Button
