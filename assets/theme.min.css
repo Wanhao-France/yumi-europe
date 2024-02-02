@@ -9295,6 +9295,7 @@ body.account-popup-open .yv-login-popup {
 
 .box > ul {
   padding: 0;
+  flex-grow: 1; /* Hace que la lista ocupe todo el espacio disponible en el contenedor */
 }
 
 .box > ul > li {
@@ -9303,12 +9304,12 @@ body.account-popup-open .yv-login-popup {
 }
 
 .box > ul > li > button {
-  width: 60%;
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
 }
 
 .box__image {
-  width: 60%;
-  max-width: 80%;
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  max-width: 100%; /* Ajusta la imagen según el contenido */
   height: auto;
   border: 0;
   border-radius: 15px;
@@ -9329,7 +9330,6 @@ body.account-popup-open .yv-login-popup {
   text-decoration: underline;
 }
 
-
 .banderole {
   display: inline-block;
   background-color: #acacac;
@@ -9349,7 +9349,9 @@ body.account-popup-open .yv-login-popup {
 .custom-div {
   text-align: left;
   margin-bottom: 20px;
+  width: 100%; /* Abarca el 100% del ancho del contenedor */
 }
+
 /* End Bien Demarrer styles */
 
 @media only screen and (max-width: 600px) {
