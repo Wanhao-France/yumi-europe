@@ -7,7 +7,7 @@
         "seo_heading": "h2",
         "banner_height_desktop": "auto",
         "banner_height_mobile": "auto",
-        "bgcolor": "#f5efec",
+        "bgcolor": "#ffffff",
         "textcolor": "#181818"
       }
     },
@@ -26,6 +26,7 @@
       "block_order": [
         "template--15143329038401__273531e5-c4fc-46d4-9c91-bcb31a640852-richtext-1"
       ],
+      "disabled": true,
       "settings": {
         "content_width": "container sm-container",
         "content_alignment": "center",
@@ -130,6 +131,7 @@
         "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-2",
         "template--15143329038401__97fad72d-5efb-4cb9-8561-e39332bd2a56-slide-3"
       ],
+      "disabled": true,
       "settings": {
         "arrows": false,
         "thumbnails": true,
@@ -183,6 +185,7 @@
         "0fda2227-98c2-43d9-9ea9-28ab2cc9e0b5",
         "0e13a387-d411-4b92-a720-c9a24e8086e0"
       ],
+      "disabled": true,
       "settings": {
         "enable_fullwidth": false,
         "image": "shopify:\/\/shop_images\/W3-DD12230-EVOMEGAKIT.jpg",
@@ -232,6 +235,7 @@
         "9b02c8ad-1a01-4e48-a70f-571740c7888c",
         "f1b66fe5-c7c6-435f-9b52-d03f5b8c5d46"
       ],
+      "disabled": true,
       "settings": {
         "enable_fullwidth": false,
         "image": "shopify:\/\/shop_images\/FLSV400b.jpg",
@@ -248,6 +252,19 @@
         "top_space_mobile": 30,
         "bottom_space_mobile": 30
       }
+    },
+    "custom_liquid_EyQqJp": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"main-content\">\n    <h1>Découvrez les ressources essentielles pour votre imprimante 3D<\/h1>\n    <p class=\"center-text\"><strong>Explorez les outils nécessaires pour maximiser votre expérience d'impression 3D :<\/strong><\/p>\n<\/div>\n\n<div class=\"container\">\n    <div class=\"content-box\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/2605\/8748\/files\/Bien_DEmarer_480x480.jpg?v=1690206385\" alt=\"Imprimante 3D\">\n        <ul>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-1')\">D12 230<\/button><\/li>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-300-300-pro-max-31')\">D12 300<\/button><\/li>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-500-pro-max-33')\">D12 500<\/button><\/li>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/infinity-200-24')\">Infinity 200<\/button><\/li>\n        <\/ul>\n    <\/div>\n\n    <div class=\"content-box\">\n        <img class=\"image\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/2605\/8748\/files\/MegaKit_480x480.png?v=1688642540\" alt=\"Kit d'imprimante 3D MegaKit\">\n        <ul>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/www.dropbox.com\/scl\/fi\/21nazpuz64p4j7f8c7mwb\/D12-230-EVO-FR-V1.7.pdf?rlkey=h911mg1c3tfnpar7wnahjcla5&amp;dl=1')\">Notice de montage PDF<\/button><\/li>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/www.dropbox.com\/sh\/drf4phxth67dx9x\/AAAbua5YVtsCPFy_kkQQ5Nhma?dl=1')\">Firmware<\/button><\/li>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/duplicator-12-230-evo-megakit-44\/')\">E-learning EVO MEGAKIT<\/button><\/li>\n        <\/ul>\n    <\/div>\n<\/div>\n\n<div class=\"custom-div\">\n    <div class=\"content-box\">\n        <h2 class=\"center-text\">Nos autres imprimantes<\/h2>\n        <ul>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/flsun-superracer-34')\">FLSUN SR<\/button><\/li>\n            <li><button class=\"button\" onclick=\"window.open('https:\/\/formation.wanhaofrance.com\/slides\/flsun-v400-bien-demarrer-35')\">FLSUN V400\/V600<\/button><\/li>\n        <\/ul>\n    <\/div>\n<\/div>",
+        "content_alignment": "center",
+        "bgcolor": "primary",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
     }
   },
   "order": [
@@ -255,6 +272,7 @@
     "273531e5-c4fc-46d4-9c91-bcb31a640852",
     "97fad72d-5efb-4cb9-8561-e39332bd2a56",
     "fa37d3b8-7d9c-438c-a1e9-2fe3a7f3cde4",
-    "22aaea9a-db73-41c4-8af6-33dd16618e62"
+    "22aaea9a-db73-41c4-8af6-33dd16618e62",
+    "custom_liquid_EyQqJp"
   ]
 }
