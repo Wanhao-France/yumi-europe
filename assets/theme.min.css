@@ -9271,6 +9271,7 @@ body.account-popup-open .yv-login-popup {
 .main {
   margin-top: 20px;
   text-align: start;
+  grid-column: span 2; 
 }
 
 .main__title {
