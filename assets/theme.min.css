@@ -9289,6 +9289,8 @@ body.account-popup-open .yv-login-popup {
   margin-bottom: 20px;
   border-radius: 15px;
   padding: 10px;
+  display: flex; /* Utilizamos flexbox para alinear los elementos en la misma fila */
+  flex-direction: column; /* Alinear los elementos verticalmente */
 }
 
 .box > ul {
@@ -9305,17 +9307,12 @@ body.account-popup-open .yv-login-popup {
 }
 
 .box__image {
+  width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
   max-width: 100%;
   height: auto;
   border: 0;
   border-radius: 15px;
   margin-bottom: 10px;
-}
-
-
-.box__content {
-  max-width: 400px;
-  margin: 0 auto; 
 }
 
 .box__text {
@@ -9331,6 +9328,7 @@ body.account-popup-open .yv-login-popup {
 .box__link:hover {
   text-decoration: underline;
 }
+
 
 .banderole {
   display: inline-block;
