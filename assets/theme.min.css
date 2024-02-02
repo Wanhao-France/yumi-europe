@@ -9270,6 +9270,7 @@ body.account-popup-open .yv-login-popup {
 
 .main {
   margin-top: 20px;
+  text-align: start;
 }
 
 .main__title {
