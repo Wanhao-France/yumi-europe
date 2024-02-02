@@ -9289,8 +9289,8 @@ body.account-popup-open .yv-login-popup {
   margin-bottom: 20px;
   border-radius: 15px;
   padding: 10px;
-  display: flex; /* Utilizamos flexbox para alinear los elementos en la misma fila */
-  flex-direction: column; /* Alinear los elementos verticalmente */
+  display: flex;
+  flex-direction: column;
 }
 
 .box > ul {
@@ -9303,11 +9303,11 @@ body.account-popup-open .yv-login-popup {
 }
 
 .box > ul > li > button {
-  width: 100%;
+  width: 80%;
 }
 
 .box__image {
-  width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
+  width: 80%;
   max-width: 100%;
   height: auto;
   border: 0;
