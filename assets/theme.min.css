@@ -9300,6 +9300,10 @@ body.account-popup-open .yv-login-popup {
   margin: 1em 0;
 }
 
+.box > ul > li > button {
+  width: 80%;
+}
+
 .box__image {
   max-width: 100%;
   max-height: 100%;
