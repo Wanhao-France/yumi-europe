@@ -9349,7 +9349,8 @@ body.account-popup-open .yv-login-popup {
 .custom-div {
   text-align: left;
   margin-bottom: 20px;
-  width: 100%; /* Abarca el 100% del ancho del contenedor */
+  width: 100%; 
+  grid-column: span 2; 
 }
 
 /* End Bien Demarrer styles */
