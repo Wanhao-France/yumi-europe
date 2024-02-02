@@ -9295,6 +9295,11 @@ body.account-popup-open .yv-login-popup {
 .box > ul > li  {
   list-style: none;
 }
+.box > ul {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around
+}
 
 .box__image {
   max-width: 100%;
