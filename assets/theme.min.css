@@ -9301,7 +9301,7 @@ body.account-popup-open .yv-login-popup {
 }
 
 .box > ul > li > button {
-  width: 80%;
+  width: 80% !important;
 }
 
 .box__image {
