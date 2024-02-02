@@ -10,76 +10,7 @@ function getLocalStorageValue(key) {
 
 // Obtener el valor de showTTC del localStorage
 var showTTCValue = getLocalStorageValue('showTTC');
-
-// Spinner
-
-function showSpinner() {
-  const spinnerContainer = document.getElementById('spinner-container');
-  if (spinnerContainer) {
-    spinnerContainer.style.display = 'flex';
-  }
-}
-
-function hideSpinner() {
-  const spinnerContainer = document.getElementById('spinner-container');
-  if (spinnerContainer) {
-    spinnerContainer.style.display = 'none';
-  }
-}
-
-// Box pay in 4X/3X Animation
-document.addEventListener('DOMContentLoaded', function () {
-    const container = document.getElementById('pay-credit-element');
-    const productPrice = document.querySelector('.yv-product-price .dualPrice');
-
-    if (container && productPrice) {
-        const beforeElement = document.createElement('div');
-        beforeElement.className = 'info-card';
-        beforeElement.style.opacity = '0';
-        const priceText = productPrice.textContent;
-        const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
-
-        if (!isNaN(priceValue)) {
-            const installmentPrice = (priceValue / 4).toFixed(2);
-
-            container.appendChild(beforeElement);
-
-            container.addEventListener('mouseenter', function () {
-                beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
-          Second Payment: €${installmentPrice}\n
-          Third Payment: €${installmentPrice}\n
-          Fourth Payment: €${installmentPrice}`;
-                beforeElement.style.opacity = '1';
-                container.querySelector('.info-text').style.opacity = '0';
-            });
-
-            container.addEventListener('mouseleave', function () {
-                beforeElement.textContent = '';
-                beforeElement.style.opacity = '0';
-                container.querySelector('.info-text').style.opacity = '1';
-            });
-        }
-    }
-});
-
-// Función para ocultar elementos con un solo hijo ul
-function ocultarSiUnSoloHijo(selector) {
-  document.querySelectorAll(selector).forEach(function(elemento) {
-    // Verificar si tiene solo un hijo ul
-    var hijosUl = elemento.querySelectorAll('ul');
-    if (hijosUl.length === 1 && hijosUl[0].parentNode === elemento) {
-      // Ocultar el elemento
-      elemento.style.display = 'none';
-    }
-  });
-}
-
-// Llamar a la función para ocultar .select-color y .select-material
-ocultarSiUnSoloHijo('.select-color');
-ocultarSiUnSoloHijo('.select-material');
-ocultarSiUnSoloHijo('.select-poids');
-ocultarSiUnSoloHijo('.select-style')
-
+var porcentajeTTC = 0.2;
 
 // Toggle Button
 document.addEventListener('DOMContentLoaded', function () {
@@ -140,7 +71,7 @@ function modificarElemento(elemento, showTTC) {
       let precioActual = obtenerPrecio(dualPriceElement.textContent);
 
       if (!ttcProperty) {
-        let nuevoPrecio = precioActual + (precioActual * 0.2);
+        let nuevoPrecio = precioActual + (precioActual * porcentajeTTC);
 
         dualPriceElement.textContent = formatearPrecio(nuevoPrecio) + '€';
 
@@ -224,34 +155,29 @@ init();
 
 
 function actualizarPrecios() {
-  // Obtener el valor de showTTC del localStorage
   var showTTCValue = getLocalStorageValue('showTTC');
 
   if (showTTCValue === true) {
     var elementosPadre = document.querySelectorAll('.yv-product-compare-price');
 
     elementosPadre.forEach(function (elementoPadre) {
-      // Verificar si el elemento padre ya ha sido actualizado
+
       if (!elementoPadre.classList.contains('actualizado')) {
-        // Obtener todos los elementos hijos dentro del elemento padre
         var elementosHijos = elementoPadre.querySelectorAll('.dualPrice');
 
         elementosHijos.forEach(function (elementoHijo) {
-          // Verificar si el elemento hijo ya ha sido actualizado
           if (!elementoHijo.classList.contains('actualizado')) {
-            // Verificar si el elemento padre tiene la clase "no-actualizar"
             if (!elementoPadre.classList.contains('no-actualizar')) {
               var textoActual = elementoHijo.textContent;
               var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
 
-              var nuevoValor = valorNumerico + (valorNumerico * 0.2);
+              var nuevoValor = valorNumerico + (valorNumerico * porcentajeTTC);
               var valorFinal = nuevoValor / 100;
 
               var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
               elementoHijo.textContent = nuevoTexto;
 
-              // Agregar la clase 'actualizado' al elemento hijo
               elementoHijo.classList.add('actualizado');
             }
           }
@@ -284,7 +210,7 @@ function actualizarPrecios() {
               var textoActual = elementoHijo.textContent;
               var valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
 
-              var nuevoValor = valorNumerico + (valorNumerico * 0.2);
+              var nuevoValor = valorNumerico + (valorNumerico * porcentajeTTC);
               var valorFinal = nuevoValor / 100;
 
               var nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -316,6 +242,112 @@ window.addEventListener('storage', function (event) {
     actualizarPrecios();
   }
 });
+
+//TTC Cart/Controller
+
+document.addEventListener("DOMContentLoaded", function() {
+  let showTTC = localStorage.getItem("showTTC");
+
+  let dualPriceElement = document.querySelector('.list-unstyled.cart-total-list .cart-total-item.text-large .h2 .dualPrice');
+  if (dualPriceElement.innerHTML) {
+    let num = dualPriceElement.innerHTML.replace('€', '').replace('.', '').replace(',', '.')
+      if (showTTC === 'true') {
+        num *= (1 + porcentajeTTC);
+      }
+      let totalAmount = parseFloat(num)
+      dualPriceElement.textContent = '€' + totalAmount.toFixed(2);
+      let totalElement = document.querySelector('.cart-total-item p');
+      if (totalElement) {
+          totalElement.textContent = 'Total ' + (showTTC === 'true' ? 'TTC' : 'HT');
+      }
+  }
+});
+
+
+
+try {
+  const elementsToClick = document.querySelectorAll('.AirReviews-Widget--Stars');
+
+  elementsToClick.forEach((element) => {
+      element.addEventListener('click', () => {
+          const elementToScroll = document.getElementById('AirReviews-BlockWrapper');
+          elementToScroll.scrollIntoView({ behavior: 'smooth' });
+      });
+  });
+} catch (error) {
+  console.error('An error occurred:', error);
+}
+
+// Spinner
+
+function showSpinner() {
+  const spinnerContainer = document.getElementById('spinner-container');
+  if (spinnerContainer) {
+    spinnerContainer.style.display = 'flex';
+  }
+}
+
+function hideSpinner() {
+  const spinnerContainer = document.getElementById('spinner-container');
+  if (spinnerContainer) {
+    spinnerContainer.style.display = 'none';
+  }
+}
+
+// Box pay in 4X/3X Animation
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('pay-credit-element');
+    const productPrice = document.querySelector('.yv-product-price .dualPrice');
+
+    if (container && productPrice) {
+        const beforeElement = document.createElement('div');
+        beforeElement.className = 'info-card';
+        beforeElement.style.opacity = '0';
+        const priceText = productPrice.textContent;
+        const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
+
+        if (!isNaN(priceValue)) {
+            const installmentPrice = (priceValue / 4).toFixed(2);
+
+            container.appendChild(beforeElement);
+
+            container.addEventListener('mouseenter', function () {
+                beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
+          Second Payment: €${installmentPrice}\n
+          Third Payment: €${installmentPrice}\n
+          Fourth Payment: €${installmentPrice}`;
+                beforeElement.style.opacity = '1';
+                container.querySelector('.info-text').style.opacity = '0';
+            });
+
+            container.addEventListener('mouseleave', function () {
+                beforeElement.textContent = '';
+                beforeElement.style.opacity = '0';
+                container.querySelector('.info-text').style.opacity = '1';
+            });
+        }
+    }
+});
+
+// Función para ocultar elementos con un solo hijo ul
+function ocultarSiUnSoloHijo(selector) {
+  document.querySelectorAll(selector).forEach(function(elemento) {
+    // Verificar si tiene solo un hijo ul
+    var hijosUl = elemento.querySelectorAll('ul');
+    if (hijosUl.length === 1 && hijosUl[0].parentNode === elemento) {
+      // Ocultar el elemento
+      elemento.style.display = 'none';
+    }
+  });
+}
+
+// Llamar a la función para ocultar .select-color y .select-material
+ocultarSiUnSoloHijo('.select-color');
+ocultarSiUnSoloHijo('.select-material');
+ocultarSiUnSoloHijo('.select-poids');
+ocultarSiUnSoloHijo('.select-style')
+
+
 
 
 // Notification dispatched same day
@@ -407,42 +439,3 @@ document.addEventListener('DOMContentLoaded', function () {
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
-
-// 
-
-//TTC Cart/Controller
-
-document.addEventListener("DOMContentLoaded", function() {
-  var showTTC = localStorage.getItem("showTTC");
-
-  var dualPriceElement = document.querySelector('.list-unstyled.cart-total-list .cart-total-item.text-large .h2 .dualPrice');
-
-  if (dualPriceElement) {
-      var totalAmount = parseFloat(dualPriceElement.textContent.replace('€', '').replace(',', '.'));
-
-      if (showTTC === 'true') {
-          totalAmount *= 1.2;
-      }
-      dualPriceElement.textContent = '€' + totalAmount.toFixed(2);
-
-      var totalElement = document.querySelector('.cart-total-item p');
-
-      if (totalElement) {
-          totalElement.textContent = 'Total ' + (showTTC === 'true' ? 'TTC' : 'HT');
-      }
-  }
-});
-
-
-try {
-  const elementsToClick = document.querySelectorAll('.AirReviews-Widget--Stars');
-
-  elementsToClick.forEach((element) => {
-      element.addEventListener('click', () => {
-          const elementToScroll = document.getElementById('AirReviews-BlockWrapper');
-          elementToScroll.scrollIntoView({ behavior: 'smooth' });
-      });
-  });
-} catch (error) {
-  console.error('An error occurred:', error);
-}
