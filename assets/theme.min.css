@@ -9278,7 +9278,7 @@ body.account-popup-open .yv-login-popup {
 }
 
 .grid {
-  margin: 0 auto;
+  align-self: center;
   max-width: 70%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
