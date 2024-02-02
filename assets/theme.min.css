@@ -9294,11 +9294,7 @@ body.account-popup-open .yv-login-popup {
 
 .box > ul > li  {
   list-style: none;
-}
-.box > ul {
-  display:flex;
-  flex-direction: column;
-  justify-content: space-around
+  margin: 1em 0;
 }
 
 .box__image {
