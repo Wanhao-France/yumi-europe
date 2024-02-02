@@ -9303,12 +9303,12 @@ body.account-popup-open .yv-login-popup {
 }
 
 .box > ul > li > button {
-  width: 80%;
+  width: 60%;
 }
 
 .box__image {
-  width: 80%;
-  max-width: 100%;
+  width: 60%;
+  max-width: 80%;
   height: auto;
   border: 0;
   border-radius: 15px;
