@@ -329,23 +329,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Función para ocultar elementos con un solo hijo ul
-function ocultarSiUnSoloHijo(selector) {
+// Función para ocultar elementos con un solo hijo ul que tiene un solo li
+function ocultarSiUnSoloHijoConUnSoloLi(selector) {
   document.querySelectorAll(selector).forEach(function(elemento) {
     // Verificar si tiene solo un hijo ul
     var hijosUl = elemento.querySelectorAll('ul');
     if (hijosUl.length === 1 && hijosUl[0].parentNode === elemento) {
-      // Ocultar el elemento
-      elemento.style.display = 'none';
+      // Verificar si el ul tiene solo un li
+      var hijosLi = hijosUl[0].querySelectorAll('li');
+      if (hijosLi.length === 1 && hijosLi[0].parentNode === hijosUl[0]) {
+        // Ocultar el elemento
+        elemento.style.display = 'none';
+      }
     }
   });
 }
 
 // Llamar a la función para ocultar .select-color y .select-material
-ocultarSiUnSoloHijo('.select-color');
-ocultarSiUnSoloHijo('.select-material');
-ocultarSiUnSoloHijo('.select-poids');
-ocultarSiUnSoloHijo('.select-style')
+ocultarSiUnSoloHijoConUnSoloLi('.select-color');
+ocultarSiUnSoloHijoConUnSoloLi('.select-material');
+ocultarSiUnSoloHijoConUnSoloLi('.select-poids');
+ocultarSiUnSoloHijoConUnSoloLi('.select-style');
 
 
 
