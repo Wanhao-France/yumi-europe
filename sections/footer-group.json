@@ -10,8 +10,8 @@
           "settings": {
             "image_link": "",
             "image_width": 100,
-            "heading": "About us",
-            "description": "Yumi est une gamme de produits créée par Wanhao. L'entreprise Wanhao fondée en 2018 propose une large gamme à petit prix imprimante 3d ainsi qu'un large choix de filament imprimante 3d. Les bobines de filament pla 1.75 mm sont d'une qualité incomparable. Wanhao FRANCE vous invite à visiter notre site et espère que vous apprécierez notre filament pla 1.75 ainsi que notre large gamme d'imprimante 3D."
+            "heading": "À PROPOS DE WANHAO FRANCE",
+            "description": "L'entreprise WANHAO FRANCE fondée en 2018 propose une large gamme à petit prix imprimante 3d ainsi qu'un large choix de filament imprimante 3d. Les bobines de filament PLA 1.75 mm sont d'une qualité incomparable. WANHAO FRANCE vous invite à visiter notre site et espère que vous apprécierez notre filament PLA  1.75 ainsi que notre large gamme d'imprimante 3D."
           }
         },
         "7f8888a0-c33a-407c-a7a4-b16c76cf5425": {
@@ -41,7 +41,6 @@
 
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/Wanhao_LOGO-Blanc.webp",
         "image_width": 105,
         "subtext": "",
         "enable_language_selector": true,
