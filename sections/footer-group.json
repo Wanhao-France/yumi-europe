@@ -21,6 +21,15 @@
             "menu": "main-menu"
           }
         },
+        "text_MrDiM9": {
+          "type": "text",
+          "settings": {
+            "image_link": "",
+            "image_width": 100,
+            "heading": "Adresse de l'entrepôt",
+            "description": "WANHAO FRANCE , 2 AVENUE DU HOGGAR , 91940 LES ULIS ,  FRANCE"
+          }
+        },
         "455a5653-ce50-4b33-b793-246ed8c8cd98": {
           "type": "newsletter",
           "settings": {
@@ -35,6 +44,7 @@
       "block_order": [
         "80a9ba57-2ef7-48e9-9e43-d217bd9b4fd4",
         "7f8888a0-c33a-407c-a7a4-b16c76cf5425",
+        "text_MrDiM9",
         "455a5653-ce50-4b33-b793-246ed8c8cd98"
       ],
       "custom_css": [
