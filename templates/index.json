@@ -7,6 +7,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
+            "image": "shopify:\/\/shop_images\/soldes.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -35,6 +36,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
+            "image": "shopify:\/\/shop_images\/Header-img-2.jpg",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -63,6 +65,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_2.jpg",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -91,6 +94,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_cc4213ad-26f2-462c-8d5d-81a0f5702973.jpg",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -119,6 +123,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/hearder-img-5.jpg",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -147,6 +152,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
+            "image": "shopify:\/\/shop_images\/Header-img-6.jpg",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
@@ -262,6 +268,7 @@
           "settings": {
             "heading": "",
             "subheading": "Duplicator 12 \/ 500",
+            "image": "shopify:\/\/shop_images\/W3-DD12500-PRODUAL-5_71ab7c1a-72b0-45ee-b5c0-ede24070c4d3.jpg",
             "link": "shopify:\/\/collections\/duplicator-12-500"
           }
         },
@@ -279,6 +286,7 @@
           "settings": {
             "heading": "",
             "subheading": "Bambu Lab",
+            "image": "shopify:\/\/shop_images\/BAMBUX1-CARBON-9.jpg",
             "link": "shopify:\/\/collections\/bambu-labs"
           }
         },
