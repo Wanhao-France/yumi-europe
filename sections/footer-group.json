@@ -17,7 +17,7 @@
         "7f8888a0-c33a-407c-a7a4-b16c76cf5425": {
           "type": "link_list",
           "settings": {
-            "heading": "Links",
+            "heading": "Liens",
             "menu": "main-menu"
           }
         },
@@ -49,7 +49,7 @@
         "show_currency_background": true,
         "payment_enable": true,
         "hide_copyright_content": false,
-        "custom_copyright_content": "© 2023 YUMI",
+        "custom_copyright_content": "© 2023 WANHAO FRANCE",
         "show_policies": false,
         "footer_bg": "#2b333d",
         "footer_heading": "#ffffff",
