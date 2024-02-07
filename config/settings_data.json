@@ -315,6 +315,32 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "14710238943034738919": {
+        "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-embed\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+        "disabled": true,
+        "settings": {
+          "air_reviews_json_ld": "{\n    \"@context\": \"http:\/\/schema.org\",\n    \"@type\": \"Product\",\n    \"name\": {{ product.title | json }},\n    \"aggregateRating\": {\n      \"@type\": \"AggregateRating\",\n      \"ratingValue\": {{  product.metafields.reviews.rating.value.rating |  json }},\n      \"reviewCount\": {{ product.metafields.reviews.rating_count |  json }}\n    }\n}"
+        }
+      },
+      "3842503713604335150": {
+        "type": "shopify:\/\/apps\/vify-order-printer\/blocks\/invoice_download_embed\/8e413796-b0ed-4419-ae4e-893123b931a9",
+        "disabled": false,
+        "settings": {
+          "icon": true,
+          "label": "Download PDF Invoice",
+          "fontSize": 16,
+          "align": "center",
+          "singleLine": false,
+          "autoDetectLanguage": false,
+          "language": "en",
+          "color": "#ffffff",
+          "bgColor": "#1A7BFF",
+          "marginTop": 10,
+          "marginBottom": 10,
+          "marginLeft": 10,
+          "marginRight": 10
+        }
       }
     }
   },
