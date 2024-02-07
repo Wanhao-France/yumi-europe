@@ -9086,6 +9086,10 @@ body.account-popup-open .yv-login-popup {
   color: #000;
 }
 
+.cookies-banner-btn > .button.small-btn.secondary-button {
+  color: black;
+}
+
 .ratingbox {
   display: none;
 }
