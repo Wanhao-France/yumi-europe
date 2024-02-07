@@ -7,7 +7,7 @@
         "seo_heading": "h2",
         "collection_description": false,
         "pagination_type": "infinite",
-        "products_per_page": 8,
+        "products_per_page": 14,
         "enable_filtering": true,
         "filters_layout": "drawer",
         "enable_sorting": true,
