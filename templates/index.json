@@ -329,7 +329,7 @@
           "type": "collection",
           "settings": {
             "heading": "Imprimantes",
-            "collection": "vendette-printers"
+            "collection": "imprimante-vedettes"
           }
         },
         "d60ab21e-cf1d-4c99-94f3-5329cfaaa435": {
@@ -373,23 +373,15 @@
           "type": "collection",
           "settings": {
             "heading": "",
-            "collection": "our-latest-filament-creations"
-          }
-        },
-        "collection_BJgDrN": {
-          "type": "collection",
-          "settings": {
-            "heading": "",
-            "collection": ""
+            "collection": "filament-en-stock"
           }
         }
       },
       "block_order": [
-        "collection_JcPbDi",
-        "collection_BJgDrN"
+        "collection_JcPbDi"
       ],
       "settings": {
-        "heading": "Lastest Filament",
+        "heading": "TOP 5 des filaments 1,75mm",
         "seo_heading": "h2",
         "heading_size": "h5",
         "tabs_position": "right",
@@ -417,31 +409,15 @@
           "type": "collection",
           "settings": {
             "heading": "Filament accessories",
-            "collection": "filaments"
-          }
-        },
-        "b785489f-f9cb-443d-aea6-d81c577726b8": {
-          "type": "collection",
-          "settings": {
-            "heading": "Resin accessories",
-            "collection": "resins"
-          }
-        },
-        "14a59ae3-821c-479e-b375-273a9eee9ff2": {
-          "type": "collection",
-          "settings": {
-            "heading": "Spare parts",
-            "collection": "replacement-part"
+            "collection": "ce-qui-pourrait-vous-plaire"
           }
         }
       },
       "block_order": [
-        "39e9b60f-6cce-4e55-a39c-1476c6436327",
-        "b785489f-f9cb-443d-aea6-d81c577726b8",
-        "14a59ae3-821c-479e-b375-273a9eee9ff2"
+        "39e9b60f-6cce-4e55-a39c-1476c6436327"
       ],
       "settings": {
-        "heading": "You may also like",
+        "heading": "Ce qui pourrait également vous plaire",
         "seo_heading": "h3",
         "heading_size": "h4",
         "tabs_position": "right",
