@@ -245,34 +245,23 @@ window.addEventListener('storage', function (event) {
 
 //TTC Cart/Controller
 
-// Define la función que actualiza el precio
-function updatePrice() {
+document.addEventListener("DOMContentLoaded", function() {
   let showTTC = localStorage.getItem("showTTC");
 
   let dualPriceElement = document.querySelector('.list-unstyled.cart-total-list .cart-total-item.text-large .h2 .dualPrice');
   if (dualPriceElement.innerHTML) {
-    let num = dualPriceElement.innerHTML.replace('€', '').replace('.', '').replace(',', '.');
-    if (showTTC === 'true') {
-      num *= (1 + porcentajeTTC);
-    }
-    let totalAmount = parseFloat(num);
-    dualPriceElement.textContent = '€' + totalAmount.toFixed(2);
-    let totalElement = document.querySelector('.cart-total-item p');
-    if (totalElement) {
-      totalElement.textContent = 'Total ' + (showTTC === 'true' ? 'TTC' : 'HT');
-    }
+    let num = dualPriceElement.innerHTML.replace('€', '').replace('.', '').replace(',', '.')
+      if (showTTC === 'true') {
+        num *= (1 + porcentajeTTC);
+      }
+      let totalAmount = parseFloat(num)
+      dualPriceElement.textContent = '€' + totalAmount.toFixed(2);
+      let totalElement = document.querySelector('.cart-total-item p');
+      if (totalElement) {
+          totalElement.textContent = 'Total ' + (showTTC === 'true' ? 'TTC' : 'HT');
+      }
   }
-}
-
-// Llama a la función cuando el DOM esté cargado
-document.addEventListener("DOMContentLoaded", function() {
-  updatePrice();
 });
-
-// Vuelve a cargar la función cuando sea necesario
-function reloadPrice() {
-  updatePrice();
-}
 
 
 
