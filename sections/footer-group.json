@@ -24,7 +24,7 @@
         "455a5653-ce50-4b33-b793-246ed8c8cd98": {
           "type": "newsletter",
           "settings": {
-            "heading": "Subscribe to our newsletter",
+            "heading": "S'inscrire à notre newsletter",
             "show_newsletter": true,
             "placeholder": "Email address",
             "show_social": true,
