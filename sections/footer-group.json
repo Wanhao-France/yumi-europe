@@ -35,7 +35,7 @@
           "settings": {
             "heading": "S'inscrire à notre newsletter",
             "show_newsletter": true,
-            "placeholder": "Email address",
+            "placeholder": "Adresse e-mail",
             "show_social": true,
             "enable_follow_on_shop": true
           }
