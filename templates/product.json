@@ -163,7 +163,7 @@
     "product_recommendations": {
       "type": "product_recommendations",
       "settings": {
-        "heading": "Recommended Products",
+        "heading": "Les produits recommandés",
         "seo_heading": "h2",
         "products_count": 8,
         "product_grid_radius_desktop": 0,
