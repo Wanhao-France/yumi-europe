@@ -286,36 +286,34 @@
         "settings": {
         }
       },
-      "14710238943034738919": {
-        "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-embed\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+      "6174324309569838175": {
+        "type": "shopify:\/\/apps\/smile-loyalty-rewards\/blocks\/smile-shopify-app\/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": false,
         "settings": {
-          "air_reviews_json_ld": "{\n    \"@context\": \"http:\/\/schema.org\",\n    \"@type\": \"Product\",\n    \"name\": {{ product.title | json }},\n    \"aggregateRating\": {\n      \"@type\": \"AggregateRating\",\n      \"ratingValue\": {{  product.metafields.reviews.rating.value.rating |  json }},\n      \"reviewCount\": {{ product.metafields.reviews.rating_count |  json }}\n    }\n}"
         }
       },
       "9670189827046205946": {
-        "type": "shopify:\/\/apps\/hextom-translate-my-store\/blocks\/app-block\/b927a799-be04-4b97-9efb-5c8f0290a68e",
-        "disabled": true,
+        "type": "shopify:\/\/apps\/hextom-translate-and-currency\/blocks\/app-block\/b927a799-be04-4b97-9efb-5c8f0290a68e",
+        "disabled": false,
         "settings": {
         }
       },
-      "3842503713604335150": {
-        "type": "shopify:\/\/apps\/vify-order-printer\/blocks\/invoice_download_embed\/8e413796-b0ed-4419-ae4e-893123b931a9",
+      "17368511000352060744": {
+        "type": "shopify:\/\/apps\/goaffpro-affiliate-marketing\/blocks\/goaffpro-embedded-pixel\/2f4d802b-86c2-47e4-8096-ae1aa3efbab2",
         "disabled": false,
         "settings": {
-          "icon": true,
-          "label": "Download PDF Invoice",
-          "fontSize": 16,
-          "align": "center",
-          "singleLine": false,
-          "autoDetectLanguage": false,
-          "language": "en",
-          "color": "#ffffff",
-          "bgColor": "#1A7BFF",
-          "marginTop": 10,
-          "marginBottom": 10,
-          "marginLeft": 10,
-          "marginRight": 10
+        }
+      },
+      "477467645007963971": {
+        "type": "shopify:\/\/apps\/sales-pop-order-sales-popup\/blocks\/app-embed\/186a4bd9-a884-4fa6-909b-ea21f3455d23",
+        "disabled": false,
+        "settings": {
+        }
+      },
+      "9365423049038898845": {
+        "type": "shopify:\/\/apps\/tawk-to-live-chat\/blocks\/widget-embed-code\/91169e75-f163-40ce-90e0-9059f3c9b772",
+        "disabled": false,
+        "settings": {
         }
       }
     }
