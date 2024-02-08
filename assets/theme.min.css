@@ -9361,6 +9361,12 @@ body.account-popup-open .yv-login-popup {
 
 /* End Bien Demarrer styles */
 
+/* table Devenir Revendeur */
+
+#content-c565927 > .row.flex > .col.col-sm-3:nth-child(2) {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
