@@ -32,7 +32,7 @@
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
-        "sticky_header_style": "on_scroll_up",
+        "sticky_header_style": "always",
         "enable_transparent_header": true,
         "logo": "shopify:\/\/shop_images\/Wanhao_LOGO.webp",
         "logo_width": 140,
