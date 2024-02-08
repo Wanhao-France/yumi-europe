@@ -65,7 +65,7 @@
     "option_style": "swatch",
     "color_name": "Color",
     "color_swatch_style": "circle",
-    "variant_image": false,
+    "variant_image": true,
     "saved_amount_style": "percentage",
     "option_title_font_family": "--font-family",
     "price_font_family": "--font-family",
