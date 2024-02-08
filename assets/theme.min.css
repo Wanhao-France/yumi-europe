@@ -9363,17 +9363,6 @@ body.account-popup-open .yv-login-popup {
 
 /* table Devenir Revendeur */
 
-#content-c565927 > .row.flex:nth-child(1) {
-  display: none;
-}
-
-#content-c565927 > .row.flex:nth-child(2) {
-  display: none;
-}
-
-#content-c565927 > .row.flex:nth-child() {
-  display: none;
-}
 
 @media only screen and (max-width: 600px) {
   .grid {
