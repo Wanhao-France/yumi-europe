@@ -58,7 +58,7 @@
     "enable_search_prompts": true,
     "search_prompts_2": "Search for articles",
     "search_prompts_3": "Search for collections",
-    "enable_cart_drawer": false,
+    "enable_cart_drawer": true,
     "enable_cartdrawer_note": false,
     "enable_shipping": false,
     "enable_breadcrumb": true,
