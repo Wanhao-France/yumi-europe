@@ -69,7 +69,7 @@
     "saved_amount_style": "percentage",
     "option_title_font_family": "--font-family",
     "price_font_family": "--font-family",
-    "enable_badges": true,
+    "enable_badges": false,
     "show_similar": false,
     "show_grid_pickup": false,
     "show_similar_text": false,
