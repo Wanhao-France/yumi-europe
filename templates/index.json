@@ -22,7 +22,7 @@
             "button_size_m": "xsmall",
             "content_width_m": "medium",
             "overlayopacity": 25,
-            "desktop_content_position": "d-bottom-center",
+            "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
             "textcolor": "#ffffff",
