@@ -9371,7 +9371,7 @@ body.account-popup-open .yv-login-popup {
   display: none;
 }
 
-#content-c565927 > .row.flex:nth-child(4) {
+#content-c565927 > .row.flex:nth-child() {
   display: none;
 }
 
