@@ -9204,6 +9204,47 @@ body.account-popup-open .yv-login-popup {
   font-weight: 600;
 }
 
+
+.AirReviews-Blocks .AirReviews-Blocks__Summary .AirReviews-Blocks--Rate .AirReviews-Blocks--RateCount {
+     font-size: 27px !important;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     align-content: center;
+     flex-direction: row;
+     flex-wrap: wrap;
+     width: 8rem !important;
+}
+
+.AirReviews-Blocks .AirReviews-Blocks__Summary .AirReviews-Blocks--Rate .AirReviews-Blocks--RateCount .AirReviews-Blocks--MaximumRate {
+    font-size: 27px; 
+     margin-bottom: 0;
+    width: 4rem;
+    flex-wrap: wrap;
+}
+
+.AirReviews-Blocks .AirReviews-Blocks__Summary .AirReviews-Blocks--Rate .AirReviews-Blocks--ReviewCount {
+    text-align: start;
+}
+
+.AirReviews-Blocks .AirReviews-Blocks__Summary .AirReviews-Blocks--Rate {
+    padding: 0; 
+    justify-content: center;
+    -webkit-justify-content: center;
+     margin:  0;
+}
+.AirReviews-Blocks__LayoutList .AirReviews-Blocks__Summary .AirReviews-Blocks__SummaryRight.desktop .AirReviews-Branding--Actions, .AirReviews-Blocks__LayoutList .AirReviews-Blocks__Summary .AirReviews-Blocks__SummaryRight.desktop .AirReviews-Blocks--Actions {
+    justify-content: flex-end;
+    -webkit-justify-content: start;
+    margin-left: 0;
+}
+
+.AirReviews-Blocks .AirReviews-Blocks__List .AirReviews-Blocks__ListSort {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+}
+
 /* Agrega estos estilos en tu archivo CSS */
 .spinner-container {
   display: none;
