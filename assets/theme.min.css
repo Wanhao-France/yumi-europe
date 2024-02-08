@@ -9363,6 +9363,9 @@ body.account-popup-open .yv-login-popup {
 
 /* table Devenir Revendeur */
 
+#content-c565924 {
+  min-width: 100%;
+}
 
 @media only screen and (max-width: 600px) {
   .grid {
