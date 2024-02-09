@@ -439,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
 
   if (currentTime.getHours() < 13 && showNotification) {
-    const notificationMessage = "For purchases made before 13:00 , your parcel will be dispatched the same day! Offer ends in:";
+    const notificationMessage = "Pour les achats effectués avant 13h00, votre colis sera expédié le jour même ! L'offre se termine le :";
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
