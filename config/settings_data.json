@@ -61,6 +61,7 @@
     "enable_cart_drawer": false,
     "enable_cartdrawer_note": false,
     "enable_shipping": false,
+    "upsell_products": false,
     "enable_breadcrumb": true,
     "option_style": "swatch",
     "color_name": "Color",

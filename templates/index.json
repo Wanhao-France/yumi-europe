@@ -341,6 +341,13 @@
             "collection": "imprimante-vedettes"
           }
         },
+        "collection_KqhWf4": {
+          "type": "collection",
+          "settings": {
+            "heading": "Laser",
+            "collection": "laser"
+          }
+        },
         "d60ab21e-cf1d-4c99-94f3-5329cfaaa435": {
           "type": "collection",
           "settings": {
@@ -351,6 +358,7 @@
       },
       "block_order": [
         "62581394-1121-4b67-bca1-5d5a4cafd9cf",
+        "collection_KqhWf4",
         "d60ab21e-cf1d-4c99-94f3-5329cfaaa435"
       ],
       "settings": {
