@@ -21,6 +21,7 @@
         },
         "inventory_status_CBwQQj": {
           "type": "inventory_status",
+          "disabled": true,
           "settings": {
             "minimun_inventory": 10,
             "inventory_available_status": "",
