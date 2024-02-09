@@ -11,7 +11,7 @@
         "enable_filtering": true,
         "filters_layout": "sidebar",
         "enable_sorting": true,
-        "enable_display_options": false,
+        "enable_display_options": true,
         "collection_image": false,
         "banner_height_desktop": "100px",
         "banner_height_mobile": "100px",
