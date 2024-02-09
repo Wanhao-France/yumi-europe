@@ -608,6 +608,7 @@ tr td {
     max-width: 100%;
 }
 
+
 label {
     padding-bottom: 4px;
     display: inline-block;
@@ -1455,6 +1456,13 @@ ul.yv-product-meta,.yv-content-body ul.yv-product-meta {
 }
 
 @media (min-width: 768px) {
+    #grid--layout--7, #grid--layout--6, .grid-layout-5 {
+        display: none;
+    }
+    .col-md-1-of-7 {
+        flex: 0 0 calc((100% - 6 * 10px) / 7);
+        max-width: calc((100% - 6 * 10px) / 7);
+    }
     .col-md {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
@@ -1593,6 +1601,14 @@ ul.yv-product-meta,.yv-content-body ul.yv-product-meta {
 }
 
 @media (min-width: 992px) {
+    .col-lg-1-of-6 {
+        flex: 0 0 calc((100% - 6 * 10px) / 7);
+        max-width: calc((100% - 6 * 10px) / 7);
+    }
+    .col-lg-1-of-7 {
+        flex: 0 0 calc((100% - 6 * 10px) / 7);
+        max-width: calc((100% - 6 * 10px) / 7);
+    }
     .col-lg {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
@@ -1704,6 +1720,14 @@ ul.yv-product-meta,.yv-content-body ul.yv-product-meta {
 }
 
 @media (min-width: 1200px) {
+    .col-xl-1-of-6 {
+        flex: 0 0 calc((100% - 5 * 10px) / 6);
+        max-width: calc((100% - 5 * 10px) / 6);
+    }
+    .col-xl-1-of-7 {
+        flex: 0 0 calc((100% - 6 * 10px) / 7);
+        max-width: calc((100% - 6 * 10px) / 7);
+    }
     .col-xl {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
@@ -1722,9 +1746,9 @@ ul.yv-product-meta,.yv-content-body ul.yv-product-meta {
         max-width: 16.666667%;
     }
     .col-xl-3 {
-        -ms-flex: 0 0 25%;
-        flex: 0 0 25%;
-        max-width: 25%;
+        -ms-flex: 0 0 16%;
+        flex: 0 0 16%;
+        max-width: 16%;
     }
     .col-xl-4 {
         -ms-flex: 0 0 33.333333%;
