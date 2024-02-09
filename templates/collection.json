@@ -9,7 +9,7 @@
         "pagination_type": "infinite",
         "products_per_page": 14,
         "enable_filtering": true,
-        "filters_layout": "drawer",
+        "filters_layout": "sidebar",
         "enable_sorting": true,
         "enable_display_options": true,
         "collection_image": false,
