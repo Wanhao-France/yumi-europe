@@ -1011,6 +1011,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var showSavedAmount = "";
   var savedAmountStyle = "";
   var priceHtml = "";
+  let shouldShowTTC = {};
   if (getVariant != undefined) {
     if (priceContainer) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
@@ -3001,14 +3002,15 @@ $(document).on("click", ".menu-tab", function (){
 // });
 
 function getFirstAvailableVariant(options, type, selector, allVariants) {
-    let availableVariant = null, slicedCount = 0;
-    do {
-        options.pop();
-        slicedCount += 1;
-        availableVariant = allVariants.find((variant) => {
-            return variant["options"].slice(0, variant["options"].length - slicedCount).every((value, index) => value === options[index]);
-        });
-    } while (!availableVariant && options.length > 0);
+  let availableVariant = null, slicedCount = 0;
+  do {
+      options.pop();
+      slicedCount += 1;
+      availableVariant = allVariants.find((variant) => {
+          return variant["options"].slice(0, variant["options"].length - slicedCount).every((value, index) => value === options[index]);
+      });
+  } while (!availableVariant && options.length > 0);
+  
     if (availableVariant) {
         let fieldsets = Array.from(selector.querySelectorAll(".product-loop-variants"));
         fieldsets.forEach((fieldset, index) => {
