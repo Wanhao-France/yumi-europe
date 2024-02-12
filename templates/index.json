@@ -81,7 +81,7 @@
             "content_width_m": "medium",
             "overlayopacity": 50,
             "desktop_content_position": "d-center-left",
-            "mobile_content_position": "m-center-left",
+            "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
             "textcolor": "#ffffff",
             "text_shadow_color": "#000000",
