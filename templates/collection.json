@@ -3,8 +3,8 @@
     "main-collection": {
       "type": "main-collection",
       "settings": {
-        "collection_title": false,
-        "seo_heading": "h2",
+        "collection_title": true,
+        "seo_heading": "h4",
         "collection_description": false,
         "pagination_type": "infinite",
         "products_per_page": 14,
