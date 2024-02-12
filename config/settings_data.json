@@ -86,6 +86,7 @@
     "custom_label2": "",
     "newsletter_pop_enable": false,
     "newsletter_description": "<p>Join our Newsletter<\/p>",
+    "show_newsletter_social": true,
     "reorder_enable": true,
     "enable_cookie_banner": true,
     "show_scrollToTop_text": false,
