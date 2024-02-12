@@ -75,7 +75,7 @@
     "show_grid_pickup": false,
     "show_similar_text": false,
     "similar_condition": "type",
-    "show_atc": false,
+    "show_atc": true,
     "show_reviews": true,
     "show_inventory": true,
     "inventory_threshold": 30,
