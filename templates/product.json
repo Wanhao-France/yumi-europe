@@ -23,7 +23,7 @@
           "type": "inventory_status",
           "settings": {
             "minimun_inventory": 10,
-            "inventory_available_status": "En Stock |inventory|",
+            "inventory_available_status": "En Stock",
             "inventory_less_status": "Rupture de Stock"
           }
         },
