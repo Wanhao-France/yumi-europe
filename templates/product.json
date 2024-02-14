@@ -33,6 +33,12 @@
           "settings": {
           }
         },
+        "custom_liquid_r7qF8b": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div id=\"stock-counter\"><\/div>"
+          }
+        },
         "custom_liquid_pg9dR8": {
           "type": "custom_liquid",
           "settings": {
@@ -41,15 +47,9 @@
         },
         "01a3560f-b3ed-476f-8702-dae03ae2ff30": {
           "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>❌ Out of stock<\/div>{% endif %}"
-          }
-        },
-        "custom_liquid_r7qF8b": {
-          "type": "custom_liquid",
           "disabled": true,
           "settings": {
-            "custom_liquid": "<div class=\"AirReviews-Widget AirReviews-Widget--Stars\"><\/div>"
+            "custom_liquid": "{% if product.available %}{% assign stock = product.selected_or_first_available_variant.inventory_quantity %}{% if stock > 100 %}<div id='container-stock' style='color: green;'> ✅ {{ stock }} In Stock<\/div>{% elsif stock > 50 %}<div id='container-stock' style='color: orange;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% else %}<div id='container-stock' style='color: red;'>⚠️ Low stock! Only {{ stock }} units left.<\/div>{% endif %}{% else %}<div id='container-stock' style='color: red;'>❌ Out of stock<\/div>{% endif %}"
           }
         },
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68": {
@@ -96,9 +96,9 @@
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "inventory_status_CBwQQj",
         "air_product_reviews_app_summary_block_BbyykQ",
+        "custom_liquid_r7qF8b",
         "custom_liquid_pg9dR8",
         "01a3560f-b3ed-476f-8702-dae03ae2ff30",
-        "custom_liquid_r7qF8b",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
         "16819786-9d1e-449d-966d-08d21e1c91af",
