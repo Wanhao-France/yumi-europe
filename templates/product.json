@@ -23,8 +23,8 @@
           "type": "inventory_status",
           "settings": {
             "minimun_inventory": 20,
-            "inventory_available_status": "En Stock",
-            "inventory_less_status": "Rupture de Stock"
+            "inventory_available_status": "",
+            "inventory_less_status": ""
           }
         },
         "air_product_reviews_app_summary_block_BbyykQ": {
