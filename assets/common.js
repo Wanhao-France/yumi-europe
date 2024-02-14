@@ -1105,7 +1105,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
 
   priceContainer.classList.add('actualizado');
 
-  // Lógica condicional para el compareAtPrice en el return
   return {
     compareAtPrice: shouldShowTTC ? compareAtPrice * 1.2 : compareAtPrice,
     price: price,
