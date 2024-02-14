@@ -41,6 +41,7 @@
         },
         "custom_liquid_pg9dR8": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<div\n  class=\"AirReviews-Widget AirReviews-Widget--Stars\"\n  style=\"margin-top:0.7rem\"\n  data-review-avg=\"{{ card_product.metafields.air_reviews_product.review_avg }}\"\n  data-review-count=\"{{ card_product.metafields.air_reviews_product.review_count }}\"\n><\/div>"
           }
