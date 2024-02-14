@@ -34,6 +34,7 @@
         },
         "custom_liquid_r7qF8b": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<div id=\"stock-counter\"><\/div>"
           }
