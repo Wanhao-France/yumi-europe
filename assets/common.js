@@ -995,7 +995,18 @@ function updateInventroyStatusBar(variantQty, variantPolicy) {
       productInventoryBar
         .querySelector("[product-inventroy-status-bar]")
         .setAttribute("data-quantity", variantQty);
-    } else if (quantity && quantity >= 0 && quantity <= minInventroyQuantity) {
+      
+        let stockText = document.querySelector(".inventory-stock-text"); 
+        let stockCounter = parseInt(variantQty)
+        if(stockCounter < 100) {
+          stockText.textContent = `Low Stock: ${variantQty}`;
+          stockText.classList.add("low__stock");
+        } else if (stockCounter > 100) {
+          stockText.textContent = `En Stock: ${variantQty}`;
+          stockText.classList.remove("low__stock");
+          stockText.classList.add('en__stock--animation')
+        }
+                      
       letBarWidth = (parseInt(quantity) * 100) / 40;
       productInventoryBar
         .querySelector("[product-inventroy-status-bar]")

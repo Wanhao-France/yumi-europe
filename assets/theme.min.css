@@ -9337,6 +9337,18 @@ body.account-popup-open .yv-login-popup {
 
 /* Bien Demarrer styles */
 
+.inventory-stock-text {
+  font-weight: bold;  
+}
+
+.en__stock--animation {
+  color: green;
+}
+
+.low__stock {
+  color: #ff8000;
+}
+
 .main {
   margin-top: 20px;
   text-align: start;
