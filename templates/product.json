@@ -22,8 +22,8 @@
         "inventory_status_CBwQQj": {
           "type": "inventory_status",
           "settings": {
-            "minimun_inventory": 10,
-            "inventory_available_status": "En Stock",
+            "minimun_inventory": 20,
+            "inventory_available_status": "||inventory|| ",
             "inventory_less_status": "Rupture de Stock"
           }
         },
