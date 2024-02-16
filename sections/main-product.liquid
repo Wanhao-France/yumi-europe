@@ -152,6 +152,7 @@
           {
             "@type" : "Offer",
             "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+            "stockCounter" : "value": "{{ variant.inventory_quantity }}",
             "price" : "{{ variant.price | divided_by: 100.00 }}",
             "priceCurrency" : "{{ shop.currency }}",
             "url" : "{{ shop.url }}{{ variant.url }}",

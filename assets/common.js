@@ -995,7 +995,34 @@ function updateInventroyStatusBar(variantQty, variantPolicy) {
       productInventoryBar
         .querySelector("[product-inventroy-status-bar]")
         .setAttribute("data-quantity", variantQty);
-    } else if (quantity && quantity >= 0 && quantity <= minInventroyQuantity) {
+      
+        let stockText = document.querySelector(".inventory-stock-text");
+        let inventory_stock_single = document.getElementById("inventory__stock--single");
+
+        if (stockText) {
+            inventory_stock_single.style.display = "none";
+        }
+        
+        let stockCounter = parseInt(variantQty)
+        if (stockCounter < 100) {
+          stockText.textContent = ` Low Stock: ${variantQty}`;
+          stockText.classList.add("low__stock");
+          let iconElement = document.createElement("i");
+          iconElement.classList.add("fa-solid", "fa-triangle-exclamation");
+          iconElement.style.color = "orange";
+          iconElement.style.fontWeight = "bold";
+          stockText.insertBefore(iconElement, stockText.firstChild);
+      } else if (stockCounter >= 1) {
+          stockText.textContent = ` En Stock: ${variantQty}`;
+          stockText.classList.remove("low__stock");
+          stockText.classList.add('en__stock--animation');
+          let iconElement = document.createElement("i");
+          iconElement.classList.add("fa-solid", "fa-check");
+          iconElement.style.color = "green";
+          iconElement.style.fontWeight = "bold";
+          stockText.insertBefore(iconElement, stockText.firstChild); 
+      }
+                      
       letBarWidth = (parseInt(quantity) * 100) / 40;
       productInventoryBar
         .querySelector("[product-inventroy-status-bar]")
@@ -1011,6 +1038,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
   var showSavedAmount = "";
   var savedAmountStyle = "";
   var priceHtml = "";
+  let shouldShowTTC = {};
   if (getVariant != undefined) {
     if (priceContainer) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
@@ -1104,7 +1132,6 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
 
   priceContainer.classList.add('actualizado');
 
-  // Lógica condicional para el compareAtPrice en el return
   return {
     compareAtPrice: shouldShowTTC ? compareAtPrice * 1.2 : compareAtPrice,
     price: price,
@@ -3001,14 +3028,15 @@ $(document).on("click", ".menu-tab", function (){
 // });
 
 function getFirstAvailableVariant(options, type, selector, allVariants) {
-    let availableVariant = null, slicedCount = 0;
-    do {
-        options.pop();
-        slicedCount += 1;
-        availableVariant = allVariants.find((variant) => {
-            return variant["options"].slice(0, variant["options"].length - slicedCount).every((value, index) => value === options[index]);
-        });
-    } while (!availableVariant && options.length > 0);
+  let availableVariant = null, slicedCount = 0;
+  do {
+      options.pop();
+      slicedCount += 1;
+      availableVariant = allVariants.find((variant) => {
+          return variant["options"].slice(0, variant["options"].length - slicedCount).every((value, index) => value === options[index]);
+      });
+  } while (!availableVariant && options.length > 0);
+  
     if (availableVariant) {
         let fieldsets = Array.from(selector.querySelectorAll(".product-loop-variants"));
         fieldsets.forEach((fieldset, index) => {

@@ -11,72 +11,110 @@
     endif
   endfor
 %}
-{% if section.settings.show_description or section.settings.content_heading != blank or section.settings.content_heading2 != blank or section.settings.content_heading3 != blank or productMetaStatus %}
-<div class="yv-product-detail-tabs {{ position }}" id="yv-product-tabs">
+{% if section.settings.show_description
+  or section.settings.content_heading != blank
+  or section.settings.content_heading2 != blank
+  or section.settings.content_heading3 != blank
+  or productMetaStatus
+%}
+  <div class="yv-product-detail-tabs {{ position }}" id="yv-product-tabs">
     <div class="yv-tabs-wrapper">
-        <div class="yv-tabs-heading-wrapper">
-            {% if section.settings.width == 'full' %}
-            <div class="container">
-            {% endif %}
-                {% assign tabContentAlignment = section.settings.accordion_content_alignment %}
-                {% if section.settings.accordion_content_alignment == 'left' %}
-                    {% assign tabContentAlignment = 'start' %}
-                {% elsif section.settings.accordion_content_alignment == 'right'%}
-                    {% assign tabContentAlignment = 'end' %}
-                {% endif%}
-                <ul class="list-unstyled yv-tabs align-{{ tabContentAlignment }}">
-                    {% if section.settings.show_description %}
-                    <li class="yv-tab-item active yv-tab-product-item" content="tabContentDescription"><a class="yv-tab-link" href="#tabContentDescription">{{ 'products.product.description' | t }}</a></li>
-                    {% endif %} {% if section.settings.content_heading != blank %}
-                    <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper"><a class="yv-tab-link" href="#tabContentWrapper">{{ section.settings.content_heading }}</a></li>
-                    {% endif %}
-                    {% if section.settings.content_heading2 != blank %}
-                        <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper2"><a class="yv-tab-link" href="#tabContentWrapper2">{{ section.settings.content_heading2 }}</a></li>
-                    {% endif %}
-                    {% if section.settings.content_heading3 != blank %}
-                        <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper3"><a class="yv-tab-link" href="#tabContentWrapper3">{{ section.settings.content_heading3 }}</a></li>
-                    {% endif %}
-                    {% if productMeta.settings.heading != blank %}
-                        <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper{{ productMeta.id }}"><a class="yv-tab-link" href="#tabContentWrapper{{ productMeta.id }}" {{ block.shopify_attributes }}>{{ productMeta.settings.heading }}</a></li>
-                    {% endif %}
-                  
-                </ul>
-                {% if section.settings.width == 'full' %}
-            </div>
+      <div class="yv-tabs-heading-wrapper">
+        {% if section.settings.width == 'full' %}
+          <div class="container">
         {% endif %}
-        </div>
-        <div class="yv-tab-content text-{{ section.settings.accordion_content_alignment }}">
-            {% if section.settings.width == 'full' %}
-            <div class="container">
+        {% assign tabContentAlignment = section.settings.accordion_content_alignment %}
+        {% if section.settings.accordion_content_alignment == 'left' %}
+          {% assign tabContentAlignment = 'start' %}
+        {% elsif section.settings.accordion_content_alignment == 'right' %}
+          {% assign tabContentAlignment = 'end' %}
+        {% endif %}
+        <ul class="list-unstyled yv-tabs align-{{ tabContentAlignment }}">
+          {% if section.settings.show_description %}
+            <li class="yv-tab-item active yv-tab-product-item" content="tabContentDescription">
+              <a class="yv-tab-link" href="#tabContentDescription">{{ 'products.product.description' | t }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.content_heading != blank %}
+            <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper">
+              <a class="yv-tab-link" href="#tabContentWrapper">{{ section.settings.content_heading }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.content_heading2 != blank %}
+            <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper2">
+              <a class="yv-tab-link" href="#tabContentWrapper2">{{ section.settings.content_heading2 }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.content_heading3 != blank %}
+            <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper3">
+              <a class="yv-tab-link" href="#tabContentWrapper3">{{ section.settings.content_heading3 }}</a>
+            </li>
+          {% endif %}
+          {% if productMeta.settings.heading != blank %}
+            <li class="yv-tab-item yv-tab-product-item" content="tabContentWrapper{{ productMeta.id }}">
+              <a class="yv-tab-link" href="#tabContentWrapper{{ productMeta.id }}" {{ block.shopify_attributes }}>
+                {{- productMeta.settings.heading -}}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+        {% if section.settings.width == 'full' %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="yv-tab-content text-{{ section.settings.accordion_content_alignment }}">
+        {% if section.settings.width == 'full' %}
+          <div class="container">
+        {% endif %}
+        {% if section.settings.show_description %}
+          <div class="yv-tab-pane yv-product-detail-tab active rich-editor-text-content" id="tabContentDescription">
+            {{
+              product.description
+              | replace: '<table', '<div class="table-responsive"><table '
+              | replace: '</table>', '</table></div>'
+            }}
+          </div>
+        {% endif %}
+        {% if section.settings.content_heading != blank %}
+          <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper">
+            {% if section.settings.content %}
+              {{ section.settings.content }}
+            {% else %}
+              {{ 'onboarding.rich_text_page' | t }}
             {% endif %}
-                {% if section.settings.show_description %}
-                <div class="yv-tab-pane yv-product-detail-tab active rich-editor-text-content" id="tabContentDescription">
-                    {{ product.description | replace: '<table','<div class="table-responsive"><table ' | replace: '</table>', '</table></div>' }}
-            </div>
-            {% endif %} {% if section.settings.content_heading != blank %}
-            <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper">
-                {% if section.settings.content %} {{ section.settings.content }} {% else %} {{ 'onboarding.rich_text_page' | t }} {% endif %}
-            </div>
+          </div>
+        {% endif %}
+        {% if section.settings.content_heading2 != blank %}
+          <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper2">
+            {% if section.settings.content2 %}
+              {{ section.settings.content2 }}
+            {% else %}
+              {{ 'onboarding.rich_text_page' | t }}
             {% endif %}
-            {% if section.settings.content_heading2 != blank %}
-            <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper2">
-                {% if section.settings.content2 %} {{ section.settings.content2 }} {% else %} {{ 'onboarding.rich_text_page' | t }} {% endif %}
-            </div>
+          </div>
+        {% endif %}
+        {% if section.settings.content_heading3 != blank %}
+          <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper3">
+            {% if section.settings.content3 %}
+              {{ section.settings.content3 }}
+            {% else %}
+              {{ 'onboarding.rich_text_page' | t }}
             {% endif %}
-            {% if section.settings.content_heading3 != blank %}
-            <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper3">
-                {% if section.settings.content3 %} {{ section.settings.content3 }} {% else %} {{ 'onboarding.rich_text_page' | t }} {% endif %}
-            </div>
-            {% endif %}
-            {% if productMeta.settings.heading != blank %}
-            <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper{{ productMeta.id }}">
-              {% render 'product-meta', product:product, current_variant:product.selected_or_first_available_variant, block: productMeta %}
-            </div>
-            {% endif %}
-            {% if section.settings.width == 'full' %}
-        </div>
-    {% endif %}
+          </div>
+        {% endif %}
+        {% if productMeta.settings.heading != blank %}
+          <div class="yv-tab-pane yv-product-detail-tab" id="tabContentWrapper{{ productMeta.id }}">
+            {% render 'product-meta',
+              product: product,
+              current_variant: product.selected_or_first_available_variant,
+              block: productMeta
+            %}
+          </div>
+        {% endif %}
+        {% if section.settings.width == 'full' %}
+          </div>
+        {% endif %}
+      </div>
     </div>
-</div>
-</div>
+  </div>
 {% endif %}

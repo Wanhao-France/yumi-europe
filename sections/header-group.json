@@ -4,6 +4,43 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
+      "blocks": {
+        "announcement_qykzfM": {
+          "type": "announcement",
+          "settings": {
+            "icon": "gift",
+            "first_text": "CODE PROMO : -10 % sur les D12 230, 300 et 500 via le code : HAPPY",
+            "date": "",
+            "btn": "",
+            "link": ""
+          }
+        },
+        "announcement_ehiFWK": {
+          "type": "announcement",
+          "settings": {
+            "icon": "gift",
+            "first_text": "-10% sur FILAMENTS, RESINE via CODE : DRAGON \/\/ -15% sur le Speeder Pad via le code : PAD",
+            "date": "",
+            "btn": "",
+            "link": ""
+          }
+        },
+        "announcement_YUC8tj": {
+          "type": "announcement",
+          "settings": {
+            "icon": "gift",
+            "first_text": "-5% sur les pièces détachées et accessoires CODE : LUNE \/\/  -8% sur la FLSUN V600 via le code : V600",
+            "date": "",
+            "btn": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_qykzfM",
+        "announcement_ehiFWK",
+        "announcement_YUC8tj"
+      ],
       "settings": {
         "show_bar": true,
         "desktop_height": "adapt_image",
@@ -14,7 +51,7 @@
         "carousel_interval": 5,
         "marquee_direction": "left",
         "marquee_speed": 5,
-        "enable_language_selector": true,
+        "enable_language_selector": false,
         "enable_currency_selector": false,
         "fontcolor": "#ffffff",
         "bg_style": "solid",
@@ -32,9 +69,9 @@
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
-        "sticky_header_style": "on_scroll_up",
+        "sticky_header_style": "always",
         "enable_transparent_header": true,
-        "logo": "shopify:\/\/shop_images\/Wanhao_LOGO-Black.webp",
+        "logo": "shopify:\/\/shop_images\/Wanhao_LOGO.webp",
         "logo_width": 140,
         "logo_position": "center",
         "menu_navigations": "hover",

@@ -1,7 +1,7 @@
 {%- liquid
   assign variantQuantity = current_variant.inventory_quantity
-  assign showBar = false
-  assign hideInventoryStatus = false
+  assign showBar = true
+  assign hideInventoryStatus = true
   if variantQuantity > 0 and variantQuantity <= block.settings.minimun_inventory and current_variant.inventory_policy == 'deny'
     assign showBar = true
   endif
@@ -14,6 +14,7 @@
   class="product__inventory {% if hideInventoryStatus %}hidden{% endif %} {% if showBar %}low-inventory{% else %}full-inventory{% endif %}"
   product__inventory
 >
+  <p class="inventory-stock-text"></p>
   <span inventory-status>
     {% liquid
       if showBar
@@ -25,7 +26,7 @@
     -%}
   </span>
   <span
-    class="inventroy-status-bar {% unless showBar %}hide-bar{% endunless %}"
+    class="inventroy-status-bar hide-bar"
     data-quantity="{{ current_variant.inventory_quantity }}"
     product-inventroy-status-bar
   >

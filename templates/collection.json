@@ -1,5 +1,32 @@
 {
   "sections": {
+    "rotating_text_TjxrVm": {
+      "type": "rotating-text",
+      "settings": {
+        "text1": "<p>Hey, les Rhinos! Plus de 10 tonnes de filaments commandées pendant les soldes?! C'est malin, ça! Bilan, il ne nous reste plus le moindre petit légo à vous offrir avec vos bobines...Nous aurons de nouvelles surprises pour vous très prochainement.<\/p>",
+        "text2": "",
+        "row1_font_family": "--font-family",
+        "row2_font_family": "--font-family",
+        "row1_direction": "right",
+        "row2_direction": "right",
+        "heading_font_size": 28,
+        "subheading_font_size": 24,
+        "heading_font_size_m": 18,
+        "subheading_font_size_m": 16,
+        "section_border": true,
+        "bgcolor": "#ffffff",
+        "bg_gradient_color": "",
+        "text1color": "#000000",
+        "outlinetext1color": "#000000",
+        "text2color": "#a56748",
+        "outlinetext2color": "#a56748",
+        "section_visibility": "always",
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
+    },
     "main-collection": {
       "type": "main-collection",
       "settings": {
@@ -7,11 +34,11 @@
         "seo_heading": "h2",
         "collection_description": false,
         "pagination_type": "infinite",
-        "products_per_page": 8,
+        "products_per_page": 14,
         "enable_filtering": true,
-        "filters_layout": "drawer",
+        "filters_layout": "sidebar",
         "enable_sorting": true,
-        "enable_display_options": true,
+        "enable_display_options": false,
         "collection_image": false,
         "banner_height_desktop": "100px",
         "banner_height_mobile": "100px",
@@ -26,7 +53,7 @@
           "type": "column",
           "settings": {
             "icon": "secure",
-            "heading": "100% Secure payment",
+            "heading": "Paiement 100% Sécurisé",
             "seo_heading": "h2",
             "subtext": ""
           }
@@ -72,6 +99,7 @@
     }
   },
   "order": [
+    "rotating_text_TjxrVm",
     "main-collection",
     "8231b1f4-8107-414d-9432-3a48f23e000d"
   ]

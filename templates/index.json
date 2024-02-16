@@ -7,13 +7,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
-            "image": "shopify:\/\/shop_images\/soldes.webp",
+            "image": "shopify:\/\/shop_images\/Nouvel_An_chinois_b56d560c-152d-4fbf-aa09-d3afd8ee7926.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/all-printers",
-            "btn_text": "More Info",
+            "link": "shopify:\/\/collections\/toutes-les-imprimantes-wanhao-duplicator-plus-i3mini-duplicator7-duplicator9-duplicator8-duplicator6",
+            "btn_text": "En Savoir Plus",
             "outline_button": false,
             "heading_size": "h2",
             "button_size": "xsmall",
@@ -21,8 +21,8 @@
             "heading_size_m": "h2",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 20,
-            "desktop_content_position": "d-center-left",
+            "overlayopacity": 25,
+            "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
             "textcolor": "#ffffff",
@@ -36,13 +36,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-6",
-            "image": "shopify:\/\/shop_images\/Header-img-2.jpg",
+            "image": "shopify:\/\/shop_images\/Precommande_71cf0bda-54de-41e3-b378-b1d1d22529a5.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/all-filaments",
-            "btn_text": "More info",
+            "link": "shopify:\/\/collections\/flsun-imprimante-ultra-rapide",
+            "btn_text": "En Savoir Plus",
             "outline_button": false,
             "heading_size": "h2",
             "button_size": "xsmall",
@@ -51,7 +51,7 @@
             "button_size_m": "xsmall",
             "content_width_m": "medium",
             "overlayopacity": 20,
-            "desktop_content_position": "d-center-left",
+            "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
             "textcolor": "#000000",
@@ -65,13 +65,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
-            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_2.jpg",
+            "image": "shopify:\/\/shop_images\/NewYear_3b68954d-eb80-4db6-bbea-36f5cfaf87d3.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/filaments-speciaux",
-            "btn_text": "More Info",
+            "link": "shopify:\/\/collections\/filament-en-stock",
+            "btn_text": "En Savoir Plus",
             "outline_button": false,
             "heading_size": "h5",
             "button_size": "xsmall",
@@ -94,13 +94,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
-            "image": "shopify:\/\/shop_images\/WhatsApp_Image_2024-01-17_at_4.21.50_PM_cc4213ad-26f2-462c-8d5d-81a0f5702973.jpg",
+            "image": "shopify:\/\/shop_images\/Carton_ecd02406-e542-4fe4-b5b1-2e4cf36a35cf.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/nanoblocks",
-            "btn_text": "More Info",
+            "link": "shopify:\/\/collections\/filament-en-stock",
+            "btn_text": "En Savoir Plus",
             "outline_button": false,
             "heading_size": "h5",
             "button_size": "xsmall",
@@ -123,13 +123,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
-            "image": "shopify:\/\/shop_images\/hearder-img-5.jpg",
+            "image": "shopify:\/\/shop_images\/Nano-Bob_628dcb91-87a3-42c5-915c-2eb129224751.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/our-latest-filament-creations",
-            "btn_text": "More Info",
+            "link": "shopify:\/\/collections\/filament-en-stock",
+            "btn_text": "En Savoir Plus",
             "outline_button": false,
             "heading_size": "h5",
             "button_size": "xsmall",
@@ -152,13 +152,13 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
-            "image": "shopify:\/\/shop_images\/Header-img-6.jpg",
+            "image": "shopify:\/\/shop_images\/Precommande.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
             "subheading": "",
-            "link": "shopify:\/\/collections\/nanoblocks",
-            "btn_text": "More Info",
+            "link": "shopify:\/\/collections\/flashforge-5m-5m-pro",
+            "btn_text": "En Savoir Plus",
             "outline_button": false,
             "heading_size": "h5",
             "button_size": "xsmall",
@@ -208,8 +208,9 @@
     },
     "bd1ae4f1-1a99-480a-a31f-ac4c36662c98": {
       "type": "rotating-text",
+      "disabled": true,
       "settings": {
-        "text1": "<p>CODE PROMO : -25 % sur les D12 230 via le code : SOLDES \/\/ -10% sur les D12 300 via le code : STAR \/\/ -25% sur FILAMENTS, RESINE via CODE : HIVER \/\/ -15% sur les pièces détachées et accessoires CODE : NEIGE \/\/ -20% sur les D12 500 via le code : PRINT \/\/ -8% sur la FLSUN V600 via le code : V600 \/\/ -15% sur les D12 230 Evo Megakit via le code : KIT \/\/ -15% sur le Speeder Pad via le code : PAD<\/p>",
+        "text1": "<p>CODE PROMO : -10 % sur les D12 230, 300 et 500 via le code : HAPPY \/\/ -10% sur Filaments, Résines via CODE : DRAGON \/\/ -5% sur les pièces détachées et accessoires CODE : LUNE \/\/ -8% sur la FLSUN V600 via le code : V600 \/\/ -15% sur le Speeder Pad via le code : PAD<\/p>",
         "text2": "",
         "row1_font_family": "--heading-font-family",
         "row2_font_family": "--font-family",
@@ -242,7 +243,7 @@
             "heading": "",
             "subheading": "Yumi L-A4 Laser",
             "image": "shopify:\/\/shop_images\/Yumi-LA4.jpg",
-            "link": "shopify:\/\/collections\/yumi-laser-l-a4-laser"
+            "link": "shopify:\/\/collections\/laser"
           }
         },
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-1": {
@@ -251,7 +252,7 @@
             "heading": "",
             "subheading": "Duplicator 12 \/ 230",
             "image": "shopify:\/\/shop_images\/Rose.jpg",
-            "link": "shopify:\/\/collections\/duplicator-12-230"
+            "link": "shopify:\/\/collections\/piece-de-rechange-d12"
           }
         },
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-2": {
@@ -260,7 +261,7 @@
             "heading": "",
             "subheading": "Duplicator 12 \/ 300",
             "image": "shopify:\/\/shop_images\/D12_300_Pro_Max_1_2_a3c958c0-679c-44dd-9c59-ad7aaf23ec3b.jpg",
-            "link": "shopify:\/\/collections\/duplicator-12-300"
+            "link": "shopify:\/\/collections\/piece-de-rechange-d12-300"
           }
         },
         "template--15143329169473__7dc43a7c-1876-402d-af4d-ba2d537b81c2-image-3": {
@@ -268,8 +269,8 @@
           "settings": {
             "heading": "",
             "subheading": "Duplicator 12 \/ 500",
-            "image": "shopify:\/\/shop_images\/W3-DD12500-PRODUAL-5_b76a53e3-8441-4535-972f-ad6fd4675d5a.jpg",
-            "link": "shopify:\/\/collections\/duplicator-12-500"
+            "image": "shopify:\/\/shop_images\/W3-DD12500-PRODUAL-5_71ab7c1a-72b0-45ee-b5c0-ede24070c4d3.jpg",
+            "link": "shopify:\/\/collections\/piece-de-rechange-d12-500"
           }
         },
         "d3c5f5f3-ad24-4b33-83ce-5928d4be60a1": {
@@ -278,7 +279,7 @@
             "heading": "",
             "subheading": "Flsun",
             "image": "shopify:\/\/shop_images\/FLSV400-1.jpg",
-            "link": "shopify:\/\/collections\/flsun"
+            "link": "shopify:\/\/collections\/flsun-superacer"
           }
         },
         "d313ed6b-c207-4e0b-9b92-89d4395e651a": {
@@ -287,7 +288,7 @@
             "heading": "",
             "subheading": "Bambu Lab",
             "image": "shopify:\/\/shop_images\/BAMBUX1-CARBON-9.jpg",
-            "link": "shopify:\/\/collections\/bambu-labs"
+            "link": "shopify:\/\/collections\/pieces-detachees-bambu-lab"
           }
         },
         "d6fc8b08-a703-4923-9d97-75b1d6dab42c": {
@@ -296,7 +297,7 @@
             "heading": "",
             "subheading": "Flashforge",
             "image": "shopify:\/\/shop_images\/FFA5MPRO-2.jpg",
-            "link": "shopify:\/\/collections\/flashforge-adventurer-5m-5m-pro"
+            "link": "shopify:\/\/collections\/flashforge-5m-5m-pro"
           }
         }
       },
@@ -337,7 +338,14 @@
           "type": "collection",
           "settings": {
             "heading": "Imprimantes",
-            "collection": "vendette-printers"
+            "collection": "imprimante-vedettes"
+          }
+        },
+        "collection_KqhWf4": {
+          "type": "collection",
+          "settings": {
+            "heading": "Laser",
+            "collection": "laser"
           }
         },
         "d60ab21e-cf1d-4c99-94f3-5329cfaaa435": {
@@ -350,10 +358,11 @@
       },
       "block_order": [
         "62581394-1121-4b67-bca1-5d5a4cafd9cf",
+        "collection_KqhWf4",
         "d60ab21e-cf1d-4c99-94f3-5329cfaaa435"
       ],
       "settings": {
-        "heading": "Top Selling Products",
+        "heading": "La crème des imprimantes et des lasers, c'est ici!",
         "seo_heading": "h2",
         "heading_size": "h5",
         "tabs_position": "right",
@@ -381,23 +390,15 @@
           "type": "collection",
           "settings": {
             "heading": "",
-            "collection": "our-latest-filament-creations"
-          }
-        },
-        "collection_BJgDrN": {
-          "type": "collection",
-          "settings": {
-            "heading": "",
-            "collection": ""
+            "collection": "filament-en-stock"
           }
         }
       },
       "block_order": [
-        "collection_JcPbDi",
-        "collection_BJgDrN"
+        "collection_JcPbDi"
       ],
       "settings": {
-        "heading": "Lastest Filament",
+        "heading": "Top 10 des Filaments 1,75mm",
         "seo_heading": "h2",
         "heading_size": "h5",
         "tabs_position": "right",
@@ -424,32 +425,16 @@
         "39e9b60f-6cce-4e55-a39c-1476c6436327": {
           "type": "collection",
           "settings": {
-            "heading": "Filament accessories",
-            "collection": "filaments"
-          }
-        },
-        "b785489f-f9cb-443d-aea6-d81c577726b8": {
-          "type": "collection",
-          "settings": {
-            "heading": "Resin accessories",
-            "collection": "resins"
-          }
-        },
-        "14a59ae3-821c-479e-b375-273a9eee9ff2": {
-          "type": "collection",
-          "settings": {
-            "heading": "Spare parts",
-            "collection": "replacement-part"
+            "heading": "Goodies et Autres",
+            "collection": "ce-qui-pourrait-vous-plaire"
           }
         }
       },
       "block_order": [
-        "39e9b60f-6cce-4e55-a39c-1476c6436327",
-        "b785489f-f9cb-443d-aea6-d81c577726b8",
-        "14a59ae3-821c-479e-b375-273a9eee9ff2"
+        "39e9b60f-6cce-4e55-a39c-1476c6436327"
       ],
       "settings": {
-        "heading": "You may also like",
+        "heading": "Ce qui pourrait également vous plaire",
         "seo_heading": "h3",
         "heading_size": "h4",
         "tabs_position": "right",
