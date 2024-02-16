@@ -58,3 +58,16 @@
     <span class="yv-visually-hidden">{{ 'products.product.sold_out' | t }}</span>
   {%- endunless -%}
 </div>
+
+{% assign stockCounter = current_variant.inventory_quantity %}
+
+{% if stockCounter < 100 %}
+  <p id="inventory__stock--single" class="low__stock">
+    <i class="fa-solid fa-triangle-exclamation" style="color:orange;font-weight: bold;"></i> Low Stock:
+    {{ stockCounter }}
+  </p>
+{% elsif stockCounter > 0 %}
+  <p id="inventory__stock--single" class="en__stock--animation">
+    <i class="fa-solid fa-check" style="color:green;font-weight: bold;"></i> En Stock: {{ stockCounter }}
+  </p>
+{% endif %}

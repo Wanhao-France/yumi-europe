@@ -1,7 +1,7 @@
 {%- liquid
   assign variantQuantity = current_variant.inventory_quantity
-  assign showBar = false
-  assign hideInventoryStatus = false
+  assign showBar = true
+  assign hideInventoryStatus = true
   if variantQuantity > 0 and variantQuantity <= block.settings.minimun_inventory and current_variant.inventory_policy == 'deny'
     assign showBar = true
   endif

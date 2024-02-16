@@ -9337,16 +9337,17 @@ body.account-popup-open .yv-login-popup {
 
 /* Bien Demarrer styles */
 
-.inventory-stock-text {
+
+.en__stock--animation {
+  margin-top: 1em;
+  color: green;
   font-weight: bold;  
 }
 
-.en__stock--animation {
-  color: green;
-}
-
 .low__stock {
+  margin-top: 1em;
   color: #ff8000;
+  font-weight: bold;  
 }
 
 .main {

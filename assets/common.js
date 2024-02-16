@@ -996,16 +996,32 @@ function updateInventroyStatusBar(variantQty, variantPolicy) {
         .querySelector("[product-inventroy-status-bar]")
         .setAttribute("data-quantity", variantQty);
       
-        let stockText = document.querySelector(".inventory-stock-text"); 
-        let stockCounter = parseInt(variantQty)
-        if(stockCounter < 100) {
-          stockText.textContent = `Low Stock: ${variantQty}`;
-          stockText.classList.add("low__stock");
-        } else if (stockCounter > 100) {
-          stockText.textContent = `En Stock: ${variantQty}`;
-          stockText.classList.remove("low__stock");
-          stockText.classList.add('en__stock--animation')
+        let stockText = document.querySelector(".inventory-stock-text");
+        let inventory_stock_single = document.getElementById("inventory__stock--single");
+
+        if (stockText) {
+            inventory_stock_single.style.display = "none";
         }
+        
+        let stockCounter = parseInt(variantQty)
+        if (stockCounter < 100) {
+          stockText.textContent = ` Low Stock: ${variantQty}`;
+          stockText.classList.add("low__stock");
+          let iconElement = document.createElement("i");
+          iconElement.classList.add("fa-solid", "fa-triangle-exclamation");
+          iconElement.style.color = "orange";
+          iconElement.style.fontWeight = "bold";
+          stockText.insertBefore(iconElement, stockText.firstChild);
+      } else if (stockCounter > 0) {
+          stockText.textContent = ` En Stock: ${variantQty}`;
+          stockText.classList.remove("low__stock");
+          stockText.classList.add('en__stock--animation');
+          let iconElement = document.createElement("i");
+          iconElement.classList.add("fa-solid", "fa-check");
+          iconElement.style.color = "green";
+          iconElement.style.fontWeight = "bold";
+          stockText.insertBefore(iconElement, stockText.firstChild); 
+      }
                       
       letBarWidth = (parseInt(quantity) * 100) / 40;
       productInventoryBar
