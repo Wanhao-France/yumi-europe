@@ -108,7 +108,7 @@
       ],
       "custom_css": [
         "margin-bottom: 0.7rem;.product__pickup-availabilities.no-js-hidden {display: none;}",
-        "#shopify-block-air_product_reviews_app_summary_block_BbyykQ {margin-bottom: 0.7rem;}"
+        "#shopify-block-air_product_reviews_app_summary_block_BbyykQ {margin-bottom: 0.9rem;}"
       ],
       "settings": {
         "gallery_style": "slider",
