@@ -107,8 +107,8 @@
         "d9f7768a-bd99-466f-9731-c11cbc9e6d12"
       ],
       "custom_css": [
-        ".product__pickup-availabilities.no-js-hidden {display: none;}",
-        "#shopify-block-air_product_reviews_app_summary_block_BbyykQ {}"
+        "margin-bottom: 0.7rem;.product__pickup-availabilities.no-js-hidden {display: none;}",
+        "#shopify-block-air_product_reviews_app_summary_block_BbyykQ {margin-bottom: 0.7rem;}"
       ],
       "settings": {
         "gallery_style": "slider",
