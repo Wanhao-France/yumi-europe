@@ -1012,7 +1012,7 @@ function updateInventroyStatusBar(variantQty, variantPolicy) {
           iconElement.style.color = "orange";
           iconElement.style.fontWeight = "bold";
           stockText.insertBefore(iconElement, stockText.firstChild);
-      } else if (stockCounter > 0) {
+      } else if (stockCounter >= 1) {
           stockText.textContent = ` En Stock: ${variantQty}`;
           stockText.classList.remove("low__stock");
           stockText.classList.add('en__stock--animation');

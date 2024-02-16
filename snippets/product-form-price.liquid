@@ -61,7 +61,7 @@
 
 {% assign stockCounter = current_variant.inventory_quantity %}
 
-{% if stockCounter < 100 %}
+{% if stockCounter < 100 and stockCounter >= 1 %}
   <p id="inventory__stock--single" class="low__stock">
     <i class="fa-solid fa-triangle-exclamation" style="color:orange;font-weight: bold;"></i> Low Stock:
     {{ stockCounter }}
