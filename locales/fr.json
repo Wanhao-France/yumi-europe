@@ -14,7 +14,7 @@
       "modal": "Mot de passe modal",
       "admin_link_html": "Êtes-vous le propriétaire du magasin ? <a href=\"\/admin\" class=\"link underlined-link\">Connectez-vous ici<\/a>",
       "powered_by_shopify_html": "Cette boutique sera alimentée par {{ shopify }}",
-      "opening_soon": "FAIRE"
+      "opening_soon": "En construction"
     },
     "view_detail": "Voir les détails",
     "quick_view_heading": "Aperçu rapide",
