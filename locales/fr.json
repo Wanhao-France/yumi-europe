@@ -494,7 +494,7 @@
       }
     },
     "orders": {
-      "title": "Ordres",
+      "title": "Commandes",
       "page_title": "Historique des commandes",
       "order_number": "Commande",
       "order_number_link": "Numéro de commande {{ number }}",
