@@ -50,7 +50,7 @@
       "search": "Recherche"
     },
     "video": {
-      "button": "Jouer pause"
+      "button": "Jouer \/ Pause"
     },
     "cart": {
       "view": "Voir mon panier ({{ count }})",
@@ -64,10 +64,10 @@
     },
     "socil": {
       "links": {
-        "facebook": "FAIRE",
-        "twitter": "FAIRE",
-        "linkedin": "FAIRE",
-        "instagram": "FAIRE"
+        "facebook": "Facebook",
+        "twitter": "Twitter",
+        "linkedin": "Linkedin",
+        "instagram": "Instagram"
       }
     }
   },
@@ -76,10 +76,10 @@
   },
   "newsletter": {
     "label": "Votre e-mail",
-    "success": "Merci pour votre subscription",
+    "success": "Merci de votre abonnement!",
     "button_label": "S'abonner",
     "email_placeholder": "Adresse e-mail",
-    "popup_dont_show": "Ne montrez plus ce dialogue"
+    "popup_dont_show": "Ne me montrez plus cette page"
   },
   "accessibility": {
     "skip_to_text": "Aller au contenu",
@@ -109,15 +109,15 @@
         "other": "{{ count }} commentaires"
       },
       "moderated": "Veuillez noter que les commentaires doivent être approuvés avant d'être publiés.",
-      "comment_form_title": "Laissez votre pensée ici",
+      "comment_form_title": "Partagez votre avis ici",
       "name": "Nom",
       "email": "E-mail",
       "message": "Commentaire",
       "post": "Poster un commentaire",
       "back_to_blog": "Retour au blog",
       "share": "Partagez cet article",
-      "success": "Votre commentaire a été posté avec succès ! ",
-      "success_moderated": "Votre commentaire a été posté avec succès. "
+      "success": "Votre commentaire a été soumis avec succès ! ",
+      "success_moderated": "Votre commentaire a été traité. "
     }
   },
   "onboarding": {
@@ -131,18 +131,18 @@
       "preorder": "Pré-commander",
       "coming_soon": "À venir",
       "description": "Description",
-      "one_time_purchase": "Achat en un click",
-      "reviews": "Commentaires",
+      "one_time_purchase": "Achat en un clic",
+      "reviews": "Avis",
       "on_sale": "Vente",
       "product_variants": "Variantes de produit",
       "option": "Sélectionner {{title}}",
       "size_chart_label": "Tableau des tailles",
-      "tax_included": "Taxe inclu.",
-      "shipping_policy": "Frais de port calculés à la caisse.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Expédition<\/a> Calculé à la caisse",
+      "tax_included": "Taxe comprises.",
+      "shipping_policy": "Frais de port calculés sur la page de paiement.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Expédition<\/a> Calculé sur la page de paiement ",
       "media": {
         "heading": "Galerie",
-        "open_featured_media": "Ouvrir les médias en vedette dans la vue de la galerie",
+        "open_featured_media": "Ouvrir les médias mis en avant dans la vue de la galerie",
         "open_media": "Médias ouverts {{ index }} dans la vue galerie",
         "play_model": "Jouer à la visionneuse 3D",
         "play_video": "Lire la vidéo",
@@ -183,10 +183,10 @@
         "unit_price": "Prix ​​unitaire",
         "saved": "Tu as sauvegardé"
       },
-      "sold_out": "Solder",
+      "sold_out": "En rupture",
       "in_stock": "Pré-commande",
       "in_stock_with_unit": "En stock, {{ stock }} unités",
-      "restock": "Réassort bientôt",
+      "restock": "Bientôt en stock",
       "out_of_stock": "Rupture de stock",
       "low_stock": "Seul {{ stock }} unités restantes",
       "off": "Économisé",
