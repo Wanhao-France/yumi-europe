@@ -184,12 +184,12 @@
         "saved": "Tu as sauvegardé"
       },
       "sold_out": "Solder",
-      "in_stock": "En stock",
+      "in_stock": "Pré-commande",
       "in_stock_with_unit": "En stock, {{ stock }} unités",
       "restock": "Réassort bientôt",
       "out_of_stock": "Rupture de stock",
       "low_stock": "Seul {{ stock }} unités restantes",
-      "off": "Économiser",
+      "off": "Économisé",
       "similar_products": "produits similaires",
       "view_product": "Voir le produit",
       "more_options": "{{item}}Plus",
@@ -248,7 +248,7 @@
       "drawer_recent_title": "Recherche récente"
     },
     "cart": {
-      "cart": "Chariot"
+      "cart": "Panier"
     },
     "contact": {
       "form": {
@@ -282,26 +282,26 @@
     },
     "cart": {
       "title": "Votre panier",
-      "heading_html": "Dans ton sac <span data-cart-item-count=\"\">{{itemCount}}<\/span> articles",
+      "heading_html": "Dans ton panier <span data-cart-item-count=\"\">{{itemCount}}<\/span> articles",
       "caption": "Articles du panier",
       "price_detail": "Détails du prix",
       "remove_title": "Retirer {{ title }}",
       "remove": "Retirer",
       "subtotal": "Total",
-      "discount": "Rabais",
-      "discount_label": "Code Coupan",
+      "discount": "Réduction",
+      "discount_label": "Code Promotion",
       "new_subtotal": "Total",
       "note": "Instructions spéciales pour le vendeur",
       "note_heading": "Laisser une note avec la commande",
-      "checkout": "Vérifier",
+      "checkout": "Payer",
       "empty": "Votre panier est vide",
       "view_cart": "Voir le panier",
       "payment": "Méthodes de payement",
       "cart_error": "Une erreur s'est produite lors de la mise à jour de votre panier. ",
-      "cart_quantity_error_html": "Vous ne pouvez ajouter {{ quantity }} de cet article à votre panier.",
-      "taxes_and_shipping_policy_at_checkout_html": "Impôts et <a href=\"{{ link }}\">expédition<\/a> Calculé à la caisse",
-      "taxes_included_but_shipping_at_checkout": "Taxes incluses et frais de port calculés à la caisse",
-      "taxes_included_and_shipping_policy_html": "Taxe inclu. <a href=\"{{ link }}\">Expédition<\/a> Calculé à la caisse.",
+      "cart_quantity_error_html": "Vous ne pouvez pas ajouter {{ quantity }} de cet article à votre panier.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes et <a href=\"{{ link }}\">expédition<\/a> calculées à la caisse",
+      "taxes_included_but_shipping_at_checkout": "Taxes comprises et frais de port calculés à la caisse",
+      "taxes_included_and_shipping_policy_html": "Taxes comprises. <a href=\"{{ link }}\">Expédition<\/a> Calculé à la caisse.",
       "taxes_and_shipping_at_checkout": "Taxes et livraison calculées à la caisse",
       "headings": {
         "product": "Produit",
@@ -321,7 +321,7 @@
         "zip": "Code postal",
         "button": "Obtenir des estimations",
         "error": "Erreur",
-        "not_available": "Nous ne livrons pas vers cette destination."
+        "not_available": "Nous ne livrons pas à cette destination."
       }
     },
     "footer": {
@@ -334,7 +334,7 @@
       "onboarding_content": "Donnez à vos clients un résumé de votre article de blog"
     },
     "featured_product": {
-      "heading": "Mis en exergue"
+      "heading": "Mis en avant"
     },
     "collection_list": {
       "view_all": "Voir tout",
@@ -347,10 +347,10 @@
       "empty": "Aucun produit trouvé",
       "from": "Depuis",
       "filter_and_sort": "Filtrer et trier",
-      "filter_by_label": "Filtre",
+      "filter_by_label": "Filtrer par catégorie",
       "filter_button": "Appliquer",
       "filter_cancel_button": "Annuler",
-      "filter_show_more": "Montre plus",
+      "filter_show_more": "Montrer plus",
       "filter_show_less": "Montrer moins",
       "filters_selected": {
         "one": "{{ count }} choisi",
