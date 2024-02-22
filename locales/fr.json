@@ -5,8 +5,8 @@
     "minutes": "Minutes",
     "seconds": "Secondes",
     "password_page": {
-      "login_form_heading": "Entrez dans le magasin en utilisant le mot de passe :",
-      "login_password_button": "Entrez en utilisant le mot de passe",
+      "login_form_heading": "Entrer dans le magasin avec votre mot de passe :",
+      "login_password_button": "Entrer avec votre mot de passe",
       "login_form_password_label": "Mot de passe",
       "login_form_password_placeholder": "Votre mot de passe",
       "login_form_error": "Mauvais mot de passe!",
