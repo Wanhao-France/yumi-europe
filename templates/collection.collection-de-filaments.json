@@ -3,7 +3,7 @@
     "promotion_banner_hBzUQg": {
       "type": "promotion-banner",
       "custom_css": [
-        "h5 {font-size: 10px;}"
+
       ],
       "settings": {
         "full_width": true,
