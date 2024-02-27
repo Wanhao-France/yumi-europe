@@ -15,10 +15,10 @@
         "btnbgcolor": "#000000",
         "btnborder": "#000000",
         "section_visibility": "always",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
+        "top_space_desktop": 15,
+        "bottom_space_desktop": 15,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
       }
     },
     "main-collection": {
