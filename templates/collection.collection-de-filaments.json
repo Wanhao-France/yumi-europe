@@ -3,7 +3,7 @@
     "rotating_text_TjxrVm": {
       "type": "rotating-text",
       "settings": {
-        "text1": "<p>Les légos offerts avec vos commandes de filament sont tous partis...Nous aurons de nouvelles surprises pour vous très prochainement.<\/p>",
+        "text1": "<p>Nous avons vidé notre stock de légos offerts avec vos commande pour vous...Nous aurons de nouvelles surprises pour vous très prochainement.<\/p>",
         "text2": "",
         "row1_font_family": "--font-family",
         "row2_font_family": "--font-family",
@@ -25,6 +25,27 @@
         "bottom_space_desktop": 10,
         "top_space_mobile": 15,
         "bottom_space_mobile": 15
+      }
+    },
+    "promotion_banner_hBzUQg": {
+      "type": "promotion-banner",
+      "settings": {
+        "full_width": true,
+        "border_radius": 5,
+        "heading": "",
+        "text": "Les légos offerts avec vos commandes de filament sont tous partis...Nous aurons de nouvelles surprises pour vous très prochainement.",
+        "label": "",
+        "link": "",
+        "textcolor": "#000000",
+        "bgcolor": "#F8F8F8",
+        "btntextcolor": "#ffffff",
+        "btnbgcolor": "#000000",
+        "btnborder": "#000000",
+        "section_visibility": "always",
+        "top_space_desktop": 30,
+        "bottom_space_desktop": 30,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
       }
     },
     "main-collection": {
@@ -100,6 +121,7 @@
   },
   "order": [
     "rotating_text_TjxrVm",
+    "promotion_banner_hBzUQg",
     "main-collection",
     "8231b1f4-8107-414d-9432-3a48f23e000d"
   ]
