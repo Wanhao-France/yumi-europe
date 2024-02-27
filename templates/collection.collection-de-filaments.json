@@ -1,12 +1,39 @@
 {
   "sections": {
+    "rotating_text_TjxrVm": {
+      "type": "rotating-text",
+      "settings": {
+        "text1": "<p>Nous avons vidé notre stock de légos pour vous avec vos filaments...Nous aurons de nouvelles surprises pour vous très prochainement.<\/p>",
+        "text2": "",
+        "row1_font_family": "--font-family",
+        "row2_font_family": "--font-family",
+        "row1_direction": "right",
+        "row2_direction": "right",
+        "heading_font_size": 16,
+        "subheading_font_size": 26,
+        "heading_font_size_m": 18,
+        "subheading_font_size_m": 16,
+        "section_border": true,
+        "bgcolor": "#ffffff",
+        "bg_gradient_color": "",
+        "text1color": "#000000",
+        "outlinetext1color": "#000000",
+        "text2color": "#a56748",
+        "outlinetext2color": "#a56748",
+        "section_visibility": "large",
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
+    },
     "promotion_banner_hBzUQg": {
       "type": "promotion-banner",
       "settings": {
         "full_width": true,
-        "border_radius": 0,
+        "border_radius": 5,
         "heading": "",
-        "text": "Les légos offerts avec vos commandes de filament sont tous partis...Nous aurons de nouvelles surprises pour vous très prochainement.",
+        "text": "Nous avons vidé notre stock de légos pour vous...Nous aurons de nouvelles surprises pour vous très prochainement.",
         "label": "",
         "link": "",
         "textcolor": "#000000",
@@ -93,6 +120,7 @@
     }
   },
   "order": [
+    "rotating_text_TjxrVm",
     "promotion_banner_hBzUQg",
     "main-collection",
     "8231b1f4-8107-414d-9432-3a48f23e000d"
