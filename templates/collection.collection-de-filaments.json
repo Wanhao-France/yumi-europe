@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "rotating_text_TjxrVm": {
+      "type": "rotating-text",
+      "settings": {
+        "text1": "<p>Nous sommes en rupture de petits légos à vous offrir avec vos bobines...Nous aurons de nouvelles surprises pour vous très prochainement.<\/p>",
+        "text2": "",
+        "row1_font_family": "--font-family",
+        "row2_font_family": "--font-family",
+        "row1_direction": "right",
+        "row2_direction": "right",
+        "heading_font_size": 16,
+        "subheading_font_size": 26,
+        "heading_font_size_m": 18,
+        "subheading_font_size_m": 16,
+        "section_border": true,
+        "bgcolor": "#ffffff",
+        "bg_gradient_color": "",
+        "text1color": "#000000",
+        "outlinetext1color": "#000000",
+        "text2color": "#a56748",
+        "outlinetext2color": "#a56748",
+        "section_visibility": "large",
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 15,
+        "bottom_space_mobile": 15
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "settings": {
+        "collection_title": false,
+        "seo_heading": "h2",
+        "collection_description": false,
+        "pagination_type": "infinite",
+        "products_per_page": 14,
+        "enable_filtering": true,
+        "filters_layout": "sidebar",
+        "enable_sorting": true,
+        "enable_display_options": false,
+        "collection_image": false,
+        "banner_height_desktop": "100px",
+        "banner_height_mobile": "100px",
+        "bgcolor": "#f8f8f8",
+        "textcolor": "#000000"
+      }
+    },
+    "8231b1f4-8107-414d-9432-3a48f23e000d": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0": {
+          "type": "column",
+          "settings": {
+            "icon": "secure",
+            "heading": "Paiement 100% Sécurisé",
+            "seo_heading": "h2",
+            "subtext": ""
+          }
+        },
+        "column_7X8YMT": {
+          "type": "column",
+          "settings": {
+            "icon": "global",
+            "heading": "Stock France",
+            "seo_heading": "h2",
+            "subtext": ""
+          }
+        },
+        "column_PhQigW": {
+          "type": "column",
+          "settings": {
+            "icon": "heart",
+            "heading": "Products designed in France",
+            "seo_heading": "h2",
+            "subtext": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16809123774757__8231b1f4-8107-414d-9432-3a48f23e000d-166781443747b75229-0",
+        "column_7X8YMT",
+        "column_PhQigW"
+      ],
+      "settings": {
+        "column_background": false,
+        "mobile_column_count": "1",
+        "icon_background": true,
+        "icon_position": "top",
+        "bgcolor": "secondary",
+        "column_background_color": "#130f32",
+        "icon_background_color": "#130f32",
+        "section_visibility": "always",
+        "top_space_desktop": 10,
+        "bottom_space_desktop": 10,
+        "top_space_mobile": 30,
+        "bottom_space_mobile": 30
+      }
+    }
+  },
+  "order": [
+    "rotating_text_TjxrVm",
+    "main-collection",
+    "8231b1f4-8107-414d-9432-3a48f23e000d"
+  ]
+}
