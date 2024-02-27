@@ -4,7 +4,7 @@
       "type": "promotion-banner",
       "settings": {
         "full_width": true,
-        "border_radius": 5,
+        "border_radius": 2,
         "heading": "",
         "text": "Nous avons vidé notre stock de légos offerts avec vos commandes de filament...Nous aurons de nouvelles surprises pour vous très prochainement.",
         "label": "",
@@ -14,11 +14,11 @@
         "btntextcolor": "#ffffff",
         "btnbgcolor": "#000000",
         "btnborder": "#000000",
-        "section_visibility": "always",
+        "section_visibility": "large",
         "top_space_desktop": 15,
         "bottom_space_desktop": 15,
-        "top_space_mobile": 15,
-        "bottom_space_mobile": 15
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 5
       }
     },
     "main-collection": {
