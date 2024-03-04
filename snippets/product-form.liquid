@@ -76,7 +76,7 @@
             </div>
           {%- endif -%}
         {%- when 'sku' -%}
-          <p class="yv-product-sku" data-variant-sku {{ block.shopify_attributes }}>{{ current_variant.sku }}</p>
+          <p class="yv-product-sku" data-variant-sku {{ block.shopify_attributes }}>SKU: {{ current_variant.sku }}</p>
 
         {%- when 'text' -%}
           <p class="yv-product-detail-desc" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>

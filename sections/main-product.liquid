@@ -139,7 +139,6 @@
     {% endif %}
     "description": "{{ product.description | strip_html | escape }}",
     {% if product.selected_or_first_available_variant.sku != blank %}
-
       "sku": "{{ product.selected_or_first_available_variant.sku }}",
     {% endif %}
     "brand": {

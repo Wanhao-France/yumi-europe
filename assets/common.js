@@ -582,7 +582,7 @@ productVariants = function (section = document) {
             "[data-variant-sku ]"
           );
           if (variantSkuContainer) {
-            variantSkuContainer.innerHTML = variantSku;
+            variantSkuContainer.innerHTML = "SKU: " + variantSku;
           }
           sellingPlans(getVariant, _productParent);
 

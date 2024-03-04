@@ -451,3 +451,31 @@ document.addEventListener('DOMContentLoaded', function () {
     showCustomNotification(notificationMessage, 'info', expirationTime);
   }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  var popupInner = document.querySelector('.yv-login-popup-inner');
+  if (popupInner) {
+      // Crear el botón de cerrar
+      var closeButton = document.createElement('button');
+      closeButton.classList.add('button__close--styles');
+
+      // Agregar el ícono como contenido del botón
+      var icon = document.createElement('i');
+      icon.classList.add('fas', 'fa-times'); // Agregar las clases de Font Awesome para el icono de "X"
+      closeButton.appendChild(icon);
+
+      // Agregar evento de clic al botón de cerrar
+      closeButton.addEventListener('click', function() {
+          closePopup();
+      });
+
+      // Insertar el botón de cerrar dentro del popupInner
+      popupInner.appendChild(closeButton);
+  }
+});
+
+// Función para cerrar el popup
+function closePopup() {
+  // Ocultar el popup estableciendo su clase adecuada
+  document.body.classList.remove('account-popup-open');
+}

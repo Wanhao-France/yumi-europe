@@ -8423,6 +8423,18 @@ body.account-popup-open .yv-login-popup {
   display: block !important;
 }
 
+.button__close--styles{
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bolder;
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 /* split slider css start here */
 
 .yv-split-image-banner-container {
@@ -9444,6 +9456,7 @@ body.account-popup-open .yv-login-popup {
 #content-c565924 {
   min-width: 100%;
 }
+
 
 @media only screen and (max-width: 600px) {
   .grid {
