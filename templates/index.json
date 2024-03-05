@@ -123,7 +123,7 @@
           "type": "image",
           "settings": {
             "image_width": "col-md-3",
-            "image": "shopify:\/\/shop_images\/Nano-Bob-2.webp",
+            "image": "shopify:\/\/shop_images\/nano-starwars.webp",
             "heading": "",
             "seo_heading": "h2",
             "enable_text_shadow": false,
