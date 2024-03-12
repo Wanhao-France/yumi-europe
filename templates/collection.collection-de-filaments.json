@@ -1,29 +1,5 @@
 {
   "sections": {
-    "promotion_banner_hBzUQg": {
-      "type": "promotion-banner",
-      "custom_css": [
-
-      ],
-      "settings": {
-        "full_width": true,
-        "border_radius": 2,
-        "heading": "",
-        "text": "Nous avons vidé notre stock de légos offerts avec vos commandes de filament...Nous aurons de nouvelles surprises pour vous très prochainement.",
-        "label": "",
-        "link": "",
-        "textcolor": "#000000",
-        "bgcolor": "#F8F8F8",
-        "btntextcolor": "#ffffff",
-        "btnbgcolor": "#000000",
-        "btnborder": "#000000",
-        "section_visibility": "large",
-        "top_space_desktop": 15,
-        "bottom_space_desktop": 15,
-        "top_space_mobile": 0,
-        "bottom_space_mobile": 5
-      }
-    },
     "main-collection": {
       "type": "main-collection",
       "settings": {
@@ -96,7 +72,6 @@
     }
   },
   "order": [
-    "promotion_banner_hBzUQg",
     "main-collection",
     "8231b1f4-8107-414d-9432-3a48f23e000d"
   ]
