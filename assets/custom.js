@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
     if (priceValue < 100) {
       parentContainer.style.display = 'none'
+      container.style.display = "none"
     } else {
       if (!isNaN(priceValue)) {
         const installmentPrice = (priceValue / 4).toFixed(2);

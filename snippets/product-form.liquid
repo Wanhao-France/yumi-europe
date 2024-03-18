@@ -143,6 +143,13 @@
                 assign optionIndex = forloop.index
                 assign varOptionIndex = 'option' | append: forloop.index
               -%}
+              {% if product.type == 'Filament' %}
+                <style>
+                  .select-couleur.product-option-selector.no-js-hidden {
+                    display: none;
+                  }
+                </style>
+              {% endif %}
               <div
                 class="{% if colorOptions contains downOption %}select-color{% else %}select-{{ downOption }}{% endif %} product-option-selector no-js-hidden"
                 {{ block.shopify_attributes }}
