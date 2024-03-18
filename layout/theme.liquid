@@ -50,8 +50,8 @@
     style="--layoutRadius:{% if settings.layout_style == 'rounded' %}10px{% else %}0px{% endif %};"
   >
     <div id="spinner-container" class="spinner-container">
-  <div class="spinner"></div>
-</div>
+      <div class="spinner"></div>
+    </div>
     <div id="notification-container"></div>
     <a class="skip-to-content-link button yv-visually-hidden focus-inside" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
@@ -123,9 +123,6 @@
         </div>
       </div>
     {% endif %}
-    <script>
-      var productData = {{ product | json | escape }};
-    </script>
     <script src="https://kit.fontawesome.com/a5ab2ef8e3.js" crossorigin="anonymous" defer="defer"></script>
     <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
     <!-- TTC -->

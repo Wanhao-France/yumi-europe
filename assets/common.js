@@ -451,7 +451,7 @@ function stopFocusElementsRotation() {
   document.removeEventListener("focusout", focusElementsList.focusout);
   document.removeEventListener("keydown", focusElementsList.keydown);
 }
-productVariants = function (section = document) {
+export function productVariants(section = document) {
    var productContainers = section.getElementsByClassName('yv_product_content_section');
     Array.from(productContainers).forEach(function (productContainer,index) {
   let selectIds = productContainer.querySelectorAll('[name="id"]');
