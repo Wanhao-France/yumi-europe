@@ -1,4 +1,4 @@
-{%- liquid 
+{%- liquid
   assign current_variant = product.selected_or_first_available_variant
   assign second_image = ''
 
@@ -13,7 +13,7 @@
   endif
   assign productImageSize = '450x'
   if imageSize
-  assign sale-badge = imageSize
+    assign sale-badge = imageSize
   endif
   if settings.product_image_style == 'landscape'
     assign productImageRatio = 75
@@ -24,355 +24,476 @@
   endif
   assign productInfoAlignment = settings.product_grid_content_alignment
 -%}
-<div class="yv-product-card{% if settings.layout_style == 'rounded' or customRadius %} product-grid-layout-rounded{% endif %} {{ productClasses }}" {{ mainAttr }} data-product-main-grid>
-  <div class="animated-grid" {% if settings.enable_animation %}{{ animationAttr }}{% endif %}>
-    <div class="yv-product-card-img {% unless hideHoverImage %}{% if onProductHover == 'image' and second_image != blank %}yv-product-hover-image{% elsif onProductHover == 'slider' and product.media.size > 1%}yv-product-hover-slider{% endif %}{% endunless %}" tabindex="-1">
-      <a class="yv-product-img {% if settings.pass_through_product_images %} pass-through-color{% endif %}" href="{{ product.url | within : collection }}" tabindex="-1">
+<div
+  class="yv-product-card{% if settings.layout_style == 'rounded' or customRadius %} product-grid-layout-rounded{% endif %} {{ productClasses }}"
+  {{ mainAttr }}
+  data-product-main-grid
+>
+  <div
+    class="animated-grid"
+    {% if settings.enable_animation %}
+      {{- animationAttr -}}
+    {% endif %}
+  >
+    <div
+      class="yv-product-card-img {% unless hideHoverImage %}{% if onProductHover == 'image' and second_image != blank %}yv-product-hover-image{% elsif onProductHover == 'slider' and product.media.size > 1%}yv-product-hover-slider{% endif %}{% endunless %}"
+      tabindex="-1"
+    >
+      <a
+        class="yv-product-img {% if settings.pass_through_product_images %} pass-through-color{% endif %}"
+        href="{{ product.url | within : collection }}"
+        tabindex="-1"
+      >
         {%- if product.featured_media != blank -%}
-        <div class="image-wrapper image-{{ settings.product_image_style }}" {% if settings.product_image_style == 'aspect'%}style="padding-bottom:{{ 1 | divided_by : product.featured_media.preview_image.aspect_ratio | times: 100 | minus : 1 }}%"{% endif %} data-product-grid-main-image>
-          {%- render 'lazy-image' image: product.featured_media.preview_image, class: 'product-first-img', width: productImageSize -%}
-        </div>
-        {%- if onProductHover == 'image' and  second_image != blank -%}     
-          {%- render 'lazy-image' image: second_image , class: 'product-second-img', width: productImageSize -%}
-        {%- endif -%}
+          <div
+            class="image-wrapper image-{{ settings.product_image_style }}"
+            {% if settings.product_image_style == 'aspect' %}
+              style="padding-bottom:{{ 1 | divided_by : product.featured_media.preview_image.aspect_ratio | times: 100 | minus : 1 }}%"
+            {% endif %}
+            data-product-grid-main-image
+          >
+            {%- render 'lazy-image',
+              image: product.featured_media.preview_image,
+              class: 'product-first-img',
+              width: productImageSize
+            -%}
+          </div>
+          {%- if onProductHover == 'image' and second_image != blank -%}
+            {%- render 'lazy-image', image: second_image, class: 'product-second-img', width: productImageSize -%}
+          {%- endif -%}
         {%- else -%}
-        {%- if settings.product_image_style != 'aspect' -%}
-        <div class="image-wrapper no-product-image image-{{ settings.product_image_style }}">
+          {%- if settings.product_image_style != 'aspect' -%}
+            <div class="image-wrapper no-product-image image-{{ settings.product_image_style }}">
+          {%- endif -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- if settings.product_image_style != 'aspect' -%}
+            </div>
+          {%- endif -%}
         {%- endif -%}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {%- if settings.product_image_style != 'aspect' -%}
-        </div>
-        {%- endif -%}
-        {%- endif -%}
-      {%- unless hideHoverImage -%}
-      {%- if onProductHover == 'slider' and product.media.size > 1 -%}  
-      {%- capture hoverSettings -%}
+        {%- unless hideHoverImage -%}
+          {%- if onProductHover == 'slider' and product.media.size > 1 -%}
+            {%- capture hoverSettings -%}
         {%- if settings.product_hover_auto_slide -%}
         "prevNextButtons":false,"pageDots":true,"autoPlay":1500,
         {%- else -%}
         "prevNextButtons":false,"pageDots":false,
         {%- endif -%}
       {%- endcapture -%}
-      <div class="main-slider-wrapper">   
-        <div class="sd-main-Slider" {% if product.media.size > 2 %}data-flickity-hover-slider='{"fade":true,"wrapAround":true,"contain":true,{{- hoverSettings -}}"pauseAutoPlayOnHover": false}'{% endif %}>        
-        {%- for media in product.media offset : 1 limit : 5 -%}
-              <div class="sd-slide-wrapper sd-active-slider">  
-                <div class="yv-product-img">
-                  <div class="image-wrapper image-{{ settings.product_image_style }}" {% if settings.product_image_style == 'aspect'%}style="padding-bottom:{{ 1 | divided_by : media.preview_image.aspect_ratio | times: 100 | minus : 1 }}%"{% endif %}>
-                  {%- render 'lazy-image'  image: media.preview_image, class : 'lazypreload', width: productImageSize -%}
+            <div class="main-slider-wrapper">
+              <div
+                class="sd-main-Slider"
+                {% if product.media.size > 2 %}
+                  data-flickity-hover-slider='{"fade":true,"wrapAround":true,"contain":true,{{- hoverSettings -}}"pauseAutoPlayOnHover": false}'
+                {% endif %}
+              >
+                {%- for media in product.media offset: 1 limit: 5 -%}
+                  <div class="sd-slide-wrapper sd-active-slider">
+                    <div class="yv-product-img">
+                      <div
+                        class="image-wrapper image-{{ settings.product_image_style }}"
+                        {% if settings.product_image_style == 'aspect' %}
+                          style="padding-bottom:{{ 1 | divided_by : media.preview_image.aspect_ratio | times: 100 | minus : 1 }}%"
+                        {% endif %}
+                      >
+                        {%- render 'lazy-image',
+                          image: media.preview_image,
+                          class: 'lazypreload',
+                          width: productImageSize
+                        -%}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                {%- endfor -%}
               </div>
-          {%- endfor -%}
-        </div>
-      </div>
-      {%- endif -%}
-      {%- endunless -%}
+            </div>
+          {%- endif -%}
+        {%- endunless -%}
       </a>
       {% if product.media.size > 2 %}
-      {%- unless settings.product_hover_auto_slide  -%}
-        <button class="slider-button slider-button-prev">
-          <svg class="flickity-button-icon" viewBox="0 0 100 100">
-            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
-          </svg>
-        </button>
-        <button class="slider-button slider-button-next">
-          <svg class="flickity-button-icon" viewBox="0 0 100 100">
-            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path>
-          </svg>
-        </button>
-      {%- endunless -%}
+        {%- unless settings.product_hover_auto_slide -%}
+          <button class="slider-button slider-button-prev">
+            <svg class="flickity-button-icon" viewBox="0 0 100 100">
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
+            </svg>
+          </button>
+          <button class="slider-button slider-button-next">
+            <svg class="flickity-button-icon" viewBox="0 0 100 100">
+              <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path>
+            </svg>
+          </button>
+        {%- endunless -%}
       {%- endif -%}
       {%- if product.compare_at_price_min > product.price_min -%}
-      {%- if settings.show_saved_amount -%}
-        {% assign offText = 'products.product.off' | t %}
-        {%- if settings.saved_amount_style == 'percentage' -%}
-        <span class="discounts" tabindex="-1">
-          {{- product.compare_at_price_min | minus: product.price_min | times: 100 | divided_by: product.compare_at_price_min | append: '% ' | append: offText }}
-        </span>
-        {%- else -%}
-        <span class="discounts" tabindex="-1">{{ product.compare_at_price_min | minus: product.price_min | money | append: ' ' | append: offText }}</span>
-        {%- endif -%}
+        {%- if settings.show_saved_amount -%}
+          {% assign offText = 'products.product.off' | t %}
+          {%- if settings.saved_amount_style == 'percentage' -%}
+            <span class="discounts" tabindex="-1">
+              {{-
+                product.compare_at_price_min
+                | minus: product.price_min
+                | times: 100
+                | divided_by: product.compare_at_price_min
+                | append: '% '
+                | append: offText
+              }}
+            </span>
+          {%- else -%}
+            <span class="discounts" tabindex="-1">
+              {{- product.compare_at_price_min | minus: product.price_min | money | append: ' ' | append: offText -}}
+            </span>
+          {%- endif -%}
         {%- endif -%}
       {%- endif -%}
       {%- unless hide_options -%}
-      {%- unless settings.show_quick_view == false and settings.show_atc == false -%}
-      <ul class="list-unstyled yv-product-options" tabindex="-1">
-        {%- if settings.show_quick_view -%}
-        <li >
-          <a tabindex="-1" href="{{ product.url }}" class="quickView" data-href="{{ product.url }}" aria-label="{{ 'general.quick_view_heading' | t }}" tabindex="-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="12.32" viewBox="0 0 21.312 12.32">
-            <path  d="M700.034,2910.26h-0.042a3.653,3.653,0,0,0-2.506,1.06,3.047,3.047,0,0,0-.943,2.22,3.391,3.391,0,0,0,3.524,3.14h0.117a3.384,3.384,0,0,0,3.449-3.23A3.427,3.427,0,0,0,700.034,2910.26Zm-1.52,4.43a1.713,1.713,0,0,1-.518-1.25,1.942,1.942,0,0,1,2.021-1.79h0.042a1.939,1.939,0,0,1,1.979,1.82,1.961,1.961,0,0,1-2.021,1.83h0A2.145,2.145,0,0,1,698.514,2914.69Zm11.951-1.68h0c-0.192-.23-4.719-5.66-10.481-5.66-5.6,0-9.989,5.05-10.482,5.66a0.79,0.79,0,0,0,0,.98c0.484,0.57,4.844,5.66,10.482,5.66s10.022-5.06,10.481-5.66A0.794,0.794,0,0,0,710.465,2913.01Zm-1.862.49c-1.153,1.22-4.644,4.52-8.619,4.52s-7.467-3.33-8.62-4.55c1.153-1.21,4.644-4.5,8.62-4.5s7.466,3.29,8.619,4.5v0.03Z" transform="translate(-689.344 -2907.34)"></path>
-            </svg>
+        {%- unless settings.show_quick_view == false and settings.show_atc == false -%}
+          <ul class="list-unstyled yv-product-options" tabindex="-1">
+            {%- if settings.show_quick_view -%}
+              <li>
+                <a
+                  tabindex="-1"
+                  href="{{ product.url }}"
+                  class="quickView"
+                  data-href="{{ product.url }}"
+                  aria-label="{{ 'general.quick_view_heading' | t }}"
+                  tabindex="-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="12.32" viewBox="0 0 21.312 12.32">
+                    <path  d="M700.034,2910.26h-0.042a3.653,3.653,0,0,0-2.506,1.06,3.047,3.047,0,0,0-.943,2.22,3.391,3.391,0,0,0,3.524,3.14h0.117a3.384,3.384,0,0,0,3.449-3.23A3.427,3.427,0,0,0,700.034,2910.26Zm-1.52,4.43a1.713,1.713,0,0,1-.518-1.25,1.942,1.942,0,0,1,2.021-1.79h0.042a1.939,1.939,0,0,1,1.979,1.82,1.961,1.961,0,0,1-2.021,1.83h0A2.145,2.145,0,0,1,698.514,2914.69Zm11.951-1.68h0c-0.192-.23-4.719-5.66-10.481-5.66-5.6,0-9.989,5.05-10.482,5.66a0.79,0.79,0,0,0,0,.98c0.484,0.57,4.844,5.66,10.482,5.66s10.022-5.06,10.481-5.66A0.794,0.794,0,0,0,710.465,2913.01Zm-1.862.49c-1.153,1.22-4.644,4.52-8.619,4.52s-7.467-3.33-8.62-4.55c1.153-1.21,4.644-4.5,8.62-4.5s7.466,3.29,8.619,4.5v0.03Z" transform="translate(-689.344 -2907.34)"></path>
+                  </svg>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.show_atc -%}
+              {%- if product.has_only_default_variant or product.variants.size == 1 -%}
+                {%- if product.available -%}
+                  {%- assign formID = productFormId | append: '-' | append: product.id -%}
+                  <li class="yv-product-grid-form">
+                    {%- form 'product',
+                      product,
+                      id: formID,
+                      data-product-form: '',
+                      data-product-handle: product.handle,
+                      data-enable-history-state: 'true'
+                    -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      <button
+                        type="submit"
+                        class="Sd_addProduct"
+                        aria-label="{{ 'products.product.add_to_cart' | t }}"
+                        tabindex="-1"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17">
+                          <path  d="M811.524,2918.03a1.485,1.485,0,1,1-1.516,1.48A1.5,1.5,0,0,1,811.524,2918.03Zm6.579,0a1.485,1.485,0,1,1-1.516,1.48A1.5,1.5,0,0,1,818.1,2918.03Zm7.781-9.41a1.222,1.222,0,0,0-1.01-.59H810.352l-0.688-4.02h-4.638a0.99,0.99,0,1,0,0,1.98h2.941l0.636,3.83,0.89,6.06a1.212,1.212,0,0,0,1.2.99h10.329a1.228,1.228,0,0,0,1.01-.6l3.81-6.52A1.19,1.19,0,0,0,825.884,2908.62Zm-5.336,6.33h-9.155l-0.718-4.95h12.764Z" transform="translate(-804 -2904)"></path>
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          style="margin: auto; display: none; shape-rendering: auto;"
+                          width="200px"
+                          height="200px"
+                          viewBox="0 0 100 100"
+                          preserveAspectRatio="xMidYMid"
+                          class="svg-loader"
+                        >
+                          <circle cx="50" cy="50" fill="none" stroke="#000" stroke-width="6" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                          </circle>
+                        </svg>
+                      </button>
+                    {%- endform -%}
+                  </li>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          </ul>
+        {%- endunless -%}
+
+        {%- unless hideRelated or settings.show_similar == false -%}
+          {%- liquid
+            assign productUrl = routes.all_products_collection_url | append: '?section_id=similar-products&product=' | append: product.handle
+            assign nosimilar = false
+            if settings.similar_condition == 'vendor' or settings.similar_condition == 'both'
+              if product.vendor != blank
+                assign productUrl = productUrl | append: '&filter.p.vendor=' | append: product.vendor
+                assign nosimilar = true
+              endif
+            endif
+            if settings.similar_condition == 'type' or settings.similar_condition == 'both'
+              if product.type != blank
+                assign productUrl = productUrl | append: '&filter.p.product_type=' | append: product.type
+                assign nosimilar = true
+              endif
+            endif
+            assign productUrl = productUrl | append: '&nosimilar=' | append: nosimilar
+          -%}
+          {%- comment -%} theme-check-enable LiquidTag{%- endcomment -%}
+          <a
+            href="{{ product.url }}"
+            class="similar_options {% unless settings.show_similar_text == false %}similar-hover-text{% endunless %} no-js-hidden"
+            aria-label="{{ 'products.product.similar_products' | t }}"
+            data-url="{{ productUrl }}"
+            tabindex="-1"
+          >
+            <span class="vs-icon text-{{ settings.show_similar_text }}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 18 18"
+                style="enable-background:new 0 0 18 18;"
+                xml:space="preserve"
+              >
+                <g>
+                  <path d="M12,2.5H6c-0.7,0-1.3,0.6-1.3,1.3v10.5c0,0.7,0.6,1.3,1.3,1.3h6c0.7,0,1.3-0.6,1.3-1.3V3.7   C13.2,3.1,12.7,2.5,12,2.5z M12.2,3.7v10.5c0,0.1-0.1,0.2-0.2,0.2H6c-0.1,0-0.2-0.1-0.2-0.2V3.7c0-0.1,0.1-0.2,0.2-0.2h6   C12.1,3.5,12.2,3.6,12.2,3.7z"/>
+                  <path d="M3.5,14c-0.1,0-0.3,0-0.3-0.2L1,6.2C1,6.1,1,6.1,1,6c0,0,0.1-0.1,0.1-0.1l2.7-0.7v-1L0.9,5   C0.6,5.1,0.3,5.3,0.2,5.5C0,5.8,0,6.1,0,6.4l2.2,7.7C2.4,14.6,2.9,15,3.4,15c0.1,0,0.2,0,0.3-0.1l0.2-0.1v-1L3.5,14L3.5,14z"/>
+                  <path d="M17.1,5l-3-0.8v1l2.7,0.7c0.1,0,0.1,0,0.1,0.1c0,0,0,0.1,0,0.2l-2.1,7.7c0,0.1-0.2,0.2-0.3,0.2l-0.4-0.1v1   l0.1,0.1c0.1,0,0.2,0.1,0.4,0.1c0.5,0,1-0.3,1.2-0.9L18,6.4l0-0.1C18.1,5.8,17.7,5.2,17.1,5z"/>
+                </g>
+              </svg>
+              {%- unless settings.show_similar_text == false -%}
+                <span class="similar-text">{{ 'products.product.similar_products' | t }}</span>
+              {%- endunless -%}
+            </span>
           </a>
-        </li>
-        {%- endif -%}
-        {%- if settings.show_atc -%}
-        {%- if product.has_only_default_variant or product.variants.size == 1 -%}
-          {%- if product.available -%}
-          {%- assign formID = productFormId | append : '-' | append : product.id -%}
-          <li class="yv-product-grid-form">
-            {%- form 'product', product, id : formID, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' -%} 
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <button type="submit" class="Sd_addProduct" aria-label="{{ 'products.product.add_to_cart' | t }}" tabindex="-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="17" viewBox="0 0 22 17">
-                <path  d="M811.524,2918.03a1.485,1.485,0,1,1-1.516,1.48A1.5,1.5,0,0,1,811.524,2918.03Zm6.579,0a1.485,1.485,0,1,1-1.516,1.48A1.5,1.5,0,0,1,818.1,2918.03Zm7.781-9.41a1.222,1.222,0,0,0-1.01-.59H810.352l-0.688-4.02h-4.638a0.99,0.99,0,1,0,0,1.98h2.941l0.636,3.83,0.89,6.06a1.212,1.212,0,0,0,1.2.99h10.329a1.228,1.228,0,0,0,1.01-.6l3.81-6.52A1.19,1.19,0,0,0,825.884,2908.62Zm-5.336,6.33h-9.155l-0.718-4.95h12.764Z" transform="translate(-804 -2904)"></path>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                  style="margin: auto; display: none; shape-rendering: auto;" 
-                  width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="svg-loader" >
-                <circle cx="50" cy="50" fill="none" stroke="#000" stroke-width="6" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
-                  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
-                </circle>
-              </svg>
-            </button>
-            {%- endform -%}
-          </li>
+        {%- endunless -%}
+      {%- endunless -%}
+      {% if settings.enable_badges %}
+        {%- if product.available == false -%}
+          <div class="yv-product-badge sold-badge">
+            {% if product.tags contains 'sd_comingsoon'
+              and product.selected_or_first_available_variant.inventory_quantity <= 0
+              and product.selected_or_first_available_variant.inventory_policy == 'deny'
+            %}
+              Coming soon
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
+          </div>
+        {%- else -%}
+          {% if product.tags contains 'sd_preorder'
+            and product.selected_or_first_available_variant.inventory_quantity <= 0
+            and product.selected_or_first_available_variant.inventory_policy == 'continue'
+          %}
+            <div class="yv-product-badge sale-badge">Preorder</div>
+          {%- elsif product.compare_at_price > product.price -%}
+            <div class="yv-product-badge sale-badge">
+              {{ 'products.product.on_sale' | t }}
+            </div>
           {%- endif -%}
         {%- endif -%}
-        {%- endif -%}
-      </ul> 
-      {%- endunless -%}     
-      
-      {%- unless hideRelated or settings.show_similar == false -%} 
-      {%- liquid 
-
-        assign productUrl = routes.all_products_collection_url | append : '?section_id=similar-products&product=' | append: product.handle
-        assign nosimilar = false
-        if settings.similar_condition == 'vendor' or settings.similar_condition == 'both'
-          if product.vendor != blank
-            assign productUrl = productUrl | append :'&filter.p.vendor=' | append: product.vendor
-            assign nosimilar = true
-          endif
-        endif
-        if settings.similar_condition == 'type' or settings.similar_condition == 'both'
-          if product.type != blank
-          assign productUrl = productUrl | append :'&filter.p.product_type=' | append: product.type
-          assign nosimilar = true
-        endif
-      endif
-      assign productUrl = productUrl | append :'&nosimilar=' | append:nosimilar
-      -%}
-      {%- comment -%} theme-check-enable LiquidTag{%- endcomment -%}
-      <a href="{{ product.url }}" class="similar_options {% unless settings.show_similar_text == false %}similar-hover-text{% endunless %} no-js-hidden" aria-label="{{ 'products.product.similar_products' | t }}" data-url="{{ productUrl }}" tabindex="-1">
-        <span class="vs-icon text-{{ settings.show_similar_text }}">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
-            <g>
-              <path d="M12,2.5H6c-0.7,0-1.3,0.6-1.3,1.3v10.5c0,0.7,0.6,1.3,1.3,1.3h6c0.7,0,1.3-0.6,1.3-1.3V3.7   C13.2,3.1,12.7,2.5,12,2.5z M12.2,3.7v10.5c0,0.1-0.1,0.2-0.2,0.2H6c-0.1,0-0.2-0.1-0.2-0.2V3.7c0-0.1,0.1-0.2,0.2-0.2h6   C12.1,3.5,12.2,3.6,12.2,3.7z"/>
-              <path d="M3.5,14c-0.1,0-0.3,0-0.3-0.2L1,6.2C1,6.1,1,6.1,1,6c0,0,0.1-0.1,0.1-0.1l2.7-0.7v-1L0.9,5   C0.6,5.1,0.3,5.3,0.2,5.5C0,5.8,0,6.1,0,6.4l2.2,7.7C2.4,14.6,2.9,15,3.4,15c0.1,0,0.2,0,0.3-0.1l0.2-0.1v-1L3.5,14L3.5,14z"/>
-              <path d="M17.1,5l-3-0.8v1l2.7,0.7c0.1,0,0.1,0,0.1,0.1c0,0,0,0.1,0,0.2l-2.1,7.7c0,0.1-0.2,0.2-0.3,0.2l-0.4-0.1v1   l0.1,0.1c0.1,0,0.2,0.1,0.4,0.1c0.5,0,1-0.3,1.2-0.9L18,6.4l0-0.1C18.1,5.8,17.7,5.2,17.1,5z"/>
-            </g>
-          </svg>
-          {%- unless settings.show_similar_text == false -%} 
-          <span class="similar-text">{{ 'products.product.similar_products' | t }}</span>
-          {%- endunless -%}
-        </span>
-      </a>
-      {%- endunless -%}
-      {%- endunless -%}
-    {% if settings.enable_badges %}
-      {%- if product.available == false -%}
-        <div class="yv-product-badge sold-badge">
-          {% if product.tags contains 'sd_comingsoon' and product.selected_or_first_available_variant.inventory_quantity <= 0 and product.selected_or_first_available_variant.inventory_policy == 'deny' %}
-            Coming soon
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
-        </div> 
-      {%- else -%}
-        {% if product.tags contains 'sd_preorder' and product.selected_or_first_available_variant.inventory_quantity <= 0 and product.selected_or_first_available_variant.inventory_policy == 'continue' %}
-          <div class="yv-product-badge sale-badge"> 
-            Preorder
-          </div>
-        {%- elsif product.compare_at_price > product.price -%}
-          <div class="yv-product-badge sale-badge">
-            {{ 'products.product.on_sale' | t }}
-          </div>
-        {%- endif -%}
-      {%- endif -%}
       {% endif %}
     </div>
     <div class="yv-product-information {{ productInfoAlignment }}">
       {%- if settings.show_reviews -%}
-      {%- unless hideReviews -%}
-      {%- if product.metafields.reviews.rating_count > 0 -%}
-      {%- liquid 
-        assign productRating = product.metafields.reviews.rating.value.rating | floor
-        assign decimalProductRating = 0
-        assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
-        if decimal >= 0.3 and decimal <= 0.7
-          assign decimalProductRating = 0.5
-        endif 
-      -%}
-      <div class="ratingbox">
-        <span class="star-ratings">
-          {%- for i in (1..5) -%}
-          
-          {%- if i <= productRating -%}
-          <svg class="fill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 362" width="20" height="19">
-            <path fill-rule="evenodd"  fill="currentcolor" d="m204.7 10.5l37.5 116.1l122-0.3c15.4 0 21.2 19.1 7.7 28.9l-97.5 70.5l37.9 115.9c4.9 14.8-12.9 26.5-24.6 16.5l-97.6-71.2l-98.6 71.9c-13.4 9.7-28.2-3.4-22.6-20.4l36.9-112.7l-98.8-71.5c-12.6-9.1-5.2-28.9 10.1-27.9l120.9 0.3l37.5-116.1c4.5-14.2 24.7-14.1 29.2 0z" />
-          </svg>
-          {%- elsif productRating < i and decimalProductRating == 0.5 -%}
-          <svg class="half-fill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.89 19.01">
-            <defs><style>.d{fill:#ddd;}.e{fill:currentcolor;}</style></defs>
-            <g/>
-            <g>
-              <g>
-                <g>
-                  <path class="e" d="M9.18,.56l-1.97,6.09-6.35-.02c-.8-.05-1.19,.99-.53,1.46l5.19,3.75-1.94,5.92c-.29,.89,.48,1.58,1.19,1.07l5.17-3.77V0c-.32,0-.65,.19-.76,.56Z"/>
-                  <path class="d" d="M19.08,6.63l-6.4,.02L10.71,.56C10.59,.19,10.27,0,9.94,0V15.07h0l5.12,3.73c.61,.52,1.55-.09,1.29-.87l-1.99-6.08,5.12-3.7c.71-.51,.4-1.52-.4-1.52Z"/>
-                </g>
-              </g>
-            </g>
-          </svg>
-          {%- else -%}
-          <svg class="unfill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 362" width="20" height="19">
-            <path fill-rule="evenodd"  fill="#ddd" d="m204.7 10.5l37.5 116.1l122-0.3c15.4 0 21.2 19.1 7.7 28.9l-97.5 70.5l37.9 115.9c4.9 14.8-12.9 26.5-24.6 16.5l-97.6-71.2l-98.6 71.9c-13.4 9.7-28.2-3.4-22.6-20.4l36.9-112.7l-98.8-71.5c-12.6-9.1-5.2-28.9 10.1-27.9l120.9 0.3l37.5-116.1c4.5-14.2 24.7-14.1 29.2 0z" />
-          </svg>
+        {%- unless hideReviews -%}
+          {%- if product.metafields.reviews.rating_count > 0 -%}
+            {%- liquid
+              assign productRating = product.metafields.reviews.rating.value.rating | floor
+              assign decimalProductRating = 0
+              assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+              if decimal >= 0.3 and decimal <= 0.7
+                assign decimalProductRating = 0.5
+              endif
+            -%}
+            <div class="ratingbox">
+              <span class="star-ratings">
+                {%- for i in (1..5) -%}
+                  {%- if i <= productRating -%}
+                    <svg
+                      class="fill-review"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 380 362"
+                      width="20"
+                      height="19"
+                    >
+                      <path fill-rule="evenodd"  fill="currentcolor" d="m204.7 10.5l37.5 116.1l122-0.3c15.4 0 21.2 19.1 7.7 28.9l-97.5 70.5l37.9 115.9c4.9 14.8-12.9 26.5-24.6 16.5l-97.6-71.2l-98.6 71.9c-13.4 9.7-28.2-3.4-22.6-20.4l36.9-112.7l-98.8-71.5c-12.6-9.1-5.2-28.9 10.1-27.9l120.9 0.3l37.5-116.1c4.5-14.2 24.7-14.1 29.2 0z" />
+                    </svg>
+                  {%- elsif productRating < i and decimalProductRating == 0.5 -%}
+                    <svg class="half-fill-review" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.89 19.01">
+                      <defs><style>.d{fill:#ddd;}.e{fill:currentcolor;}</style></defs>
+                      <g/>
+                      <g>
+                        <g>
+                          <g>
+                            <path class="e" d="M9.18,.56l-1.97,6.09-6.35-.02c-.8-.05-1.19,.99-.53,1.46l5.19,3.75-1.94,5.92c-.29,.89,.48,1.58,1.19,1.07l5.17-3.77V0c-.32,0-.65,.19-.76,.56Z"/>
+                            <path class="d" d="M19.08,6.63l-6.4,.02L10.71,.56C10.59,.19,10.27,0,9.94,0V15.07h0l5.12,3.73c.61,.52,1.55-.09,1.29-.87l-1.99-6.08,5.12-3.7c.71-.51,.4-1.52-.4-1.52Z"/>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                  {%- else -%}
+                    <svg
+                      class="unfill-review"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 380 362"
+                      width="20"
+                      height="19"
+                    >
+                      <path fill-rule="evenodd"  fill="#ddd" d="m204.7 10.5l37.5 116.1l122-0.3c15.4 0 21.2 19.1 7.7 28.9l-97.5 70.5l37.9 115.9c4.9 14.8-12.9 26.5-24.6 16.5l-97.6-71.2l-98.6 71.9c-13.4 9.7-28.2-3.4-22.6-20.4l36.9-112.7l-98.8-71.5c-12.6-9.1-5.2-28.9 10.1-27.9l120.9 0.3l37.5-116.1c4.5-14.2 24.7-14.1 29.2 0z" />
+                    </svg>
+                  {%- endif -%}
+                {%- endfor -%}
+              </span>
+            </div>
           {%- endif -%}
-          {%- endfor -%}
-        </span>
-      </div>
-      {%- endif -%}  
-      {%- endunless -%}
-      {%- endif -%} 
+        {%- endunless -%}
+      {%- endif -%}
       {% if settings.show_vendor %}
-      <div class="yv-product-vendor-info">
-           {{ product.vendor }}  
-      </div>
+        <div class="yv-product-vendor-info">
+          {{ product.vendor }}
+        </div>
       {% endif %}
 
       {% liquid
-         if settings.show_inventory 
-           assign thershold = settings.inventory_threshold
-             if product.available 
-               assign stock = 0 
-               assign selling = false
-               assign lows_inventory= false
-                assign track_inventory = true
-                 for variant in product.variants 
-                    if variant.inventory_policy == "continue" 
-                      assign selling = true 
-                    endif
-                    if variant.inventory_management == null
-                        assign track_inventory = false
-                    endif
-                    if variant.inventory_quantity  == 0
-                      assign  lows_inventory = true
-                    endif
-                  if variant.inventory_quantity > 0
-                    assign stock = stock | plus: variant.inventory_quantity 
-                  endif
-                endfor
-                  if track_inventory == true
-                    if lows_inventory == true and selling and stock >= 0
-                       assign stockconent = 'products.product.in_stock' | t 
-                       assign stockClass="yv-instock"
-                    elsif selling == false and stock > 0 and stock > thershold 
-                       assign stockconent = 'products.product.in_stock_with_unit' | t :  stock : stock 
-                       assign stockClass="yv-instock"
-                    elsif stock > 0 and thershold > stock
-                      assign stockconent = 'products.product.low_stock' | t :  stock : stock
-                      assign stockClass="yv-lowstock"
-                    elsif stock <= 0 and selling == true
-                      assign stockconent = 'products.product.restock' | t
-                      assign stockClass="yv-restock"
-                    else
-                       assign stockconent = 'products.product.in_stock' | t 
-                       assign stockClass="yv-instock"
-                    endif
-                  elsif track_inventory == false
-                      if selling == true and track_inventory == false and stock > 0
-                       assign stockconent = 'products.product.in_stock' | t 
-                       assign stockClass="yv-instock"
-                      elsif selling == false and stock > 0 and stock > thershold 
-                         assign stockconent = 'products.product.in_stock_with_unit' | t :  stock : stock 
-                         assign stockClass="yv-instock"
-                      elsif stock > 0 and thershold > stock
-                        assign stockconent = 'products.product.low_stock' | t :  stock : stock
-                        assign stockClass="yv-lowstock"
-                      elsif stock <= 0 and selling == true
-                        assign stockconent = 'products.product.restock' | t
-                        assign stockClass="yv-restock"
-                    else
-                       assign stockconent = 'products.product.in_stock' | t 
-                       assign stockClass="yv-instock"
-                      endif
-                  endif
-                 else 
-                   assign stockconent ='products.product.out_of_stock' | t 
-                   assign stockClass="yv-outofstock"
-             endif    
-         endif 
-      %}  
-   
-      <a href="{{ product.url | within: collection }}" class="yv-product-title" title="{{ product.title | strip_html }}">{{ product.title | strip_html }}</a>
+        if settings.show_inventory
+          assign thershold = settings.inventory_threshold
+          if product.available
+            assign stock = 0
+            assign selling = false
+            assign lows_inventory = false
+            assign track_inventory = true
+            for variant in product.variants
+              if variant.inventory_policy == 'continue'
+                assign selling = true
+              endif
+              if variant.inventory_management == null
+                assign track_inventory = false
+              endif
+              if variant.inventory_quantity == 0
+                assign lows_inventory = true
+              endif
+              if variant.inventory_quantity > 0
+                assign stock = stock | plus: variant.inventory_quantity
+              endif
+            endfor
+            if track_inventory == true
+              if lows_inventory == true and selling and stock >= 0
+                assign stockconent = 'products.product.in_stock' | t
+                assign stockClass = 'yv-instock'
+              elsif selling == false and stock > 0 and stock > thershold
+                assign stockconent = 'products.product.in_stock_with_unit' | t: stock: stock
+                assign stockClass = 'yv-instock'
+              elsif stock > 0 and thershold > stock
+                assign stockconent = 'products.product.low_stock' | t: stock: stock
+                assign stockClass = 'yv-lowstock'
+              elsif stock <= 0 and selling == true
+                assign stockconent = 'products.product.restock' | t
+                assign stockClass = 'yv-restock'
+              else
+                assign stockconent = 'products.product.in_stock' | t
+                assign stockClass = 'yv-instock'
+              endif
+            elsif track_inventory == false
+              if selling == true and track_inventory == false and stock > 0
+                assign stockconent = 'products.product.in_stock' | t
+                assign stockClass = 'yv-instock'
+              elsif selling == false and stock > 0 and stock > thershold
+                assign stockconent = 'products.product.in_stock_with_unit' | t: stock: stock
+                assign stockClass = 'yv-instock'
+              elsif stock > 0 and thershold > stock
+                assign stockconent = 'products.product.low_stock' | t: stock: stock
+                assign stockClass = 'yv-lowstock'
+              elsif stock <= 0 and selling == true
+                assign stockconent = 'products.product.restock' | t
+                assign stockClass = 'yv-restock'
+              else
+                assign stockconent = 'products.product.in_stock' | t
+                assign stockClass = 'yv-instock'
+              endif
+            endif
+          else
+            assign stockconent = 'products.product.out_of_stock' | t
+            assign stockClass = 'yv-outofstock'
+          endif
+        endif
+      %}
+
+      <a
+        href="{{ product.url | within: collection }}"
+        class="yv-product-title"
+        title="{{ product.title | strip_html }}"
+      >
+        {{- product.title | strip_html -}}
+      </a>
       {%- if settings.show_price -%}
-      <div class="yv-prizebox" data-saved="{{ settings.show_saved_amount }}"  data-saved-style="{{ settings.saved_amount_style }}" data-price-wrapper="" {{ block.shopify_attributes }}>
-        {%- assign price_min = product.price_min | money -%}
-        {%- if product.price_varies -%}
-        <span class="yv-product-price price-varies">{{ 'products.product.price.from_price_html' | t : price : price_min }}</span>
-        {%- else -%}
-        <span class="yv-product-price">{{ price_min }}</span>
+        <div
+          class="yv-prizebox"
+          data-saved="{{ settings.show_saved_amount }}"
+          data-saved-style="{{ settings.saved_amount_style }}"
+          data-price-wrapper=""
+          {{ block.shopify_attributes }}
+        >
+          {%- assign price_min = product.price_min | money -%}
+          {%- if product.price_varies -%}
+            <span class="yv-product-price price-varies">
+              {{- 'products.product.price.from_price_html' | t: price: price_min -}}
+            </span>
+          {%- else -%}
+            <span class="yv-product-price">{{ price_min }}</span>
+          {%- endif -%}
+          {%- if product.compare_at_price_min > product.price_min -%}
+            <span class="yv-product-compare-price">{{ product.compare_at_price_min | money }}</span>
+          {%- endif -%}
+        </div>
+        {%- if current_variant.unit_price_measurement -%}
+          <p class="yv-product-unit-price">
+            {{ current_variant.unit_price | money }} /
+            {% if current_variant.unit_price_measurement.reference_value != 1 -%}
+              {{- current_variant.unit_price_measurement.reference_value -}}
+            {%- endif %}
+            {{ current_variant.unit_price_measurement.reference_unit }}
+          </p>
         {%- endif -%}
-        {%- if product.compare_at_price_min > product.price_min -%}
-        <span class="yv-product-compare-price">{{ product.compare_at_price_min | money }}</span>
-        {%- endif -%}
-      </div>
-      {%- if current_variant.unit_price_measurement -%}
-      <p class="yv-product-unit-price">
-        {{ current_variant.unit_price | money }} / {% if current_variant.unit_price_measurement.reference_value != 1 %}{{ current_variant.unit_price_measurement.reference_value }}{% endif %} {{ current_variant.unit_price_measurement.reference_unit }}
-      </p>
       {%- endif -%}
-      {%- endif -%}
-      
+
       {% if settings.show_inventory and hidestockcount != true %}
-        <p class="stock-status {{ stockClass }}"><span>{% render  'icons' icon:stockClass %}</span>{{ stockconent }}</p>
+        <p class="stock-status {{ stockClass }}">
+          <span>{% render 'icons', icon: stockClass %}</span>{{ stockconent }}
+        </p>
       {% endif %}
       {% unless hideCustomLabel %}
-      {% unless producttags  %}
-           <ul class="list-unstyled yv-product-card-label-container">
-               {% liquid
-                 assign custom_label1 = settings.custom_label1 | split:'.'
-                 assign key1 = custom_label1 | first
-                 assign value1 = custom_label1 | last
-                 assign custom_label2 = settings.custom_label2 | split:'.'
-                 assign key2 = custom_label2 | first
-                 assign value2 = custom_label2 | last
-                 assign custom_label3 = settings.custom_label3 | split:'.'
-                 assign key3 = custom_label3 | first
-                 assign value3 = custom_label3 | last
-                 assign custom_label4 = settings.custom_label4 | split:'.'
-                 assign key4 = custom_label4 | first
-                 assign value4 = custom_label4 | last
-               %}
-               {% if product.metafields[key1][value1] != blank %}
-               <li class="yv-product-card-label">
-                   {{ product.metafields[key1][value1] }}
-               </li>
-               {% endif %}
-              {% if product.metafields[key2][value2] != blank %}
-               <li class="yv-product-card-label">
-                   {{ product.metafields[key2][value2] }}
-               </li>
-              {% endif %}
-              {% if product.metafields[key3][value3] != blank %}
-               <li class="yv-product-card-label">
-                   {{ product.metafields[key3][value3] }}
-               </li>
-              {% endif %}
-              {% if product.metafields[key4][value4] != blank %}
-               <li class="yv-product-card-label">
-                   {{ product.metafields[key4][value4] }}
-               </li>
-              {% endif %}
+        {% unless producttags %}
+          <ul class="list-unstyled yv-product-card-label-container">
+            {% liquid
+              assign custom_label1 = settings.custom_label1 | split: '.'
+              assign key1 = custom_label1 | first
+              assign value1 = custom_label1 | last
+              assign custom_label2 = settings.custom_label2 | split: '.'
+              assign key2 = custom_label2 | first
+              assign value2 = custom_label2 | last
+              assign custom_label3 = settings.custom_label3 | split: '.'
+              assign key3 = custom_label3 | first
+              assign value3 = custom_label3 | last
+              assign custom_label4 = settings.custom_label4 | split: '.'
+              assign key4 = custom_label4 | first
+              assign value4 = custom_label4 | last
+            %}
+            {% if product.metafields[key1][value1] != blank %}
+              <li class="yv-product-card-label">
+                {{ product.metafields[key1][value1] }}
+              </li>
+            {% endif %}
+            {% if product.metafields[key2][value2] != blank %}
+              <li class="yv-product-card-label">
+                {{ product.metafields[key2][value2] }}
+              </li>
+            {% endif %}
+            {% if product.metafields[key3][value3] != blank %}
+              <li class="yv-product-card-label">
+                {{ product.metafields[key3][value3] }}
+              </li>
+            {% endif %}
+            {% if product.metafields[key4][value4] != blank %}
+              <li class="yv-product-card-label">
+                {{ product.metafields[key4][value4] }}
+              </li>
+            {% endif %}
           </ul>
-      {% endunless %}
+        {% endunless %}
       {% endunless %}
       {% unless hidePickup %}
-      {%- if settings.show_grid_pickup -%}
-          {%- render 'grid-pickup-availability' product : product -%}
-      {%- endif -%}
+        {%- if settings.show_grid_pickup -%}
+          {%- render 'grid-pickup-availability', product: product -%}
+        {%- endif -%}
       {% endunless %}
       {% if settings.enable_color_swatches %}
         {%- for option in product.options_with_values -%}
@@ -384,13 +505,18 @@
             <div class="select-color product-option-selector color-variants-wrapper">
               <ul class="list-unstyled product-loop-variants circle">
                 {%- for value in option.values limit: 5 -%}
-                  {% liquid 
-                    assign variantOption = 'option' | append: option.position 
+                  {% liquid
+                    assign variantOption = 'option' | append: option.position
                     assign colorVariant = product.variants | where: variantOption, value | first
                     assign variantValue = product.variants | where: variantOption, value | compact: 'featured_media' | first
                   -%}
                   <li class="color_option variant_option" data-color-wrapper>
-                    <label class="visually-hidden" for="product-{{ product.id }}_option-{{ forloop.index }}-{{ section.id }}-{{ index }}-{{ block.id }}-{{  value | handle }}">{{ value | escape }}</label>
+                    <label
+                      class="visually-hidden"
+                      for="product-{{ product.id }}_option-{{ forloop.index }}-{{ section.id }}-{{ index }}-{{ block.id }}-{{  value | handle }}"
+                    >
+                      {{- value | escape -}}
+                    </label>
                     <input
                       class="productOption"
                       id="product-{{ product.id }}_option-{{ forloop.index }}-{{ section.id }}-{{ index }}-{{ block.id }}-{{  value | handle }}"
@@ -399,22 +525,24 @@
                       value="{{ value | escape }}"
                       title="{{ value | escape }}"
                       tabindex="-1"
-                      {% if variantValue.featured_media != blank %} onClick="switchSwatchMedia(event)"{% endif %}
+                      {% if variantValue.featured_media != blank %}
+                        onClick="switchSwatchMedia(event)"
+                      {% endif %}
                     >
                     <span
                       class="option"
-                        data-color="{{ value }}"
-                        style="background-color:{{ value }};"
+                      data-color="{{ value }}"
+                      style="background-color:{{ value }};"
                     ></span>
                     {% if variantValue.featured_media != blank %}
-                    {% capture selectedColorImage %}
+                      {% capture selectedColorImage %}
                       <div class="media-content">
                       {%- render 'lazy-image' image: variantValue.featured_media, class: 'product-first-img', width: productImageSize -%}
                       </div>
                     {% endcapture %}
-                   <script>
-                      {{- selectedColorImage | json -}}
-                    </script>
+                      <script>
+                        {{- selectedColorImage | json -}}
+                      </script>
                     {% endif %}
                   </li>
                 {% endfor %}
@@ -428,8 +556,14 @@
               </ul>
             </div>
           {% endif %}
-        {% endfor %}   
-      {% endif %}           
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
-</div> 
+  <div
+    class="AirReviews-Widget AirReviews-Widget--Stars"
+    style="margin-top:0.7rem"
+    data-review-avg="{{ product.metafields.air_reviews_product.review_avg }}"
+    data-review-count="{{ product.metafields.air_reviews_product.review_count }}"
+  ></div>
+</div>

@@ -9457,6 +9457,28 @@ body.account-popup-open .yv-login-popup {
   min-width: 100%;
 }
 
+.AirReviews-StarRate .AirReviews-StarRate--Icon.AirReviews-StarRate-single-star>.Avada_Star-Icon span:first-child::before, .AirReviews-StarRate .AirReviews-StarRate--Icon.AirReviews-StarRate-single-star .Avada_Star-Icon::before {
+  color: #efb810 !important;
+}
+
+.navbar ul li:nth-child(6) > details-disclousre > div > .nav-link{
+  color: #efb810 !important;
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes flash {
+  from {
+    color: #efb810;
+    text-shadow: 0 0 5px rgba(255,255,255,0.8);
+  }
+  to {
+    color: white;
+    text-shadow: 0 0 10px rgba(237, 216, 132, 0.828);
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .grid {
