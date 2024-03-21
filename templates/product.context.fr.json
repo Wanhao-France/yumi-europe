@@ -11,7 +11,7 @@
         "16819786-9d1e-449d-966d-08d21e1c91af": {
           "settings": {
             "dynamic_checkout_btn": true,
-            "enable_fullwidth": true,
+            "enable_fullwidth": false,
             "enable_terms_checkbox": false
           }
         }
