@@ -338,7 +338,6 @@
         "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-embed\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
         "disabled": false,
         "settings": {
-          "air_reviews_json_ld": "{\n    \"@context\": \"http:\/\/schema.org\",\n    \"@type\": \"Product\",\n    \"name\": {{ product.title | json }},\n    \"aggregateRating\": {\n      \"@type\": \"AggregateRating\",\n      \"ratingValue\": {{  product.metafields.reviews.rating.value.rating |  json }},\n      \"reviewCount\": {{ product.metafields.reviews.rating_count |  json }}\n    }\n}"
         }
       },
       "15683396631634586217": {
@@ -359,6 +358,13 @@
         "type": "shopify:\/\/apps\/hulk-restock-back-in-stock\/blocks\/app-embed\/8b875ab4-abf0-4c7c-b35c-43d33469852d",
         "disabled": false,
         "settings": {
+        }
+      },
+      "10077418179866729617": {
+        "type": "shopify:\/\/apps\/hidepay\/blocks\/hidepay-frontend\/ced40b5a-eb19-49dc-a57f-5e5a6bca7bf9",
+        "disabled": false,
+        "settings": {
+          "drawerId": "additional-checkout-buttons"
         }
       }
     }
