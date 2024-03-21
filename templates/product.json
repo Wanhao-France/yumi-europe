@@ -53,7 +53,7 @@
           "type": "button",
           "settings": {
             "dynamic_checkout_btn": true,
-            "enable_fullwidth": true,
+            "enable_fullwidth": false,
             "show_subscriptions_plan": false,
             "show_recipient_form": false,
             "sticky_add_to_cart": true,
