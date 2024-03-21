@@ -239,9 +239,6 @@ function hideSpinner() {
   }
 }
 
-
-
-
 // Box pay in 4X/3X Animation
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('pay-credit-element');

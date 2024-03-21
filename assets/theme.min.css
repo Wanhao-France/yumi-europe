@@ -9469,6 +9469,64 @@ body.account-popup-open .yv-login-popup {
   animation-direction: alternate;
 }
 
+.pdp-action-container.yv-checkout-btn.dynamic-checkout-enabled {
+  display: flex;
+  justify-content: start;
+}
+
+/* Buy Buttons */
+.Sd_addProduct.add_to_cart.button.med-btn,
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f {
+  border: none;
+  color: #fff;
+  min-height: none;
+  flex: 1;
+  margin: 0;
+  min-height: 52px;
+  min-width: auto;
+}
+
+.Sd_addProduct.add_to_cart.button.med-btn {
+  border-radius: 15px 0 0 15px;
+  background-color: #FFA500;
+}
+
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f {
+  position: relative;
+  border-radius: 0 15px 15px 0;
+  background-color: #FF6347;
+  font-size: 0; 
+  transition: background-position 0.4s;
+}
+
+
+.Sd_addProduct.add_to_cart.button.med-btn:hover {
+  color: #000; 
+}
+
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:hover {
+  background-image: linear-gradient(to right, #FF6347 50%, #fff 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  color: #000; 
+  text-decoration: none;
+  transition: background-position 0.4s;
+}
+
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f::before {
+  content: "acheter maintenant";
+  font-size: 1rem; 
+}
+.shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f:not(:hover) {
+  background-position: left;
+}
+
+.shopify-payment-button > div > div > div > .shopify-payment-button__button.shopify-payment-button__button--branded.BUz42FHpSPncCPJ4Pr_f {
+ display: none;
+}
+
+/* End - Buy Buttons */
+
 @keyframes flash {
   from {
     color: #efb810;
