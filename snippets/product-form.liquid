@@ -604,6 +604,14 @@
                     {%- else -%}
                       {%- if preorder -%}
                         {{ 'products.product.preorder' | t }}
+                        <style>
+                          .shopify-payment-button__more-options.BUz42FHpSPncCPJ4Pr_f {
+                            display: none;
+                          }
+                          .Sd_addProduct.add_to_cart.button.med-btn {
+                            border-radius: 15px 15px 15px 15px;
+                          }
+                        </style>
                       {%- else -%}
                         {{ 'products.product.add_to_cart' | t }}
                       {%- endif -%}

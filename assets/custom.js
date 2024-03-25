@@ -414,3 +414,38 @@ document.addEventListener("DOMContentLoaded", function () {
 function closePopup() {
   document.body.classList.remove('account-popup-open');
 }
+
+
+// Delivery Time Functionality
+
+const containerDelivery = document.querySelector('.delivery-info');
+
+function getDeliveryMessage() {
+  const currentDate = new Date();
+  const currentDay = currentDate.getDay();
+  const currentHour = currentDate.getHours();
+
+  let deliveryMessage;
+
+  if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
+      deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
+  } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
+      deliveryMessage = "Commandé aujourd’hui, Expédié demain";
+  } else if ((currentDay === 5 && currentHour >= 13) || (currentDay === 6 && currentHour < 24)) {
+      deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
+  } else {
+      containerDelivery.style.display = "none";
+      return;
+  }
+
+  return deliveryMessage;
+}
+
+const deliveryMessage = getDeliveryMessage();
+if (deliveryMessage) {
+    document.querySelector('.delivery-info__message').textContent = deliveryMessage;
+    const deliveryLogoDiv = document.querySelector('.delivery-info__logo');
+    const img = document.createElement('img');
+    img.src = 'https://i.ibb.co/Z8zhZ0J/logo-delivery.jpg';
+    deliveryLogoDiv.appendChild(img);
+}
