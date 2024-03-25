@@ -78,7 +78,7 @@
     "show_atc": true,
     "show_reviews": true,
     "show_inventory": true,
-    "inventory_threshold": 30,
+    "inventory_threshold": 0,
     "show_hover": "slider",
     "product_hover_auto_slide": false,
     "enable_color_swatches": false,
