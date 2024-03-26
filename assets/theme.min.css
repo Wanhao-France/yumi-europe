@@ -9559,7 +9559,16 @@ body.account-popup-open .yv-login-popup {
 }
 
 .AirReviews-Widget.AirReviews-Widget--Stars {
-  cursor:default;
+  cursor: auto !important;
+  pointer-events: none;
+}
+
+.countdown-red {
+  color: red;
+}
+
+.close-button {
+  display: none;
 }
 
 @keyframes flash {

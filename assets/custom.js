@@ -308,79 +308,79 @@ document.addEventListener('DOMContentLoaded', function () {
   const notificationClosedCookie = 'notificationClosedTime';
   
   function showCustomNotification(expirationTime, message, type = 'info') {
-    const existingNotification = document.getElementById('custom-notification');
+      const existingNotification = document.getElementById('custom-notification');
   
-    if (existingNotification) {
-      existingNotification.remove();
-    }
-  
-    const notification = document.createElement('div');
-    notification.id = 'custom-notification';
-    notification.className = `notification ${type}`;
-  
-    const messageContainer = document.createElement('div');
-    messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`;
-  
-    const closeButton = document.createElement('button');
-    closeButton.innerHTML = '&times;';
-    closeButton.className = 'close-button';
-    closeButton.addEventListener('click', function () {
-      container.style.display = 'none';
-      setNotificationClosedCookie();
-    });
-
-  
-    notification.appendChild(messageContainer);
-    notification.appendChild(closeButton);
- 
-  
-    container.appendChild(notification);
-    container.style.display = 'block';
-  
-    const countdownElement = document.createElement('span');
-    countdownElement.classList.add('countdown');
-
-  
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = expirationTime - now;
-  
-      if (distance <= 0) {
-        clearInterval(countdownInterval);
-        container.style.display = 'none';
-      } else {
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        countdownElement.textContent = `${hours}:${minutes}`;
-        countdownElement.classList.add('countdown-red');
-        const countdownElement = document.querySelector('.countdown-red');
-        countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
+      if (existingNotification) {
+          existingNotification.remove();
       }
-    }
   
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
+      const notification = document.createElement('div');
+      notification.id = 'custom-notification';
+      notification.className = `notification ${type}`;
+  
+      const messageContainer = document.createElement('div');
+      messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`;
+  
+      const closeButton = document.createElement('button');
+      closeButton.innerHTML = '&times;';
+      closeButton.className = 'close-button';
+      closeButton.addEventListener('click', function () {
+          container.style.display = 'none';
+          setNotificationClosedCookie();
+      });
+  
+  
+      notification.appendChild(messageContainer);
+      notification.appendChild(closeButton);
+  
+  
+      container.appendChild(notification);
+      container.style.display = 'block';
+  
+      const countdownElement = document.createElement('span');
+      countdownElement.classList.add('countdown');
+  
+  
+      function updateCountdown() {
+          const now = new Date().getTime();
+          const distance = expirationTime - now;
+  
+          if (distance <= 0) {
+              clearInterval(countdownInterval);
+              container.style.display = 'block';
+          } else {
+              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              countdownElement.textContent = `${hours}:${minutes}`;
+              countdownElement.classList.add('countdown-red');
+              const countdownElement = document.querySelector('.countdown-red');
+              countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
+          }
+      }
+  
+      const countdownInterval = setInterval(updateCountdown, 1000);
+      updateCountdown();
   }
   
   function setNotificationClosedCookie() {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() + 45);
-    document.cookie = `${notificationClosedCookie}=${now.toUTCString()}; expires=${now.toUTCString()}; path=/`;
+      const now = new Date();
+      now.setMinutes(now.getMinutes() + 45);
+      document.cookie = `${notificationClosedCookie}=${now.toUTCString()}; expires=${now.toUTCString()}; path=/`;
   }
   
   function getNotificationClosedTime() {
-    const cookies = document.cookie.split(';');
-    for (const cookie of cookies) {
-      const [name, value] = cookie.trim().split('=');
-      if (name === notificationClosedCookie) {
-        return new Date(value);
+      const cookies = document.cookie.split(';');
+      for (const cookie of cookies) {
+          const [name, value] = cookie.trim().split('=');
+          if (name === notificationClosedCookie) {
+              return new Date(value);
+          }
       }
-    }
-    return null;
+      return null;
   }
   
   function formatTime(time) {
-    return time < 10 ? `0${time}` : `${time}`;
+      return time < 10 ? `0${time}` : `${time}`;
   }
   
   const currentTime = new Date();
@@ -388,40 +388,36 @@ document.addEventListener('DOMContentLoaded', function () {
   let message = '';
   
   if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
-    expirationTime.setHours(13, 0, 0, 0);
-    const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
-    const hoursRemaining = Math.floor(timeTo13h / 60);
-    const minutesRemaining = timeTo13h % 60;
-    message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte aujourd’hui.`;
+      expirationTime.setHours(13, 0, 0, 0);
+      const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
+      const hoursRemaining = Math.floor(timeTo13h / 60);
+      const minutesRemaining = timeTo13h % 60;
+      message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte aujourd’hui.`;
   } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 0) {
-    const midnight = new Date(currentTime);
-    midnight.setHours(24, 0, 0, 0);
-    const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60 * 60));
-    const hoursRemaining = Math.floor(timeToMidnight / 60);
-    const minutesRemaining = timeToMidnight % 60;
-    message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte demain.`;
-    expirationTime.setDate(currentTime.getDate() + 1); 
-    expirationTime.setHours(13, 0, 0, 0);
+      const midnight = new Date(currentTime);
+      midnight.setHours(24, 0, 0, 0);
+      const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
+      const hoursRemaining = Math.floor(timeToMidnight / 60);
+      const minutesRemaining = timeToMidnight % 60;  
+      message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte demain.`;
+      expirationTime.setDate(currentTime.getDate()+1);
+      expirationTime.setHours(13, 0, 0, 0);
   } else if ((currentTime.getDay() === 5 && currentTime.getHours() >= 13) || (currentTime.getDay() === 6 && currentTime.getHours() < 24)) {
-    expirationTime.setDate(currentTime.getDate() + (currentTime.getDay() === 5 ? 3 : 2)); 
-    expirationTime.setHours(13, 0, 0, 0);
+      expirationTime.setDate(currentTime.getDate() + (currentTime.getDay() === 5 ? 3 : 2));
+      expirationTime.setHours(13, 0, 0, 0);
   
-    const targetHour = currentTime.getDay() === 5 ? 13 : 24; 
-    const timeToTargetHour = (targetHour - currentTime.getHours()) * 60 - currentTime.getMinutes();
-    const hoursRemaining = Math.floor(timeToTargetHour / 60);
-    const minutesRemaining = timeToTargetHour % 60;
-    message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte lundi.`;
-  } else {
-    container.style.display = 'none';
+      const targetHour = currentTime.getDay() === 5 ? 13 : 24;
+      const timeToTargetHour = (targetHour - currentTime.getHours()) * 60 - currentTime.getMinutes();
+      const hoursRemaining = Math.floor(timeToTargetHour / 60);
+      const minutesRemaining = timeToTargetHour % 60;
+      message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte lundi.`;
   }
   
   const notificationClosedTime = getNotificationClosedTime();
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
   
-  if (currentTime.getHours() < 13 && showNotification) {
-    showCustomNotification(expirationTime, message);
-  }
-  
+
+  showCustomNotification(expirationTime, message);
 
   function getDeliveryMessage() {
     const currentDay = currentTime.getDay();
