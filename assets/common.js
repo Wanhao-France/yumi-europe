@@ -1005,7 +1005,7 @@ function updateInventroyStatusBar(variantQty, variantPolicy) {
         
         let stockCounter = parseInt(variantQty)
         if (stockCounter < 100) {
-          stockText.textContent = ` Low Stock: ${variantQty}`;
+          stockText.textContent = ` Stock faible: ${variantQty}`;
           stockText.classList.add("low__stock");
           let iconElement = document.createElement("i");
           iconElement.classList.add("fa-solid", "fa-triangle-exclamation");
@@ -3666,7 +3666,7 @@ function toggleStoreDetails(event){
       $(".inner").slideUp("slow");
   }
   if(toggleElement){
-     DOMAnimations.slideToggle(toggleElement,250);
+    DOMAnimations.slideToggle(toggleElement,250);
   }
 }
 function initSearchPrompts(section = document ) {

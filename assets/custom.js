@@ -243,7 +243,6 @@ function hideSpinner() {
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('pay-credit-element');
   const productPrice = document.querySelector('.yv-product-price .dualPrice');
-  const parentContainer = document.querySelector('.product_custom_liquid')
 
   if (container && productPrice) {
     const beforeElement = document.createElement('div');
@@ -251,33 +250,30 @@ document.addEventListener('DOMContentLoaded', function () {
     beforeElement.style.opacity = '0';
     const priceText = productPrice.textContent;
     const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
-    if (priceValue < 100) {
-      parentContainer.style.display = 'none'
-      container.style.display = "none"
-    } else {
-      if (!isNaN(priceValue)) {
-        const installmentPrice = (priceValue / 4).toFixed(2);
+    
+    if (!isNaN(priceValue)) {
+      const installmentPrice = (priceValue / 4).toFixed(2);
 
-        container.appendChild(beforeElement);
+      container.appendChild(beforeElement);
 
-        container.addEventListener('mouseenter', function () {
-          beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
-            Second Payment: €${installmentPrice}\n
-            Third Payment: €${installmentPrice}\n
-            Fourth Payment: €${installmentPrice}`;
-          beforeElement.style.opacity = '1';
-          container.querySelector('.info-text').style.opacity = '0';
-        });
+      container.addEventListener('mouseenter', function () {
+        beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
+          Second Payment: €${installmentPrice}\n
+          Third Payment: €${installmentPrice}\n
+          Fourth Payment: €${installmentPrice}`;
+        beforeElement.style.opacity = '1';
+        container.querySelector('.info-text').style.opacity = '0';
+      });
 
-        container.addEventListener('mouseleave', function () {
-          beforeElement.textContent = '';
-          beforeElement.style.opacity = '0';
-          container.querySelector('.info-text').style.opacity = '1';
-        });
-      }
+      container.addEventListener('mouseleave', function () {
+        beforeElement.textContent = '';
+        beforeElement.style.opacity = '0';
+        container.querySelector('.info-text').style.opacity = '1';
+      });
     }
   }
 });
+
 
 
 function hideIfSingleChildWithSingleLi(selector) {
@@ -306,24 +302,25 @@ hideIfSingleChildWithSingleLi('.select-style');
 
 // Notification dispatched same day
 
+
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
   const notificationClosedCookie = 'notificationClosedTime';
-
-  function showCustomNotification(message, type = 'info', expirationTime) {
+  
+  function showCustomNotification(expirationTime, message, type = 'info') {
     const existingNotification = document.getElementById('custom-notification');
-
+  
     if (existingNotification) {
       existingNotification.remove();
     }
-
+  
     const notification = document.createElement('div');
     notification.id = 'custom-notification';
     notification.className = `notification ${type}`;
-
+  
     const messageContainer = document.createElement('div');
     messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`;
-
+  
     const closeButton = document.createElement('button');
     closeButton.innerHTML = '&times;';
     closeButton.className = 'close-button';
@@ -332,44 +329,45 @@ document.addEventListener('DOMContentLoaded', function () {
       setNotificationClosedCookie();
     });
 
-    const countdownContainer = document.createElement('div');
-    countdownContainer.id = 'countdown-container';
-
+  
     notification.appendChild(messageContainer);
     notification.appendChild(closeButton);
-    notification.appendChild(countdownContainer);
-
+ 
+  
     container.appendChild(notification);
     container.style.display = 'block';
-
+  
     const countdownElement = document.createElement('span');
-    countdownContainer.appendChild(countdownElement);
+    countdownElement.classList.add('countdown');
 
+  
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = expirationTime - now;
-
+  
       if (distance <= 0) {
         clearInterval(countdownInterval);
         container.style.display = 'none';
       } else {
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        countdownElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+        countdownElement.textContent = `${hours}:${minutes}`;
+        countdownElement.classList.add('countdown-red');
+        const countdownElement = document.querySelector('.countdown-red');
+        countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
       }
     }
-
+  
     const countdownInterval = setInterval(updateCountdown, 1000);
     updateCountdown();
   }
-
+  
   function setNotificationClosedCookie() {
     const now = new Date();
     now.setMinutes(now.getMinutes() + 45);
     document.cookie = `${notificationClosedCookie}=${now.toUTCString()}; expires=${now.toUTCString()}; path=/`;
   }
-
+  
   function getNotificationClosedTime() {
     const cookies = document.cookie.split(';');
     for (const cookie of cookies) {
@@ -380,72 +378,76 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return null;
   }
-
+  
+  function formatTime(time) {
+    return time < 10 ? `0${time}` : `${time}`;
+  }
+  
   const currentTime = new Date();
-  const expirationTime = new Date(currentTime);
-  expirationTime.setHours(13, 0, 0, 0);
-
+  let expirationTime = new Date(currentTime);
+  let message = '';
+  
+  if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
+    expirationTime.setHours(13, 0, 0, 0);
+    const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
+    const hoursRemaining = Math.floor(timeTo13h / 60);
+    const minutesRemaining = timeTo13h % 60;
+    message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte aujourd’hui.`;
+  } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 0) {
+    const midnight = new Date(currentTime);
+    midnight.setHours(24, 0, 0, 0);
+    const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60 * 60));
+    const hoursRemaining = Math.floor(timeToMidnight / 60);
+    const minutesRemaining = timeToMidnight % 60;
+    message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte demain.`;
+    expirationTime.setDate(currentTime.getDate() + 1); 
+    expirationTime.setHours(13, 0, 0, 0);
+  } else if ((currentTime.getDay() === 5 && currentTime.getHours() >= 13) || (currentTime.getDay() === 6 && currentTime.getHours() < 24)) {
+    expirationTime.setDate(currentTime.getDate() + (currentTime.getDay() === 5 ? 3 : 2)); 
+    expirationTime.setHours(13, 0, 0, 0);
+  
+    const targetHour = currentTime.getDay() === 5 ? 13 : 24; 
+    const timeToTargetHour = (targetHour - currentTime.getHours()) * 60 - currentTime.getMinutes();
+    const hoursRemaining = Math.floor(timeToTargetHour / 60);
+    const minutesRemaining = timeToTargetHour % 60;
+    message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte lundi.`;
+  } else {
+    container.style.display = 'none';
+  }
+  
   const notificationClosedTime = getNotificationClosedTime();
   const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
-
+  
   if (currentTime.getHours() < 13 && showNotification) {
-    const notificationMessage = "Pour les achats effectués avant 13h00, votre colis sera expédié le jour même ! L'offre se termine le :";
-    showCustomNotification(notificationMessage, 'info', expirationTime);
+    showCustomNotification(expirationTime, message);
   }
-});
+  
 
-document.addEventListener("DOMContentLoaded", function () {
-  let popupInner = document.querySelector('.yv-login-popup-inner');
-  if (popupInner) {
-    let closeButton = document.createElement('button');
-    closeButton.classList.add('button__close--styles');
-    let icon = document.createElement('i');
-    icon.classList.add('fas', 'fa-times');
-    closeButton.appendChild(icon);
+  function getDeliveryMessage() {
+    const currentDay = currentTime.getDay();
+    const currentHour = currentTime.getHours();
 
-    closeButton.addEventListener('click', function () {
-      closePopup();
-    });
+    let deliveryMessage;
 
-    popupInner.appendChild(closeButton);
-  }
-});
-
-function closePopup() {
-  document.body.classList.remove('account-popup-open');
-}
-
-
-// Delivery Time Functionality
-
-const containerDelivery = document.querySelector('.delivery-info');
-
-function getDeliveryMessage() {
-  const currentDate = new Date();
-  const currentDay = currentDate.getDay();
-  const currentHour = currentDate.getHours();
-
-  let deliveryMessage;
-
-  if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
+    if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
       deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
-  } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
+    } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
       deliveryMessage = "Commandé aujourd’hui, Expédié demain";
-  } else if ((currentDay === 5 && currentHour >= 13) || (currentDay === 6 && currentHour < 24)) {
+    } else if ((currentDay === 5 && currentHour >= 13) || (currentDay === 6 && currentHour < 24)) {
       deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
-  } else {
+    } else {
       containerDelivery.style.display = "none";
       return;
+    }
+    return deliveryMessage;
   }
 
-  return deliveryMessage;
-}
-
-const deliveryMessage = getDeliveryMessage();
-if (deliveryMessage) {
+  const deliveryMessage = getDeliveryMessage();
+  if (deliveryMessage) {
     document.querySelector('.delivery-info__message').textContent = deliveryMessage;
     const deliveryLogoDiv = document.querySelector('.delivery-info__logo');
     const img = document.createElement('img');
-    img.src = 'https://i.ibb.co/Z8zhZ0J/logo-delivery.jpg';
+    img.src = 'https://i.ibb.co/wpXqVsR/logo-delivery.png';
     deliveryLogoDiv.appendChild(img);
-}
+  }
+});

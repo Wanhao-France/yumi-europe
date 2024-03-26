@@ -369,7 +369,7 @@
               if lows_inventory == true and selling and stock >= 0
                 assign stockconent = 'products.product.in_stock' | t
                 assign stockClass = 'yv-instock'
-              elsif selling == false and stock > 0 and stock > thershold
+              elsif selling == false and stock > 0 and stock >= thershold
                 assign stockconent = 'products.product.in_stock_with_unit' | t: stock: stock
                 assign stockClass = 'yv-instock'
               elsif stock > 0 and thershold > stock
@@ -389,7 +389,7 @@
               elsif selling == false and stock > 0 and stock > thershold
                 assign stockconent = 'products.product.in_stock_with_unit' | t: stock: stock
                 assign stockClass = 'yv-instock'
-              elsif stock > 0 and thershold > stock
+              elsif stock > 0 and thershold >= stock
                 assign stockconent = 'products.product.low_stock' | t: stock: stock
                 assign stockClass = 'yv-lowstock'
               elsif stock <= 0 and selling == true

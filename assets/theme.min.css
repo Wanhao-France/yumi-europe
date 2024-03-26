@@ -1581,7 +1581,6 @@ html:not(.no-js) .yv-collection-slider-wrapper:not(.flickity-enabled) {
 
 .product-option-selector,
 .yv-form-heading,
-.yv-pricebox-outer,
 .yv-quick-view-product-detail .yv-product-quantity {
   margin-bottom: 25px;
 }
@@ -7944,7 +7943,7 @@ html.with-fancybox body main {
 }
 
 .yv-lowstock {
-  color: #ff5656;
+  color: #ffb301;
 }
 
 .stock-status span {
@@ -9193,6 +9192,7 @@ body.account-popup-open .yv-login-popup {
 
 .toggle-container {
   position: relative;
+  min-width: 60px;
   width: 60px;
   height: 30px;
   background-color: #ccc;
@@ -9554,6 +9554,10 @@ body.account-popup-open .yv-login-popup {
 
 /* End - Buy Buttons */
 
+#yvProductStickyBar > .container > .product-view-wrapper > .product-view-link > #inventory__stock--single {
+  padding-right: 2rem;
+}
+
 @keyframes flash {
   from {
     color: #efb810;
@@ -9566,6 +9570,9 @@ body.account-popup-open .yv-login-popup {
 }
 
 @media only screen and (max-width: 600px) {
+  .ht-tms-ready .ht-tms-single-dropdown__container.ht-tms-single-selector {
+    display: none;
+}
   .delivery-info {
     display: flex;
     margin: 0.7rem 0;
@@ -9585,6 +9592,9 @@ body.account-popup-open .yv-login-popup {
 }
 
 @media (max-width: 767px) {
+  .ht-tms-ready .ht-tms-single-dropdown__container.ht-tms-single-selector {
+    display: none;
+    }
   .delivery-info {
     display: flex;
     margin: 1rem 0;
@@ -9614,4 +9624,10 @@ body.account-popup-open .yv-login-popup {
   .AirReviews-Blocks__LayoutList .AirReviews-Blocks__List {
     width: auto !important;
   }
+}
+
+@media (max-width: 1000px) {
+  .ht-tms-ready .ht-tms-single-dropdown__container.ht-tms-single-selector {
+    display: none;
+    }
 }

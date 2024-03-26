@@ -441,7 +441,6 @@
               </div>
             {%- endif -%}
           </div>
-
         {%- when 'inventory_status' -%}
           {%- render 'product-inventory', current_variant: current_variant, block: block -%}
         {%- when 'productsignup' -%}
@@ -601,6 +600,15 @@
                   <span>
                     {%- unless current_variant.available -%}
                       {{ 'products.product.sold_out' | t }}
+                      <style>
+                        .Sd_addProduct.add_to_cart.button.med-btn {
+                          border-radius: 15px 15px 15px 15px;
+                          background: gray;
+                        }
+                        .delivery-info {
+                          display: none;
+                        }
+                      </style>
                     {%- else -%}
                       {%- if preorder -%}
                         {{ 'products.product.preorder' | t }}
@@ -610,6 +618,9 @@
                           }
                           .Sd_addProduct.add_to_cart.button.med-btn {
                             border-radius: 15px 15px 15px 15px;
+                          }
+                          .delivery-info {
+                            display: none;
                           }
                         </style>
                       {%- else -%}
