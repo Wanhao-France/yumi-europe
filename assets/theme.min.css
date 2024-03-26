@@ -9558,6 +9558,10 @@ body.account-popup-open .yv-login-popup {
   padding-right: 2rem;
 }
 
+.AirReviews-Widget.AirReviews-Widget--Stars {
+  cursor:default;
+}
+
 @keyframes flash {
   from {
     color: #efb810;
