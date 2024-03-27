@@ -188,7 +188,7 @@
       "in_stock_with_unit": "En stock, {{ stock }} unités",
       "restock": "Bientôt en stock",
       "out_of_stock": "Rupture de stock",
-      "low_stock": "Seul {{ stock }} unités restantes",
+      "low_stock": "Seulement {{ stock }} unités restantes",
       "off": "Économisé",
       "similar_products": "produits similaires",
       "view_product": "Voir le produit",
