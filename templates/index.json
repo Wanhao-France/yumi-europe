@@ -166,7 +166,7 @@
             "heading_size_m": "h2",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 50,
+            "overlayopacity": 0,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
