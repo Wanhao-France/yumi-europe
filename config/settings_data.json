@@ -341,20 +341,6 @@
         "settings": {
         }
       },
-      "15683396631634586217": {
-        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
-        "disabled": true,
-        "settings": {
-          "button_color": "#404c5b",
-          "secondary_color": "#ffffff",
-          "ternary_color": "#130f32",
-          "button_icon": "chat_bubble",
-          "button_text": "no_text",
-          "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "highest",
-          "greeting_message": ""
-        }
-      },
       "974182204023380815": {
         "type": "shopify:\/\/apps\/hulk-restock-back-in-stock\/blocks\/app-embed\/8b875ab4-abf0-4c7c-b35c-43d33469852d",
         "disabled": false,
