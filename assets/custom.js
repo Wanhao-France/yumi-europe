@@ -295,6 +295,7 @@ hideIfSingleChildWithSingleLi('.select-couleur');
 hideIfSingleChildWithSingleLi('.select-material');
 hideIfSingleChildWithSingleLi('.select-poids');
 hideIfSingleChildWithSingleLi('.select-style');
+hideIfSingleChildWithSingleLi('.select-titulo');
 
 
 
@@ -305,15 +306,26 @@ hideIfSingleChildWithSingleLi('.select-style');
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('notification-container');
-  const notificationClosedCookie = 'notificationClosedTime';
+
+  const ul = document.createElement('ul')
+  const li = document.createElement('li')
+  const a = document.createElement('a')
+
+  container.appendChild(ul)
+  ul.appendChild(li)
+  ul.classList.add('container__bottons')
+
+  const textButton = ['Demande Devis', 'Trouver Revendeur', 'Devenez Revendeur']
+
+  textButton.forEach(text => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.innerText = text;
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
   
   function showCustomNotification(expirationTime, message, type = 'info') {
-      const existingNotification = document.getElementById('custom-notification');
-  
-      if (existingNotification) {
-          existingNotification.remove();
-      }
-  
       const notification = document.createElement('div');
       notification.id = 'custom-notification';
       notification.className = `notification ${type}`;
@@ -324,10 +336,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const closeButton = document.createElement('button');
       closeButton.innerHTML = '&times;';
       closeButton.className = 'close-button';
-      closeButton.addEventListener('click', function () {
-          container.style.display = 'none';
-          setNotificationClosedCookie();
-      });
   
   
       notification.appendChild(messageContainer);
@@ -335,7 +343,6 @@ document.addEventListener('DOMContentLoaded', function () {
   
   
       container.appendChild(notification);
-      container.style.display = 'block';
   
       const countdownElement = document.createElement('span');
       countdownElement.classList.add('countdown');
@@ -362,22 +369,6 @@ document.addEventListener('DOMContentLoaded', function () {
       updateCountdown();
   }
   
-  function setNotificationClosedCookie() {
-      const now = new Date();
-      now.setMinutes(now.getMinutes() + 45);
-      document.cookie = `${notificationClosedCookie}=${now.toUTCString()}; expires=${now.toUTCString()}; path=/`;
-  }
-  
-  function getNotificationClosedTime() {
-      const cookies = document.cookie.split(';');
-      for (const cookie of cookies) {
-          const [name, value] = cookie.trim().split('=');
-          if (name === notificationClosedCookie) {
-              return new Date(value);
-          }
-      }
-      return null;
-  }
   
   function formatTime(time) {
       return time < 10 ? `0${time}` : `${time}`;
@@ -413,13 +404,13 @@ document.addEventListener('DOMContentLoaded', function () {
       message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte lundi.`;
   }
   
-  const notificationClosedTime = getNotificationClosedTime();
-  const showNotification = !notificationClosedTime || currentTime > notificationClosedTime;
-  
-
   showCustomNotification(expirationTime, message);
+});
+
+const containerDelivery = document.querySelector('.container-delivery');
 
   function getDeliveryMessage() {
+    const currentTime = new Date();
     const currentDay = currentTime.getDay();
     const currentHour = currentTime.getHours();
 
@@ -446,4 +437,3 @@ document.addEventListener('DOMContentLoaded', function () {
     img.src = 'https://i.ibb.co/wpXqVsR/logo-delivery.png';
     deliveryLogoDiv.appendChild(img);
   }
-});

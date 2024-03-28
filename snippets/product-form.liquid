@@ -591,19 +591,15 @@
                 <button
                   type="submit"
                   class="Sd_addProduct add_to_cart button med-btn"
-                  {% unless current_variant.available %}
-                    disabled
-                  {% elsif block.settings.enable_terms_checkbox and block.settings.terms_conditions_text != blank %}
-                    disabled
-                  {% endunless %}
                 >
                   <span>
                     {%- unless current_variant.available -%}
-                      {{ 'products.product.sold_out' | t }}
+                      <div id="mhaRnProduct"></div>
                       <style>
                         .Sd_addProduct.add_to_cart.button.med-btn {
                           border-radius: 15px 15px 15px 15px;
-                          background: gray;
+                          background: #ffa500;
+                          padding: 0;
                         }
                         .delivery-info {
                           display: none;

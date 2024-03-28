@@ -21,7 +21,7 @@
             "heading_size_m": "h2",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 0,
+            "overlayopacity": 25,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
@@ -50,7 +50,7 @@
             "heading_size_m": "h2",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 0,
+            "overlayopacity": 20,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
@@ -63,7 +63,6 @@
         },
         "template--15143329169473__8e052e20-72f0-4cb9-93dd-e19803eab968-image-3": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "image_width": "col-md-3",
             "image": "shopify:\/\/shop_images\/Slideshow-Halloween_9a3c2662-20f8-4e9b-bc9b-5872e33fa707.png",
@@ -80,7 +79,7 @@
             "heading_size_m": "h2",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 0,
+            "overlayopacity": 50,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
@@ -93,7 +92,6 @@
         },
         "f0afcda2-38f8-4af3-8018-7875bf718f4b": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "image_width": "col-md-3",
             "image": "shopify:\/\/shop_images\/carton_8fad0c68-c15a-4862-b2bb-2035bbd721f4.webp",
@@ -110,7 +108,7 @@
             "heading_size_m": "h3",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 0,
+            "overlayopacity": 50,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
@@ -123,7 +121,6 @@
         },
         "867f9174-7499-40a8-8a12-41cf33620472": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "image_width": "col-md-3",
             "image": "shopify:\/\/shop_images\/macaron_-_20.webp",
@@ -140,7 +137,7 @@
             "heading_size_m": "h3",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 0,
+            "overlayopacity": 50,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",
@@ -153,7 +150,6 @@
         },
         "0431c402-602b-4754-a5d0-02dc8ed48358": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "image_width": "col-md-3",
             "image": "shopify:\/\/shop_images\/Paques_c368ea74-e7cc-4270-a83f-3456a166e217.jpg",
@@ -170,7 +166,7 @@
             "heading_size_m": "h2",
             "button_size_m": "xsmall",
             "content_width_m": "medium",
-            "overlayopacity": 0,
+            "overlayopacity": 50,
             "desktop_content_position": "d-bottom-left",
             "mobile_content_position": "m-center",
             "overlaycolor": "#000000",

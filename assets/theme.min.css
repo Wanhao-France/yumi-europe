@@ -9122,25 +9122,46 @@ body.account-popup-open .yv-login-popup {
 }
 
 #notification-container {
-  position: relative;
+  background-color: #404D5B;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.container__bottons {
+  width: 50%;
+  display: flex;
+}
+
+.container__bottons > li {
+  list-style: none;
+}
+
+.container__bottons > li > a {
+  margin-right: 1rem;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: #404D5B;
+  font-weight: bold;
+  border: none;
+}
+
+.container__bottons > li > a:hover {
+  background: #404D5B;
+  border: 1px solid #fff;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 #custom-notification {
-  position: sticky;
-  top: 0;
-  background-color: #000;
-  padding: 10px;
-  z-index: 100;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: baseline;
+  width: 50%;
+  background-color: #404D5B;
 }
 
 #custom-notification > div {
   color: #fff;
+  font-weight: bold;
   margin-left: 0.6%;
 }
 
@@ -9157,14 +9178,13 @@ body.account-popup-open .yv-login-popup {
 }
 
 .notification {
-  position: sticky;
-  top: 0;
   background-color: #333;
   color: #fff;
   padding: 10px;
   z-index: 100;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .notification i {
@@ -9179,6 +9199,7 @@ body.account-popup-open .yv-login-popup {
   margin-top: 10px;
 }
 
+
 .close-button {
   background: none;
   border: none;
@@ -9188,6 +9209,21 @@ body.account-popup-open .yv-login-popup {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+#mhaRnProduct {
+  padding: 0 1rem;
+}
+
+#mhaRnProduct > button {
+  border: none !important;
+  background: transparent !important;
+  color: #fff !important;
+  color: #000 !important;
+}
+
+#mhaRnProduct > button:hover {
+  color: #000 !important;
 }
 
 .toggle-container {
@@ -9564,13 +9600,21 @@ body.account-popup-open .yv-login-popup {
 }
 
 .countdown-red {
-  color: red;
+  color: #efb810;
 }
 
 .close-button {
   display: none;
 }
 
+.product-detail-slider.main-slider-wrapper.thumbnail-position-center {
+  padding-bottom: 8rem;
+}
+
+#ProductData-template--21298996412756__main-product {
+  position: sticky;
+  top: 25% !important;
+}
 
 @keyframes flash {
   from {
@@ -9602,6 +9646,21 @@ body.account-popup-open .yv-login-popup {
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+
+
+  #notification-container {
+    flex-direction: column;
+  }
+  .container__bottons {
+    display: none;
+  }
+
+
+  #custom-notification {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -9638,10 +9697,39 @@ body.account-popup-open .yv-login-popup {
   .AirReviews-Blocks__LayoutList .AirReviews-Blocks__List {
     width: auto !important;
   }
+  .container__bottons {
+    display: none;
+  }
+
 }
 
 @media (max-width: 1000px) {
   .ht-tms-ready .ht-tms-single-dropdown__container.ht-tms-single-selector {
     display: none;
     }
+
+    #notification-container {
+      flex-direction: column;
+    }
+
+    .container__bottons {
+      width: 100%;
+      margin: 0.8rem;
+      justify-content: center;
+    }
+
+    #custom-notification {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    .container__bottons {
+      display: none;
+    }
+  
+  
+}
+
+.container__bottons {
+  display: none;
 }
