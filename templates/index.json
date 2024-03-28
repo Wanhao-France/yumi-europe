@@ -191,7 +191,7 @@
         "0431c402-602b-4754-a5d0-02dc8ed48358"
       ],
       "settings": {
-        "enable_fullwidth": true,
+        "enable_fullwidth": false,
         "image_layout": "sharp",
         "enable_image_animation": true,
         "enable_hover_effect": false,
