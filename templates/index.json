@@ -191,7 +191,7 @@
         "0431c402-602b-4754-a5d0-02dc8ed48358"
       ],
       "settings": {
-        "enable_fullwidth": false,
+        "enable_fullwidth": true,
         "image_layout": "sharp",
         "enable_image_animation": true,
         "enable_hover_effect": false,
@@ -200,7 +200,7 @@
         "heading_size": "h2",
         "button_size": "xsmall",
         "space_in_images": true,
-        "image_spacing_desktop": 4,
+        "image_spacing_desktop": 2,
         "image_spacing_mobile": 5,
         "bgcolor": "primary",
         "section_visibility": "always",
