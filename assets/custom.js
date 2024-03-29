@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
       expirationTime.setDate(currentTime.getDate() + (currentTime.getDay() === 5 ? 3 : 2));
       expirationTime.setHours(13, 0, 0, 0);
   
-      const targetHour = currentTime.getDay() === 5 ? 13 : 24;
+      const targetHour = currentTime.getDay() === 6 ? 13 : 24;
       const timeToTargetHour = (targetHour - currentTime.getHours()) * 60 - currentTime.getMinutes();
       const hoursRemaining = Math.floor(timeToTargetHour / 60);
       const minutesRemaining = timeToTargetHour % 60;
