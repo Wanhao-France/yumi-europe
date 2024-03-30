@@ -378,13 +378,13 @@ document.addEventListener('DOMContentLoaded', function () {
   let expirationTime = new Date(currentTime);
   let message = '';
   
-  if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
+  if (currentTime.getDay() >= 2 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
       expirationTime.setHours(13, 0, 0, 0);
       const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
       const hoursRemaining = Math.floor(timeTo13h / 60);
       const minutesRemaining = timeTo13h % 60;
       message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte aujourd’hui.`;
-  } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 0) {
+  } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
       const midnight = new Date(currentTime);
       midnight.setHours(24, 0, 0, 0);
       const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
