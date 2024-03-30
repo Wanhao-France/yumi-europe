@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
       const hoursRemaining = Math.floor(timeToMidnight / 60);
       const minutesRemaining = timeToMidnight % 60;  
-      message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte lundi.`;
+      message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte mardi.`;
       expirationTime.setDate(currentTime.getDate()+1);
       expirationTime.setHours(13, 0, 0, 0);
   }
