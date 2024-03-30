@@ -416,7 +416,7 @@ const containerDelivery = document.querySelector('.container-delivery');
 
     let deliveryMessage;
 
-    if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
+    if ((currentDay >= 2 && currentDay <= 5 && currentHour < 13)) {
       deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
     } else if ((currentDay >= 2 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
       deliveryMessage = "Commandé aujourd’hui, Expédié demain";
