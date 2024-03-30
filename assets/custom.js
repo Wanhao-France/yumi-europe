@@ -393,15 +393,15 @@ document.addEventListener('DOMContentLoaded', function () {
       message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte demain.`;
       expirationTime.setDate(currentTime.getDate()+1);
       expirationTime.setHours(13, 0, 0, 0);
-  } else {
-      expirationTime.setDate(currentTime.getDate() + (currentTime.getDay() === 5 ? 3 : 2));
-      expirationTime.setHours(13, 0, 0, 0);
-  
-      const targetHour = currentTime.getDay() === 6 ? 13 : 24;
-      const timeToTargetHour = (targetHour - currentTime.getHours()) * 60 - currentTime.getMinutes();
-      const hoursRemaining = Math.floor(timeToTargetHour / 60);
-      const minutesRemaining = timeToTargetHour % 60;
+  } else  {
+       const midnight = new Date(currentTime);
+      midnight.setHours(24, 0, 0, 0);
+      const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
+      const hoursRemaining = Math.floor(timeToMidnight / 60);
+      const minutesRemaining = timeToMidnight % 60;  
       message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte lundi.`;
+      expirationTime.setDate(currentTime.getDate()+1);
+      expirationTime.setHours(13, 0, 0, 0);
   }
   
   showCustomNotification(expirationTime, message);
