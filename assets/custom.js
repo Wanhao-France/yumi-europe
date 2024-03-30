@@ -418,12 +418,11 @@ const containerDelivery = document.querySelector('.container-delivery');
 
     if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
       deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
-    } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
+    } else if ((currentDay >= 2 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
       deliveryMessage = "Commandé aujourd’hui, Expédié demain";
-    } else if ((currentDay === 5 && currentHour >= 13) || (currentDay === 6 && currentHour < 24)) {
-      deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
     } else {
-      containerDelivery.style.display = "none";
+      deliveryMessage = "Commandé aujourd’hui, Expédié mardi";
+    } 
       return;
     }
     return deliveryMessage;
