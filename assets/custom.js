@@ -422,8 +422,6 @@ const containerDelivery = document.querySelector('.container-delivery');
       deliveryMessage = "Commandé aujourd’hui, Expédié demain";
     } else {
       deliveryMessage = "Commandé aujourd’hui, Expédié mardi";
-    } 
-      return;
     }
     return deliveryMessage;
   }
