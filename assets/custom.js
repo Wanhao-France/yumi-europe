@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
       message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte demain.`;
       expirationTime.setDate(currentTime.getDate()+1);
       expirationTime.setHours(13, 0, 0, 0);
-  } else if ((currentTime.getDay() === 5 && currentTime.getHours() >= 13) || (currentTime.getDay() === 6 && currentTime.getHours() < 24)) {
+  } else {
       expirationTime.setDate(currentTime.getDate() + (currentTime.getDay() === 5 ? 3 : 2));
       expirationTime.setHours(13, 0, 0, 0);
   
