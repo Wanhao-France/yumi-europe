@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const hoursRemaining = Math.floor(timeTo13h / 60);
       const minutesRemaining = timeTo13h % 60;
       message = `Plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> pour que ta commande parte aujourd’hui.`;
-  } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
+  } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 9) || currentTime.getDay() === 1) {
       const midnight = new Date(currentTime);
       midnight.setHours(24, 0, 0, 0);
       const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
@@ -418,10 +418,10 @@ const containerDelivery = document.querySelector('.container-delivery');
 
     if ((currentDay >= 2 && currentDay <= 5 && currentHour < 13)) {
       deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
-    } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
+    } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 9) || currentDay === 0) {
       deliveryMessage = "Commandé aujourd’hui, Expédié demain";
     } else {
-      deliveryMessage = "Commandé aujourd’hui, Expédié mardi";
+      deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
     }
     return deliveryMessage;
   }
