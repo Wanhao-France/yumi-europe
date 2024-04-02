@@ -35,7 +35,7 @@
         "custom_liquid_CD663x": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"delivery-info delivery-info--{{ deliveryDayModifier }}\">\n  <div class=\"delivery-info__message\">{{ deliveryMessage }}<\/div>\n  <div class=\"delivery-info__logo\"><\/div>\n<\/div>"
+            "custom_liquid": "<div class=\"delivery-info delivery-info--{{ deliveryDayModifier }}\">\n  <div class=\"delivery-info__logo\"><\/div>\n<div class=\"delivery-info__message\">{{ deliveryMessage }}<\/div>\n  \n<\/div>"
           }
         },
         "custom_liquid_r7qF8b": {
