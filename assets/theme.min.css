@@ -7311,6 +7311,7 @@ html.with-fancybox body main {
   color: #000;
   font-weight: bold;  
   margin-right: 0.5rem;
+ font-size: 1.1rem;
 }
 
 .delivery-info__logo {
@@ -9639,7 +9640,6 @@ body.account-popup-open .yv-login-popup {
   .delivery-info__message {
     color: #000;
     font-weight: bold;  
-    font-size: 1.1rem;
   }
   
   .delivery-info__logo {
