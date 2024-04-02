@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
       const hoursRemaining = Math.floor(timeTo13h / 60);
       const minutesRemaining = timeTo13h % 60;
-      message = `Garantie d'expédition aujourd'hui, plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> `;
+      message = `Garantie d'expédition aujourd'hui, plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span> !`;
   } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
       const midnight = new Date(currentTime);
       midnight.setHours(24, 0, 0, 0);
