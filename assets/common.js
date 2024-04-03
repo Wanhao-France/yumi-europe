@@ -1044,8 +1044,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
       showSavedAmount = priceContainer.getAttribute("data-saved");
       savedAmountStyle = priceContainer.getAttribute("data-saved-style");
     }
-    var price = parseInt(getVariant.price);
-    
+    var price = parseInt(getVariant.price);    
     const showTTC = localStorage.getItem('showTTC');
     const shouldShowTTC = showTTC && showTTC.toLowerCase() === 'true';
 
@@ -1061,7 +1060,12 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     if (shouldShowTTC) {
       compareAtPrice = compareAtPrice * 1.2; 
     }
-
+    // Reward Cal - Andrew 
+    let rewardCounter = document.querySelector('.reward')
+    let priceCalReward = parseFloat(adjustedPrice) / 100;
+    let rewardCal = (priceCalReward * 0.05).toFixed(2); 
+    rewardCounter.innerHTML = `+${rewardCal}€ sur votre cagnotte`
+   // Reward Cal - Andrew 
     var priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       parseInt(adjustedPrice),
       moneyFormat
@@ -3783,3 +3787,88 @@ function localizationElements(section = document) {
     })
 }
 document.addEventListener("DOMContentLoaded", localizationElements(), false);
+
+// Set Cookies Funtion
+
+function setCookie(name, value, expDays) {
+  let date = new Date();
+  date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+  var exp = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + exp + ";path=/";
+}
+
+// Get Cookie
+
+function getCookie(name) {
+  var nameCookie = name + "=";
+  var cookies = document.cookie.split(';');
+  for(var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      while (cookie.charAt(0) == ' ') {
+          cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(nameCookie) == 0) {
+          return cookie.substring(nameCookie.length, cookie.length);
+      }
+  }
+  return "";
+}
+
+
+// Toggle Hidden Code Promo - Andrew - 02/03/2024
+const closedCodesPromo = document.getElementById('closed_codes_promo');
+const codesPromo = document.getElementById('codesPromo');
+const arrowIcon = document.getElementById('arrow_icon');
+
+function getButtonState() {
+    return getCookie('codePromoBanner') === 'true';
+}
+
+function updateButtonState(state) {
+    setCookie('codePromoBanner', state.toString(), 1);
+}
+
+function toggleContainer() {
+    const currentState = getButtonState();
+
+    if (!currentState && codesPromo.classList.contains('collapsed')) {
+        arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+        codesPromo.classList.remove('collapsed');
+        codesPromo.classList.add('expanded');
+        updateButtonState(true);
+    } else {
+        codesPromo.classList.remove('expanded');
+        codesPromo.classList.add('collapsed');
+        arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
+        updateButtonState(false);
+    }
+}
+
+closedCodesPromo.addEventListener('click', toggleContainer);
+
+const initialButtonState = getButtonState();
+if (initialButtonState) {
+    arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+    codesPromo.classList.remove('collapsed');
+    codesPromo.classList.add('expanded');
+} else {
+    codesPromo.classList.remove('expanded');
+    codesPromo.classList.add('collapsed');
+    arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
+}
+
+window.addEventListener('scroll', function() {
+  var scrollPosition = window.scrollY;
+  var viewportHeight = window.innerHeight;
+  var hideThreshold = 0.01;
+
+  if (scrollPosition > viewportHeight * hideThreshold) {
+    var elemento = document.querySelector('.ht-tms-single-dropdown__container');
+    elemento.classList.add('hide__scroll');  
+    elemento.classList.remove('respan__scroll')
+  } else {
+    var elemento = document.querySelector('.ht-tms-single-dropdown__container');
+    elemento.classList.add('respan__scroll')
+    document.body.classList.remove('hide__scroll');    
+  }
+});

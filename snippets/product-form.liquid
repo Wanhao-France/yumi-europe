@@ -588,23 +588,22 @@
                     </label>
                   </div>
                 {% endif %}
+
+                {% unless current_variant.available %}
+                  <div id="mhaRnProduct"></div>
+                  <style>
+                    .Sd_addProduct.add_to_cart.button.med-btn {
+                      display: none;
+                    }
+                  </style>
+                {% endunless %}
+
                 <button
                   type="submit"
                   class="Sd_addProduct add_to_cart button med-btn"
                 >
                   <span>
                     {%- unless current_variant.available -%}
-                      <div id="mhaRnProduct"></div>
-                      <style>
-                        .Sd_addProduct.add_to_cart.button.med-btn {
-                          border-radius: 15px 15px 15px 15px;
-                          background: #ffa500;
-                          padding: 0;
-                        }
-                        .delivery-info {
-                          display: none;
-                        }
-                      </style>
                     {%- else -%}
                       {%- if preorder -%}
                         {{ 'products.product.preorder' | t }}

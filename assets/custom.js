@@ -222,7 +222,7 @@ try {
   console.error('An error occurred:', error);
 }
 
-// Little Functions 
+
 // Spinner
 
 function showSpinner() {
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
     beforeElement.style.opacity = '0';
     const priceText = productPrice.textContent;
     const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
-    
+
     if (!isNaN(priceValue)) {
       const installmentPrice = (priceValue / 4).toFixed(2);
 
@@ -324,113 +324,122 @@ document.addEventListener('DOMContentLoaded', function () {
     li.appendChild(a);
     ul.appendChild(li);
   });
-  
+
   function showCustomNotification(expirationTime, message, type = 'info') {
-      const notification = document.createElement('div');
-      notification.id = 'custom-notification';
-      notification.className = `notification ${type}`;
-  
-      const messageContainer = document.createElement('div');
-      messageContainer.innerHTML = `<i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i> ${message}`;
-  
-      const closeButton = document.createElement('button');
-      closeButton.innerHTML = '&times;';
-      closeButton.className = 'close-button';
-  
-  
-      notification.appendChild(messageContainer);
-      notification.appendChild(closeButton);
-  
-  
-      container.appendChild(notification);
-  
-      const countdownElement = document.createElement('span');
-      countdownElement.classList.add('countdown');
-  
-  
-      function updateCountdown() {
-          const now = new Date().getTime();
-          const distance = expirationTime - now;
-  
-          if (distance <= 0) {
-              clearInterval(countdownInterval);
-              container.style.display = 'block';
-          } else {
-              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-              countdownElement.textContent = `${hours}:${minutes}`;
-              countdownElement.classList.add('countdown-red');
-              const countdownElement = document.querySelector('.countdown-red');
-              countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
-          }
+    const notification = document.createElement('div');
+    notification.id = 'custom-notification';
+    notification.className = `notification ${type}`;
+
+    const messageContainer = document.createElement('div');
+    messageContainer.innerHTML = `${message}`;
+
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '&times;';
+    closeButton.className = 'close-button';
+
+
+    notification.appendChild(messageContainer);
+    notification.appendChild(closeButton);
+
+
+    container.appendChild(notification);
+
+    const countdownElement = document.createElement('span');
+    countdownElement.classList.add('countdown');
+
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = expirationTime - now;
+
+      if (distance <= 0) {
+        clearInterval(countdownInterval);
+        container.style.display = 'block';
+      } else {
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        countdownElement.textContent = `${hours}:${minutes}`;
+        countdownElement.classList.add('countdown-red');
+        const countdownElement = document.querySelector('.countdown-red');
+        countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
       }
-  
-      const countdownInterval = setInterval(updateCountdown, 1000);
-      updateCountdown();
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
   }
-  
-  
+
+
   function formatTime(time) {
-      return time < 10 ? `0${time}` : `${time}`;
+    return time < 10 ? `0${time}` : `${time}`;
   }
-  
+
   const currentTime = new Date();
   let expirationTime = new Date(currentTime);
   let message = '';
-  
+
   if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
-      expirationTime.setHours(13, 0, 0, 0);
-      const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
-      const hoursRemaining = Math.floor(timeTo13h / 60);
-      const minutesRemaining = timeTo13h % 60;
-      message = `Garantie d'expédition aujourd'hui, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}</span> !`;
+    expirationTime.setHours(13, 0, 0, 0);
+    const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
+    const hoursRemaining = Math.floor(timeTo13h / 60);
+    const minutesRemaining = timeTo13h % 60;
+    message = `Garantie d'expédition aujourd'hui, plus que <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span>`;
   } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
-      const midnight = new Date(currentTime);
-      midnight.setHours(24, 0, 0, 0);
-      const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
-      const hoursRemaining = Math.floor(timeToMidnight / 60);
-      const minutesRemaining = timeToMidnight % 60;  
-      message = `Garantie d'expédition demain, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}</span> !`;
-      expirationTime.setDate(currentTime.getDate()+1);
-      expirationTime.setHours(13, 0, 0, 0);
-  } else  {
-       const midnight = new Date(currentTime);
-      midnight.setHours(24, 0, 0, 0);
-      const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
-      const hoursRemaining = Math.floor(timeToMidnight / 60);
-      const minutesRemaining = timeToMidnight % 60;  
-      message = `Garantie d'expédition lundi, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}</span> !`;
-      expirationTime.setDate(currentTime.getDate()+1);
-      expirationTime.setHours(13, 0, 0, 0);
+    const midnight = new Date(currentTime);
+    midnight.setHours(24, 0, 0, 0);
+    const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
+    const hoursRemaining = Math.floor(timeToMidnight / 60);
+    const minutesRemaining = timeToMidnight % 60;
+    message = `Garantie d'expédition demain <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span>`;
+    expirationTime.setDate(currentTime.getDate() + 1);
+    expirationTime.setHours(13, 0, 0, 0);
+  } else {
+    const midnight = new Date(currentTime);
+    midnight.setHours(24, 0, 0, 0);
+    const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
+    const hoursRemaining = Math.floor(timeToMidnight / 60);
+    const minutesRemaining = timeToMidnight % 60;
+    message = `Garantie d'expédition lundi <span class="countdown-red">${formatTime(hoursRemaining)}:${formatTime(minutesRemaining)}</span>`;
+    expirationTime.setDate(currentTime.getDate() + 1);
+    expirationTime.setHours(13, 0, 0, 0);
   }
-  
+
   showCustomNotification(expirationTime, message);
 });
 
 const containerDelivery = document.querySelector('.container-delivery');
 
-  function getDeliveryMessage() {
-    const currentTime = new Date();
-    const currentDay = currentTime.getDay();
-    const currentHour = currentTime.getHours();
+function getDeliveryMessage() {
+  const currentTime = new Date();
+  const currentDay = currentTime.getDay();
+  const currentHour = currentTime.getHours();
 
-    let deliveryMessage;
+  let deliveryMessage;
 
-    if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
-      deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
-    } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
-      deliveryMessage = "Commandé aujourd’hui, Expédié demain";
-    } else {
-      deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
-    }
-    return deliveryMessage;
+  if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
+    deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
+  } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
+    deliveryMessage = "Commandé aujourd’hui, Expédié demain";
+  } else {
+    deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
   }
+  return deliveryMessage;
+}
+const deliveryMessage = getDeliveryMessage();
+if (deliveryMessage) {
+  document.querySelector('.delivery-info__message').textContent = deliveryMessage;
+  const deliveryLogoDiv = document.querySelector('.delivery-info__logo');
+  const img = document.createElement('img');
+  img.src = 'https://i.ibb.co/wpXqVsR/logo-delivery.png';
+  deliveryLogoDiv.appendChild(img);
+}
 
-  const deliveryMessage = getDeliveryMessage();
-  if (deliveryMessage) {
-    document.querySelector('.delivery-info__message').textContent = deliveryMessage;
-    const deliveryLogoDiv = document.querySelector('.delivery-info__logo');
-    const img = document.createElement('img');
-    img.src = 'https://i.ibb.co/wpXqVsR/logo-delivery.png';
-    deliveryLogoDiv.appendChild(img);
-  }
+let rewardCounter = document.querySelector('.reward')
+if(rewardCounter.innerHTML === '') {
+  let priceBfFormat = document.querySelector('.yv-product-price.h2')
+  let spanPrice = priceBfFormat.querySelector('.dualPrice').innerHTML
+  let priceAfFormat = parseFloat(spanPrice.replace(/\D/g, "")) / 100;
+  let rewardCalUnite = (priceAfFormat * 0.05).toFixed(2)
+  rewardCounter.innerHTML = `+${rewardCalUnite}€ sur votre cagnotte`
+}
+

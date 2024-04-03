@@ -32,10 +32,16 @@
             "inventory_less_status": ""
           }
         },
+        "custom_liquid_dDjGqj": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"wallet__reward\">\n    <span class=\"reward\"><\/span>\n<\/div>"
+          }
+        },
         "custom_liquid_CD663x": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"delivery-info delivery-info--{{ deliveryDayModifier }}\">\n  <div class=\"delivery-info__logo\"><\/div>\n<div class=\"delivery-info__message\">{{ deliveryMessage }}<\/div>\n  \n<\/div>"
+            "custom_liquid": "<div class=\"delivery-info delivery-info--{{ deliveryDayModifier }}\">\n  <div class=\"delivery-info__message\">{{ deliveryMessage }}<\/div>\n  <div class=\"delivery-info__logo\"><\/div>\n<\/div>"
           }
         },
         "custom_liquid_r7qF8b": {
@@ -88,6 +94,7 @@
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "air_product_reviews_app_summary_block_BbyykQ",
         "inventory_status_CBwQQj",
+        "custom_liquid_dDjGqj",
         "custom_liquid_CD663x",
         "custom_liquid_r7qF8b",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",

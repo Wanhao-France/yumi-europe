@@ -52,7 +52,71 @@
     <div id="spinner-container" class="spinner-container">
       <div class="spinner"></div>
     </div>
-    <div id="notification-container"></div>
+    <div id="pseudo__nav">
+      <div class="container__codes-promo" id="codesPromo">
+        <p class="codes-promo__text">
+          <span>
+            -10 % sur les D12 230, 300 et 500 via le code : YUMI // CODE PROMO : -10 % sur les D12 230, 300 et 500 via
+            le code : YUMI //
+          </span>
+          <span>
+            CODE PROMO : -10 % sur les D12 230, 300 et 500 via le code : YUMI // CODE PROMO : -10 % sur les D12 230, 300
+            et 500 via le code : YUMI
+          </span>
+        </p>
+        <button id="closed_codes_promo" class="closed-code-promo">
+          <svg
+            id="arrow_icon"
+            width="20px"
+            height="20px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="container__items-navbar" id="pseudo--navbar">
+        <div class="fully-div"></div>
+        <ul class="items-navbar__container">
+          <li class="container__item">
+            <a
+              target="_blank"
+              href="https://formation.wanhaofrance.com/administratif-devis"
+              class="container__item-info"
+              >Devis</a
+            >
+          </li>
+          <li class="container__item">
+            <a
+              target="_blank"
+              href="https://formation.wanhaofrance.com/administratif-partenariat"
+              class="container__item-info"
+              >Revendeur</a
+            >
+          </li>
+          <li class="container__item">
+            <a
+              target="_blank"
+              href="https://formation.wanhaofrance.com/slides/formation-l-impression-3d-53"
+              class="container__item-info"
+              >Guide d'utilisation et formation</a
+            >
+          </li>
+          <li class="container__item">
+            <a target="_blank" href="https://formation.wanhaofrance.com/menu-contact" class="container__item-info"
+              >SAV</a
+            >
+          </li>
+          <li class="container__item"><a href="/blogs/news" class="container__item-info">Blog</a></li>
+        </ul>
+        <!-- TTC -->
+        <div class="toggle-container">
+          <button id="togglePreciosBtn" class="toggle-btn"></button>
+        </div>
+      </div>
+    </div>
     <a class="skip-to-content-link button yv-visually-hidden focus-inside" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -124,7 +188,6 @@
       </div>
     {% endif %}
     <script src="https://kit.fontawesome.com/a5ab2ef8e3.js" crossorigin="anonymous" defer="defer"></script>
-    <script src="{{ 'pseudoNavbar.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
     <!-- TTC -->
     <script>
