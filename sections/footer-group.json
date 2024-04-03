@@ -2,6 +2,33 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "offer-sidebar": {
+      "type": "offer-sidebar",
+      "blocks": {
+        "eefd02b4-3264-40df-b101-73e51cb795f3": {
+          "type": "offer",
+          "settings": {
+            "heading": "Offer Title",
+            "highlight_text": "Offer",
+            "linktext": "Shop now",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "eefd02b4-3264-40df-b101-73e51cb795f3"
+      ],
+      "settings": {
+        "enable_sidebar": false,
+        "heading": "Heading Here",
+        "subheading": "Sub Heading Here",
+        "button_text": "Coupon",
+        "horizontal_position": "left",
+        "vertical_position": 5,
+        "btnbgcolor": "#46c0bf",
+        "btntextcolor": "#ffffff"
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -66,37 +93,10 @@
         "footer_text": "#eeeeee",
         "footer_text_hover": "#ffffff"
       }
-    },
-    "offer-sidebar": {
-      "type": "offer-sidebar",
-      "blocks": {
-        "eefd02b4-3264-40df-b101-73e51cb795f3": {
-          "type": "offer",
-          "settings": {
-            "heading": "Offer Title",
-            "highlight_text": "Offer",
-            "linktext": "Shop now",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "eefd02b4-3264-40df-b101-73e51cb795f3"
-      ],
-      "settings": {
-        "enable_sidebar": false,
-        "heading": "Heading Here",
-        "subheading": "Sub Heading Here",
-        "button_text": "Coupon",
-        "horizontal_position": "left",
-        "vertical_position": 5,
-        "btnbgcolor": "#46c0bf",
-        "btntextcolor": "#ffffff"
-      }
     }
   },
   "order": [
-    "footer",
-    "offer-sidebar"
+    "offer-sidebar",
+    "footer"
   ]
 }

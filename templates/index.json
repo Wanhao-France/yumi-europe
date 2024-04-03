@@ -466,10 +466,10 @@
         "content_alignment": "center",
         "bgcolor": "primary",
         "section_visibility": "always",
-        "top_space_desktop": 30,
-        "bottom_space_desktop": 30,
-        "top_space_mobile": 30,
-        "bottom_space_mobile": 30
+        "top_space_desktop": 0,
+        "bottom_space_desktop": 0,
+        "top_space_mobile": 0,
+        "bottom_space_mobile": 0
       }
     }
   },
