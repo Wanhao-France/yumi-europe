@@ -57,7 +57,7 @@
         "show_language_background": true,
         "enable_currency_selector": false,
         "show_currency_background": true,
-        "payment_enable": true,
+        "payment_enable": false,
         "hide_copyright_content": false,
         "custom_copyright_content": "© 2024 WANHAO FRANCE",
         "show_policies": false,
