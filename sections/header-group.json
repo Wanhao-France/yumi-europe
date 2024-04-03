@@ -41,6 +41,7 @@
         "announcement_ehiFWK",
         "announcement_YUC8tj"
       ],
+      "disabled": true,
       "settings": {
         "show_bar": true,
         "desktop_height": "adapt_image",
