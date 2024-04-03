@@ -3821,7 +3821,8 @@ const codesPromo = document.getElementById('codesPromo');
 const arrowIcon = document.getElementById('arrow_icon');
 
 function getButtonState() {
-    return getCookie('codePromoBanner') === 'true';
+  const cookieValue = getCookie('codePromoBanner');
+  return cookieValue ? cookieValue === 'false' : true;
 }
 
 function updateButtonState(state) {
@@ -3853,6 +3854,7 @@ function toggleContainer() {
 closedCodesPromo.addEventListener('click', toggleContainer);
 
 const initialButtonState = getButtonState();
+
 if (initialButtonState) {
     arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
     codesPromo.classList.remove('collapsed');
