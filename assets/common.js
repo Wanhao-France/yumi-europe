@@ -1064,7 +1064,7 @@ function priceUpdate(productSection, priceContainer, getVariant, showSaved) {
     let rewardCounter = document.querySelector('.reward')
     let priceCalReward = parseFloat(adjustedPrice) / 100;
     let rewardCal = (priceCalReward * 0.05).toFixed(2); 
-    rewardCounter.innerHTML = `+${rewardCal}€ sur votre cagnotte`
+    rewardCounter.innerHTML = `+${rewardCal}€ sur votre cagnotte en achetant ce produit.`
    // Reward Cal - Andrew 
     var priceHtml = `<span class="yv-visually-hidden">${regularPriceText}</span><span class="yv-product-price h2" ttc="${shouldShowTTC}">${Shopify.formatMoney(
       parseInt(adjustedPrice),
@@ -3816,54 +3816,43 @@ function getCookie(name) {
 
 
 // Toggle Hidden Code Promo - Andrew - 02/03/2024
+const getContainerCodeState = () => {
+  const cookieValue = getCookie('codePromoBanner');
+  return cookieValue ? cookieValue === 'true' : true;
+}
+
 const closedCodesPromo = document.getElementById('closed_codes_promo');
 const codesPromo = document.getElementById('codesPromo');
 const arrowIcon = document.getElementById('arrow_icon');
 
-function getButtonState() {
-  const cookieValue = getCookie('codePromoBanner');
-  return cookieValue ? cookieValue === 'false' : true;
+let containerState = getContainerCodeState();
+
+if (containerState) {
+  codesPromo.classList.remove('expanded');
+  codesPromo.classList.add('collapsed');
+  arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
 }
 
-function updateButtonState(state) {
+function updateCookieBtnState(state) {
     setCookie('codePromoBanner', state.toString(), 1);
 }
 
-function toggleContainer() {
-    const currentState = getButtonState();
-    codesPromo.classList.add('expanded');
-   /* if (!currentState && codesPromo.classList.contains('collapsed')) {
-        arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
-       // codesPromo.classList.remove('collapsed');
-        codesPromo.classList.add('expanded');
-        let elemento = document.querySelector('.ht-tms-single-dropdown__container');
-        elemento.classList.add('hide__scroll');  
-        elemento.classList.remove('respan__scroll')
-        updateButtonState(true);
-    } else {
-        let elemento = document.querySelector('.ht-tms-single-dropdown__container');
-        elemento.classList.add('respan__scroll')
-        document.body.classList.remove('hide__scroll');    
+function toggleContainer() {   
+    containerState = !containerState;
+    
+    if (containerState) {
         codesPromo.classList.remove('expanded');
         codesPromo.classList.add('collapsed');
         arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
-        updateButtonState(false);
-    } */
-}
-
+    } else {
+        codesPromo.classList.remove('collapsed');
+        codesPromo.classList.add('expanded');
+        arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+    }
+    
+    updateCookieBtnState(containerState);
+  }
 closedCodesPromo.addEventListener('click', toggleContainer);
-
-const initialButtonState = getButtonState();
-
-if (initialButtonState) {
-    arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
-    codesPromo.classList.remove('collapsed');
-    codesPromo.classList.add('expanded');
-} else {
-    codesPromo.classList.remove('expanded');
-    codesPromo.classList.add('collapsed');
-    arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
-}
 
 window.addEventListener('scroll', function() {
   var scrollPosition = window.scrollY;

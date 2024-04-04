@@ -417,11 +417,11 @@ function getDeliveryMessage() {
   let deliveryMessage;
 
   if ((currentDay >= 1 && currentDay <= 5 && currentHour < 13)) {
-    deliveryMessage = "Commandé avant 13h, Expédié aujourd’hui ";
+    deliveryMessage = " Expédié aujourd’hui ";
   } else if ((currentDay >= 1 && currentDay <= 4 && currentHour >= 13) || currentDay === 0) {
-    deliveryMessage = "Commandé aujourd’hui, Expédié demain";
+    deliveryMessage = " Expédié demain";
   } else {
-    deliveryMessage = "Commandé aujourd’hui, Expédié lundi";
+    deliveryMessage = " Expédié lundi";
   }
   return deliveryMessage;
 }
@@ -429,17 +429,21 @@ const deliveryMessage = getDeliveryMessage();
 if (deliveryMessage) {
   document.querySelector('.delivery-info__message').textContent = deliveryMessage;
   const deliveryLogoDiv = document.querySelector('.delivery-info__logo');
-  const img = document.createElement('img');
+  /* const img = document.createElement('img');
   img.src = 'https://i.ibb.co/wpXqVsR/logo-delivery.png';
-  deliveryLogoDiv.appendChild(img);
+  deliveryLogoDiv.appendChild(img); */
 }
-
+const walletContainer = document.querySelector('.wallet__reward')
 let rewardCounter = document.querySelector('.reward')
+const imgWallet = document.createElement('img');
+imgWallet.setAttribute('src', 'https://i.ibb.co/94WDtLZ/reward.png')
+walletContainer.appendChild(imgWallet)
+
 if(rewardCounter.innerHTML === '') {
   let priceBfFormat = document.querySelector('.yv-product-price.h2')
   let spanPrice = priceBfFormat.querySelector('.dualPrice').innerHTML
   let priceAfFormat = parseFloat(spanPrice.replace(/\D/g, "")) / 100;
   let rewardCalUnite = (priceAfFormat * 0.05).toFixed(2)
-  rewardCounter.innerHTML = `+${rewardCalUnite}€ sur votre cagnotte`
+  rewardCounter.innerHTML = `+${rewardCalUnite}€ sur votre cagnotte en achetant ce produit.`
 }
 
