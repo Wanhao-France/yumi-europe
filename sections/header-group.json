@@ -67,6 +67,20 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "menu_badge_YaW4BM": {
+          "type": "menu-badge",
+          "settings": {
+            "badge_label": "Laser",
+            "menu_badge": "New",
+            "badge_text_color": "#efb34c",
+            "badge_background": "{{ shop.brand.colors.primary[1].background }}"
+          }
+        }
+      },
+      "block_order": [
+        "menu_badge_YaW4BM"
+      ],
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
