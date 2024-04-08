@@ -67,6 +67,24 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "style_1_TA4ERY": {
+          "type": "style-1",
+          "settings": {
+            "title": "Laser",
+            "show_submenu": true,
+            "product1": "",
+            "product2": "",
+            "product3": "",
+            "product4": "",
+            "product5": "",
+            "product6": ""
+          }
+        }
+      },
+      "block_order": [
+        "style_1_TA4ERY"
+      ],
       "settings": {
         "header_style": "header4",
         "enable_sticky_header": true,
