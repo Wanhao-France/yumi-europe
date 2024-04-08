@@ -74,7 +74,7 @@
             "badge_label": "Laser",
             "menu_badge": "New",
             "badge_text_color": "{{ shop.brand.colors.primary[0].foreground }}",
-            "badge_background": "#0e31f5"
+            "badge_background": "#ffc340"
           }
         },
         "menu_badge_HXNtjq": {
