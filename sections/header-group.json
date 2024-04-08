@@ -76,10 +76,20 @@
             "badge_text_color": "{{ shop.brand.colors.primary[0].foreground }}",
             "badge_background": "#0e31f5"
           }
+        },
+        "menu_badge_HXNtjq": {
+          "type": "menu-badge",
+          "settings": {
+            "badge_label": "Nano Computer (SBC)",
+            "menu_badge": "New",
+            "badge_text_color": "#FFFFFF",
+            "badge_background": "#ffc340"
+          }
         }
       },
       "block_order": [
-        "menu_badge_YaW4BM"
+        "menu_badge_YaW4BM",
+        "menu_badge_HXNtjq"
       ],
       "settings": {
         "header_style": "header4",
