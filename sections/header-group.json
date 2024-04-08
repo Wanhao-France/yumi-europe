@@ -85,11 +85,21 @@
             "badge_text_color": "#FFFFFF",
             "badge_background": "#ffc340"
           }
+        },
+        "menu_badge_AmfCHb": {
+          "type": "menu-badge",
+          "settings": {
+            "badge_label": "FLASHFORGE Adventurer 5M & 5M PRO",
+            "menu_badge": "",
+            "badge_text_color": "#FFFFFF",
+            "badge_background": "#ffc340"
+          }
         }
       },
       "block_order": [
         "menu_badge_YaW4BM",
-        "menu_badge_HXNtjq"
+        "menu_badge_HXNtjq",
+        "menu_badge_AmfCHb"
       ],
       "settings": {
         "header_style": "header4",
