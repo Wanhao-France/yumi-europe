@@ -1461,7 +1461,7 @@ html.no-js .sub-inner-hamburger-outer .hamburger-menu-item .item {
     font-family:bolder;
     font-size: 1.1rem;
     font-style: var(--navigationFontStyle);
-    font-weight: var(--navigationFontWeight);
+    font-weight: 400;
 }
 
 .fullwidth-megamenus .yv-dropdown-item-link {
