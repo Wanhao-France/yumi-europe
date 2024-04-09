@@ -1458,7 +1458,6 @@ html.no-js .sub-inner-hamburger-outer .hamburger-menu-item .item {
 .menu-category-title {
     padding-bottom: 18px;
     display: inline-block;
-    font-size: var(--text);
     font-family:bold;
     font-size: 2rem
     font-style: var(--navigationFontStyle);
