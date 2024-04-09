@@ -3824,14 +3824,18 @@ const getContainerCodeState = () => {
 const closedCodesPromo = document.getElementById('closed_codes_promo');
 const codesPromo = document.getElementById('codesPromo');
 const arrowIcon = document.getElementById('arrow_icon');
+const spanText = document.createElement('span');
 
 let containerState = getContainerCodeState();
-
 if (containerState) {
   codesPromo.classList.remove('expanded');
   codesPromo.classList.add('collapsed');
   arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
+  closedCodesPromo.appendChild(spanText);
+  spanText.classList.add('span__text--flag');
+  spanText.innerText = 'Promo';
 }
+
 
 function updateCookieBtnState(state) {
     setCookie('codePromoBanner', state.toString(), 1);
@@ -3844,10 +3848,15 @@ function toggleContainer() {
         codesPromo.classList.remove('expanded');
         codesPromo.classList.add('collapsed');
         arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
+        spanText.style.display = 'block'
+        closedCodesPromo.appendChild(spanText);
+        spanText.classList.add('span__text--flag');
+        spanText.innerText = 'Promo';
     } else {
         codesPromo.classList.remove('collapsed');
         codesPromo.classList.add('expanded');
         arrowIcon.innerHTML = '<path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+        spanText.style.display = 'none'
     }
     
     updateCookieBtnState(containerState);
@@ -3869,3 +3878,4 @@ window.addEventListener('scroll', function() {
     document.body.classList.remove('hide__scroll');    
   }
 });
+

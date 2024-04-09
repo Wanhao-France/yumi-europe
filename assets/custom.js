@@ -274,8 +274,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-
 function hideIfSingleChildWithSingleLi(selector) {
   document.querySelectorAll(selector).forEach(function (element) {
 
@@ -297,115 +295,71 @@ hideIfSingleChildWithSingleLi('.select-poids');
 hideIfSingleChildWithSingleLi('.select-style');
 hideIfSingleChildWithSingleLi('.select-titulo');
 
-
-
-
-
-// Notification dispatched same day
-
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function timeNotification() {
   const container = document.getElementById('notification-container');
 
-  const ul = document.createElement('ul')
-  const li = document.createElement('li')
-  const a = document.createElement('a')
-
-  container.appendChild(ul)
-  ul.appendChild(li)
-  ul.classList.add('container__bottons')
-
-  const textButton = ['Demande Devis', 'Trouver Revendeur', 'Devenez Revendeur']
-
-  textButton.forEach(text => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.innerText = text;
-    li.appendChild(a);
-    ul.appendChild(li);
-  });
-
-  function showCustomNotification(expirationTime, message, type = 'info') {
+  function showCustomNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.id = 'custom-notification';
     notification.className = `notification ${type}`;
-
     const messageContainer = document.createElement('div');
     messageContainer.innerHTML = `${message}`;
-
-    const closeButton = document.createElement('button');
-    closeButton.innerHTML = '&times;';
-    closeButton.className = 'close-button';
-
-
     notification.appendChild(messageContainer);
-    notification.appendChild(closeButton);
-
-
     container.appendChild(notification);
-
     const countdownElement = document.createElement('span');
     countdownElement.classList.add('countdown');
-
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = expirationTime - now;
-
-      if (distance <= 0) {
-        clearInterval(countdownInterval);
-        container.style.display = 'block';
-      } else {
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        countdownElement.textContent = `${hours}:${minutes}`;
-        countdownElement.classList.add('countdown-red');
-        const countdownElement = document.querySelector('.countdown-red');
-        countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}`;
-      }
-    }
-
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
   }
-
 
   function formatTime(time) {
     return time < 10 ? `0${time}` : `${time}`;
   }
 
-  const currentTime = new Date();
-  let expirationTime = new Date(currentTime);
-  let message = '';
+  function timeRemaining(expirationTime, currentTime) {
+    const timeTo = (expirationTime - currentTime) / 1000;
+    const hoursRemaining = Math.floor(timeTo / 3600);
+    const minutesRemaining = Math.floor((timeTo % 3600) / 60);
+    const secondsRemaining = Math.floor(timeTo % 60);
+    const timeFormat = { hoursRemaining, minutesRemaining, secondsRemaining };
 
-  if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
-    expirationTime.setHours(13, 0, 0, 0);
-    const timeTo13h = (13 - currentTime.getHours()) * 60 - currentTime.getMinutes();
-    const hoursRemaining = Math.floor(timeTo13h / 60);
-    const minutesRemaining = timeTo13h % 60;
-    message = `Garantie d'expédition aujourd'hui, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}</span>`;
-  } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
-    const midnight = new Date(currentTime);
-    midnight.setHours(24, 0, 0, 0);
-    const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
-    const hoursRemaining = Math.floor(timeToMidnight / 60);
-    const minutesRemaining = timeToMidnight % 60;
-    message = `Garantie d'expédition demain, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}</span>`;
-    expirationTime.setDate(currentTime.getDate() + 1);
-    expirationTime.setHours(13, 0, 0, 0);
-  } else {
-    const midnight = new Date(currentTime);
-    midnight.setHours(24, 0, 0, 0);
-    const timeToMidnight = Math.ceil((midnight - currentTime) / (1000 * 60));
-    const hoursRemaining = Math.floor(timeToMidnight / 60);
-    const minutesRemaining = timeToMidnight % 60;
-    message = `Garantie d'expédition lundi, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}</span>`;
-    expirationTime.setDate(currentTime.getDate() + 1);
-    expirationTime.setHours(13, 0, 0, 0);
+    return timeFormat;
   }
 
-  showCustomNotification(expirationTime, message);
+  function updateNotification() {
+    const currentTime = new Date();
+    let expirationTime = new Date(currentTime);
+    let message = '';
+
+    if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
+      expirationTime.setHours(13, 0, 0, 0);
+      let setTimeFormat = timeRemaining(expirationTime, currentTime);
+      message = `Garantie d'expédition aujourd'hui, plus que <span class="countdown-red">${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s</span>`;
+    } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
+      const midnight = new Date(currentTime);
+      midnight.setHours(24, 0, 0, 0);
+      const timeToMidnight = (midnight - currentTime) / 1000;
+      const hoursRemaining = Math.floor(timeToMidnight / 3600);
+      const minutesRemaining = Math.floor((timeToMidnight % 3600) / 60);
+      const secondsRemaining = Math.floor(timeToMidnight % 60);
+      message = `Garantie d'expédition demain, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}m${formatTime(secondsRemaining)}s</span>`;
+      expirationTime.setDate(currentTime.getDate() + 1);
+      expirationTime.setHours(13, 0, 0, 0);
+    } else {
+      const daysToMonday = (8 - currentTime.getDay()) % 7;
+      const timeToMonday = (daysToMonday * 24 * 3600) + ((24 - currentTime.getHours()) * 3600) + ((60 - currentTime.getMinutes()) * 60);
+      const hoursRemaining = Math.floor(timeToMonday / 3600);
+      const minutesRemaining = Math.floor((timeToMonday % 3600) / 60);
+      const secondsRemaining = Math.floor(timeToMonday % 60);
+      message = `Garantie d'expédition lundi, plus que <span class="countdown-red">${formatTime(hoursRemaining)}h${formatTime(minutesRemaining)}m${secondsRemaining}s</span>`;
+      expirationTime.setDate(currentTime.getDate() + daysToMonday);
+      expirationTime.setHours(13, 0, 0, 0);
+    }
+
+    container.innerHTML = '';
+    showCustomNotification(message);
+  }
+  setInterval(updateNotification, 1000);
 });
+
 
 const containerDelivery = document.querySelector('.container-delivery');
 
@@ -439,7 +393,7 @@ const imgWallet = document.createElement('img');
 imgWallet.setAttribute('src', 'https://i.ibb.co/94WDtLZ/reward.png')
 walletContainer.appendChild(imgWallet)
 
-if(rewardCounter.innerHTML === '') {
+if (rewardCounter.innerHTML === '') {
   let priceBfFormat = document.querySelector('.yv-product-price.h2')
   let spanPrice = priceBfFormat.querySelector('.dualPrice').innerHTML
   let priceAfFormat = parseFloat(spanPrice.replace(/\D/g, "")) / 100;
@@ -447,3 +401,14 @@ if(rewardCounter.innerHTML === '') {
   rewardCounter.innerHTML = `+${rewardCalUnite}€ sur votre cagnotte en achetant ce produit.`
 }
 
+/*
+document.addEventListener('DOMContentLoaded', () => {
+  const variantOptions = document.querySelectorAll('.poids__option.variant_option');
+  variantOptions.forEach(option => {
+    const labelText = option.querySelector('label').textContent.trim();
+    if (labelText === '500g') {
+      option.style.display = 'none';
+    }
+  });
+});
+*/
