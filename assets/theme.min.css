@@ -3,7 +3,7 @@
   font-family: var(--variantFontFamily);
 }
 
-.menu-category-title{
+.dropdown-inner-menu-item{
   font:bold
 }
 
