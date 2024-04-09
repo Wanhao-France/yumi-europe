@@ -1459,10 +1459,9 @@ html.no-js .sub-inner-hamburger-outer .hamburger-menu-item .item {
     padding-bottom: 18px;
     display: inline-block;
     font-size: var(--text);
-    font-family: var(--navigationFontFamily);
+    font-family: bolder;
     font-style: var(--navigationFontStyle);
     font-weight: var(--navigationFontWeight);
-    font:bold
 }
 
 .fullwidth-megamenus .yv-dropdown-item-link {
