@@ -1459,7 +1459,7 @@ html.no-js .sub-inner-hamburger-outer .hamburger-menu-item .item {
     padding-bottom: 18px;
     display: inline-block;
     font-size: var(--text);
-    font-family: bolder;
+    font-family: bold;
     font-style: var(--navigationFontStyle);
     font-weight: var(--navigationFontWeight);
 }
