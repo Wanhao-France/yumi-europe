@@ -3,6 +3,12 @@
   font-family: var(--variantFontFamily);
 }
 
+.menu-category-title{
+  font:bold
+}
+
+
+
 .infinite-text,
 .similar-text,
 .yv-product-feature-tab-content table {
