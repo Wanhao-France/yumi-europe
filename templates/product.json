@@ -33,12 +33,6 @@
             "custom_liquid": "{% if product.available %}\n  <div class=\"delivery-info delivery-info--{{ deliveryDayModifier }}\">\n<i class=\"fa-solid fa-check\" style=\"color:green;font-weight: bold;\" aria-hidden=\"true\"><\/i>\n    <div class=\"delivery-info__message\">{{ deliveryMessage }}<\/div>\n    <div class=\"delivery-info__logo\"><\/div>\n  <\/div>\n{% endif %}"
           }
         },
-        "custom_liquid_r7qF8b": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div id=\"precommande__mesagge\"><\/div>"
-          }
-        },
         "custom_liquid_dDjGqj": {
           "type": "custom_liquid",
           "settings": {
@@ -87,7 +81,6 @@
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "inventory_status_CBwQQj",
         "custom_liquid_CD663x",
-        "custom_liquid_r7qF8b",
         "custom_liquid_dDjGqj",
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
