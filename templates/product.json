@@ -9,6 +9,11 @@
             "seo_heading": "h5"
           }
         },
+        "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
+          "type": "sku",
+          "settings": {
+          }
+        },
         "air_product_reviews_app_summary_block_BbyykQ": {
           "type": "shopify:\/\/apps\/air-product-reviews\/blocks\/app-summary-block\/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
           "settings": {
@@ -68,15 +73,11 @@
           "settings": {
             "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n  <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" \/>\n      <p class=\"info-text\">PAY IN 3X OR 4X FREE OF CHARGE FROM €100 TO €2000 INCL. TAX<\/p>\n  \n<\/div>"
           }
-        },
-        "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
-          "type": "sku",
-          "settings": {
-          }
         }
       },
       "block_order": [
         "fe3c09d6-15d2-4555-a0f5-c87ab0cf370f",
+        "9db1533f-9baf-4eb6-869d-dd2b494b6990",
         "air_product_reviews_app_summary_block_BbyykQ",
         "5540566c-63cd-4a90-b9b6-7707e45d7066",
         "inventory_status_CBwQQj",
@@ -85,8 +86,7 @@
         "8658b9a0-c9c5-4055-a2e1-56a8f49d0b68",
         "811e6d87-a5e5-4457-9124-d3c2ed070ba9",
         "16819786-9d1e-449d-966d-08d21e1c91af",
-        "d9f7768a-bd99-466f-9731-c11cbc9e6d12",
-        "9db1533f-9baf-4eb6-869d-dd2b494b6990"
+        "d9f7768a-bd99-466f-9731-c11cbc9e6d12"
       ],
       "custom_css": [
         ".product__pickup-availabilities.no-js-hidden {display: none;}",
