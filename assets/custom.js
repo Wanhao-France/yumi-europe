@@ -239,6 +239,52 @@ function hideSpinner() {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('pay-credit-element');
+  const productPrice = document.querySelector('.yv-product-price .dualPrice');
+
+  const iconInfo = document.getElementById('info_button');
+  const beforeElement = document.createElement('div');
+  beforeElement.className = 'info-card';
+  beforeElement.style.opacity = '0';
+
+  iconInfo.addEventListener('click', () => {
+    if (container && productPrice) {
+      const priceText = productPrice.textContent;
+      const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
+      if (!isNaN(priceValue)) {
+        const installmentPrice = (priceValue / 4).toFixed(2);
+        beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
+          Second Payment: €${installmentPrice}\n
+          Third Payment: €${installmentPrice}\n
+          Fourth Payment: €${installmentPrice}`;
+        beforeElement.style.opacity = '1';
+      }
+    }
+  });
+
+  iconInfo.addEventListener('mouseenter', () => {
+    if (container && productPrice) {
+      const priceText = productPrice.textContent;
+      const priceValue = parseFloat(priceText.replace('€', '').replace(',', '.'));
+      if (!isNaN(priceValue)) {
+        const installmentPrice = (priceValue / 4).toFixed(2);
+        beforeElement.textContent = `Initial Payment: €${installmentPrice}\n
+          Second Payment: €${installmentPrice}\n
+          Third Payment: €${installmentPrice}\n
+          Fourth Payment: €${installmentPrice}`;
+        beforeElement.style.opacity = '1';
+      }
+    }
+  });
+
+  iconInfo.addEventListener('mouseleave', () => {
+    beforeElement.style.opacity = '0';
+  });
+
+  container.appendChild(beforeElement);
+});
+
 // Box pay in 4X/3X Animation 
 /*
 document.addEventListener('DOMContentLoaded', function () {

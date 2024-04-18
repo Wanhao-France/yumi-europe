@@ -9033,6 +9033,7 @@ body.account-popup-open .yv-login-popup {
   position: relative;
   margin: 1rem 0;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -9041,24 +9042,25 @@ body.account-popup-open .yv-login-popup {
   margin-right: 1rem;
 }
 
+.container__pay-3-fois > div {
+  display: flex;
+  align-items: center;
+}
+
 .container__pay-3-fois > p {
   font-size: 1.2rem;
   text-wrap: balance;
   transition: opacity 0.3s ease;
 }
 
-/*.container__pay-3-fois:hover > .info-text {
-  opacity: 0;
-} */
-
-#info_button {
-  margin-left: 5px;
+.info-text {
+  width: 45%;
 }
 
 .info-card {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 60%;
+  left: 40%;
   background-color: #000;
   color: #fff;
   padding: 1rem;
@@ -10262,7 +10264,7 @@ body.account-popup-open .yv-login-popup {
     grid-row: 2;
     grid-column: 3  / 5;
   }
-  
+
   .form-inline.header-right {
     grid-column: 5 / 6;
   }
