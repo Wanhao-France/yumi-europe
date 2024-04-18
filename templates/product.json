@@ -66,7 +66,7 @@
         "d9f7768a-bd99-466f-9731-c11cbc9e6d12": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n<div>\n  <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" \/>\n<\/div>\n<p class=\"info-text\">\nPAYER EN 4X  DE 100 À 3000  TTC<\/p>\n<div id='info_button'>\n<i class=\"fa-solid fa-circle-info\"><\/i>\n<\/div>  \n<\/div>"
+            "custom_liquid": "<div id=\"pay-credit-element\" class=\"container__pay-3-fois\">\n<div>\n  <img src=\"https:\/\/i.ibb.co\/4STZpWj\/credit-card.png\" \/>\n<\/div>\n<p class=\"info-text\">\nPAYER EN <span>4X<\/span>  DE 100€ À 3000€ TTC<\/p>\n<div id='info_button'>\n<i class=\"fa-solid fa-circle-info\"><\/i>\n<\/div>  \n<\/div>"
           }
         },
         "9db1533f-9baf-4eb6-869d-dd2b494b6990": {
