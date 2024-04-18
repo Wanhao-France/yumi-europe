@@ -4122,14 +4122,79 @@ noscript .yv-filter-name {
 .yv-main-product-detail.slider-product-detail {
   padding: 0 40px 60px;
 }
+/*
 
 .yv-main-product-detail {
-  height: 100%;
-  max-width: 100%;
-  padding-left: 70px;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  overflow: hidden;
 }
+
+.yv-product-detail-title {
+  grid-column: 1 / 6;
+}
+
+#shopify-block-air_product_reviews_app_summary_block_BbyykQ {
+  grid-column: 1 / 2;
+  grid-row: 2;
+  min-width: 140px;
+  align-self: end;
+  justify-self: start; 
+}
+
+.yv-main-product-detail > :nth-child(6) {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  min-width: 140px;
+  justify-self: stretch;
+}
+
+.product__inventory.full-inventory {
+  grid-column: 3 / 6;
+  grid-row: 2;
+  min-width: 180px;
+  justify-self: center; 
+}
+
+.product_button {
+  margin-top: 0;
+  grid-column: 1 / 6;
+  width: fit-content;
+}
+
+.yv-main-product-detail > :nth-child(14) {
+  grid-column: 1 / 6;
+}
+
+.yv-product-sku {
+  grid-column: 1 / 6;
+}
+
+.yv-main-product-detail > :nth-child(3) {
+  grid-column: 1 / 6;
+}
+
+.yv-main-product-detail > :nth-child(7) {
+  grid-column: span 6;
+}
+
+.yv-main-product-detail > :nth-child(8) {
+  grid-column: span 6;
+}
+
+.yv-main-product-detail > :nth-child(12) {
+  grid-column: 1 / 6;
+}
+
+.yv-main-product-detail > :nth-child(16) {
+  grid-column: 1 / 6;
+}
+
+.yv-main-product-detail > :nth-child(19) {
+  grid-column: 1 / 6;
+}
+*/
 
 .social-icons,
 .yv-blog-comments {
@@ -7306,7 +7371,6 @@ html.with-fancybox body main {
 
 /* Delivery Time */
 .delivery-info {
-  margin: 2% auto;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8972,7 +9036,7 @@ body.account-popup-open .yv-login-popup {
   align-items: center;
 }
 
-.container__pay-3-fois > img {
+.container__pay-3-fois > div > img {
   width: 5rem;
   margin-right: 1rem;
 }
@@ -8983,8 +9047,12 @@ body.account-popup-open .yv-login-popup {
   transition: opacity 0.3s ease;
 }
 
-.container__pay-3-fois:hover > .info-text {
+/*.container__pay-3-fois:hover > .info-text {
   opacity: 0;
+} */
+
+#info_button {
+  margin-left: 5px;
 }
 
 .info-card {
@@ -9473,9 +9541,11 @@ body.account-popup-open .yv-login-popup {
 
 /* Bien Demarrer styles */
 
+.delivery-info__logo {
+  display: none;
+}
 
 .en__stock--animation {
-  margin-top: 1em;
   color: green;
   font-weight: bold;  
 }
@@ -9515,7 +9585,7 @@ body.account-popup-open .yv-login-popup {
 
 .box > ul {
   padding: 0;
-  flex-grow: 1; /* Hace que la lista ocupe todo el espacio disponible en el contenedor */
+  flex-grow: 1; 
 }
 
 .box > ul > li {
@@ -9524,12 +9594,12 @@ body.account-popup-open .yv-login-popup {
 }
 
 .box > ul > li > button {
-  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  width: 100%;
 }
 
 .box__image {
-  width: 100%; /* Ocupa el 100% del ancho del contenedor */
-  max-width: 100%; /* Ajusta la imagen según el contenido */
+  width: 100%; 
+  max-width: 100%; 
   height: auto;
   border: 0;
   border-radius: 15px;
@@ -9911,7 +9981,6 @@ body.account-popup-open .yv-login-popup {
   margin-left: 10px;
 }
 
-/* Estilos para el contenedor de las opciones desplegables */
 .dropdown__dropdown-wrapper {
   position: absolute;
   top: 100%;
@@ -9923,7 +9992,6 @@ body.account-popup-open .yv-login-popup {
   border-radius: 15px;
 }
 
-/* Estilos para las opciones desplegables */
 .dropdown__option {
   display: flex;
   align-items: center;
@@ -9931,15 +9999,13 @@ body.account-popup-open .yv-login-popup {
   cursor: pointer;
 }
 
-/* Estilos para la bandera */
 .dropdown__flag {
-  height: 15px; /* Ajustar según el tamaño deseado */
+  height: 15px; 
   margin-right: 10px;
 }
 
-/* Estilos para el texto de la opción */
 .dropdown__text {
-  font-size: 1rem; /* Ajustar según el tamaño deseado */
+  font-size: 1rem; 
 }
 .dropdown__dropdown-wrapper.show-dropdown {
   display: block;
@@ -10010,6 +10076,15 @@ body.account-popup-open .yv-login-popup {
   text-decoration: underline;
 }
 
+@media (max-width: 1127px) { 
+  .yv-product-detail-title {
+    max-width: 400px;
+  }
+  .inventory-stock-text.en__stock--animation {
+    max-width: 400px;
+  }
+}
+
 @media (max-width: 1000px) {
     .container__bottons {
       width: 100%;
@@ -10037,9 +10112,24 @@ body.account-popup-open .yv-login-popup {
      .ht-tms-option__text.ht-tms-dropdown__list-item__label {
       color: transparent !important;
      }
-     .items-navbar__container > :nth-child(3) {
+     /*.items-navbar__container > :nth-child(3) {
       display: none;
      }
+     .yv-main-product-detail > :nth-child(6) {
+      grid-column: 1 / 6;
+      grid-row: 3;
+      min-width: 180px;
+      align-self: center;
+      justify-self: start;
+    }
+  .product__inventory.full-inventory {
+    grid-column: 1 / 6;
+    grid-row: 4;
+    min-width: 180px;
+    align-self: center;
+    justify-self: start;
+  }
+  */
 }
 
 @media (max-width: 990px) {

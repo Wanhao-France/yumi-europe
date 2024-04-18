@@ -239,7 +239,8 @@ function hideSpinner() {
   }
 }
 
-// Box pay in 4X/3X Animation
+// Box pay in 4X/3X Animation 
+/*
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('pay-credit-element');
   const productPrice = document.querySelector('.yv-product-price .dualPrice');
@@ -272,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
-});
+}); */
 
 function hideIfSingleChildWithSingleLi(selector) {
   document.querySelectorAll(selector).forEach(function (element) {
