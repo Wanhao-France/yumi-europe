@@ -3818,7 +3818,7 @@ function getCookie(name) {
 // Toggle Hidden Code Promo - Andrew - 02/03/2024
 const getContainerCodeState = () => {
   const cookieValue = getCookie('codePromoBanner');
-  return cookieValue ? cookieValue === 'true' : true;
+  return cookieValue === null ? true : cookieValue === 'true';
 }
 
 const closedCodesPromo = document.getElementById('closed_codes_promo');
@@ -3827,6 +3827,7 @@ const arrowIcon = document.getElementById('arrow_icon');
 const spanText = document.createElement('span');
 
 let containerState = getContainerCodeState();
+
 if (containerState) {
   codesPromo.classList.remove('expanded');
   codesPromo.classList.add('collapsed');
@@ -3835,7 +3836,6 @@ if (containerState) {
   spanText.classList.add('span__text--flag');
   spanText.innerText = 'Promo';
 }
-
 
 function updateCookieBtnState(state) {
     setCookie('codePromoBanner', state.toString(), 1);
@@ -3864,16 +3864,16 @@ function toggleContainer() {
 closedCodesPromo.addEventListener('click', toggleContainer);
 
 window.addEventListener('scroll', function() {
-  var scrollPosition = window.scrollY;
-  var viewportHeight = window.innerHeight;
-  var hideThreshold = 0.01;
+  let scrollPosition = window.scrollY;
+  let viewportHeight = window.innerHeight;
+  let hideThreshold = 0.01;
 
   if (scrollPosition > viewportHeight * hideThreshold) {
-    var elemento = document.querySelector('.ht-tms-single-dropdown__container');
+    let elemento = document.querySelector('.ht-tms-single-dropdown__container');
     elemento.classList.add('hide__scroll');  
     elemento.classList.remove('respan__scroll')
   } else {
-    var elemento = document.querySelector('.ht-tms-single-dropdown__container');
+    let elemento = document.querySelector('.ht-tms-single-dropdown__container');
     elemento.classList.add('respan__scroll')
     document.body.classList.remove('hide__scroll');    
   }
