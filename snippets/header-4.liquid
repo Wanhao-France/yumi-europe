@@ -2,8 +2,44 @@
   class="top-header header_4"
   style="--layoutRadius:{% if settings.layout_style == 'rounded' %}6px{% else %}0px{% endif %};"
 >
-  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %}">
+  <div class="{% if settings.layout_width == 'boxed' %}container{% else %}container-fluid{% endif %} header__container">
     <div class="navigation__header">
+      <div class="container__items-navbar" id="pseudo--navbar">
+        <div class="fully-div"></div>
+        <ul class="items-navbar__container">
+          <li class="container__item">
+            <a
+              target="_blank"
+              href="https://formation.wanhaofrance.com/administratif-devis"
+              class="container__item-info"
+              >Devis</a
+            >
+          </li>
+          <li class="container__item">
+            <a
+              target="_blank"
+              href="https://formation.wanhaofrance.com/administratif-partenariat"
+              class="container__item-info"
+              >Revendeur</a
+            >
+          </li>
+          <li class="container__item">
+            <a
+              target="_blank"
+              href="https://wanhao-europe.com/pages/start"
+              class="container__item-info"
+              >Guide d'utilisation et formation</a
+            >
+          </li>
+          <li class="container__item">
+            <a target="_blank" href="https://formation.wanhaofrance.com/menu-contact" class="container__item-info"
+              >SAV</a
+            >
+          </li>
+          <li class="container__item"><a href="/blogs/news" class="container__item-info">Blog</a></li>
+        </ul>
+      </div>
+
       {% liquid
         assign catalogDesktop = false
         if section.settings.enable_catalog and section.settings.enable_catalog_drawer and section.settings.catalog_menu != blank
@@ -107,6 +143,22 @@
       <div class="form-inline header-right">
         {% render 'header-icons', section: section %}
       </div>
+
+      <div class="toggle-container">
+        <button id="togglePreciosBtn" class="toggle-btn"></button>
+      </div>
+      <button id="closed_codes_promo" class="closed-code-promo">
+        <svg
+          id="arrow_icon"
+          width="20px"
+          height="20px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M4 16L12 8L20 16" stroke="orange" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </div>
   {%- if section.settings.menu != blank -%}
