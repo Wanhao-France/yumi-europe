@@ -9249,7 +9249,8 @@ body.account-popup-open .yv-login-popup {
 .notification {
   padding: 10px;
   z-index: 100;
-  display: block;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
