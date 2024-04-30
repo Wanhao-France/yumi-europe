@@ -404,7 +404,13 @@ document.addEventListener('DOMContentLoaded', function timeNotification() {
       expirationTime.setHours(13, 0, 0, 0);
       let setTimeFormat = timeRemaining(expirationTime, currentTime);
       message = "Garantie d'expédition lundi, plus que ";
-      countdownText = `<span class="countdown-red">${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${setTimeFormat
+      countdownText = `<span class="countdown-red">${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${setTimeFormat.secondsRemaining}s</span>`;
+    }
+
+    showCustomNotification(message, countdownText);
+  }
+  setInterval(updateNotification, 1000);
+});
 
 
 const containerDelivery = document.querySelector('.container-delivery');
