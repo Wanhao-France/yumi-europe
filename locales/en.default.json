@@ -282,7 +282,7 @@
     },
     "cart": {
       "title": "Your cart",
-      "heading_html": "In your bag <span data-cart-item-count=\"\">{{itemCount}}<\/span> items",
+      "heading_html": "In your cart <span data-cart-item-count=\"\">{{itemCount}}<\/span> items",
       "caption": "Cart items",
       "price_detail": "Price Details",
       "remove_title": "Remove {{ title }}",
