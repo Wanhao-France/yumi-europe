@@ -355,6 +355,9 @@ document.addEventListener('DOMContentLoaded', function timeNotification() {
     container.appendChild(notification);
     const countdownElement = document.createElement('span');
     countdownElement.classList.add('countdown');
+    countdownElement.classList.add('notranslate');
+    container.classList.add('notranslate');
+    notification.classList.add('notranslate');
   }
 
   function formatTime(time) {
@@ -375,6 +378,12 @@ document.addEventListener('DOMContentLoaded', function timeNotification() {
     const currentTime = new Date();
     let expirationTime = new Date(currentTime);
     let message = '';
+
+    if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
+      
+    } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
+      
+    }
 
     if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
       expirationTime.setHours(13, 0, 0, 0);
