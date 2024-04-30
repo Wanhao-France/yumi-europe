@@ -345,18 +345,30 @@ hideIfSingleChildWithSingleLi('.select-titulo');
 document.addEventListener('DOMContentLoaded', function timeNotification() {
   const container = document.getElementById('notification-container');
 
-  // Création initiale de la notification, séparation du message et du timer
+  // Initialisation des éléments de notification
   let notification = document.createElement('div');
   notification.id = 'custom-notification';
   notification.className = 'notification info';
-  let messageContainer = document.createElement('div');
-  messageContainer.className = 'message-content';
+  let messageContent = document.createElement('div');
+  messageContent.className = 'message-content notranslate';
   let countdownElement = document.createElement('span');
-  countdownElement.className = 'countdown notranslate';
+  countdownElement.className = 'countdown countdown-red notranslate';
 
   container.appendChild(notification);
-  notification.appendChild(messageContainer);
+  notification.appendChild(messageContent);
   notification.appendChild(countdownElement);
+
+  // Initialisation du message de base
+  function initBaseMessage() {
+    const currentTime = new Date();
+    if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
+      messageContent.innerHTML = "Garantie d'expédition aujourd'hui, plus que ";
+    } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
+      messageContent.innerHTML = "Garantie d'expédition demain, plus que ";
+    } else {
+      messageContent.innerHTML = "Garantie d'expédition lundi, plus que ";
+    }
+  }
 
   function formatTime(time) {
     return time < 10 ? `0${time}` : `${time}`;
@@ -367,41 +379,29 @@ document.addEventListener('DOMContentLoaded', function timeNotification() {
     const hoursRemaining = Math.floor(timeTo / 3600);
     const minutesRemaining = Math.floor((timeTo % 3600) / 60);
     const secondsRemaining = Math.floor(timeTo % 60);
-    const timeFormat = { hoursRemaining, minutesRemaining, secondsRemaining };
-    return timeFormat;
+    return { hoursRemaining, minutesRemaining, secondsRemaining };
   }
 
-  function updateNotification() {
+  function updateCountdown() {
     const currentTime = new Date();
     let expirationTime = new Date(currentTime);
-    let baseMessage = '';
-    let countdownText = '';
-
     if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
       expirationTime.setHours(13, 0, 0, 0);
-      let setTimeFormat = timeRemaining(expirationTime, currentTime);
-      baseMessage = "Garantie d'expédition aujourd'hui, plus que ";
-      countdownText = `${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s`;
     } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
       expirationTime.setDate(currentTime.getDate() + 1);
       expirationTime.setHours(13, 0, 0, 0);
-      let setTimeFormat = timeRemaining(expirationTime, currentTime);
-      baseMessage = "Garantie d'expédition demain, plus que ";
-      countdownText = `${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s`;
     } else {
       const daysToMonday = (8 - currentTime.getDay()) % 7;
       expirationTime.setDate(currentTime.getDate() + daysToMonday);
       expirationTime.setHours(13, 0, 0, 0);
-      let setTimeFormat = timeRemaining(expirationTime, currentTime);
-      baseMessage = "Garantie d'expédition lundi, plus que ";
-      countdownText = `${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${setTimeFormat.secondsRemaining}s`;
     }
 
-    // Mise à jour uniquement du contenu du timer
-    messageContainer.innerHTML = baseMessage;
-    countdownElement.innerHTML = `<span class="countdown-red">${countdownText}</span>`;
+    let timeFormat = timeRemaining(expirationTime, currentTime);
+    countdownElement.innerHTML = `${formatTime(timeFormat.hoursRemaining)}h${formatTime(timeFormat.minutesRemaining)}m${formatTime(timeFormat.secondsRemaining)}s`;
   }
-  setInterval(updateNotification, 1000);
+
+  initBaseMessage();
+  setInterval(updateCountdown, 1000);
 });
 
 
