@@ -345,28 +345,18 @@ hideIfSingleChildWithSingleLi('.select-titulo');
 document.addEventListener('DOMContentLoaded', function timeNotification() {
   const container = document.getElementById('notification-container');
 
-  function showCustomNotification(message, countdownText, type = 'info') {
-    let notification = document.getElementById('custom-notification');
-    if (!notification) {
-      notification = document.createElement('div');
-      notification.id = 'custom-notification';
-      notification.className = `notification ${type}`;
-      container.appendChild(notification);
-    }
-    const messageContainer = notification.querySelector('.message-content') || document.createElement('div');
-    messageContainer.className = 'message-content';
-    messageContainer.innerHTML = message;
-    if (!notification.contains(messageContainer)) {
-      notification.appendChild(messageContainer);
-    }
+  // Création initiale de la notification, séparation du message et du timer
+  let notification = document.createElement('div');
+  notification.id = 'custom-notification';
+  notification.className = 'notification info';
+  let messageContainer = document.createElement('div');
+  messageContainer.className = 'message-content';
+  let countdownElement = document.createElement('span');
+  countdownElement.className = 'countdown notranslate';
 
-    const countdownElement = notification.querySelector('.countdown') || document.createElement('span');
-    countdownElement.className = 'countdown notranslate';
-    countdownElement.innerHTML = countdownText;
-    if (!notification.contains(countdownElement)) {
-      notification.appendChild(countdownElement);
-    }
-  }
+  container.appendChild(notification);
+  notification.appendChild(messageContainer);
+  notification.appendChild(countdownElement);
 
   function formatTime(time) {
     return time < 10 ? `0${time}` : `${time}`;
@@ -384,33 +374,36 @@ document.addEventListener('DOMContentLoaded', function timeNotification() {
   function updateNotification() {
     const currentTime = new Date();
     let expirationTime = new Date(currentTime);
-    let message = '';
+    let baseMessage = '';
     let countdownText = '';
 
     if (currentTime.getDay() >= 1 && currentTime.getDay() <= 5 && currentTime.getHours() < 13) {
       expirationTime.setHours(13, 0, 0, 0);
       let setTimeFormat = timeRemaining(expirationTime, currentTime);
-      message = "Garantie d'expédition aujourd'hui, plus que ";
-      countdownText = `<span class="countdown-red">${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s</span>`;
+      baseMessage = "Garantie d'expédition aujourd'hui, plus que ";
+      countdownText = `${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s`;
     } else if ((currentTime.getDay() >= 1 && currentTime.getDay() <= 4 && currentTime.getHours() >= 13) || currentTime.getDay() === 1) {
       expirationTime.setDate(currentTime.getDate() + 1);
       expirationTime.setHours(13, 0, 0, 0);
       let setTimeFormat = timeRemaining(expirationTime, currentTime);
-      message = "Garantie d'expédition demain, plus que ";
-      countdownText = `<span class="countdown-red">${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s</span>`;
+      baseMessage = "Garantie d'expédition demain, plus que ";
+      countdownText = `${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${formatTime(setTimeFormat.secondsRemaining)}s`;
     } else {
       const daysToMonday = (8 - currentTime.getDay()) % 7;
       expirationTime.setDate(currentTime.getDate() + daysToMonday);
       expirationTime.setHours(13, 0, 0, 0);
       let setTimeFormat = timeRemaining(expirationTime, currentTime);
-      message = "Garantie d'expédition lundi, plus que ";
-      countdownText = `<span class="countdown-red">${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${setTimeFormat.secondsRemaining}s</span>`;
+      baseMessage = "Garantie d'expédition lundi, plus que ";
+      countdownText = `${formatTime(setTimeFormat.hoursRemaining)}h${formatTime(setTimeFormat.minutesRemaining)}m${setTimeFormat.secondsRemaining}s`;
     }
 
-    showCustomNotification(message, countdownText);
+    // Mise à jour uniquement du contenu du timer
+    messageContainer.innerHTML = baseMessage;
+    countdownElement.innerHTML = `<span class="countdown-red">${countdownText}</span>`;
   }
   setInterval(updateNotification, 1000);
 });
+
 
 
 const containerDelivery = document.querySelector('.container-delivery');
