@@ -350,7 +350,7 @@
       },
       "9365423049038898845": {
         "type": "shopify:\/\/apps\/tawk-to-live-chat\/blocks\/widget-embed-code\/91169e75-f163-40ce-90e0-9059f3c9b772",
-        "disabled": true,
+        "disabled": false,
         "settings": {
         }
       }
