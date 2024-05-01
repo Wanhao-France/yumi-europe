@@ -148,47 +148,5 @@
       }
       setDefaultState();
     </script>
-
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-function getChatId() {
-	// function to retrieve the property/widget chat id;
-	// substitute 000000000001 to property id
-	var lang = navigator.language || navigator.userLanguage;
-
-	// return the default language if the lang variable is empty
-	if (!lang) {
-		return '655b7325d600b968d3152666/DEFAULT_WIDGET';
-	}
-
-	if (lang.match('en')) {
-		return '655b7325d600b968d3152666/WIDGET_FOR_EN';
-	} else if (lang.match('de')) {
-		return '655b7325d600b968d3152666/WIDGET_FOR_DE';
-	} else if (lang.match('es')) {
-		return '655b7325d600b968d3152666/WIDGET_FOR_ES';
-    } else if (lang.match('it')) {
-		return '655b7325d600b968d3152666/WIDGET_FOR_IT';
-	} else {
-		return '655b7325d600b968d3152666/DEFAULT_WIDGET';
-	}
-}
-
-(function () {
-	var chatId = getChatId();
-	if (!chatId) {
-		return;
-	}
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-
-	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-	s1.async=true;
-	s1.src = 'https://embed.tawk.to/' + chatId;
-	s1.charset='UTF-8';
-	s1.setAttribute('crossorigin','*');
-	s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
   </body>
 </html>
