@@ -310,12 +310,6 @@
         "settings": {
         }
       },
-      "9365423049038898845": {
-        "type": "shopify:\/\/apps\/tawk-to-live-chat\/blocks\/widget-embed-code\/91169e75-f163-40ce-90e0-9059f3c9b772",
-        "disabled": false,
-        "settings": {
-        }
-      },
       "3842503713604335150": {
         "type": "shopify:\/\/apps\/vify-order-printer\/blocks\/invoice_download_embed\/8e413796-b0ed-4419-ae4e-893123b931a9",
         "disabled": false,
@@ -352,6 +346,12 @@
         "disabled": false,
         "settings": {
           "drawerId": "additional-checkout-buttons"
+        }
+      },
+      "9365423049038898845": {
+        "type": "shopify:\/\/apps\/tawk-to-live-chat\/blocks\/widget-embed-code\/91169e75-f163-40ce-90e0-9059f3c9b772",
+        "disabled": true,
+        "settings": {
         }
       }
     }
