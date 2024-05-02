@@ -10139,7 +10139,7 @@ body.account-popup-open .yv-login-popup {
 
 @media (max-width: 991px) {
   .navbar-toggler {
-    grid-column: 2 / 3;
+    grid-column: 1 / 2;
     grid-row: 2 / 3;
   }
 
@@ -10149,7 +10149,7 @@ body.account-popup-open .yv-login-popup {
   }
 
   .container__buttons-contact {  
-    grid-column: 3 / 4;
+    grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
   
@@ -10170,7 +10170,7 @@ body.account-popup-open .yv-login-popup {
   }
 
   .toggle-container { 
-    grid-column: 10 / 12;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
   }
   .container__codes-promo.expanded {
@@ -10180,7 +10180,7 @@ body.account-popup-open .yv-login-popup {
 
 @media (max-width: 768px) {
   .navbar-toggler {
-    grid-column: 2 / 3;
+    grid-column: 1 / 2;
     grid-row: 2 / 3;
     justify-self: center;
   }
@@ -10216,8 +10216,9 @@ body.account-popup-open .yv-login-popup {
   }
 
   .toggle-container { 
-    grid-column: 10 / 11;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
+    margin-right: 25px;
   }
 
   .closed-code-promo > span {
@@ -10485,13 +10486,19 @@ body.account-popup-open .yv-login-popup {
   }
   #custom-notification {
     padding: 0 1rem;
+    margin-right: 25px;
+  }
+  #notification-container {
+    grid-row: 3 / 4;
+    grid-column: 2 / 4;
   }
   .closed-code-promo {
     cursor: pointer;
-    margin-top: 6px;
-    align-self: center;
-    justify-self: center;
-  }
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    justify-self: flex-start;
+    /* padding-left: 3.4rem; */
+}
   .container__codes-promo.expanded {
     padding: 4rem;
   }
@@ -10502,6 +10509,9 @@ body.account-popup-open .yv-login-popup {
   }
   .toggle-btn {
     font-size: 0.7rem;
+  }
+  .container__buttons-contact > .contact-me__info > .secondary__btn, .container__buttons-contact > .contact-me__info > .container-items--btn {
+    width: 7rem;
   }
 }
 
