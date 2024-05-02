@@ -3814,12 +3814,28 @@ function getCookie(name) {
   return "";
 }
 
+const isMobileDevice = () => {
+  return window.innerWidth <= 768;
+};
+
+if (isMobileDevice()) {
+  console.log("Estás en un dispositivo móvil");
+} else {
+  console.log("No estás en un dispositivo móvil");
+}
 
 // Toggle Hidden Code Promo - Andrew - 02/03/2024
 const getContainerCodeState = () => {
-  const cookieValue = getCookie('codePromoBanner');
-  return cookieValue === null ? true : cookieValue === 'true';
+  const isMobile = isMobileDevice();
+  if (isMobile) {
+    return false;
+  } else {
+    const cookieValue = getCookie('codePromoBanner');
+    return cookieValue === null ? true : cookieValue === 'true';
+  }
 }
+
+
 
 const closedCodesPromo = document.getElementById('closed_codes_promo');
 const codesPromo = document.getElementById('codesPromo');
