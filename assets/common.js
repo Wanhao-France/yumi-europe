@@ -3818,29 +3818,30 @@ const isMobileDevice = () => {
   return window.innerWidth <= 768;
 };
 
-if (isMobileDevice()) {
-  console.log("Estás en un dispositivo móvil");
-} else {
-  console.log("No estás en un dispositivo móvil");
-}
+const closedCodesPromo = document.getElementById('closed_codes_promo');
+const codesPromo = document.getElementById('codesPromo');
+const arrowIcon = document.getElementById('arrow_icon');
+const spanText = document.createElement('span');
+
 
 // Toggle Hidden Code Promo - Andrew - 02/03/2024
 const getContainerCodeState = () => {
   const isMobile = isMobileDevice();
+  const cookieValue = getCookie('codePromoBanner');
   if (isMobile) {
-    return false;
+    codesPromo.classList.remove('expanded');
+    codesPromo.classList.add('collapsed');
+    arrowIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ea932e" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>';
+    closedCodesPromo.appendChild(spanText);
+    spanText.classList.add('span__text--flag');
+    spanText.innerText = 'Promo';
   } else {
-    const cookieValue = getCookie('codePromoBanner');
     return cookieValue === null ? true : cookieValue === 'true';
   }
 }
 
 
 
-const closedCodesPromo = document.getElementById('closed_codes_promo');
-const codesPromo = document.getElementById('codesPromo');
-const arrowIcon = document.getElementById('arrow_icon');
-const spanText = document.createElement('span');
 
 let containerState = getContainerCodeState();
 
