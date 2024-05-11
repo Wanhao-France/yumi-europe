@@ -1,8 +1,0 @@
-{
-  "parent": "collection.json",
-  "context": {
-    "market": "international"
-  },
-  "sections": {
-  }
-}
