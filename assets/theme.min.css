@@ -37,7 +37,7 @@ noscript {
 }
 
 .product-detail-slider.main-slider-wrapper .flickity-prev-next-button {
-  z-index: 0;
+  z-index: 9;
 }
 
 body._3pGr6n0e1T3iQlefrCfvKE {
