@@ -1607,7 +1607,6 @@ html:not(.no-js) .yv-collection-slider-wrapper:not(.flickity-enabled) {
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 10px;
-  text-transform: capitalize;
 }
 
 .yv-prizebox span {
