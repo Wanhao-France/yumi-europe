@@ -177,7 +177,7 @@
         }
       },
       "price": {
-        "from_price_html": "Depuis {{ price }}",
+        "from_price_html": "A partir de {{ price }}",
         "regular_price": "Prix ​​habituel",
         "sale_price": "Prix ​​de vente",
         "unit_price": "Prix ​​unitaire",
