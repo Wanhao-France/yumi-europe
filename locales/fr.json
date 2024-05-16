@@ -342,7 +342,7 @@
     },
     "collection_template": {
       "apply": "Appliquer",
-      "clear": "Clair",
+      "clear": "Effacer",
       "clear_all": "Tout effacer",
       "empty": "Aucun produit trouvé",
       "from": "Depuis",
