@@ -9800,9 +9800,8 @@ body.account-popup-open .yv-login-popup {
   list-style: none;
 }
 
-.items-navbar__container > :nth-child(3),
-.items-navbar__container > :nth-child(5) {
-  color: orange !important;
+.items-navbar__container > :nth-child(3) {
+  color: orange;
 }
 
 
