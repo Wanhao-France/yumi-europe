@@ -9802,7 +9802,7 @@ body.account-popup-open .yv-login-popup {
 
 .items-navbar__container > :nth-child(3),
 .items-navbar__container > :nth-child(5) {
-  color: orange;
+  color: orange !important;
 }
 
 
