@@ -353,6 +353,12 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "14916611450974054565": {
+        "type": "shopify:\/\/apps\/adu-automatic-discount-hub\/blocks\/theme_app_embed\/afbdc23b-1384-41ba-afd7-f55ee7ffbc4c",
+        "disabled": false,
+        "settings": {
+        }
       }
     }
   },
