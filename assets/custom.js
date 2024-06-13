@@ -56,18 +56,19 @@ document.addEventListener('DOMContentLoaded', function () {
 // TTC Functionality
 
 function modifyElement(element, showTTC) {
-  const dualPriceElement = element.querySelector('.yv-product-price .dualPrice');
+  const dualPriceElement = element.querySelector('.dualPrice');
 
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
-    if (ttcProperty !== 'true' && showTTC) {
+    let alwaysTTC = element.classList.contains('always-ttc');
+
+    if ((ttcProperty !== 'true' && showTTC) || alwaysTTC) {
       let currentPrice = getPrice(dualPriceElement.textContent);
 
-      if (!ttcProperty) {
+      if (!ttcProperty || alwaysTTC) {
         let newPrice = currentPrice + (currentPrice * porcentajeTTC);
 
-        dualPriceElement.textContent = formatPrice(newPrice) + '€';
-
+        dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
 
         ttcProperty = 'true';
         element.setAttribute('ttc', ttcProperty);
@@ -91,7 +92,7 @@ const observerConfig = {
 function handleIntersection(entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      modifyElement(entry.target);
+      modifyElement(entry.target, showTTC);
     }
   });
 }
@@ -162,7 +163,7 @@ function actualizarPrecios() {
               let valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
               let nuevoValor = valorNumerico + (valorNumerico * porcentajeTTC);
               let valorFinal = nuevoValor / 100;
-              let nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              let nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TTC';
 
               elementHijo.textContent = nuevoTexto;
 
@@ -186,6 +187,7 @@ window.addEventListener('storage', function (event) {
     actualizarPrecios();
   }
 });
+
 
 //TTC Cart/Controller
 
