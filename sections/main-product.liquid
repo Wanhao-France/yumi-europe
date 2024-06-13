@@ -1114,3 +1114,7 @@
 {% endschema %}
 {% javascript %}
 {% endjavascript %}
+
+<div class="yv-product-price" {% if product.metafields.custom.toujours_ttc == true %}class="always-ttc"{% endif %}>
+  <div class="dualPrice">{{ product.price | money }}</div>
+</div>
