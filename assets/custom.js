@@ -55,28 +55,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // TTC Functionality
 
-// Function to modify the price element
 function modifyElement(element, showTTC) {
-  const dualPriceElement = element.querySelector('.dualPrice');
+  const dualPriceElement = element.querySelector('.yv-product-price .dualPrice');
 
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
-    let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
+    if (ttcProperty !== 'true' && showTTC) {
+      let currentPrice = getPrice(dualPriceElement.textContent);
 
-    let currentPrice = getPrice(dualPriceElement.textContent);
+      if (!ttcProperty) {
+        let newPrice = currentPrice + (currentPrice * porcentajeTTC);
 
-    if (alwaysTTC) {
-      let newPrice = currentPrice * 1.2; // Always show TTC for specific products
-      dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
-      element.setAttribute('ttc', 'true');
-    } else if (showTTC && ttcProperty !== 'true') {
-      let newPrice = currentPrice * 1.2; // Convert HT to TTC for other products
-      dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
-      element.setAttribute('ttc', 'true');
-    } else if (!showTTC && ttcProperty === 'true') {
-      let newPrice = currentPrice / 1.2; // Convert TTC back to HT
-      dualPriceElement.textContent = formatPrice(newPrice) + '€ HT';
-      element.setAttribute('ttc', 'false');
+        dualPriceElement.textContent = formatPrice(newPrice) + '€';
+
+
+        ttcProperty = 'true';
+        element.setAttribute('ttc', ttcProperty);
+      }
     }
   }
 }
@@ -191,6 +186,7 @@ window.addEventListener('storage', function (event) {
     actualizarPrecios();
   }
 });
+
 
 
 
