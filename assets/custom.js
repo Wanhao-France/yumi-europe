@@ -55,68 +55,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // TTC Functionality
 
-function modifyElement(element, showTTC) {
-  const dualPriceElement = element.querySelector('.yv-product-price .dualPrice');
-
-  if (dualPriceElement) {
-    let ttcProperty = element.getAttribute('ttc');
-    let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
-    if (!alwaysTTC) {
-      if (ttcProperty !== 'true' && showTTC) {
-        let currentPrice = getPrice(dualPriceElement.textContent);
-
-      if (!ttcProperty) {
-        let newPrice = currentPrice + (currentPrice * porcentajeTTC);
-
-        dualPriceElement.textContent = formatPrice(newPrice) + '€';
-        ttcProperty = 'true';
-        element.setAttribute('ttc', ttcProperty); 
-      } 
-      else {
-        let newPrice = currentPrice * 1.2; // Always show TTC for specific products
-      dualPriceElement.textContent = formatPrice(newPrice) + '€';
-      element.setAttribute('ttc', 'true');
-      }}
-    }
-  }
-}
-
+// Function to get the price from text
 function getPrice(textPrice) {
   return parseFloat(textPrice.replace(/[^\d,]/g, '').replace(',', '.'));
 }
 
+// Function to format the price to two decimal places and replace dot with comma
 function formatPrice(price) {
   return price.toFixed(2).replace('.', ',');
 }
 
+// Function to modify the price element
+function modifyElement(element, showTTC) {
+  const dualPriceElement = element.querySelector('.dualPrice');
+
+  if (dualPriceElement) {
+    let ttcProperty = element.getAttribute('ttc');
+    let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
+
+    let currentPrice = getPrice(dualPriceElement.textContent);
+
+    if (alwaysTTC) {
+      let newPrice = currentPrice * 1.2; // Always show TTC for specific products
+      dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
+      element.setAttribute('ttc', 'true');
+    } else if (showTTC && ttcProperty !== 'true') {
+      let newPrice = currentPrice * 1.2; // Convert HT to TTC for other products
+      dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
+      element.setAttribute('ttc', 'true');
+    } else if (!showTTC && ttcProperty === 'true') {
+      let newPrice = currentPrice / 1.2; // Convert TTC back to HT
+      dualPriceElement.textContent = formatPrice(newPrice) + '€ HT';
+      element.setAttribute('ttc', 'false');
+    }
+  }
+}
+
+// Configuration for the Intersection Observer
 const observerConfig = {
   threshold: 0.5,
 };
 
+// Function to handle intersection entries
 function handleIntersection(entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      modifyElement(entry.target);
+      modifyElement(entry.target, showTTC);
     }
   });
 }
 
+// Create a new Intersection Observer
 const observer = new IntersectionObserver(handleIntersection, observerConfig);
 
+// Observe all elements with class 'yv-product-price'
 const observedElements = document.querySelectorAll('.yv-product-price');
-
 observedElements.forEach(element => {
   observer.observe(element);
 });
 
+// Function to handle scroll event
 function handleScroll(showTTC) {
   const elements = document.querySelectorAll('.yv-product-price');
-
   elements.forEach(element => {
     modifyElement(element, showTTC);
   });
 }
 
+// Initialize the script
 function init() {
   const togglePricesBtn = document.getElementById('togglePreciosBtn');
 
@@ -151,35 +157,34 @@ function init() {
 
 init();
 
+// Function to update prices on page load and storage event
 function actualizarPrecios() {
-  let showTTCValue = getLocalStorageValue('showTTC');
+  let showTTCValue = JSON.parse(localStorage.getItem('showTTC'));
 
-  if (showTTCValue === true) {
-    let parentElements = document.querySelectorAll('.yv-product-compare-price');
+  let parentElements = document.querySelectorAll('.yv-product-compare-price');
 
-    parentElements.forEach(function (parentElement) {
-      if (!parentElement.classList.contains('actualizado')) {
-        if (!parentElement.classList.contains('no-actualizar')) {
-          let elementsHijos = parentElement.querySelectorAll('.dualPrice');
-          elementsHijos.forEach(function (elementHijo) {
-            if (!elementHijo.classList.contains('actualizado')) {
-              let textoActual = elementHijo.textContent;
-              let valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
-              let nuevoValor = valorNumerico + (valorNumerico * porcentajeTTC);
-              let valorFinal = nuevoValor / 100;
-              let nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  parentElements.forEach(function (parentElement) {
+    if (!parentElement.classList.contains('actualizado')) {
+      if (!parentElement.classList.contains('no-actualizar')) {
+        let elementsHijos = parentElement.querySelectorAll('.dualPrice');
+        elementsHijos.forEach(function (elementHijo) {
+          if (!elementHijo.classList.contains('actualizado')) {
+            let textoActual = elementHijo.textContent;
+            let valorNumerico = parseFloat(textoActual.replace(/[^\d,.-]/g, '').replace(',', '').replace('.', '').replace('-', '.'));
+            let nuevoValor = valorNumerico + (valorNumerico * porcentajeTTC);
+            let valorFinal = nuevoValor / 100;
+            let nuevoTexto = '€' + valorFinal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TTC';
 
-              elementHijo.textContent = nuevoTexto;
+            elementHijo.textContent = nuevoTexto;
 
-              elementHijo.classList.add('actualizado');
-            }
-          });
+            elementHijo.classList.add('actualizado');
+          }
+        });
 
-          parentElement.classList.add('actualizado');
-        }
+        parentElement.classList.add('actualizado');
       }
-    });
-  }
+    }
+  });
 }
 
 window.addEventListener('scroll', actualizarPrecios);
@@ -191,6 +196,7 @@ window.addEventListener('storage', function (event) {
     actualizarPrecios();
   }
 });
+
 
 
 
