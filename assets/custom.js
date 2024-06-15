@@ -73,7 +73,9 @@ function modifyElement(element, showTTC) {
         element.setAttribute('ttc', ttcProperty); 
       } 
       else {
-         let currentPrice = getPrice(dualPriceElement.textContent);
+        let newPrice = currentPrice * 1.2; // Always show TTC for specific products
+      dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
+      element.setAttribute('ttc', 'true');
       }}
     }
   }
