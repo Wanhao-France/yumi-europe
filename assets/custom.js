@@ -69,10 +69,11 @@ function modifyElement(element, showTTC) {
         let newPrice = currentPrice + (currentPrice * porcentajeTTC);
 
         dualPriceElement.textContent = formatPrice(newPrice) + '€';
-
-
         ttcProperty = 'true';
-        element.setAttribute('ttc', ttcProperty);
+        element.setAttribute('ttc', ttcProperty); 
+      } 
+      else {
+         let currentPrice = getPrice(dualPriceElement.textContent);
       }}
     }
   }
