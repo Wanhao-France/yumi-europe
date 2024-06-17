@@ -55,25 +55,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // TTC Functionality
 
+// TTC Functionality
+
 function modifyElement(element, showTTC) {
   const dualPriceElement = element.querySelector('.yv-product-price .dualPrice');
 
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
-    let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
-    if (alwaysTTC == 'true') {
+    if (ttcProperty !== 'true' && showTTC) {
       let currentPrice = getPrice(dualPriceElement.textContent);
-      let newPrice = currentPrice + (currentPrice * porcentajeTTC);
-      dualPriceElement.textContent = formatPrice(newPrice) + '€';
+
+      if (!ttcProperty) {
+        let newPrice = currentPrice + (currentPrice * porcentajeTTC);
+
+        dualPriceElement.textContent = formatPrice(newPrice) + '€';
+
 
         ttcProperty = 'true';
         element.setAttribute('ttc', ttcProperty);
-    if (ttcProperty !== 'true' && showTTC) {
-      let currentPrice = getPrice(dualPriceElement.textContent);
-      let newPrice = currentPrice + (currentPrice * porcentajeTTC);
-      dualPriceElement.textContent = formatPrice(newPrice) + '€';
-      ttcProperty = 'true';
-      element.setAttribute('ttc', ttcProperty);
+      }
     }
   }
 }
