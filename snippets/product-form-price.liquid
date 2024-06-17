@@ -9,6 +9,7 @@
   {% endif %}
   {{ block.shopify_attributes }}
   role="status"
+  data-toujours-ttc="{{ product.metafields.custom.toujours_ttc }}"
 >
   <span class="yv-visually-hidden">
     {%- if current_variant.compare_at_price > current_variant.price -%}
