@@ -89,6 +89,7 @@ function modifyElement(element, showTTC) {
 
         ttcProperty = 'true';
         element.setAttribute('ttc', ttcProperty);
+      
       }
     }
   }
