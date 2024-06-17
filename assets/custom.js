@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // TTC Functionality
 
 function modifyElement(element, showTTC) {
-  const dualPriceElement = element.querySelector('.yv-product-price .dualPrice');
+  const dualPriceElement = element.querySelector('.dualPrice');
 
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
