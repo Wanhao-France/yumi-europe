@@ -63,7 +63,7 @@ function modifyElement(element, showTTC) {
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
     let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
-    if (ttcProperty !== 'true' && showTTC) {
+    if (ttcProperty !== 'true' && showTTC && !alwaysTTC) {
       let currentPrice = getPrice(dualPriceElement.textContent);
 
       if (!ttcProperty) {
