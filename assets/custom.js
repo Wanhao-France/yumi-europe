@@ -53,23 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
   updateStyles();
 });
 
-// TTC Functionality gérer toujours TTC
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Get all product elements with the data attribute 'data-toujours-ttc'
-  var productElements = document.querySelectorAll('[data-toujours-ttc]');
-
-  productElements.forEach(function (productElement) {
-    // Get the metafield value from the data attribute
-    var toujoursTtc = productElement.getAttribute('data-toujours-ttc') === 'true';
-
-    // If the metafield value is true, add the class
-    if (toujoursTtc) {
-      productElement.classList.add('always-ttc');
-    }
-  });
-});
-
 // TTC Functionality
 
 function modifyElement(element, showTTC) {
