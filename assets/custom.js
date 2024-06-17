@@ -77,31 +77,24 @@ function modifyElement(element, showTTC) {
 
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
-    let alwaysTTC = element.classList.contains('always-ttc');
-
-    if (alwaysTTC) {
+    let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
+    if (ttcProperty !== 'true' && showTTC && !alwaysTTC) {
       let currentPrice = getPrice(dualPriceElement.textContent);
-      let newPrice = currentPrice * 1.2;
 
-      dualPriceElement.textContent = formatPrice(newPrice) + '€ TTC';
-      element.setAttribute('ttc', 'true');
-    } else if (ttcProperty !== 'true' && showTTC) {
-      let currentPrice = getPrice(dualPriceElement.textContent);
-      let newPrice = currentPrice + (currentPrice * porcentajeTTC);
+      if (!ttcProperty) {
+        let newPrice = currentPrice + (currentPrice * porcentajeTTC);
 
-      dualPriceElement.textContent = formatPrice(newPrice) + '€';
-      ttcProperty = 'true';
-      element.setAttribute('ttc', ttcProperty);
-    } else if (!showTTC && ttcProperty === 'true') {
-      let currentPrice = getPrice(dualPriceElement.textContent);
-      let newPrice = currentPrice / 1.2;
+        dualPriceElement.textContent = formatPrice(newPrice) + '€';
 
-      dualPriceElement.textContent = formatPrice(newPrice) + '€';
-      ttcProperty = 'false';
-      element.setAttribute('ttc', ttcProperty);
+
+        ttcProperty = 'true';
+        element.setAttribute('ttc', ttcProperty);
+      
+      }
+      else ()
     }
   }
-}
+
 
 
 function getPrice(textPrice) {
