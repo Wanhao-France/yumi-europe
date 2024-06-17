@@ -139,6 +139,7 @@
     {% endif %}
     "description": "{{ product.description | strip_html | escape }}",
     {% if product.selected_or_first_available_variant.sku != blank %}
+
       "sku": "{{ product.selected_or_first_available_variant.sku }}",
     {% endif %}
     "brand": {
@@ -151,7 +152,6 @@
           {
             "@type" : "Offer",
             "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-            "stockCounter" : "value": "{{ variant.inventory_quantity }}",
             "price" : "{{ variant.price | divided_by: 100.00 }}",
             "priceCurrency" : "{{ shop.currency }}",
             "url" : "{{ shop.url }}{{ variant.url }}",
