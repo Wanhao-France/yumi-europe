@@ -73,29 +73,22 @@ document.addEventListener('DOMContentLoaded', function () {
 // TTC Functionality
 
 function modifyElement(element, showTTC) {
-  const dualPriceElement = element.querySelector('.dualPrice');
+  const dualPriceElement = element.querySelector('.yv-product-price .dualPrice');
 
   if (dualPriceElement) {
     let ttcProperty = element.getAttribute('ttc');
-    let alwaysTTC = element.classList.contains('always-ttc') || element.getAttribute('data-always-ttc') === 'true';
-    if (ttcProperty !== 'true' && showTTC && !alwaysTTC) {
+    if (ttcProperty !== 'true' && showTTC) {
       let currentPrice = getPrice(dualPriceElement.textContent);
+      let newPrice = currentPrice + (currentPrice * porcentajeTTC);
+      dualPriceElement.textContent = formatPrice(newPrice) + '€';
+      ttcProperty = 'true';
+      element.setAttribute('ttc', ttcProperty);
 
-      if (!ttcProperty) {
-        let newPrice = currentPrice + (currentPrice * porcentajeTTC);
 
-        dualPriceElement.textContent = formatPrice(newPrice) + '€';
-
-
-        ttcProperty = 'true';
-        element.setAttribute('ttc', ttcProperty);
-      
       }
-      else ()
     }
   }
-
-
+}
 
 function getPrice(textPrice) {
   return parseFloat(textPrice.replace(/[^\d,]/g, '').replace(',', '.'));
@@ -207,7 +200,6 @@ window.addEventListener('storage', function (event) {
     actualizarPrecios();
   }
 });
-
 
 
 
