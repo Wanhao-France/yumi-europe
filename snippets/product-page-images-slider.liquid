@@ -28,12 +28,7 @@
       <div class="image-wrapper"
         style="padding-bottom:{{ 1 | divided_by : media.preview_image.aspect_ratio | times: 100 }}%">
         {%- assign mediaId = 'yv-product-image-item-' | append: media.id -%}
-        {%- render 'lazy-image',
-        id: mediaId,
-        class: 'yv-product-image' | append: (section.settings.enable_zoom_icon and section.settings.gallery_style == 'slider' ? ' yv-product-zoom-image' : ''),
-        image: media,
-        width: productImageSize
-        -%}
+        {%- render 'lazy-image', id: mediaId, class: 'yv-product-image', append: section.settings.enable_zoom_icon, image: media, width: productImageSize -%}
 
         <a href="{{ media | image_url }}"  {% if section.settings.show_variant-media %} {% unless product.selected_or_first_available_variant.featured_media.alt != blank and product.selected_or_first_available_variant.featured_media.alt != media.alt %}data-fancybox="gallery{{ section.id }}"{% endunless%}{% else %}data-fancybox="gallery{{ section.id }}"{% endif %} data-thumb="{{ media | image_url }}"
           class="{% if section.settings.enable_zoom_icon %}yv-product-zoom{% endif %} no-js-hidden" zoom-icon="{{ section.settings.enable_zoom_icon }}" aria-label="{{ media.alt | downcase | default: product.title | strip_html }}">
@@ -278,3 +273,20 @@
     </div>
   </div>
   {% endif %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%- render 'lazy-image',
+            id: mediaId,
+            class: 'yv-product-image' | append: (section.settings.enable_zoom_icon and section.settings.gallery_style == 'slider' ? ' yv-product-zoom-image' : ''),
+            image: media,
+            width: productImageSize
+            -%}
+  to: "{%- render 'lazy-image', id: mediaId, class: 'yv-product-image', append: section.settings.enable_zoom_icon,
+    image: media, width: productImageSize -%}"
+  position: 1840..1989
+{% endcomment %}
